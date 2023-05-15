@@ -19,7 +19,7 @@ brew install clojure/tools/clojure
 ## Install babashka
 
 ```sh
-brew install bb
+brew install borkdude/brew/babashka
 ```
 
 ## Start the app
