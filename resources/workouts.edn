@@ -1,0 +1,134 @@
+[{:xt/id :db.id/a
+  :user/email "user.a@example.com"
+  :user/joined-at :db/now
+  :db/doc-type :user}
+ {:xt/id :db.id/b
+  :user/email "user.b@example.com"
+  :user/joined-at :db/now
+  :db/doc-type :user}
+ {:xt/id :db.id/c
+  :user/email "user.c@example.com"
+  :user/joined-at :db/now
+  :db/doc-type :user}
+ {:xt/id :db.id/fran
+  :workout/name "Fran"
+  :workout/description "21-15-9 reps of thrusters (95/65 lbs) and pull-ups"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/angie
+  :workout/name "Angie"
+  :workout/description "100 pull-ups 100 push-ups 100 sit-ups 100 squats"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/barbara
+  :workout/name "Barbara"
+  :workout/description "5 rounds of: 20 pull-ups 30 push-ups 40 sit-ups 50 squats; Rest 3 minutes between rounds"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/chelsea
+  :workout/name "Chelsea"
+  :workout/description "Every minute on the minute for 30 minutes: 5 pull-ups 10 push-ups 15 squats"
+  :workout/scheme :pass-fail
+  :db/doc-type :workout}
+ {:xt/id :db.id/cindy
+  :workout/name "Cindy"
+  :workout/description "As many rounds as possible in 20 minutes: 5 pull-ups 10 push-ups 15 squats"
+  :workout/scheme :rounds-reps
+  :db/doc-type :workout}
+ {:xt/id :db.id/diane
+  :workout/name "Diane"
+  :workout/description "21-15-9 reps of deadlifts (225/155 lbs) and handstand push-ups"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/elizabeth
+  :workout/name "Elizabeth"
+  :workout/description "21-15-9 reps of cleans (135/95 lbs) and ring dips"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/grace
+  :workout/name "Grace"
+  :workout/description "30 clean and jerks (135/95 lbs)"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/helen
+  :workout/name "Helen"
+  :workout/description "3 rounds for time: 400m run 21 kettlebell swings (53/35 lbs) 12 pull-ups"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/isabel
+  :workout/name "Isabel"
+  :workout/description "30 snatches (135/95 lbs)"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/jackie
+  :workout/name "Jackie"
+  :workout/description "1000m row 50 thrusters (45/35 lbs) 30 pull-ups"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/karen
+  :workout/name "Karen"
+  :workout/description "150 wall-ball shots (20/14 lbs)"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/linda
+  :workout/name "Linda"
+  :workout/description "10-9-8-7-6-5-4-3-2-1 reps for time: deadlift (1.5 bodyweight) bench press (bodyweight) clean (0.75 bodyweight)"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/mary
+  :workout/name "Mary"
+  :workout/description "As many rounds as possible in 20 minutes: 5 handstand push-ups 10 one-legged squats 15 pull-ups"
+  :workout/scheme :rounds-reps
+  :db/doc-type :workout}
+ {:xt/id :db.id/nancy
+  :workout/name "Nancy"
+  :workout/description "5 rounds for time: 400m run 15 overhead squats (95/65 lbs)"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/annie
+  :workout/name "Annie"
+  :workout/description "50-40-30-20-10 reps for time: double-unders sit-ups"
+  :workout/scheme :time
+  :db/doc-type :workout}
+ {:xt/id :db.id/ida
+  :result/user :db.id/a
+  :result/workout :db.id/fran
+  :result/score "5:34"
+  :result/date :db/now
+  :result/scale :rx
+  :db/doc-type :result}
+ {:xt/id :db.id/idb
+  :result/user :db.id/a
+  :result/workout :db.id/grace
+  :result/score "2:22"
+  :result/date :db/now
+  :result/scale :scaled
+  :db/doc-type :result}
+ {:xt/id :db.id/idc
+  :result/user :db.id/b
+  :result/workout :db.id/cindy
+  :result/score "12 rounds + 6 pull-ups"
+  :result/date  :db/now
+  :result/scale :rx
+  :db/doc-type :result}
+ {:xt/id :db.id/idd
+  :result/user :db.id/b
+  :result/workout :db.id/annie
+  :result/score "10:01"
+  :result/date  :db/now
+  :result/scale :scaled
+  :db/doc-type :result}
+ {:xt/id :db.id/ide
+  :result/user :db.id/c
+  :result/workout :db.id/nancy
+  :result/score "21:45"
+  :result/date  :db/now
+  :result/scale :rx+
+  :db/doc-type :result}
+ {:xt/id :db.id/idf
+  :result/user :db.id/c
+  :result/workout :db.id/linda
+  :result/score "18:45"
+  :result/date :db/now
+  :result/scale :scaled
+  :db/doc-type :result}]
