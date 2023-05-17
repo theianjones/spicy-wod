@@ -11,3 +11,4 @@
 .clj-kondo/
 .lsp/
 .portal/
+.DS_Store
