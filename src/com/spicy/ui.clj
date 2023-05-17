@@ -44,12 +44,13 @@
   [ctx & body]
   (base
     ctx
-    [:.p-3.mx-auto.max-w-screen-xl.w-full.flex.justify-between.items-center
-     [:.flex.items-center.gap-2
+    [:.p-3.mx-auto.max-w-screen-xl.w-full.flex.sm:justify-between.items-center.flex-wrap.space-y-2.justify-center
+     [:a.flex.items-center.gap-2
+      {:href "/"}
       [:img {:src "/img/spicywod-logo.png" :width 70 :height 70 :alt "spicy pepper"}]
       [:div {:class "font-display text-5xl w-[140px]"} "Spicy WOD"]]
      [:nav
-      [:ul.flex.list-none.gap-3
+      [:ul.flex.list-none.-ml-6.list-inside.gap-3
        [:li [:a.btn {:href "/app/workouts"} "Workouts"]]
        [:li [:a.btn {:href "/app/results"} "Scores"]]]]]
     [:.p-3.mx-auto.max-w-screen-xl.w-full
