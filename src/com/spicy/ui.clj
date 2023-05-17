@@ -25,7 +25,11 @@
                       :description (str settings/app-name " Description")
                       :image "https://clojure.org/images/clojure-logo-120b.png"})
         (update :base/head (fn [head]
-                             (concat [[:link {:rel "stylesheet" :href (css-path)}]
+                             (concat [[:link {:rel "preload" :href "/fonts/DDSans-Regular.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
+                                      [:link {:rel "preload" :href "/fonts/DDSans-Light.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
+                                      [:link {:rel "preload" :href "/fonts/DDSans-Bold.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
+                                      [:link {:rel "preload" :href "/fonts/Mazer.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
+                                      [:link {:rel "stylesheet" :href (css-path)}]
                                       [:script {:src "https://unpkg.com/htmx.org@1.9.0"}]
                                       [:script {:src "https://unpkg.com/htmx.org/dist/ext/ws.js"}]
                                       [:script {:src "https://unpkg.com/hyperscript.org@0.9.8"}]
@@ -40,11 +44,15 @@
   [ctx & body]
   (base
     ctx
-    [:nav
-     [:ul.flex.list-none.gap-1
-      [:li [:a {:href "/app/workouts"} "Workouts"]]
-      [:li [:a {:href "/app/results"} "Results"]]]]
-    [:.p-3.mx-auto.max-w-screen-sm.w-full
+    [:.p-3.mx-auto.max-w-screen-xl.w-full.flex.justify-between.items-center
+     [:.flex.items-center.gap-2
+      [:img {:src "/img/spicywod-logo.png" :width 70 :height 70 :alt "spicy pepper"}]
+      [:div {:class "font-display text-5xl w-[140px]"} "Spicy WOD"]]
+     [:nav
+      [:ul.flex.list-none.gap-3
+       [:li [:a.btn {:href "/app/workouts"} "Workouts"]]
+       [:li [:a.btn {:href "/app/results"} "Scores"]]]]]
+    [:.p-3.mx-auto.max-w-screen-xl.w-full
      (when (bound? #'csrf/*anti-forgery-token*)
        {:hx-headers (cheshire/generate-string
                       {:x-csrf-token csrf/*anti-forgery-token*})})

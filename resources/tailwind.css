@@ -2,6 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "DDSans";
+  font-weight: normal;
+  font-style: normal;
+  src: url("/fonts/DDSans-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "DDSans";
+  font-weight: 600;
+  font-style: normal;
+  src: url("/fonts/DDSans-Bold.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "DDSans";
+  font-weight: 400;
+  font-style: normal;
+  ascent-override: 90%;
+  descent-override: 20%;
+  src: url("/fonts/DDSans-Light.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mazer";
+  font-weight: normal;
+  font-style: normal;
+  src: url("/fonts/Mazer.otf") format("opentype");
+  font-display: swap;
+}
+
 @layer base {
   p {
     @apply mb-3;
@@ -15,14 +46,28 @@
     @apply list-decimal;
   }
 
-  ul, ol {
+  ul,
+  ol {
     @apply my-3 pl-10;
+  }
+
+  body {
+    @apply bg-brand-background;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Mazer, DDSans, sans-serif;
   }
 }
 
 @layer components {
   .btn {
-    @apply bg-blue-500 hover:bg-blue-700 text-center py-2 px-4 rounded disabled:opacity-50 text-white;
+    @apply relative z-[1] rounded border-2 border-black bg-brand-background p-2 text-2xl font-bold text-black translate-x-2 translate-y-2 shadow-[1px_1px_#000] hover:shadow-[4px_4px_#000];
   }
 }
 
@@ -32,4 +77,6 @@
   }
 }
 
-.grecaptcha-badge { visibility: hidden; }
+.grecaptcha-badge {
+  visibility: hidden;
+}

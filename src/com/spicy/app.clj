@@ -109,6 +109,14 @@
       (map message (sort-by :msg/sent-at #(compare %2 %1) messages))]]))
 
 
+(defn panel
+  [& children]
+  [:div {:class (str  "rounded-3xl bg-brand-pink md:p-8 p-4 "
+                      "translate-x-2 translate-y-2 shadow-[2px_2px_#000] "
+                      "flex flex-col item-center")}
+   children])
+
+
 (defn workout-results
   [{:keys [user workout biff/db]}]
   (let [results (biff/q db '{:find (pull result [*])
@@ -117,20 +125,38 @@
                                      [result :result/workout workout-id]]}
                         [user workout])]
     [:div
-     [:h2 "Results"]
-     [:ul
-      (map (fn [{:result/keys [score date notes]}]
-             [:li
-              [:div.flex.gap-3
-               [:div score]
-               (when notes [:div notes])
-               [:div date]]]) results)]]))
+     [:h2.text-2xl "Log Book"]
+     (if (zero? (count results))
+       [:p "Log a workout to see your history!"]
+       [:ul
+        (map (fn [{:result/keys [score date notes]}]
+               [:li
+                [:div.flex.gap-3
+                 [:div score]
+                 (when notes [:div notes])
+                 [:div date]]]) results)])]))
+
+
+(defn display-scheme
+  [scheme]
+  (case scheme
+    :time        "For Time"
+    :rounds-reps "Rounds + Reps"
+    :pass-fail   "Pass/Fail"
+    nil))
 
 
 (defn workout-ui
-  [{:workout/keys [name description] :keys [children]}]
+  [{:workout/keys [name description scheme] :keys [children class]}]
   [:div
-   [:h2 name]
+   {:class (str
+             "flex flex-col items-center gap-3 "
+             "w-[354px] bg-brand-background p-6 rounded-md "
+             "translate-x-2 translate-y-2 shadow-[2px_2px_#000] mb-[2px] ml-[-7px] "
+             (or class ""))}
+   [:div.flex.items-center.justify-between.pb-4.w-full
+    [:h2.text-3xl name]
+    [:div.border.border-radius.rounded-full.border-black.py-1.px-2 (display-scheme scheme)]]
    [:p description]
    (when (some? children)
      children)])
@@ -138,30 +164,35 @@
 
 (defn index-workout
   [{:keys [biff/db] :as _ctx}]
-  (let [workouts (biff/q db '{:find (pull workout [*])
+  (let [workouts (biff/q db '{:find  (pull workout [*])
                               :where [[workout :workout/name]]})]
     (ui/page {}
-             [:div
-              [:h1 "Workouts"]
-              (map #(workout-ui
-                      (assoc %
-                             :children
-                             [:a.btn
-                              {:href (str "/app/workouts/" (string/lower-case (:workout/name %)))}
-                              "View History"]))
-                   workouts)])))
+             (panel
+               [:h1.text-5xl.mb-14 "Workouts"]
+               [:div.flex.gap-14.flex-wrap
+                (map #(workout-ui
+                        (assoc %
+                               :children
+                               [:a.btn.mt-auto
+                                {:href (str "/app/workouts/" (string/lower-case (:workout/name %)))}
+                                "View History"]))
+                     workouts)]))))
 
 
 (defn show-workout
   [{:keys [biff/db path-params session] :as _ctx}]
-  (let [workout (first (biff/q db '{:find (pull workout [*])
-                                    :in [[name]]
+  (let [workout (first (biff/q db '{:find  (pull workout [*])
+                                    :in    [[name]]
                                     :where [[workout :workout/name name]]}
                                [(string/capitalize (:name path-params))]))]
-    (ui/page {} [:div (workout-ui workout)
-                 [:a.btn {:href (str "/app/results/new?workout=" (:workout/name workout))} "Log workout"]
-                 [:.h-3]
-                 (workout-results {:user (:uid session) :workout (:xt/id workout) :biff/db db})])))
+    (ui/page {} (panel [:div.flex.flex-col.gap-6.md:flex-row
+                        [:div.flex.gap-2.md:block
+                         (workout-ui workout)
+                         [:.h-6]
+                         [:a {:href  (str "/app/results/new?workout=" (:workout/name workout))
+                              :class (str "btn h-[fit-content]")} "Log workout"]]
+                        [:.flex-1
+                         (workout-results {:user (:uid session) :workout (:xt/id workout) :biff/db db})]]))))
 
 
 (defn result-ui
@@ -192,9 +223,9 @@
 
 
 (defn result-form
-  [{:keys [workout result action hidden hx-key]} & children]
+  [{:keys [workout result action hidden hx-key] :as props} & children]
   (biff/form
-    {(or hx-key :hx-post) action
+    {(or hx-key :action) action
      :class "flex flex-col gap-3"
      :hidden hidden}
     (scheme-forms (merge workout result))
@@ -310,12 +341,14 @@
                                  :where [[workout :workout/name name]]}
                                [(:workout params)]))]
 
-    (ui/page {} [:div
-                 [:h1 "Log Result"]
-                 (workout-ui workout)
-                 (result-form
-                   (merge workout {:action "/app/results" :hidden {:workout (:xt/id workout)}})
-                   [:button.btn {:type "submit"} "Log Result"])])))
+    (ui/page {} (panel
+                  [:h1.text-5xl.mb-14 "Log Result"]
+                  [:.flex.flex-col.gap-6.md:flex-row
+                   (workout-ui workout)
+                   [:.flex-1
+                    (result-form
+                      (merge {:workout workout} {:action "/app/results" :hidden {:workout (:xt/id workout)}})
+                      [:button.btn {:type "submit"} "Log Result"])]]))))
 
 
 (defn app
