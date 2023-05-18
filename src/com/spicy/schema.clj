@@ -46,7 +46,17 @@
             [:result/date inst?]
             [:result/notes {:optional true} :string]
             [:result/tie-break {:optional true} [:or inst? :string]]
-            [:result/scale [:enum :rx :scaled :rx+]]]})
+            [:result/scale [:enum :rx :scaled :rx+]]]
+   :movement/id :uuid
+   :movement [:map {:closed true}
+              [:xt/id :movement/id]
+              [:movement/name :string]
+              [:movement/type [:enum :strength :gymnastic :monostructural]]]
+   :workout-movement/id :uuid
+   :workout-movement [:map {:closed true}
+                      [:xt/id :workout-movement/id]
+                      [:workout-movement/workout :workout/id]
+                      [:workout-movement/movement :movement/id]]})
 
 
 (def plugin

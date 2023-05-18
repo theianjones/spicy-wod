@@ -12,9 +12,9 @@
 
 
 (defn add-fixtures
-  []
+  [edn-file]
   (biff/submit-tx (get-context)
-                  (-> (io/resource "workouts.edn")
+                  (-> (io/resource edn-file)
                       slurp
                       edn/read-string)))
 
@@ -25,9 +25,19 @@
   ;; you edit the seed data (in resources/fixtures.edn), you can reset the
   ;; database by running `rm -r storage/xtdb` (DON'T run that in prod),
   ;; restarting your app, and calling add-fixtures again.
-  (add-fixtures)
+  (add-fixtures "movements.edn")
+
+  (slurp (io/resource "movements.edn"))
+
 
   (biff/add-libs)
+
+  (biff/submit-tx (get-context)
+                  [{:db/doc-type :movement
+                    :movement/type :strength
+                    :movement/name "Test"}])
+
+
 
   (require '[portal.api :as p])
   (def p (p/open))

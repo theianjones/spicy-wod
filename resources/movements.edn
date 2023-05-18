@@ -1,0 +1,388 @@
+[{:movement/name "snatch"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-aa}
+ {:movement/name "jerk"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-a}
+ {:movement/name "clean"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-b}
+ {:movement/name "deadlift"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-c}
+ {:db/doc-type   :movement
+  :movement/name "muscle up"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-d}
+ {:db/doc-type   :movement
+  :movement/name "push up"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-e}
+ {:db/doc-type   :movement
+  :movement/name "pull up"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-f}
+ {:db/doc-type   :movement
+  :movement/name "sit up"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-g}
+ {:db/doc-type   :movement
+  :movement/name "burpee bar muscle up"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-h}
+ {:db/doc-type   :movement
+  :movement/name "toes to bar"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-i}
+ {:db/doc-type   :movement
+  :movement/name "burpee pull up"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-j}
+ {:db/doc-type   :movement
+  :movement/name "box jump overs"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-k}
+ {:db/doc-type   :movement
+  :movement/name "burpee box jump over"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-l}
+ {:db/doc-type   :movement
+  :movement/name "skin the cat"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-m}
+ {:db/doc-type   :movement
+  :movement/name "handstand walk"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-n}
+ {:db/doc-type   :movement
+  :movement/name "chest to bar"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-o}
+ {:db/doc-type   :movement
+  :movement/name "ghd sit up"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-p}
+ {:db/doc-type   :movement
+  :movement/name "ring circles"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-q}
+ {:db/doc-type   :movement
+  :movement/name "ring pulses"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-r}
+ {:db/doc-type   :movement
+  :movement/name "burpee over bar"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-s}
+ {:db/doc-type   :movement
+  :movement/name "handstand push up"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-t}
+ {:db/doc-type   :movement
+  :movement/name "rope climbs"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-u}
+ {:db/doc-type   :movement
+  :movement/name "kettlebell russian twits"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-v}
+ {:db/doc-type   :movement
+  :movement/name "ring dips"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-w}
+ {:db/doc-type   :movement
+  :movement/name "hollow rocks"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-x}
+ {:db/doc-type   :movement
+  :movement/name "banded standing crunches"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-y}
+ {:db/doc-type   :movement
+  :movement/name "wall walk"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-z}
+ {:db/doc-type   :movement
+  :movement/name "knees to elbow"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-aa}
+ {:db/doc-type   :movement
+  :movement/name "box clear"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-ab}
+ {:db/doc-type   :movement
+  :movement/name "bar muscle up"
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-ac}
+ {:movement/name "wall facing hspu"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-ad}
+ {:movement/name "box jump"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-ae}
+ {:movement/name "pull up bard dips"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-af}
+ {:movement/name "hip to bar kip swing"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-ag}
+ {:movement/name "superman"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-ah}
+ {:movement/name "ring support hold"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-ai}
+ {:movement/name "side plank"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-aj}
+ {:movement/name "bar hang"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-ak}
+ {:movement/name "running"
+  :db/doc-type   :movement
+  :movement/type :monostructural
+  :xt/id         :db.id/movement-al}
+ {:movement/name "double under"
+  :db/doc-type   :movement
+  :movement/type :monostructural
+  :xt/id         :db.id/movement-am}
+ {:movement/name "row"
+  :db/doc-type   :movement
+  :movement/type :monostructural
+  :xt/id         :db.id/movement-an}
+ {:movement/name "bike"
+  :db/doc-type   :movement
+  :movement/type :monostructural
+  :xt/id         :db.id/movement-ao}
+ {:movement/name "shuttle run"
+  :db/doc-type   :movement
+  :movement/type :monostructural
+  :xt/id         :db.id/movement-ap}
+ {:movement/name "bike erg"
+  :db/doc-type   :movement
+  :movement/type :monostructural
+  :xt/id         :db.id/movement-aq}
+ {:movement/name "ski"
+  :db/doc-type   :movement
+  :movement/type :monostructural
+  :xt/id         :db.id/movement-ar}
+ {:movement/name "burpee"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-as}
+ {:movement/name "squat"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-at}
+ {:movement/name "air squat"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-au}
+ {:movement/name "bench press"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-av}
+ {:movement/name "devils press"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-aw}
+ {:movement/name "thruster"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-ax}
+ {:movement/name "press"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-ay}
+ {:movement/name "pistols"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-az}
+ {:movement/name "wall balls"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-ba}
+ {:movement/name "shoulder to overhead"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bb}
+ {:movement/name "strict press"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bc}
+ {:movement/name "push press"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bd}
+ {:movement/name "dumbbell snatch"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-be}
+ {:movement/name "dumbbell thruster"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bf}
+ {:movement/name "bottom up kettle bell hold"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bg}
+ {:movement/name "clean and jerk"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bh}
+ {:movement/name "bear complex"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bi}
+ {:movement/name "barbell cluster"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bj}
+ {:movement/name "hand release push up"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bk}
+ {:movement/name "kettlebell swing"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bl}
+ {:movement/name "sumo deadlift"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bm}
+ {:movement/name "double dumbbell front rack lunge"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bn}
+ {:movement/name "medicine ball clean"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bo}
+ {:movement/name "double dumbbell devils clean"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bp}
+ {:movement/name "double dumbbell front squat"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bq}
+ {:movement/name "sandbag to shoulder"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-br}
+ {:movement/name "farmer hold"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bs}
+ {:movement/name "overhead lunge"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bt}
+ {:movement/name "dumbbell buster"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bu}
+ {:movement/name "sandbag squat"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bv}
+ {:movement/name "sandbag clean"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bw}
+ {:movement/name "plate push"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bx}
+ {:movement/name "single dumbbell shuttle run"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-by}
+ {:movement/name "dumbbell clean and jerk"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-bz}
+ {:movement/name "single kettlebell hang snatch"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-ca}
+ {:movement/name "double kettlebell overhead carry"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-cb}
+ {:movement/name "dumbbell box step over"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-cc}
+ {:movement/name "box step up"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-cd}
+ {:movement/name "snatch balance"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-ce}
+ {:movement/name "sotts press"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-cf}
+ {:movement/name "ground to overhead"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-cg}
+ {:movement/name "back rack lunges"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-ch}
+ {:movement/name "dumbbell overhead squat"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-ci}
+ {:movement/name "goblet squat"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-cj}
+ {:movement/name "clean pull"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-ck}
+ {:movement/name "dumbbell burpee"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-cl}
+ {:movement/name "dumbbell burpee box step over"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-cm}
+ {:movement/name "dumbbell shoulder to overhead"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-cn}
+ {:movement/name "farmer carry"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-co}
+ {:movement/name "burpee box jump"
+  :db/doc-type   :movement
+  :movement/type :gymnastic
+  :xt/id         :db.id/movement-cp}
+ {:movement/name "double dumbbell deadlift"
+  :db/doc-type   :movement
+  :movement/type :strength
+  :xt/id         :db.id/movement-cq}
+ {:movement/name "walking lunge"
+  :movement/type :strength
+  :db/doc-type   :movement
+  :xt/id         :db.id/movement-cr}]
