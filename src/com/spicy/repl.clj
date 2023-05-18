@@ -25,6 +25,7 @@
   ;; you edit the seed data (in resources/fixtures.edn), you can reset the
   ;; database by running `rm -r storage/xtdb` (DON'T run that in prod),
   ;; restarting your app, and calling add-fixtures again.
+  (add-fixtures "workouts.edn")
   (add-fixtures "movements.edn")
 
   (slurp (io/resource "movements.edn"))

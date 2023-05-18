@@ -23,7 +23,7 @@
     (biff/recaptcha-callback "submitSignup" "signup")
     [:h2.text-2xl.font-bold.text-black (str "Sign up for " settings/app-name)]
     [:.flex.flex-col.space-y-2.mt-8
-     [:input.pink-input#email {:name "email"
+     [:input.pink-input.pink-focus#email {:name "email"
                     :type "email"
                     :autocomplete "email"
                     :placeholder "Enter your email address"}]
@@ -82,7 +82,7 @@
     (biff/recaptcha-callback "submitSignin" "signin")
     [:h2.text-2xl.font-bold.text-black (str "Sign in to " settings/app-name)]
     [:.flex.flex-col.space-y-2.mt-8
-     [:input.pink-input#email {:name "email"
+     [:input.pink-input.pink-focus#email {:name "email"
                     :type "email"
                     :autocomplete "email"
                     :placeholder "Enter your email address"}]
@@ -122,7 +122,7 @@
       [:div [:label {:for "code"} "Enter the 6-digit code that we sent to "
             [:span.font-bold (:email params)]]]
       [:.flex.flex-col.space-y-2.mt-8
-      [:input.pink-input#code {:name "code" :type "text"}]
+      [:input.pink-input.pink-focus#code {:name "code" :type "text"}]
       [:.w-3]
       [:button.btn.g-recaptcha
         (merge (when site-key

@@ -112,7 +112,7 @@
 (defn panel
   [& children]
   [:div {:class (str  "rounded-3xl bg-brand-pink md:p-8 p-4 "
-                      "translate-x-2 translate-y-2 shadow-[2px_2px_#000] "
+                      "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
                       "flex flex-col item-center")}
    children])
 
@@ -152,7 +152,7 @@
    {:class (str
              "flex flex-col items-center gap-3 "
              "w-[354px] bg-brand-background p-6 rounded-md "
-             "translate-x-2 translate-y-2 shadow-[2px_2px_#000] mb-[2px] ml-[-7px] "
+             "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
              (or class ""))}
    [:div.flex.items-center.justify-between.pb-4.w-full
     [:h2.text-3xl name]
@@ -169,7 +169,7 @@
     (ui/page {}
              (panel
                [:h1.text-5xl.mb-14 "Workouts"]
-               [:div.flex.gap-14.flex-wrap
+               [:div.flex.gap-4.flex-wrap.justify-center
                 (map #(workout-ui
                         (assoc %
                                :children
@@ -210,39 +210,64 @@
   (case scheme
     :time (let [[minutes seconds] (string/split (or score ":") #":")]
             [:div.flex.gap-3
-             [:input.w-full#minutes {:type "text" :name "minutes" :placeholder "Minutes" :value minutes}]
-             [:input.w-full#seconds {:type "text" :name "seconds" :placeholder "Seconds" :value seconds}]])
+             [:input.w-full.pink-input.teal-focus#minutes 
+              {:type        "text"
+               :name        "minutes"
+               :placeholder "Minutes"
+               :value       minutes}]
+             [:input.w-full.pink-input.teal-focus#seconds 
+              {:type        "text"
+               :name        "seconds"
+               :placeholder "Seconds"
+               :value       seconds}]])
     :time-with-cap "todo"
-    :pass-fail [:input.w-full#reps {:type "text" :name "reps" :placeholder "Rounds Successfully Completed" :value score}]
+    :pass-fail [:input.w-full#reps
+                {:type "text" :name "reps" :placeholder "Rounds Successfully Completed" :value score}]
     :rounds-reps
     (let [[rounds reps] (string/split (or score "+") #"\+")]
       [:div.flex.gap-3
-       [:input.w-full#rounds {:type "text" :name "rounds" :placeholder "Rounds" :value rounds}]
-       [:input.w-full#reps {:type "text" :name "reps" :placeholder "Reps" :value reps}]])
+       [:input.w-full.pink-input.teal-focus#rounds 
+        {:type "text" :name "rounds" :placeholder "Rounds" :value rounds}]
+       [:input.w-full.pink-input.teal-focus#reps 
+        {:type "text" :name "reps" :placeholder "Reps" :value reps}]])
     [:input.w-full#reps {:type "text" :name "reps" :placeholder "Reps" :value score}]))
 
 
 (defn result-form
   [{:keys [workout result action hidden hx-key] :as props} & children]
   (biff/form
-    {(or hx-key :action) action
-     :class "flex flex-col gap-3"
-     :hidden hidden}
-    (scheme-forms (merge workout result))
-    [:input {:type "date" :name "date" :value (biff/format-date
-                                                (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
-    [:div.flex.gap-2.items-center
-     [:div.flex-1.flex.gap-2.items-center
-      [:input#rx {:type "radio" :name "scale" :value "rx" :checked (= (:result/scale result) :rx)}]
-      [:label {:for "rx"} "Rx"]]
-     [:div.flex-1.flex.gap-2.items-center
-      [:input#scaled {:type "radio" :name "scale" :value "scaled" :checked (= (:result/scale result) :scaled)}]
-      [:label {:for "scaled"} "Scaled"]]
-     [:div.flex-1.flex.gap-2.items-center
-      [:input#rx+ {:type "radio" :name "scale" :value "rx+" :checked (= (:result/scale result) :rx+)}]
-      [:label {:for "rx+"} "Rx+"]]]
-    [:textarea.w-full#notes {:name "notes" :placeholder "notes" :value (:result/notes result)}]
-    children))
+   {(or hx-key :action) action
+    :class              "flex flex-col gap-3"
+    :hidden             hidden}
+   (scheme-forms (merge workout result))
+   [:input.pink-input.teal-focus 
+    {:type  "date" 
+     :name  "date"
+     :value (biff/format-date
+             (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
+   [:div.flex.gap-2.items-center
+    [:div.flex-1.flex.gap-2.items-center
+     [:input#rx {:type    "radio"
+                 :name    "scale"
+                 :value   "rx"
+                 :checked (= (:result/scale result) :rx)}]
+     [:label {:for "rx"} "Rx"]]
+    [:div.flex-1.flex.gap-2.items-center
+     [:input#scaled {:type    "radio"
+                     :name    "scale"
+                     :value   "scaled"
+                     :checked (= (:result/scale result) :scaled)}]
+     [:label {:for "scaled"} "Scaled"]]
+    [:div.flex-1.flex.gap-2.items-center
+     [:input#rx+ {:type    "radio"
+                  :name    "scale"
+                  :value   "rx+"
+                  :checked (= (:result/scale result) :rx+)}]
+     [:label {:for "rx+"} "Rx+"]]]
+   [:textarea.w-full.pink-input.teal-focus#notes {:name        "notes"
+                                                                                                                                           :placeholder "notes"
+                                                                                                                                           :value       (:result/notes result)}]
+   children))
 
 
 (defn params->score
