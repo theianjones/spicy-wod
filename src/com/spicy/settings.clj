@@ -1,3 +1,3 @@
 (ns com.spicy.settings)
 
-(def app-name "My Application")
+(def app-name "SpicyWOD")
