@@ -7,7 +7,7 @@ module.exports = {
         display: ["Mazer"],
       },
       colors: {
-        "brand-pink": "#FFD8F4",
+        "brand-pink": "#F29ADA",
         "brand-background": "#FFF1F3",
         "brand-teal": "#83F2B3",
         "brand-purple": "#CB8FF2",
