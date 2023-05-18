@@ -22,6 +22,12 @@ brew install clojure/tools/clojure
 brew install borkdude/brew/babashka
 ```
 
+## Copy config-template.edn to config.edn
+
+```sh 
+cp config-template.edn config.edn
+```
+
 ## Start the app
 
 Run `bb dev` to get started. See `bb tasks` for other commands.
