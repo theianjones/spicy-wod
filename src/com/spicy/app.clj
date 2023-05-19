@@ -188,7 +188,7 @@
   [:div
    {:class (str
             "flex flex-col items-center gap-3 "
-            "w-[354px] p-8"
+            "w-[354px] p-8 pb-0 sm:pb-6 "
             (or class ""))}
    [:div.flex.flex-col.w-full
     [:h2.text-3xl.cursor-default name]
