@@ -124,11 +124,11 @@
                              :where [[result :result/user user-id]
                                      [result :result/workout workout-id]]}
                         [user workout])]
-    [:div {:class (str "relative h-full md:min-h-[60vh] p-8 rounded-md shadow-[-2px_-2px_0px_rgba(0,0,0,100)]")}
+    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] p-8 rounded-md shadow-[-2px_-2px_0px_rgba(0,0,0,100)]")}
      [:div {:class "absolute h-full rounded-md  bg-brand-background shadow-[-2px_-2px_0px_rgba(0,0,0,100)] -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
      [:h2.text-3xl "Log Book"]
      (if (zero? (count results))
-       [:p "Log a workout to see your history!"]
+       [:p {:class (str " w-fit m-auto ")} "Log a workout to see your history!"]
        [:ul.list-none.list-inside.gap-3.pl-0.ml-0
         (map (fn [{:result/keys [score date notes scale]}]
                [:li {:class (str "w-1/2")}
