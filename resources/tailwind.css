@@ -52,7 +52,7 @@
   }
 
   body {
-    @apply bg-brand-background;
+    @apply bg-brand-background absolute h-full rounded-md  bg-brand-background shadow-[-2px_-2px_0px_rgba(0,0,0,100)] -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center;
 
   }
 
