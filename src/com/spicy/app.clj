@@ -135,8 +135,9 @@
                 [:div.flex.gap-3.flex-col
                  [:.flex.justify-between.flex-wrap.gap-2
                   [:div.text-2xl.font-bold.self-center score 
-                  [:span.pl-2.font-normal (name scale)]]
-                 [:div.self-center date]]
+                   [:span.pl-2.font-normal (name scale)]]
+                  [:div.self-center (biff/format-date
+                                     date "EEE, YYYY-MM-dd")]]
                  (when notes [:div notes])
                  ]]) results)])]))
 
