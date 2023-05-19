@@ -52,7 +52,7 @@
   }
 
   body {
-    @apply bg-brand-background;
+    @apply bg-brand-background absolute h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center;
 
   }
 
@@ -68,10 +68,15 @@
 
 @layer components {
   .btn {
-    @apply z-[1] rounded border-2 border-black bg-brand-background p-2 text-2xl font-bold text-black drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] hover:drop-shadow-[2px_2px_0px_rgba(242,154,218,100)] hover:border-brand-pink  hover:bg-black hover:bg-opacity-10;
+    @apply z-[1] rounded border-2 border-black bg-brand-background p-2 text-2xl font-bold text-black drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] 
   }
+
+  .btn-hover {
+    @apply hover:shadow-[2px_2px_0px_rgba(242,154,218,100)] hover:border-brand-pink  hover:bg-black hover:bg-opacity-10;
+  }
+  
   .pink-input { 
-    @apply bg-brand-background rounded border-2 focus:ring-0   
+    @apply bg-brand-background rounded border-2 focus:ring-0 
   }
 
   .pink-focus {
@@ -80,6 +85,14 @@
   
   .teal-focus {
     @apply  focus:ring-0 focus:ring-offset-0 focus:border-brand-teal
+  }
+
+  .brutal-shadow {
+    @apply shadow-[2px_2px_0px_rgba(0,0,0,100)]
+  }
+
+  .brutal-inner-shadow {
+    @apply shadow-[-2px_-2px_0px_rgba(0,0,0,100)]
   }
   
 }
