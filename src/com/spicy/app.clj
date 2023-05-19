@@ -111,9 +111,9 @@
 
 (defn panel
   [& children]
-  [:div {:class (str  "rounded-3xl bg-brand-pink md:p-8 p-4 "
+  [:div {:class (str  "rounded-3xl bg-brand-pink md:p-12 p-4 "
                       "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
-                      "flex flex-col item-center")}
+                      "flex flex-col item-center ")}
    children])
 
 
@@ -124,17 +124,21 @@
                              :where [[result :result/user user-id]
                                      [result :result/workout workout-id]]}
                         [user workout])]
-    [:div
-     [:h2.text-2xl "Log Book"]
+    [:div {:class (str "relative h-full md:min-h-[60vh] p-8 rounded-md shadow-[-2px_-2px_0px_rgba(0,0,0,100)]")}
+     [:div {:class "absolute h-full rounded-md  bg-brand-background shadow-[-2px_-2px_0px_rgba(0,0,0,100)] -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
+     [:h2.text-3xl "Log Book"]
      (if (zero? (count results))
        [:p "Log a workout to see your history!"]
-       [:ul
-        (map (fn [{:result/keys [score date notes]}]
-               [:li
-                [:div.flex.gap-3
-                 [:div score]
+       [:ul.list-none.list-inside.gap-3.pl-0.ml-0
+        (map (fn [{:result/keys [score date notes scale]}]
+               [:li {:class (str "w-1/2")}
+                [:div.flex.gap-3.flex-col
+                 [:.flex.justify-between.flex-wrap.gap-2
+                  [:div.text-2xl.font-bold.self-center score 
+                  [:span.pl-2.font-normal scale]]
+                 [:div.self-center date]]
                  (when notes [:div notes])
-                 [:div date]]]) results)])]))
+                 ]]) results)])]))
 
 
 (defn display-scheme
@@ -155,8 +159,8 @@
              "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
              (or class ""))}
    [:div.flex.items-center.justify-between.pb-4.w-full
-    [:h2.text-3xl name]
-    [:div.border.border-radius.rounded-full.border-black.py-1.px-2 (display-scheme scheme)]]
+    [:h2.text-3xl.cursor-default name]
+    [:div.border.border-radius.rounded-full.border-black.py-1.px-2.cursor-default (display-scheme scheme)]]
    [:p description]
    (when (some? children)
      children)])
@@ -173,11 +177,25 @@
                 (map #(workout-ui
                         (assoc %
                                :children
-                               [:a.btn.mt-auto
+                               [:a.brutal-shadow.btn-hover.border.border-radius.rounded.border-black.py-1.px-2.mt-auto
                                 {:href (str "/app/workouts/" (string/lower-case (:workout/name %)))}
-                                "View History"]))
+                                "History"]))
                      workouts)]))))
 
+
+(defn workout-logbook-ui
+  [{:workout/keys [name description scheme] :keys [children class]}]
+  [:div
+   {:class (str
+            "flex flex-col items-center gap-3 "
+            "w-[354px] p-8"
+            (or class ""))}
+   [:div.flex.flex-col.w-full
+    [:h2.text-3xl.cursor-default name]
+    [:div.py-1.cursor-default (display-scheme scheme)]]
+   [:p description]
+   (when (some? children)
+     children)])
 
 (defn show-workout
   [{:keys [biff/db path-params session] :as _ctx}]
@@ -185,12 +203,11 @@
                                     :in    [[name]]
                                     :where [[workout :workout/name name]]}
                                [(string/capitalize (:name path-params))]))]
-    (ui/page {} (panel [:div.flex.flex-col.gap-6.md:flex-row
-                        [:div.flex.gap-2.md:block
-                         (workout-ui workout)
-                         [:.h-6]
+    (ui/page {} (panel [:div {:class (str "h-full flex flex-col gap-6 md:flex-row")}
+                        [:div.flex.gap-2.flex-col
+                         (workout-logbook-ui workout)
                          [:a {:href  (str "/app/results/new?workout=" (:workout/name workout))
-                              :class (str "btn h-[fit-content]")} "Log workout"]]
+                              :class (str "btn h-fit w-fit place-self-center")} "Log workout"]]
                         [:.flex-1
                          (workout-results {:user (:uid session) :workout (:xt/id workout) :biff/db db})]]))))
 
@@ -367,13 +384,14 @@
                                [(:workout params)]))]
 
     (ui/page {} (panel
-                  [:h1.text-5xl.mb-14 "Log Result"]
-                  [:.flex.flex-col.gap-6.md:flex-row
-                   (workout-ui workout)
-                   [:.flex-1
-                    (result-form
-                      (merge {:workout workout} {:action "/app/results" :hidden {:workout (:xt/id workout)}})
-                      [:button.btn {:type "submit"} "Log Result"])]]))))
+                 [:div {:class (str "md:min-h-[60vh] ")}
+                 [:h1 {:class (str "text-5xl mb-14 ")} "Log Result"]
+                 [:.flex.flex-col.gap-6.md:flex-row
+                  (workout-ui workout)
+                  [:.flex-1
+                   (result-form
+                    (merge {:workout workout} {:action "/app/results" :hidden {:workout (:xt/id workout)}})
+                    [:button.btn {:type "submit"} "Log Result"])]]]))))
 
 
 (defn app
@@ -385,7 +403,7 @@
        (biff/form
          {:action "/auth/signout"
           :class "inline"}
-         [:button.text-blue-500.hover:text-blue-800 {:type "submit"}
+         [:button.text-black.hover:text-brand-pink.font-bold {:type "submit"}
           "Sign out"])
        "."]
       [:.h-6]
