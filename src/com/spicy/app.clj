@@ -453,9 +453,9 @@
                     :result/notes (:notes params)
                     :result/scale (keyword (:scale params))
                     :result/date (instant/read-instant-date (:date params))}])
-  (let [{:workout/keys [name] :as w} (xt/entity db (parse-uuid (:workout params)))]
+  (let [{:xt/keys [id] :as w} (xt/entity db (parse-uuid (:workout params)))]
     {:status 303
-     :headers {"location" (str "/app/workouts/" (string/lower-case name))}}))
+     :headers {"location" (str "/app/workouts/" id)}}))
 
 
 (defn new-result
