@@ -134,12 +134,11 @@
                [:li {:class (str "w-1/2")}
                 [:div.flex.gap-3.flex-col
                  [:.flex.justify-between.flex-wrap.gap-2
-                  [:div.text-2xl.font-bold.self-center score 
+                  [:div.text-2xl.font-bold.self-center score
                    [:span.pl-2.font-normal (name scale)]]
                   [:div.self-center (biff/format-date
-                                     date "EEE, YYYY-MM-dd")]]
-                 (when notes [:div notes])
-                 ]]) results)])]))
+                                      date "EEE, YYYY-MM-dd")]]
+                 (when notes [:div notes])]]) results)])]))
 
 
 (defn display-scheme
@@ -169,7 +168,6 @@
 
 (defn index-workout
   [{:keys [biff/db session] :as _ctx}]
-  (prn (:uid session))
   (let [workouts (biff/q db '{:find (pull workout [*])
                               :in [[user]]
                               :where [(or (and [workout :workout/name]
@@ -193,15 +191,16 @@
   [{:workout/keys [name description scheme] :keys [children class]}]
   [:div
    {:class (str
-            "flex flex-col items-center gap-3 "
-            "w-[354px] p-8 pb-0 sm:pb-6 "
-            (or class ""))}
+             "flex flex-col items-center gap-3 "
+             "w-[354px] p-8 pb-0 sm:pb-6 "
+             (or class ""))}
    [:div.flex.flex-col.w-full
     [:h2.text-3xl.cursor-default name]
     [:div.py-1.cursor-default (display-scheme scheme)]]
    [:p description]
    (when (some? children)
      children)])
+
 
 (defn show-workout
   [{:keys [biff/db path-params session params] :as _ctx}]
@@ -457,14 +456,14 @@
                                [(:workout params)]))]
 
     (ui/page {} (panel
-                 [:div {:class (str "md:min-h-[60vh] ")}
-                 [:h1 {:class (str "text-5xl mb-14 ")} "Log Result"]
-                 [:.flex.flex-col.gap-6.md:flex-row
-                  (workout-ui workout)
-                  [:.flex-1
-                   (result-form
-                    (merge {:workout workout} {:action "/app/results" :hidden {:workout (:xt/id workout)}})
-                    [:button.btn {:type "submit"} "Log Result"])]]]))))
+                  [:div {:class (str "md:min-h-[60vh] ")}
+                   [:h1 {:class (str "text-5xl mb-14 ")} "Log Result"]
+                   [:.flex.flex-col.gap-6.md:flex-row
+                    (workout-ui workout)
+                    [:.flex-1
+                     (result-form
+                       (merge {:workout workout} {:action "/app/results" :hidden {:workout (:xt/id workout)}})
+                       [:button.btn {:type "submit"} "Log Result"])]]]))))
 
 
 (defn app
