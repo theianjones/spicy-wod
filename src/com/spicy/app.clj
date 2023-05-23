@@ -182,7 +182,10 @@
                         (assoc %
                                :children
                                [:a.brutal-shadow.btn-hover.border.border-radius.rounded.border-black.py-1.px-2.mt-auto
-                                {:href (str "/app/workouts/" (string/lower-case (:workout/name %)))}
+                                {:href (str "/app/workouts/" (string/lower-case
+                                                               (if (:workout/user %)
+                                                                 (:xt/id %)
+                                                                 (:workout/name %))))}
                                 "History"]))
                      workouts)]))))
 
