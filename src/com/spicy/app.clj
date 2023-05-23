@@ -168,9 +168,14 @@
 
 
 (defn index-workout
-  [{:keys [biff/db] :as _ctx}]
-  (let [workouts (biff/q db '{:find  (pull workout [*])
-                              :where [[workout :workout/name]]})]
+  [{:keys [biff/db session] :as _ctx}]
+  (prn (:uid session))
+  (let [workouts (biff/q db '{:find (pull workout [*])
+                              :in [[user]]
+                              :where [(or (and [workout :workout/name]
+                                               (not [workout :workout/user]))
+                                          [workout :workout/user user])]}
+                         [(:uid session)])]
     (ui/page {}
              (panel
                [:h1.text-5xl.mb-14 "Workouts"]
@@ -199,18 +204,85 @@
      children)])
 
 (defn show-workout
-  [{:keys [biff/db path-params session] :as _ctx}]
+  [{:keys [biff/db path-params session params] :as _ctx}]
   (let [workout (first (biff/q db '{:find  (pull workout [*])
-                                    :in    [[name]]
-                                    :where [[workout :workout/name name]]}
-                               [(string/capitalize (:name path-params))]))]
-    (ui/page {} (panel [:div {:class (str "h-full flex flex-col gap-6 md:flex-row")}
-                        [:div.flex.gap-2.flex-col
-                         (workout-logbook-ui workout)
-                         [:a {:href  (str "/app/results/new?workout=" (:workout/name workout))
-                              :class (str "btn h-fit w-fit place-self-center")} "Log workout"]]
-                        [:.flex-1
-                         (workout-results {:user (:uid session) :workout (:xt/id workout) :biff/db db})]]))))
+                                    :in    [[name id]]
+                                    :where [(or [workout :workout/name name]
+                                                [workout :xt/id id])]}
+                               [(string/capitalize (:id path-params))
+                                (parse-uuid (:id path-params))]))]
+    (if (true? (:fragment params))
+      (workout-ui workout)
+      (ui/page {} (panel [:div {:class (str "h-full flex flex-col gap-6 md:flex-row")}
+                          [:div.flex.gap-2.flex-col
+                           (workout-logbook-ui workout)
+                           [:a {:href  (str "/app/results/new?workout=" (:workout/name workout))
+                                :class (str "btn h-fit w-fit place-self-center")} "Log workout"]]
+                          [:.flex-1
+                           (workout-results
+                             {:user    (:uid session)
+                              :workout (:xt/id workout)
+                              :biff/db db})]])))))
+
+
+(defn workout-form
+  [{:keys [hidden]}]
+  (biff/form
+    {:class "flex flex-col gap-4"
+     :action "/app/workouts"
+     :hidden hidden}
+    [:input.pink-input.teal-focus#name {:placeholder "Name" :name "name"}]
+    [:textarea.pink-input.teal-focus#description {:placeholder "Description" :name "description"}]
+    [:select.pink-input.teal-focus#scheme {:name "scheme"}
+     [:option {:value "" :label "--Select a Workout Scheme--"}]
+     [:option {:value "time"
+               :label "time"}]
+     [:option {:value "time-with-cap"
+               :label "time-with-cap"}]
+     [:option {:value "pass-fail"
+               :label "pass-fail"}]
+     [:option {:value "rounds-reps"
+               :label "rounds-reps"}]
+     [:option {:value "reps"
+               :label "reps"}]
+     [:option {:value "emom"
+               :label "emom"}]
+     [:option {:value "load"
+               :label "load"}]
+     [:option {:value "calories"
+               :label "calories"}]
+     [:option {:value "meters"
+               :label "meters"}]
+     [:option {:value "feet"
+               :label "feet"}]
+     [:option {:value "points"
+               :label "points"}]]
+    [:button.btn {:type "submit"} "Create Workout"]))
+
+
+(defn new-workout
+  [{:keys [biff/db path-params session params] :as _ctx}]
+  (let [fragment? (:fragment params)]
+    (if fragment?
+      (workout-form {:hidden {:fragment (str (true? fragment?))}})
+      (ui/page {}
+               (panel
+                 [:h1.text-5xl.mb-14 "New Workout"]
+                 (workout-form {:hidden {:fragment (str (true? fragment?))}}))))))
+
+
+(defn create-workout
+  [{:keys [biff/db path-params session params] :as ctx}]
+  (let [workout-uuid (random-uuid)]
+    (biff/submit-tx ctx [{:db/op               :merge
+                          :db/doc-type         :workout
+                          :xt/id               workout-uuid
+                          :workout/name        (:name params)
+                          :workout/user        (:uid session)
+                          :workout/scheme      (keyword (:scheme params))
+                          :workout/description (:description params)}])
+    {:status  303
+     :headers {"location" (str "/app/workouts/" workout-uuid "?fragment=" (true?  (:fragment params)))}}))
 
 
 (defn result-ui
@@ -228,12 +300,12 @@
   (case scheme
     :time (let [[minutes seconds] (string/split (or score ":") #":")]
             [:div.flex.gap-3
-             [:input.w-full.pink-input.teal-focus#minutes 
+             [:input.w-full.pink-input.teal-focus#minutes
               {:type        "text"
                :name        "minutes"
                :placeholder "Minutes"
                :value       minutes}]
-             [:input.w-full.pink-input.teal-focus#seconds 
+             [:input.w-full.pink-input.teal-focus#seconds
               {:type        "text"
                :name        "seconds"
                :placeholder "Seconds"
@@ -244,9 +316,9 @@
     :rounds-reps
     (let [[rounds reps] (string/split (or score "+") #"\+")]
       [:div.flex.gap-3
-       [:input.w-full.pink-input.teal-focus#rounds 
+       [:input.w-full.pink-input.teal-focus#rounds
         {:type "text" :name "rounds" :placeholder "Rounds" :value rounds}]
-       [:input.w-full.pink-input.teal-focus#reps 
+       [:input.w-full.pink-input.teal-focus#reps
         {:type "text" :name "reps" :placeholder "Reps" :value reps}]])
     [:input.w-full#reps {:type "text" :name "reps" :placeholder "Reps" :value score}]))
 
@@ -254,38 +326,38 @@
 (defn result-form
   [{:keys [workout result action hidden hx-key] :as props} & children]
   (biff/form
-   {(or hx-key :action) action
-    :class              "flex flex-col gap-3"
-    :hidden             hidden}
-   (scheme-forms (merge workout result))
-   [:input.pink-input.teal-focus 
-    {:type  "date" 
-     :name  "date"
-     :value (biff/format-date
-             (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
-   [:div.flex.gap-2.items-center
-    [:div.flex-1.flex.gap-2.items-center
-     [:input#rx {:type    "radio"
-                 :name    "scale"
-                 :value   "rx"
-                 :checked (= (:result/scale result) :rx)}]
-     [:label {:for "rx"} "Rx"]]
-    [:div.flex-1.flex.gap-2.items-center
-     [:input#scaled {:type    "radio"
-                     :name    "scale"
-                     :value   "scaled"
-                     :checked (= (:result/scale result) :scaled)}]
-     [:label {:for "scaled"} "Scaled"]]
-    [:div.flex-1.flex.gap-2.items-center
-     [:input#rx+ {:type    "radio"
+    {(or hx-key :action) action
+     :class              "flex flex-col gap-3"
+     :hidden             hidden}
+    (scheme-forms (merge workout result))
+    [:input.pink-input.teal-focus
+     {:type  "date"
+      :name  "date"
+      :value (biff/format-date
+               (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
+    [:div.flex.gap-2.items-center
+     [:div.flex-1.flex.gap-2.items-center
+      [:input#rx {:type    "radio"
                   :name    "scale"
-                  :value   "rx+"
-                  :checked (= (:result/scale result) :rx+)}]
-     [:label {:for "rx+"} "Rx+"]]]
-   [:textarea.w-full.pink-input.teal-focus#notes {:name        "notes"
-                                                                                                                                           :placeholder "notes"
-                                                                                                                                           :value       (:result/notes result)}]
-   children))
+                  :value   "rx"
+                  :checked (= (:result/scale result) :rx)}]
+      [:label {:for "rx"} "Rx"]]
+     [:div.flex-1.flex.gap-2.items-center
+      [:input#scaled {:type    "radio"
+                      :name    "scale"
+                      :value   "scaled"
+                      :checked (= (:result/scale result) :scaled)}]
+      [:label {:for "scaled"} "Scaled"]]
+     [:div.flex-1.flex.gap-2.items-center
+      [:input#rx+ {:type    "radio"
+                   :name    "scale"
+                   :value   "rx+"
+                   :checked (= (:result/scale result) :rx+)}]
+      [:label {:for "rx+"} "Rx+"]]]
+    [:textarea.w-full.pink-input.teal-focus#notes {:name        "notes"
+                                                   :placeholder "notes"
+                                                   :value       (:result/notes result)}]
+    children))
 
 
 (defn params->score
@@ -453,22 +525,28 @@
    :body params})
 
 
+(defn new-or-show
+  [new-handler show-handler]
+  (fn [request]
+    (prn (-> request :path-params))
+    (if (= "new" (-> request :path-params :id))
+      (new-handler request)
+      (show-handler request))))
+
+
 (def plugin
   {:static {"/about/" about-page}
    :routes ["/app" {:middleware [mid/wrap-signed-in]}
             ["" {:get app}]
             ["/workouts"
-             ["" {:get index-workout}]
-             ["/:name" {:get show-workout}]]
+             ["" {:get index-workout
+                  :post create-workout}]
+             ["/:id" {:get (new-or-show new-workout show-workout)}]]
             ["/results"
              ["" {:get index-result
                   :post create-result}]
              ["/:id"
-              ["" {:get
-                   (fn [request]
-                     (if (= "new" (-> request :path-params :id))
-                       (new-result request)
-                       (show-result request)))
+              ["" {:get (new-or-show new-result show-result)
                    :put update-result}]
               ["/edit" {:get edit-result}]]]
             ["/set-foo" {:post set-foo}]
