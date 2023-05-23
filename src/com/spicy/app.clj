@@ -176,7 +176,13 @@
                          [(:uid session)])]
     (ui/page {}
              (panel
+              [:div.flex.justify-between.align-start
                [:h1.text-5xl.mb-14 "Workouts"]
+               [:a.text-2xl.brutal-shadow.btn-hover.border.border-radius.rounded.border-black.py-1.px-2.h-fit
+                {:href (str "/app/workouts/new")}
+                "Add Workout"]
+               ]
+               
                [:div.flex.gap-4.flex-wrap.justify-center
                 (map #(workout-ui
                         (assoc %
@@ -233,8 +239,8 @@
     {:class "flex flex-col gap-4"
      :action "/app/workouts"
      :hidden hidden}
-    [:input.pink-input.teal-focus#name {:placeholder "Name" :name "name"}]
-    [:textarea.pink-input.teal-focus#description {:placeholder "Description" :name "description"}]
+    [:input.pink-input.p-2.teal-focus#name {:placeholder "Name" :name "name"}]
+    [:textarea.pink-input.h-48.row-5.teal-focus#description {:placeholder "Description" :name "description"}]
     [:select.pink-input.teal-focus#scheme {:name "scheme"}
      [:option {:value "" :label "--Select a Workout Scheme--"}]
      [:option {:value "time"
@@ -267,10 +273,12 @@
   (let [fragment? (:fragment params)]
     (if fragment?
       (workout-form {:hidden {:fragment (str (true? fragment?))}})
-      (ui/page {}
+      
+       (ui/page {}
+                [:div.max-w-md.mx-auto
                (panel
                  [:h1.text-5xl.mb-14 "New Workout"]
-                 (workout-form {:hidden {:fragment (str (true? fragment?))}}))))))
+                 (workout-form {:hidden {:fragment (str (true? fragment?))}}))]))))
 
 
 (defn create-workout

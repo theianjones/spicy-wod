@@ -41,26 +41,27 @@
 
 
 (defn page
-  [ctx & body]
+  [{:keys [session] :as ctx} & body]
   (base
    ctx
    [:.relative.h-full
     [:div {:class "absolute h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
     [:.p-3.mx-auto.max-w-screen-xl.w-full.flex.sm:justify-between.items-center.flex-wrap.space-y-2.justify-center
-    [:a.flex.items-center.gap-2.cursor-pointer
-     {:href "/"}
-     [:img {:src "/img/spicywod-logo.png" :width 70 :height 70 :alt "spicy pepper"}]
-     [:div {:class "font-display text-5xl w-[140px]"} "Spicy WOD"]]
-    [:nav
-     [:ul.flex.list-none.list-inside.gap-3.pl-0.ml-0
-      [:li [:a.btn {:href "/app/workouts"} "Workouts"]]
-      [:li [:a.btn {:href "/app/results"} "Scores"]]]]]
-   
-   [:.relative.p-3.mx-auto.max-w-screen-xl.w-full
-    (when (bound? #'csrf/*anti-forgery-token*)
-      {:hx-headers (cheshire/generate-string
-                    {:x-csrf-token csrf/*anti-forgery-token*})})
+     [:a.flex.items-center.gap-2.cursor-pointer
+      {:href "/"}
+      [:img {:src "/img/spicywod-logo.png" :width 70 :height 70 :alt "spicy pepper"}]
+      [:div {:class "font-display text-5xl w-[140px]"} "Spicy WOD"]]
+     [:nav
+      [:ul.flex.list-none.list-inside.gap-3.pl-0.ml-0
+       [:li [:a.btn {:href "/app/workouts"} "Workouts"]]
+       [:li [:a.btn {:href "/app/results"} "Scores"]]
+       (when (:uid session) [:button "logout"])
+       ]]] 
+    [:.relative.p-3.mx-auto.max-w-screen-xl.w-full
+     (when (bound? #'csrf/*anti-forgery-token*)
+       {:hx-headers (cheshire/generate-string
+                     {:x-csrf-token csrf/*anti-forgery-token*})})
 
-    body]
-   [:.flex-grow]
-   [:.flex-grow]]))
+     body]
+    [:.flex-grow]
+    [:.flex-grow]]))
