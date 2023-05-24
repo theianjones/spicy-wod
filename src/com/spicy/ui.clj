@@ -57,7 +57,7 @@
        [:li [:a.btn {:href "/app/results"} "Scores"]]
        (when (:uid session) [:button "logout"])
        ]]] 
-    [:.relative.p-3.mx-auto.max-w-screen-xl.w-full
+    [:.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
      (when (bound? #'csrf/*anti-forgery-token*)
        {:hx-headers (cheshire/generate-string
                      {:x-csrf-token csrf/*anti-forgery-token*})})

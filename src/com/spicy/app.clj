@@ -111,7 +111,7 @@
 
 (defn panel
   [& children]
-  [:div {:class (str  "rounded-3xl bg-brand-pink md:p-12 p-4 "
+  [:div {:class (str  "rounded-3xl bg-brand-pink md:p-12 sm:p-4 "
                       "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
                       "flex flex-col item-center ")}
    children])
@@ -124,7 +124,7 @@
                              :where [[result :result/user user-id]
                                      [result :result/workout workout-id]]}
                         [user workout])]
-    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] p-8 rounded-md shadow-[-2px_-2px_0px_rgba(0,0,0,100)]")}
+    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] p-8 rounded-md shadow-[-2px_-2px_0px_rgba(0,0,0,100)] m-4")}
      [:div {:class "absolute h-full rounded-md  bg-brand-background shadow-[-2px_-2px_0px_rgba(0,0,0,100)] -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
      [:h2.text-3xl "Log Book"]
      (if (zero? (count results))
@@ -154,16 +154,21 @@
   [{:workout/keys [name description scheme] :keys [children class]}]
   [:div
    {:class (str
-             "flex flex-col items-center gap-3 "
-             "w-[354px] bg-brand-background p-6 rounded-md "
-             "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
-             (or class ""))}
-   [:div.flex.items-center.justify-between.pb-4.w-full
+            "flex flex-col justify-between items-center gap-3 "
+            "w-full sm:w-[354px] bg-brand-background p-6 sm:rounded-md "
+            "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
+            (or class ""))}
+   [:div.flex.items-center.justify-between.pb-2.sm:pb-4.w-full
     [:h2.text-3xl.cursor-default name]
-    [:div.border.border-radius.rounded-full.border-black.py-1.px-2.cursor-default (display-scheme scheme)]]
-   [:p description]
-   (when (some? children)
-     children)])
+    [:div.block.sm:hidden
+     (when (some? children)
+       children)]
+    [:div.hidden.sm:block.border.border-radius.rounded-full.border-black.py-1.px-2.cursor-default.whitespace-nowrap (display-scheme scheme)]]
+   [:span.block.sm:hidden.cursor-default.w-fit.self-start.whitespace-nowrap (display-scheme scheme)]
+   [:p.self-start.sm:self-center description]
+   [:div.hidden.sm:block
+    (when (some? children)
+     children)]])
 
 
 (defn index-workout
@@ -175,15 +180,17 @@
                                           [workout :workout/user user])]}
                          [(:uid session)])]
     (ui/page {}
-             (panel
-              [:div.flex.justify-between.align-start
-               [:h1.text-5xl.mb-14 "Workouts"]
-               [:a.text-2xl.brutal-shadow.btn-hover.border.border-radius.rounded.border-black.py-1.px-2.h-fit
-                {:href (str "/app/workouts/new")}
+             [:div.pb-8
+              (panel
+              [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.mb-14.justify-center
+               [:h1.text-5xl.w-fit.self-center.mt-8 "Workouts"]
+               [:a
+                {:class (str "text-2xl brutal-shadow btn-hover border border-radius rounded border-black py-1 px-2 h-fit text-center w-1/2 sm:w-auto self-center ")
+                 :href  (str "/app/workouts/new")} 
                 "Add Workout"]
                ]
                
-               [:div.flex.gap-4.flex-wrap.justify-center
+               [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
                 (map #(workout-ui
                         (assoc %
                                :children
@@ -193,21 +200,21 @@
                                                                  (:xt/id %)
                                                                  (:workout/name %))))}
                                 "History"]))
-                     workouts)]))))
+                     workouts)])])))
 
 
 (defn workout-logbook-ui
   [{:workout/keys [name description scheme] :keys [children class]}]
   [:div
    {:class (str
-             "flex flex-col items-center gap-3 "
+             "flex flex-col items-center gap-3 mx-auto text-center sm:text-left "
              "w-[354px] p-8 pb-0 sm:pb-6 "
              (or class ""))}
    [:div.flex.flex-col.w-full
     [:h2.text-3xl.cursor-default name]
     [:div.py-1.cursor-default (display-scheme scheme)]]
    [:p description]
-   (when (some? children)
+    (when (some? children)
      children)])
 
 
@@ -221,7 +228,8 @@
                                 (parse-uuid (:id path-params))]))]
     (if (true? (:fragment params))
       (workout-ui workout)
-      (ui/page {} (panel [:div {:class (str "h-full flex flex-col gap-6 md:flex-row")}
+      (ui/page {} [:div.pb-8
+                   (panel [:div {:class (str "h-full flex flex-col gap-6 md:flex-row pb-20")}
                           [:div.flex.gap-2.flex-col
                            (workout-logbook-ui workout)
                            [:a {:href  (str "/app/results/new?workout=" (:workout/name workout))
@@ -230,7 +238,7 @@
                            (workout-results
                              {:user    (:uid session)
                               :workout (:xt/id workout)
-                              :biff/db db})]])))))
+                              :biff/db db})]])]))))
 
 
 (defn workout-form
@@ -277,8 +285,9 @@
        (ui/page {}
                 [:div.max-w-md.mx-auto
                (panel
-                 [:h1.text-5xl.mb-14 "New Workout"]
-                 (workout-form {:hidden {:fragment (str (true? fragment?))}}))]))))
+                 [:div.p-4
+                  [:h1.text-5xl.mb-14.pt-8.text-center "New Workout"]
+                 (workout-form {:hidden {:fragment (str (true? fragment?))}})])]))))
 
 
 (defn create-workout
@@ -466,15 +475,16 @@
                                  :where [[workout :workout/name name]]}
                                [(:workout params)]))]
 
-    (ui/page {} (panel
-                  [:div {:class (str "md:min-h-[60vh] ")}
-                   [:h1 {:class (str "text-5xl mb-14 ")} "Log Result"]
+    (ui/page {} [:div.pb-8 
+                 (panel
+                  [:div {:class (str "md:min-h-[60vh] p-4 pb-8")}
+                   [:h1 {:class (str "text-5xl mt-8 mb-14 text-center sm:text-left")} "Log Result"]
                    [:.flex.flex-col.gap-6.md:flex-row
                     (workout-ui workout)
                     [:.flex-1
                      (result-form
                        (merge {:workout workout} {:action "/app/results" :hidden {:workout (:xt/id workout)}})
-                       [:button.btn {:type "submit"} "Log Result"])]]]))))
+                       [:button.btn {:type "submit"} "Log Result"])]]])])))
 
 
 (defn app
