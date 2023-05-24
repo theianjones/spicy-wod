@@ -35,6 +35,7 @@
              [:workout/name :string]
              [:workout/description :string]
              [:workout/scheme workout-types]
+             [:workout/user {:optional true} :user/id]
              [:workout/tiebreak-scheme {:optional true} [:enum :time :reps]]
              [:workout/secondary-scheme {:optional true} (into [] (filter #(not (= :time-with-cap %)) workout-types))]]
    :result/id :uuid

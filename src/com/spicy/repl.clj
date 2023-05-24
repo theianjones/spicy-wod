@@ -3,7 +3,8 @@
     [clojure.edn :as edn]
     [clojure.java.io :as io]
     [com.biffweb :as biff :refer [q]]
-    [com.spicy :as main]))
+    [com.spicy :as main]
+    [xtdb.api :as xt]))
 
 
 (defn get-context
@@ -75,6 +76,29 @@
        '{:find (pull workout [*])
          :where [[workout :workout/name "Helen"]]}))
   (sort (keys (get-context)))
+
+  (let [{:keys [biff/db] :as ctx} (get-context)]
+    (q db '{:find (pull workout [:workout/name])
+            :in [[user]]
+            :where [(or [workout :workout/user user]
+                        (and [workout :workout/name]
+                             (not [workout :workout/user ])
+                             ))]}
+       [[#uuid "22dba77f-e2b1-42a1-bca6-9bbcf39e2625"]]))
+
+  (let [{:keys [biff/db] :as ctx} (get-context)]
+    #_(q db '{:find (pull u [*])
+              :in [[user]]
+              :where [[u :xt/id user]]}
+         [["22dba77f-e2b1-42a1-bca6-9bbcf39e2625"]])
+    (xt/entity db #uuid "22dba77f-e2b1-42a1-bca6-9bbcf39e2625"))
+
+
+
+  (let [{:keys [biff/db] :as ctx} (get-context)]
+    (q db '{:find (pull workout [*])
+            :where [[workout :workout/name]
+                    (not [workout :workout/user u])]}))
 
   ;; Check the terminal for output.
   (biff/submit-job (get-context) :echo {:foo "bar"})
