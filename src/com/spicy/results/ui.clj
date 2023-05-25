@@ -27,29 +27,34 @@
 (defn scheme-forms
   [{:workout/keys [scheme _secondary-scheme] :result/keys [score]}]
   (case scheme
-    :time (let [[minutes seconds] (string/split (or score ":") #":")]
-            [:div.flex.gap-3
-             [:input.w-full.pink-input.teal-focus#minutes
-              {:type        "text"
-               :name        "minutes"
-               :placeholder "Minutes"
-               :value       minutes}]
-             [:input.w-full.pink-input.teal-focus#seconds
-              {:type        "text"
-               :name        "seconds"
-               :placeholder "Seconds"
-               :value       seconds}]])
+    :time  (let [[minutes seconds] (string/split (or score ":") #":")]
+             [:div.flex.gap-3
+              [:input.w-full.pink-input.teal-focus#minutes
+               {:type        "number"
+                :name        "minutes"
+                :placeholder "Minutes"
+                :value       minutes
+                :min         0
+                :required    true}]
+              [:input.w-full.pink-input.teal-focus#seconds
+               {:type        "number"
+                :name        "seconds"
+                :placeholder "Seconds"
+                :value       seconds
+                :min         0
+                :max         60
+                :required    true}]])
     :time-with-cap "todo"
-    :pass-fail [:input.w-full#reps
-                {:type "text" :name "reps" :placeholder "Rounds Successfully Completed" :value score}]
+    :pass-fail     [:input.w-full#reps
+                    {:type "text" :name "reps" :placeholder "Rounds Successfully Completed" :value score}]
     :rounds-reps
     (let [[rounds reps] (string/split (or score "+") #"\+")]
       [:div.flex.gap-3
        [:input.w-full.pink-input.teal-focus#rounds
-        {:type "text" :name "rounds" :placeholder "Rounds" :value rounds}]
+        {:type "number" :name "rounds" :placeholder "Rounds" :value rounds :min 0 :required true}]
        [:input.w-full.pink-input.teal-focus#reps
-        {:type "text" :name "reps" :placeholder "Reps" :value reps}]])
-    [:input.w-full#reps {:type "text" :name "reps" :placeholder "Reps" :value score}]))
+        {:type "number" :name "reps" :placeholder "Reps" :value reps :min 0 :required true}]])
+    [:input.w-full#reps {:type "number" :name "reps" :placeholder "Reps" :value score :min 0 :required true}]))
 
 
 (defn result-form
@@ -66,22 +71,25 @@
                (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
     [:div.flex.gap-2.items-center
      [:div.flex-1.flex.gap-2.items-center
-      [:input#rx {:type    "radio"
-                  :name    "scale"
-                  :value   "rx"
-                  :checked (= (:result/scale result) :rx)}]
+      [:input#rx {:type     "radio"
+                  :name     "scale"
+                  :value    "rx"
+                  :required true
+                  :checked  (= (:result/scale result) :rx)}]
       [:label {:for "rx"} "Rx"]]
      [:div.flex-1.flex.gap-2.items-center
-      [:input#scaled {:type    "radio"
-                      :name    "scale"
-                      :value   "scaled"
-                      :checked (= (:result/scale result) :scaled)}]
+      [:input#scaled {:type     "radio"
+                      :name     "scale"
+                      :value    "scaled"
+                      :required true
+                      :checked  (= (:result/scale result) :scaled)}]
       [:label {:for "scaled"} "Scaled"]]
      [:div.flex-1.flex.gap-2.items-center
-      [:input#rx+ {:type    "radio"
-                   :name    "scale"
-                   :value   "rx+"
-                   :checked (= (:result/scale result) :rx+)}]
+      [:input#rx+ {:type     "radio"
+                   :name     "scale"
+                   :value    "rx+"
+                   :required true
+                   :checked  (= (:result/scale result) :rx+)}]
       [:label {:for "rx+"} "Rx+"]]]
     [:textarea.w-full.pink-input.teal-focus#notes {:name        "notes"
                                                    :placeholder "notes"

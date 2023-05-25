@@ -49,9 +49,9 @@
     {:class "flex flex-col gap-4"
      :action "/app/workouts"
      :hidden hidden}
-    [:input.pink-input.p-2.teal-focus#name {:placeholder "Name" :name "name"}]
-    [:textarea.pink-input.h-48.row-5.teal-focus#description {:placeholder "Description" :name "description"}]
-    [:select.pink-input.teal-focus#scheme {:name "scheme"}
+    [:input.pink-input.p-2.teal-focus#name {:placeholder "Name" :name "name" :required true}]
+    [:textarea.pink-input.h-48.row-5.teal-focus#description {:placeholder "Description" :name "description" :required true}]
+    [:select.pink-input.teal-focus#scheme {:name "scheme" :required true}
      [:option {:value "" :label "--Select a Workout Scheme--"}]
      [:option {:value "time"
                :label "time"}]
