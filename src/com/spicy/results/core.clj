@@ -1,17 +1,10 @@
 (ns com.spicy.results.core
   (:require
-    [cheshire.core :as cheshire]
     [clojure.instant :as instant]
-    [clojure.string :as string]
-    [com.biffweb :as biff :refer [q]]
-    [com.spicy.middleware :as mid]
+    [com.biffweb :as biff]
     [com.spicy.results.ui :refer [result-ui result-form params->score]]
     [com.spicy.route-helpers :refer [new-or-show]]
-    [com.spicy.settings :as settings]
     [com.spicy.ui :as ui]
-    [com.spicy.workouts.core :as workouts]
-    [ring.adapter.jetty9 :as jetty]
-    [rum.core :as rum]
     [xtdb.api :as xt]))
 
 
@@ -49,17 +42,23 @@
 (defn edit
   [{:keys [biff/db session path-params]}]
   (let [{:result/keys [workout] :as result}
-        (first (biff/q db '{:find (pull result [* {:result/workout [*]}])
-                            :in [[result-id user]]
+        (first (biff/q db '{:find  (pull result [* {:result/workout [*]}])
+                            :in    [[result-id user]]
                             :where [[result :xt/id result-id]
                                     [result :result/user user]]}
                        [(parse-uuid (:id path-params)) (:uid session)]))
         result-path (str "/app/results/" (:xt/id result))]
     [:div#edit-result
      (result-form
-       (assoc {} :result result :workout workout :action result-path :hx-key :hx-put)
+       (assoc {}
+              :result result
+              :workout workout
+              :action result-path
+              :hx-key :hx-put
+              :form-props {:hx-target "closest #result-ui"
+                           :hx-swap   "outerHTML"})
        [:button.btn {:type "submit"} "Update Result"]
-       [:button.btn.bg-red-400.hover:bg-red-600 {:hx-get result-path
+       [:button.btn.bg-red-400.hover:bg-red-600 {:hx-get    result-path
                                                  :hx-target "closest #edit-result"} "Cancel"])]))
 
 

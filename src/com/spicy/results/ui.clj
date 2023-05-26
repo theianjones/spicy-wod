@@ -53,11 +53,12 @@
 
 
 (defn result-form
-  [{:keys [workout result action hidden hx-key] :as props} & children]
+  [{:keys [workout result action hidden hx-key form-props] :as props} & children]
   (biff/form
-    {(or hx-key :action) action
-     :class              "flex flex-col gap-3"
-     :hidden             hidden}
+    (merge (or form-props {})
+           {(or hx-key :action) action
+            :class              "flex flex-col gap-3"
+            :hidden             hidden})
     (scheme-forms (merge workout result))
     [:input.pink-input.teal-focus
      {:type  "date"
