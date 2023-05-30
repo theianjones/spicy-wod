@@ -5,7 +5,7 @@
     [clojure.string :as string]
     [com.biffweb :as biff :refer [q]]
     [com.spicy.middleware :as mid]
-    [com.spicy.route-helpers :refer [new-or-show]]
+    [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.settings :as settings]
     [com.spicy.ui :as ui]
     [com.spicy.workouts.core :as workouts]

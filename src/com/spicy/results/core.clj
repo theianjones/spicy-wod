@@ -6,7 +6,7 @@
     [com.biffweb :as biff :refer [q]]
     [com.spicy.middleware :as mid]
     [com.spicy.results.ui :refer [result-ui result-form params->score]]
-    [com.spicy.route-helpers :refer [new-or-show]]
+    [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.settings :as settings]
     [com.spicy.ui :as ui]
     [com.spicy.workouts.core :as workouts]
@@ -119,6 +119,6 @@
    ["" {:get  index
         :post create}]
    ["/:id"
-    ["" {:get (new-or-show new show)
+    ["" {:get (wildcard-override show {:new new})
          :put update}]
     ["/edit" {:get edit}]]])
