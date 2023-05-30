@@ -40,21 +40,15 @@
 
 (defn show
   [{:keys [biff/db path-params session params] :as _ctx}]
-  (let [workout   (first (biff/q db '{:find  (pull workout [*])
+  (let [workout   (first (biff/q db '{:find  (pull workout [* {:workout-movement/_workout [{:workout-movement/movement [*]}]}])
                                       :in    [[name id]]
                                       :where [(or [workout :workout/name name]
                                                   [workout :xt/id id])]}
                                  [(string/capitalize (:id path-params))
                                   (parse-uuid (:id path-params))]))
-        movements  (map #(-> %
-                             :workout-movement/movement
-                             :movement/name)
-                        (biff/q db '{:find  (pull m [{:workout-movement/movement [*]}])
-                                     :in    [[workout-id]]
-                                     :where [[e :xt/id workout-id]
-                                             [e :xt/id id]
-                                             [m :workout-movement/workout id]]}
-                                [(parse-uuid (:id path-params))]))]
+        movements (->> workout
+                       :workout-movement/_workout
+                       (map #(-> % :workout-movement/movement :movement/name)))]
     (if (true? (:fragment params))
       (ui/workout-ui workout)
       (ui/page {} [:div.pb-8
