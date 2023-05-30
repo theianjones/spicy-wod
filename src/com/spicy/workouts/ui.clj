@@ -46,7 +46,7 @@
 (defn workout-form
   [{:keys [hidden]}]
   (biff/form
-    {:class "flex flex-col gap-4"
+    {:class  "flex flex-col gap-4"
      :action "/app/workouts"
      :hidden hidden}
     [:input.pink-input.p-2.teal-focus#name {:placeholder "Name" :name "name"}]
@@ -75,4 +75,14 @@
                :label "feet"}]
      [:option {:value "points"
                :label "points"}]]
+    [:div
+     [:input.pink-input.teal-focus.w-full
+      {:name        "search"
+       :type        "search"
+       :placeholder "Search for Movements..."
+       :hx-get      "/app/workouts/new/search"
+       :hx-trigger  "keyup changed delay:500ms, search"
+       :hx-target   "#search-results"}]]
+    [:div#selected-movements]
+    [:div#search-results]
     [:button.btn {:type "submit"} "Create Workout"]))
