@@ -88,11 +88,6 @@
                                   :xt/id                     (random-uuid)
                                   :workout-movement/workout  workout-uuid
                                   :workout-movement/movement movement-id}) movement-ids)]
-    (tap> movements)
-    (tap> movement-ids)
-    (tap> workout-movements)
-    (tap> (into [] (concat workout
-                           workout-movements)))
     (biff/submit-tx ctx (into [] (concat workout
                                          workout-movements)))
     {:status  303
