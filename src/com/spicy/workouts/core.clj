@@ -58,8 +58,8 @@
                                [:a {:href  (str "/app/results/new?workout=" (:workout/name workout))
                                     :class (str "btn h-fit w-fit place-self-center")} "Log workout"]
                                (when (seq movements)
-                                 [:ul
-                                  (map (fn [m] [:li m]) movements)])]
+                                 [:ul.list-none.flex.gap-2
+                                  (map (fn [m] [:li.p-2.brutal-shadow.border-1.border-black m]) movements)])]
                               [:.flex-1
                                (workout-results
                                  {:user    (:uid session)
