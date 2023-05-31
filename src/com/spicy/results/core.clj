@@ -3,7 +3,7 @@
     [clojure.instant :as instant]
     [com.biffweb :as biff]
     [com.spicy.results.ui :refer [result-ui result-form params->score]]
-    [com.spicy.route-helpers :refer [new-or-show]]
+    [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
     [xtdb.api :as xt]))
 
@@ -18,7 +18,7 @@
     (result-ui result)))
 
 
-(defn update
+(defn update-handler
   [{:keys [biff/db params session path-params] :as ctx}]
 
   (let [result (first (biff/q db '{:find (pull result [* {:result/workout [*]}])
@@ -118,6 +118,6 @@
    ["" {:get  index
         :post create}]
    ["/:id"
-    ["" {:get (new-or-show new show)
-         :put update}]
+    ["" {:get (wildcard-override show {:new new})
+         :put update-handler}]
     ["/edit" {:get edit}]]])

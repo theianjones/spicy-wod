@@ -2,6 +2,7 @@
   (:require
     [clojure.edn :as edn]
     [clojure.java.io :as io]
+    [clojure.string :as string]
     [com.biffweb :as biff :refer [q]]
     [com.spicy :as main]
     [xtdb.api :as xt]))
@@ -29,57 +30,77 @@
   (add-fixtures "workouts.edn")
   (add-fixtures "movements.edn")
 
+  ;; remove movements
+  (let [{:keys [biff/db] :as ctx} (get-context)
+        ids                       (q db
+                                     '{:find  [e]
+                                       :where [[e :movement/name]]})]
+    (biff/submit-tx ctx (mapv (fn [[id]] {:db/op :delete
+                                          :xt/id id}) ids)))
+
   (slurp (io/resource "movements.edn"))
 
 
   (biff/add-libs)
 
   (biff/submit-tx (get-context)
-                  [{:db/doc-type :movement
+                  [{:db/doc-type   :movement
                     :movement/type :strength
                     :movement/name "Test"}])
 
+  
 
+  (let [{:keys [biff/db] :as ctx} (get-context)]
+    (q db
+       '{:find  (pull movement [*])
+         :in    [[search]]
+         :where [[movement :movement/name name]
+                 [(string/includes? name search)]]}
+       ["squat"]))
+
+  (clojure.string/includes? "air squat" "squat")
 
   (require '[portal.api :as p])
   (def p (p/open))
   (add-tap #'p/submit)
+  
 
   (let [{:keys [biff/db] :as ctx} (get-context)
-        ids (q db
-               '{:find [e]
-                 :where [[e :xt/id]]})]
+        ids                       (q db
+                                     '{:find  [e]
+                                       :where [[e :xt/id]]})]
     (biff/submit-tx ctx (mapv (fn [[id]] {:db/op :delete
                                          :xt/id id}) ids)))
 
   (let [{:keys [biff/db] :as ctx} (get-context)]
     (q db
-       '{:find (pull result [* {:result/workout [*]}])
+       '{:find  (pull result [* {:result/workout [*]}])
          :where [[result :result/notes]]}))
 
   (let [{:keys [biff/db] :as ctx} (get-context)]
     (q db
-       '{:find (pull result [* {:result/workout [*]}])
+       '{:find  (pull result [* {:result/workout [*]}])
          :where [[user :user/email "user.b@example.com"]
                  [result :result/user user]]}))
+  
   (let [{:keys [biff/db] :as ctx} (get-context)]
     (q db
-       '{:find (pull workout [:workout/name :workout/scheme])
+       '{:find  (pull workout [:workout/name :workout/scheme])
          :where [[workout :workout/name]]}))
 
   (let [{:keys [biff/db] :as ctx} (get-context)]
     (q db
-       '{:find (pull workout [*])
+       '{:find  (pull workout [*])
          :where [[workout :workout/name]]}))
   (let [{:keys [biff/db] :as ctx} (get-context)]
     (q db
-       '{:find (pull workout [*])
+       '{:find  (pull workout [*])
          :where [[workout :workout/name "Helen"]]}))
   (sort (keys (get-context)))
 
   (let [{:keys [biff/db] :as ctx} (get-context)]
-    (q db '{:find (pull workout [:workout/name])
-            :in [[user]]
+    (q db '{:find  (pull workout [:workout/name])
+            :in    [[user]]
             :where [(or [workout :workout/user user]
                         (and [workout :workout/name]
                              (not [workout :workout/user ])
@@ -87,8 +108,8 @@
        [[#uuid "22dba77f-e2b1-42a1-bca6-9bbcf39e2625"]]))
 
   (let [{:keys [biff/db] :as ctx} (get-context)]
-    #_(q db '{:find (pull u [*])
-              :in [[user]]
+    #_(q db '{:find  (pull u [*])
+              :in    [[user]]
               :where [[u :xt/id user]]}
          [["22dba77f-e2b1-42a1-bca6-9bbcf39e2625"]])
     (xt/entity db #uuid "22dba77f-e2b1-42a1-bca6-9bbcf39e2625"))
@@ -96,7 +117,7 @@
 
 
   (let [{:keys [biff/db] :as ctx} (get-context)]
-    (q db '{:find (pull workout [*])
+    (q db '{:find  (pull workout [*])
             :where [[workout :workout/name]
                     (not [workout :workout/user u])]}))
 
