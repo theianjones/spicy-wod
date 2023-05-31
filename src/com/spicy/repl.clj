@@ -30,6 +30,14 @@
   (add-fixtures "workouts.edn")
   (add-fixtures "movements.edn")
 
+  ;; remove movements
+  (let [{:keys [biff/db] :as ctx} (get-context)
+        ids                       (q db
+                                     '{:find  [e]
+                                       :where [[e :movement/name]]})]
+    (biff/submit-tx ctx (mapv (fn [[id]] {:db/op :delete
+                                          :xt/id id}) ids)))
+
   (slurp (io/resource "movements.edn"))
 
 

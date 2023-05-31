@@ -1,10 +1,10 @@
 (ns com.spicy.workouts.core
   (:require
-    [clojure.string :as string]
-    [com.biffweb :as biff]
-    [com.spicy.route-helpers :refer [wildcard-override]]
-    [com.spicy.ui :as ui]
-    [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]))
+   [clojure.string :as string]
+   [com.biffweb :as biff]
+   [com.spicy.route-helpers :refer [wildcard-override]]
+   [com.spicy.ui :as ui]
+   [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]))
 
 
 (defn index
@@ -18,24 +18,24 @@
     (ui/page {}
              [:div.pb-8
               (ui/panel
-                [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.mb-14.justify-center
-                 [:h1.text-5xl.w-fit.self-center.mt-8 "Workouts"]
-                 [:a
-                  {:class (str "text-2xl brutal-shadow btn-hover border border-radius rounded border-black py-1 px-2 h-fit text-center w-1/2 sm:w-auto self-center ")
-                   :href  (str "/app/workouts/new")}
-                  "Add Workout"]]
+               [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.mb-14.justify-center
+                [:h1.text-5xl.w-fit.self-center.mt-8 "Workouts"]
+                [:a
+                 {:class (str "text-2xl brutal-shadow btn-hover border border-radius rounded border-black py-1 px-2 h-fit text-center w-1/2 sm:w-auto self-center ")
+                  :href  (str "/app/workouts/new")}
+                 "Add Workout"]]
 
-                [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
-                 (map #(ui/workout-ui
-                         (assoc %
-                                :children
-                                [:a.brutal-shadow.btn-hover.border.border-radius.rounded.border-black.py-1.px-2.mt-auto
-                                 {:href (str "/app/workouts/" (string/lower-case
-                                                                (if (:workout/user %)
-                                                                  (:xt/id %)
-                                                                  (:workout/name %))))}
-                                 "History"]))
-                      workouts)])])))
+               [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
+                (map #(ui/workout-ui
+                       (assoc %
+                              :children
+                              [:a.brutal-shadow.btn-hover.border.border-radius.rounded.border-black.py-1.px-2.mt-auto
+                               {:href (str "/app/workouts/" (string/lower-case
+                                                             (if (:workout/user %)
+                                                               (:xt/id %)
+                                                               (:workout/name %))))}
+                               "History"]))
+                     workouts)])])))
 
 
 (defn show
@@ -53,18 +53,16 @@
       (ui/workout-ui workout)
       (ui/page {} [:div.pb-8
                    (ui/panel [:div {:class (str "h-full flex flex-col gap-6 md:flex-row pb-20")}
-                              [:div.flex.gap-2.flex-col
+                              [:div.flex.gap-2.flex-col.justify-between 
                                (workout-logbook-ui workout)
-                               [:a {:href  (str "/app/results/new?workout=" (:workout/name workout))
-                                    :class (str "btn h-fit w-fit place-self-center")} "Log workout"]
                                (when (seq movements)
-                                 [:ul.list-none.flex.gap-2
-                                  (map (fn [m] [:li.p-2.brutal-shadow.border-1.border-black m]) movements)])]
+                                 [:ul.list-none.flex.flex-wrap.gap-2.my-0
+                                  (map (fn [m] [:li.px-2.border.border-black.brutal-shadow.border-1.border-black m]) movements)])]
                               [:.flex-1
                                (workout-results
-                                 {:user    (:uid session)
-                                  :workout (:xt/id workout)
-                                  :biff/db db})]])]))))
+                                {:user    (:uid session)
+                                 :workout (:xt/id workout)
+                                 :biff/db db})]])]))))
 
 
 (defn create
@@ -117,20 +115,20 @@
       (ui/page {}
                [:div.max-w-md.mx-auto
                 (ui/panel
-                  [:div.p-4
-                   [:h1.text-5xl.mb-14.pt-8.text-center "New Workout"]
-                   (workout-form {:hidden {:fragment (str (true? fragment?))}})])]))))
+                 [:div.p-4
+                  [:h1.text-5xl.mb-14.pt-8.text-center "New Workout"]
+                  (workout-form {:hidden {:fragment (str (true? fragment?))}})])]))))
 
 
 (defn show-selected-movement
   [{:keys [session] :as _context}]
-  [:div
+  [:div.flex.gap-2
    (map-indexed (fn [idx m]
-                  [:div#selected-movement
-                   [:div m]
+                  [:div.flex.flex-row.gap-2.border.border-black.w-fit.px-2.rounded-full#selected-movement
+                   [:div.w-fit.self-center m]
                    [:input {:type "hidden" :value m :name (str "movements[" idx "]")}]
-                   [:button.btn {:hx-delete (str "/app/workouts/new/selected?movement=" m)
-                                 :hx-target "#selected-movements"} "Remove"]]) (get @selected-movements (:uid session)))])
+                   [:button.font-display.text-lg {:hx-delete (str "/app/workouts/new/selected?movement=" m)
+                                                  :hx-target "#selected-movements"} "x"]]) (get @selected-movements (:uid session)))])
 
 
 (defn remove-selected-movement
