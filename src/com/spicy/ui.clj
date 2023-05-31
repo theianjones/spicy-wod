@@ -96,9 +96,9 @@
     [:div.block.sm:hidden
      (when (some? children)
        children)]
-    [:div.hidden.sm:block.border.border-radius.rounded-full.border-black.py-1.px-2.cursor-default.whitespace-nowrap (display-scheme scheme)]]
+    [:div.hidden.sm:block.border.border-radius.rounded-full.border-black.py-1.px-2.cursor-default.whitespace-nowrap.text-sm.self-start (display-scheme scheme)]]
    [:span.block.sm:hidden.cursor-default.w-fit.self-start.whitespace-nowrap (display-scheme scheme)]
-   [:p.self-start.sm:self-center description]
+   [:p.self-start.sm:self-center.whitespace-pre-wrap description]
    [:div.hidden.sm:block
     (when (some? children)
       children)]])

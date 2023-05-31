@@ -38,7 +38,7 @@
    [:div.flex.flex-col.w-full
     [:h2.text-3xl.cursor-default name]
     [:div.py-1.cursor-default (ui/display-scheme scheme)]]
-   [:p.whitespace-pre.text-left description]
+   [:p.whitespace-pre-wrap.text-left description]
    (when (some? children)
      children)
    [:a {:href  (str "/app/results/new?workout=" name)
