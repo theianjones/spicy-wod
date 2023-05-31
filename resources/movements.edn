@@ -1,7 +1,7 @@
 [{:movement/name "snatch"
   :db/doc-type   :movement
   :movement/type :strength
-  :xt/id         :db.id/movement-aa}
+  :xt/id         :db.id/movement-zz}
  {:movement/name "jerk"
   :db/doc-type   :movement
   :movement/type :strength
