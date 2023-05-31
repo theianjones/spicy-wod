@@ -1,9 +1,15 @@
 (ns com.spicy.route-helpers)
 
 
-(defn new-or-show
-  [new-handler show-handler]
+(defn wildcard-override
+  [default overrides]
   (fn [request]
-    (if (= "new" (-> request :path-params :id))
-      (new-handler request)
-      (show-handler request))))
+    (let [route (-> request :path-params :id)
+          handler (or ((keyword route) overrides) default)]
+      (handler request))))
+
+
+(comment
+  (def handler (wildcard-override (constantly "default") {:new (constantly "new")}))
+  (handler {:path-params {:id "some-id"}})
+  (handler {:path-params {:id "new"}}))

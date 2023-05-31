@@ -1,17 +1,10 @@
 (ns com.spicy.results.core
   (:require
-    [cheshire.core :as cheshire]
     [clojure.instant :as instant]
-    [clojure.string :as string]
-    [com.biffweb :as biff :refer [q]]
-    [com.spicy.middleware :as mid]
+    [com.biffweb :as biff]
     [com.spicy.results.ui :refer [result-ui result-form params->score]]
-    [com.spicy.route-helpers :refer [new-or-show]]
-    [com.spicy.settings :as settings]
+    [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
-    [com.spicy.workouts.core :as workouts]
-    [ring.adapter.jetty9 :as jetty]
-    [rum.core :as rum]
     [xtdb.api :as xt]))
 
 
@@ -25,7 +18,7 @@
     (result-ui result)))
 
 
-(defn update
+(defn update-handler
   [{:keys [biff/db params session path-params] :as ctx}]
 
   (let [result (first (biff/q db '{:find (pull result [* {:result/workout [*]}])
@@ -119,6 +112,6 @@
    ["" {:get  index
         :post create}]
    ["/:id"
-    ["" {:get (new-or-show new show)
-         :put update}]
+    ["" {:get (wildcard-override show {:new new})
+         :put update-handler}]
     ["/edit" {:get edit}]]])
