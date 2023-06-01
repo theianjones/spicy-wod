@@ -7,7 +7,7 @@
 
 
 (def portal
-  "Holds the Portal atom which holds the current selection in the Splash Taps UI.
+  "Holds the Portal atom which holds the current selection in the Spicy Taps UI.
    To get the value of the current selection, it needs to be deref'd twice `@@portal`"
   (atom nil))
 
@@ -26,7 +26,7 @@
   ([] (open-portal {}))
   ([opts]
    (add-tap #'submit)
-   (reset! portal (p/open (merge {:window-title "Splash Taps"} opts)))))
+   (reset! portal (p/open (merge {:window-title "Spicy Taps"} opts)))))
 
 
 (comment
