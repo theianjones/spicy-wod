@@ -1,6 +1,7 @@
 (ns com.spicy.app
   (:require
     [com.spicy.middleware :as mid]
+    [com.spicy.movements.core :as movements]
     [com.spicy.results.core :as results]
     [com.spicy.settings :as settings]
     [com.spicy.ui :as ui]
@@ -26,5 +27,6 @@
    :routes ["/app" {:middleware [mid/wrap-signed-in]}
             ["" {:get app}]
             workouts/routes
-            results/routes]
+            results/routes
+            movements/routes]
    :api-routes []})
