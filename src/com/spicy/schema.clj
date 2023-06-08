@@ -38,6 +38,17 @@
                          [:workout/user {:optional true} :user/id]
                          [:workout/tiebreak-scheme {:optional true} [:enum :time :reps]]
                          [:workout/secondary-scheme {:optional true} (into [] (filter #(not (= :time-with-cap %)) workout-types))]]
+   :strength/id         :uuid
+   :strength            [:map {:closed true}
+                         [:xt/id :strength/id]
+                         [:strength/workout {:optional true} :workout/id]
+                         [:strength/movement :movement/id]]
+   :strength-set/id     :uuid
+   :strength-set        [:map {:closed true}
+                         [:xt/id :strength-set/id]
+                         [:strength-set/strength :strength/id]
+                         [:strength-set/reps :int]
+                         [:strength-set/weight :int]]
    :result/id           :uuid
    :result              [:map {:closed true}
                          [:xt/id :result/id]
