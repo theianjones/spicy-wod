@@ -46,9 +46,16 @@
   (biff/submit-tx (get-context)
                   [{:db/doc-type   :movement
                     :movement/type :strength
-                    :movement/name "Test"}])
-
+                    :movement-category "Barbell"
+                    :movement/name "Single Leg Hip Thruster"}])
   
+  (let [{:keys [biff/db] :as ctx} (get-context)]
+    (q db
+       '{:find  (pull movement [*])
+         :in    [[search]]
+         :where [[movement :movement-category/name name]
+                 [(string/includes? name search)]]}
+       ["Barbell"]))
 
   (let [{:keys [biff/db] :as ctx} (get-context)]
     (q db
@@ -56,7 +63,7 @@
          :in    [[search]]
          :where [[movement :movement/name name]
                  [(string/includes? name search)]]}
-       ["squat"]))
+       ["Hip Thruster"]))
 
   (clojure.string/includes? "air squat" "squat")
 

@@ -52,12 +52,19 @@
    :movement            [:map {:closed true}
                          [:xt/id :movement/id]
                          [:movement/name :string]
-                         [:movement/type [:enum :strength :gymnastic :monostructural]]]
+                         [:movement/type [:enum :strength :gymnastic :monostructural]] 
+                         [:movement/category {:optional true} :movement-category/id]]
    :workout-movement/id :uuid
    :workout-movement    [:map {:closed true}
                          [:xt/id :workout-movement/id]
                          [:workout-movement/workout :workout/id]
-                         [:workout-movement/movement :movement/id]]})
+                         [:workout-movement/movement :movement/id]]
+    :movement-category/id :uuid
+    :movement-category    [:map {:closed true}
+                           [:xt/id :movement-category/id]
+                           [:movement-category/name :string]
+                           [:movement-category/parent {:optional true} :movement-category/id]]
+   })
 
 
 (def plugin
