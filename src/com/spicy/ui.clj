@@ -30,9 +30,8 @@
                                       [:link {:rel "preload" :href "/fonts/DDSans-Bold.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
                                       [:link {:rel "preload" :href "/fonts/Mazer.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
                                       [:link {:rel "stylesheet" :href (css-path)}]
-                                      [:script {:src "https://unpkg.com/htmx.org@1.9.0"}]
-                                      [:script {:src "https://unpkg.com/htmx.org/dist/ext/ws.js"}]
-                                      [:script {:src "https://unpkg.com/hyperscript.org@0.9.8"}]
+                                      [:script {:src "/js/alpinejs_3_12_1.js" :defer true}]
+                                      [:script {:src "/js/htmx_1_9_2.js" :defer true}]
                                       (when recaptcha
                                         [:script {:src "https://www.google.com/recaptcha/api.js"
                                                   :async "async" :defer "defer"}])]
@@ -87,7 +86,7 @@
     :meters      "Total Meters"
     :feet        "Total Feet"
     :points      "Points"
-    :emom        "EMOM" 
+    :emom        "EMOM"
     nil))
 
 
