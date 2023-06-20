@@ -6,10 +6,11 @@
 
 (defn workout-results
   [{:keys [user workout biff/db]}]
-  (let [results (biff/q db '{:find (pull result [*])
+  (let [results (biff/q db '{:find (pull result [* {:result/type [*]}])
                              :in [[user-id workout-id]]
                              :where [[result :result/user user-id]
-                                     [result :result/workout workout-id]]}
+                                     [result :result/type wod]
+                                     [wod :result/workout workout-id]]}
                         [user workout])]
     [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] p-8 rounded-md shadow-[-2px_-2px_0px_rgba(0,0,0,100)] m-4")}
      [:div {:class "absolute h-full rounded-md  bg-brand-background shadow-[-2px_-2px_0px_rgba(0,0,0,100)] -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
@@ -17,7 +18,7 @@
      (if (zero? (count results))
        [:p {:class (str " w-fit m-auto ")} "Log a workout to see your history!"]
        [:ul.list-none.list-inside.gap-3.pl-0.ml-0
-        (map (fn [{:result/keys [score date notes scale]}]
+        (map (fn [{{:result/keys [score scale date notes]} :result/type}]
                [:li {:class (str "w-1/2")}
                 [:div.flex.gap-3.flex-col
                  [:.flex.justify-between.flex-wrap.gap-2
@@ -42,8 +43,7 @@
    (when (some? children)
      children)
    [:a {:href  (str "/app/results/new?workout=" name)
-        :class (str "btn h-fit w-fit")} "Log workout"]
-   ])
+        :class (str "btn h-fit w-fit")} "Log workout"]])
 
 
 (defn workout-form

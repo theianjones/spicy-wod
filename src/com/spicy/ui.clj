@@ -1,3 +1,5 @@
+
+
 (ns com.spicy.ui
   (:require
     [cheshire.core :as cheshire]
@@ -30,9 +32,10 @@
                                       [:link {:rel "preload" :href "/fonts/DDSans-Bold.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
                                       [:link {:rel "preload" :href "/fonts/Mazer.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
                                       [:link {:rel "stylesheet" :href (css-path)}]
-                                      [:script {:src "https://unpkg.com/htmx.org@1.9.0"}]
-                                      [:script {:src "https://unpkg.com/htmx.org/dist/ext/ws.js"}]
-                                      [:script {:src "https://unpkg.com/hyperscript.org@0.9.8"}]
+                                      [:script {:src "https://unpkg.com/htmx.org@1.9.0" :defer true}]
+                                      [:script {:src "https://unpkg.com/htmx.org/dist/ext/ws.js" :defer true}]
+                                      [:script {:src "https://unpkg.com/hyperscript.org@0.9.8" :defer true}]
+                                      [:script {:src "https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js" :defer true}]
                                       (when recaptcha
                                         [:script {:src "https://www.google.com/recaptcha/api.js"
                                                   :async "async" :defer "defer"}])]
@@ -55,7 +58,12 @@
        [:ul.flex.list-none.list-inside.gap-3.pl-0.ml-0
         [:li [:a.btn {:href "/app/workouts"} "Workouts"]]
         [:li [:a.btn {:href "/app/results"} "Scores"]]
-        (when (:uid session) [:button "logout"])]]]
+        (when (:uid session)
+          (biff/form
+            {:action "/auth/signout"
+             :class "inline"}
+            [:button.text-blue-500.hover:text-blue-800 {:type "submit"}
+             "Sign out"]))]]]
      [:.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
       (when (bound? #'csrf/*anti-forgery-token*)
         {:hx-headers (cheshire/generate-string
@@ -87,7 +95,7 @@
     :meters      "Total Meters"
     :feet        "Total Feet"
     :points      "Points"
-    :emom        "EMOM" 
+    :emom        "EMOM"
     nil))
 
 

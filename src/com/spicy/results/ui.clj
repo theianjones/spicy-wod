@@ -15,7 +15,9 @@
 
 
 (defn result-ui
-  [{:result/keys [score workout] :as result}]
+  [{:result/keys [workout]
+    {:result/keys [score]} :result/type
+    :as result}]
   [:div#result-ui
    [:div
     [:a {:href (str "/app/workouts/" (string/lower-case (:workout/name workout)))} (:workout/name workout)]]

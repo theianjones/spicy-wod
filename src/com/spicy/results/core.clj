@@ -80,16 +80,20 @@
 (defn create
   [{:keys [biff/db session params] :as ctx}]
   (biff/submit-tx ctx
-                  [{:db/op :merge
-                    :db/doc-type :result
+                  [{:db/op          :create
+                    :db/doc-type    :wod-result
+                    :xt/id          :db.id/wod-result
                     :result/workout (parse-uuid (:workout params))
+                    :result/score   (params->score params)
+                    :result/notes   (:notes params)
+                    :result/scale   (keyword (:scale params))
+                    :result/date    (instant/read-instant-date (:date params))}
+                   {:db/op       :merge
+                    :db/doc-type :result
                     :result/user (:uid session)
-                    :result/score (params->score params)
-                    :result/notes (:notes params)
-                    :result/scale (keyword (:scale params))
-                    :result/date (instant/read-instant-date (:date params))}])
+                    :result/type :db.id/wod-result}])
   (let [{:xt/keys [id] :as w} (xt/entity db (parse-uuid (:workout params)))]
-    {:status 303
+    {:status  303
      :headers {"location" (str "/app/workouts/" id)}}))
 
 

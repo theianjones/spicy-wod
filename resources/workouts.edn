@@ -91,44 +91,56 @@
   :workout/scheme      :time
   :db/doc-type         :workout}
  {:xt/id          :db.id/ida
-  :result/user    :db.id/a
   :result/workout :db.id/fran
   :result/score   "5:34"
   :result/date    :db/now
   :result/scale   :rx
-  :db/doc-type    :result}
+  :db/doc-type    :wod-result}
+ {:result/user :db.id/a
+  :result/type :db.id/ida
+  :db/doc-type :result}
  {:xt/id          :db.id/idb
-  :result/user    :db.id/a
   :result/workout :db.id/grace
   :result/score   "2:22"
   :result/date    :db/now
   :result/scale   :scaled
-  :db/doc-type    :result}
+  :db/doc-type    :wod-result}
+ {:result/user :db.id/a
+  :result/type :db.id/idb
+  :db/doc-type :result}
  {:xt/id          :db.id/idc
-  :result/user    :db.id/b
   :result/workout :db.id/cindy
   :result/score   "12 rounds + 6 pull-ups"
   :result/date    :db/now
   :result/scale   :rx
-  :db/doc-type    :result}
+  :db/doc-type    :wod-result}
+ {:result/user :db.id/b
+  :result/type :db.id/idc
+  :db/doc-type :result}
  {:xt/id          :db.id/idd
-  :result/user    :db.id/b
   :result/workout :db.id/annie
   :result/score   "10:01"
   :result/date    :db/now
   :result/scale   :scaled
-  :db/doc-type    :result}
+  :db/doc-type    :wod-result}
+ {:result/user :db.id/b
+  :result/type :db.id/idd
+  :db/doc-type :result}
  {:xt/id          :db.id/ide
-  :result/user    :db.id/c
   :result/workout :db.id/nancy
   :result/score   "21:45"
   :result/date    :db/now
   :result/scale   :rx+
-  :db/doc-type    :result}
+  :db/doc-type    :wod-result}
+ {:result/user :db.id/c
+  :result/type :db.id/ide
+  :db/doc-type :result}
  {:xt/id          :db.id/idf
-  :result/user    :db.id/c
   :result/workout :db.id/linda
   :result/score   "18:45"
   :result/date    :db/now
   :result/scale   :scaled
-  :db/doc-type    :result}]
+  :db/doc-type    :wod-result}
+ {:result/user :db.id/c
+  :result/type :db.id/idf
+  :db/doc-type :result}]
