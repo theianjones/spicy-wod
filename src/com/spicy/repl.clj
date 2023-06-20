@@ -40,7 +40,6 @@
                     :result/type :db.id/stength-result}
                    {:xt/id             :db.id/wod-result
                     :db/doc-type       :strength-result
-                    :result-set/result :db.id/result
                     :result/movement   mu-movement
                     :result/set-count  3
                     }
@@ -59,6 +58,12 @@
                     :result-set/status :fail
                     :result-set/reps   5
                     :result-set/weight 15}])
+  (let [{:keys [biff/db] :as ctx} (get-context)
+        ids (biff/q db '{:find [e]
+                         :where [[e :xt/id]]})]
+    (biff/submit-tx ctx (map (fn [[id]]
+                               {:db/op :delete
+                                :xt/id id}) ids)))
 
   (biff/submit-tx (get-context)
                   [{:xt/id       :db.id/result
@@ -78,14 +83,13 @@
                  :where [[r :result/strength]]}))
 
   (let [{:keys [biff/db]} (get-context)]
-    (biff/q db '{:find  [wod]
+    (biff/q db '{:find  [(pull result [* {:result/type [*]}])]
                  :in    [[user-id workout-id]]
                  :where [[result :result/user user-id]
                          [result :result/type wod]
-                         [wod :result/workout workout-id]]}
+                         [wod :wod-result/workout workout-id]]}
             [user-a #uuid "c96c70c7-03ff-4825-8b31-ea69f3bd43a0"]))
 
 
 
-  (xt/entity (:biff/db (get-context)) #uuid "060bb19b-b243-4308-a4bd-5b5e71c7c8b8")
-  )
+  (xt/entity (:biff/db (get-context)) #uuid "060bb19b-b243-4308-a4bd-5b5e71c7c8b8"))
