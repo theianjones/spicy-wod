@@ -1,3 +1,5 @@
+
+
 (ns com.spicy.ui
   (:require
     [cheshire.core :as cheshire]
@@ -54,7 +56,12 @@
        [:ul.flex.list-none.list-inside.gap-3.pl-0.ml-0
         [:li [:a.btn {:href "/app/workouts"} "Workouts"]]
         [:li [:a.btn {:href "/app/results"} "Scores"]]
-        (when (:uid session) [:button "logout"])]]]
+        (when (:uid session)
+          (biff/form
+            {:action "/auth/signout"
+             :class "inline"}
+            [:button.text-blue-500.hover:text-blue-800 {:type "submit"}
+             "Sign out"]))]]]
      [:.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
       (when (bound? #'csrf/*anti-forgery-token*)
         {:hx-headers (cheshire/generate-string

@@ -22,7 +22,6 @@
 
 
 (comment
-
   ;; Call this in dev if you'd like to add some seed data to your database. If
   ;; you edit the seed data (in resources/fixtures.edn), you can reset the
   ;; database by running `rm -r storage/xtdb` (DON'T run that in prod),
@@ -30,97 +29,67 @@
   (add-fixtures "workouts.edn")
   (add-fixtures "movements.edn")
 
-  ;; remove movements
-  (let [{:keys [biff/db] :as ctx} (get-context)
-        ids                       (q db
-                                     '{:find  [e]
-                                       :where [[e :movement/name]]})]
-    (biff/submit-tx ctx (mapv (fn [[id]] {:db/op :delete
-                                          :xt/id id}) ids)))
-
-  (slurp (io/resource "movements.edn"))
-
-
-  (biff/add-libs)
+  (def user-a #uuid "cd92c14b-f20b-4b75-97c9-5ade5c0d80e9")
+  (def mu-movement #uuid "078726e4-1225-40e9-a48a-edb38d38dfa8")
 
   (biff/submit-tx (get-context)
-                  [{:db/doc-type   :movement
-                    :movement/type :strength
-                    :movement/name "Test"}])
-
-  
-
-  (let [{:keys [biff/db] :as ctx} (get-context)]
-    (q db
-       '{:find  (pull movement [*])
-         :in    [[search]]
-         :where [[movement :movement/name name]
-                 [(string/includes? name search)]]}
-       ["squat"]))
-
-  (clojure.string/includes? "air squat" "squat")
-
-  (require '[portal.api :as p])
-  (def p (p/open))
-  (add-tap #'p/submit)
-  
-
+                  [{:xt/id       :db.id/result
+                    :db/doc-type :result
+                    :db/op       :create
+                    :result/user user-a
+                    :result/type :db.id/stength-result}
+                   {:xt/id             :db.id/wod-result
+                    :db/doc-type       :strength-result
+                    :result/movement   mu-movement
+                    :result/set-count  3
+                    }
+                   {:db/doc-type       :strength-set
+                    :result-set/result :db.id/result
+                    :result-set/status :pass
+                    :result-set/reps   5
+                    :result-set/weight 20}
+                   {:db/doc-type       :strength-set
+                    :result-set/result :db.id/result
+                    :result-set/status :pass
+                    :result-set/reps   5
+                    :result-set/weight 15}
+                   {:db/doc-type       :strength-set
+                    :result-set/result :db.id/result
+                    :result-set/status :fail
+                    :result-set/reps   5
+                    :result-set/weight 15}])
   (let [{:keys [biff/db] :as ctx} (get-context)
-        ids                       (q db
-                                     '{:find  [e]
-                                       :where [[e :xt/id]]})]
-    (biff/submit-tx ctx (mapv (fn [[id]] {:db/op :delete
-                                         :xt/id id}) ids)))
+        ids (biff/q db '{:find [e]
+                         :where [[e :xt/id]]})]
+    (biff/submit-tx ctx (map (fn [[id]]
+                               {:db/op :delete
+                                :xt/id id}) ids)))
 
-  (let [{:keys [biff/db] :as ctx} (get-context)]
-    (q db
-       '{:find  (pull result [* {:result/workout [*]}])
-         :where [[result :result/notes]]}))
+  (biff/submit-tx (get-context)
+                  [{:xt/id       :db.id/result
+                    :db/doc-type :result
+                    :db/op       :create
+                    :result/user user-a
+                    :result/type :db.id/wod-result}
+                   {:xt/id          :db.id/wod-result
+                    :db/doc-type    :wod-result
+                    :result/workout #uuid "c96c70c7-03ff-4825-8b31-ea69f3bd43a0"
+                    :result/score   "4:00"
+                    :result/date    (biff/now)
+                    :result/scale   :rx}])
 
-  (let [{:keys [biff/db] :as ctx} (get-context)]
-    (q db
-       '{:find  (pull result [* {:result/workout [*]}])
-         :where [[user :user/email "user.b@example.com"]
-                 [result :result/user user]]}))
-  
-  (let [{:keys [biff/db] :as ctx} (get-context)]
-    (q db
-       '{:find  (pull workout [:workout/name :workout/scheme])
-         :where [[workout :workout/name]]}))
+  (let [{:keys [biff/db]} (get-context)]
+    (biff/q db '{:find  (pull r [* {:result-set/_result [*]}])
+                 :where [[r :result/strength]]}))
 
-  (let [{:keys [biff/db] :as ctx} (get-context)]
-    (q db
-       '{:find  (pull workout [*])
-         :where [[workout :workout/name]]}))
-  (let [{:keys [biff/db] :as ctx} (get-context)]
-    (q db
-       '{:find  (pull workout [*])
-         :where [[workout :workout/name "Helen"]]}))
-  (sort (keys (get-context)))
-
-  (let [{:keys [biff/db] :as ctx} (get-context)]
-    (q db '{:find  (pull workout [:workout/name])
-            :in    [[user]]
-            :where [(or [workout :workout/user user]
-                        (and [workout :workout/name]
-                             (not [workout :workout/user ])
-                             ))]}
-       [[#uuid "22dba77f-e2b1-42a1-bca6-9bbcf39e2625"]]))
-
-  (let [{:keys [biff/db] :as ctx} (get-context)]
-    #_(q db '{:find  (pull u [*])
-              :in    [[user]]
-              :where [[u :xt/id user]]}
-         [["22dba77f-e2b1-42a1-bca6-9bbcf39e2625"]])
-    (xt/entity db #uuid "22dba77f-e2b1-42a1-bca6-9bbcf39e2625"))
+  (let [{:keys [biff/db]} (get-context)]
+    (biff/q db '{:find  [(pull result [* {:result/type [*]}])]
+                 :in    [[user-id workout-id]]
+                 :where [[result :result/user user-id]
+                         [result :result/type wod]
+                         [wod :wod-result/workout workout-id]]}
+            [user-a #uuid "c96c70c7-03ff-4825-8b31-ea69f3bd43a0"]))
 
 
 
-  (let [{:keys [biff/db] :as ctx} (get-context)]
-    (q db '{:find  (pull workout [*])
-            :where [[workout :workout/name]
-                    (not [workout :workout/user u])]}))
-
-  ;; Check the terminal for output.
-  (biff/submit-job (get-context) :echo {:foo "bar"})
-  (deref (biff/submit-job-for-result (get-context) :echo {:foo "bar"})))
+  (xt/entity (:biff/db (get-context)) #uuid "060bb19b-b243-4308-a4bd-5b5e71c7c8b8"))
