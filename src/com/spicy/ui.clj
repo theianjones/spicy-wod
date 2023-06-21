@@ -32,10 +32,8 @@
                                       [:link {:rel "preload" :href "/fonts/DDSans-Bold.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
                                       [:link {:rel "preload" :href "/fonts/Mazer.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
                                       [:link {:rel "stylesheet" :href (css-path)}]
-                                      [:script {:src "https://unpkg.com/htmx.org@1.9.0" :defer true}]
-                                      [:script {:src "https://unpkg.com/htmx.org/dist/ext/ws.js" :defer true}]
-                                      [:script {:src "https://unpkg.com/hyperscript.org@0.9.8" :defer true}]
-                                      [:script {:src "https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js" :defer true}]
+                                      [:script {:src "/js/alpinejs_3_12_1.js" :defer true}]
+                                      [:script {:src "/js/htmx_1_9_2.js" :defer true}]
                                       (when recaptcha
                                         [:script {:src "https://www.google.com/recaptcha/api.js"
                                                   :async "async" :defer "defer"}])]
