@@ -102,9 +102,9 @@
  {:xt/id          :db.id/idb
   :result/workout :db.id/grace
   :result/score   "2:22"
-  :result/date    :db/now
-  :result/scale   :scaled
-  :db/doc-type    :wod-result}
+  :result/date  :db/now
+  :result/scale :scaled
+  :db/doc-type  :wod-result}
  {:result/user :db.id/a
   :result/type :db.id/idb
   :db/doc-type :result}

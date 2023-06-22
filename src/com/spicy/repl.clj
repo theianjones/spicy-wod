@@ -21,6 +21,14 @@
                       edn/read-string)))
 
 
+(defn get-results
+  [{:keys [biff/db]} user]
+  (biff/q db '{:find  (pull result [* {:result/type [* {:result/workout [*]}]}])
+               ;; :in    [[user]]
+               ;; :where [[result :result/user user]]
+               :where [[result :result/type]]}))
+
+
 (comment
   ;; Call this in dev if you'd like to add some seed data to your database. If
   ;; you edit the seed data (in resources/fixtures.edn), you can reset the
@@ -89,6 +97,8 @@
                          [result :result/type wod]
                          [wod :wod-result/workout workout-id]]}
             [user-a #uuid "c96c70c7-03ff-4825-8b31-ea69f3bd43a0"]))
+
+  (get-results (get-context) user-a)
 
 
 

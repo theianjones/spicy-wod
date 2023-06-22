@@ -1,22 +1,11 @@
 (ns com.spicy.results.ui
   (:require
-    [cheshire.core :as cheshire]
-    [clojure.instant :as instant]
     [clojure.string :as string]
-    [com.biffweb :as biff :refer [q]]
-    [com.spicy.middleware :as mid]
-    [com.spicy.route-helpers :refer [wildcard-override]]
-    [com.spicy.settings :as settings]
-    [com.spicy.ui :as ui]
-    [com.spicy.workouts.core :as workouts]
-    [ring.adapter.jetty9 :as jetty]
-    [rum.core :as rum]
-    [xtdb.api :as xt]))
+    [com.biffweb :as biff]))
 
 
 (defn result-ui
-  [{:result/keys [workout]
-    {:result/keys [score]} :result/type
+  [{{:result/keys [score workout]} :result/type
     :as result}]
   [:div#result-ui
    [:div
@@ -27,8 +16,8 @@
 
 
 (defn scheme-forms
-  [{:workout/keys [scheme _secondary-scheme] :result/keys [score]}]
-  (case scheme
+  [{:result/keys [workout score]}]
+  (case (:workout/scheme workout)
     :time  (let [[minutes seconds] (string/split (or score ":") #":")]
              [:div.flex.gap-3
               [:input.w-full.pink-input.teal-focus#minutes
@@ -60,13 +49,13 @@
 
 
 (defn result-form
-  [{:keys [workout result action hidden hx-key form-props] :as props} & children]
+  [{:keys [result action hidden hx-key form-props]} & children]
   (biff/form
     (merge (or form-props {})
            {(or hx-key :action) action
             :class              "flex flex-col gap-3"
             :hidden             hidden})
-    (scheme-forms (merge workout result))
+    (scheme-forms result)
     [:input.pink-input.teal-focus
      {:type  "date"
       :name  "date"
