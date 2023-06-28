@@ -24,9 +24,9 @@
 (defn get-results
   [{:keys [biff/db]} user]
   (biff/q db '{:find  (pull result [* {:result/type [* {:result/workout [*]}]}])
-               ;; :in    [[user]]
-               ;; :where [[result :result/user user]]
-               :where [[result :result/type]]}))
+               :in    [[user]]
+               :where [[result :result/user user]]}
+          [user]))
 
 
 (comment
@@ -37,7 +37,7 @@
   (add-fixtures "workouts.edn")
   (add-fixtures "movements.edn")
 
-  (def user-a #uuid "cd92c14b-f20b-4b75-97c9-5ade5c0d80e9")
+  (def user-a  #uuid "e6af46b4-b20e-4782-9de9-8d56f8d0a3a0")
   (def mu-movement #uuid "078726e4-1225-40e9-a48a-edb38d38dfa8")
 
   (biff/submit-tx (get-context)
@@ -46,23 +46,25 @@
                     :db/op       :create
                     :result/user user-a
                     :result/type :db.id/stength-result}
-                   {:xt/id             :db.id/wod-result
+                   {:xt/id             :db.id/strength-result
                     :db/doc-type       :strength-result
                     :result/movement   mu-movement
                     :result/set-count  3
                     }
                    {:db/doc-type       :strength-set
-                    :result-set/result :db.id/result
+                    :result-set/parent :db.id/strength-result
                     :result-set/status :pass
                     :result-set/reps   5
                     :result-set/weight 20}
                    {:db/doc-type       :strength-set
+                    :result-set/parent :db.id/strength-result
                     :result-set/result :db.id/result
                     :result-set/status :pass
                     :result-set/reps   5
                     :result-set/weight 15}
                    {:db/doc-type       :strength-set
-                    :result-set/result :db.id/result
+                                        :result-set/parent :db.id/strength-result
+
                     :result-set/status :fail
                     :result-set/reps   5
                     :result-set/weight 15}])

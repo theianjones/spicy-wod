@@ -45,6 +45,3 @@
   ;; Get the value of the selection in Portal
   @@portal
   )
-
-
-(ns com.spicy.portal)

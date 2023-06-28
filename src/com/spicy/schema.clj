@@ -19,6 +19,8 @@
 (def StrengthSet
   [:map
    [:xt/id :strength-set/id]
+   [:result-set/parent :strength-result/id]
+   [:result-set/number :int]
    [:result-set/reps :int]
    [:result-set/status [:enum :pass :fail]]
    [:result-set/weight :int]])
@@ -27,15 +29,10 @@
 (def MonostructuralSet
   [:map
    [:xt/id :mono-set/id]
+   [:result-set/parent :mono-result/id]
+   [:result-set/number :int]
    [:result-set/distance :int]
    [:result-set/time :int]])
-
-
-(def ResultSet
-  [:map {:closed true}
-   [:xt/id :result-set/id]
-   [:result-set/result :result/id]
-   [:result-set/type :uuid]])
 
 
 (def WodResult
@@ -43,9 +40,8 @@
    [:xt/id :wod-result/id]
    [:result/workout :workout/id]
    [:result/score :string]
-   [:result/date inst?]
-   [:result/scale [:enum :rx :scaled :rx+]]
    [:result/notes {:optional true} :string]
+   [:result/scale [:enum :rx :scaled :rx+]]
    [:result/tie-break {:optional true} [:or inst? :string]]])
 
 
@@ -53,23 +49,24 @@
   [:map
    [:xt/id :strength-result/id]
    [:result/movement :movement/id]
-   [:result/set-count :int]
-   [:result/notes {:optional true} :string]])
+   [:result/notes {:optional true} :string]
+   [:result/set-count :int]])
 
 
 (def MonostructuralResult
   [:map
    [:xt/id :mono-result/id]
    [:result/movement :movement/id]
+   [:result/notes {:optional true} :string]
    [:result/distance :int]
-   [:result/time :int]
-   [:result/notes {:optional true} :string]])
+   [:result/time :int]])
 
 
 (def Result
   [:map {:closed true}
    [:xt/id :result/id]
    [:result/user :user/id]
+   [:result/date inst?]
    [:result/type :uuid]])
 
 
@@ -97,8 +94,6 @@
              [:workout/user {:optional true} :user/id]
              [:workout/tiebreak-scheme {:optional true} [:enum :time :reps]]
              [:workout/secondary-scheme {:optional true} (into [] (filter #(not (= :time-with-cap %)) workout-types))]]
-   :result-set/id :uuid
-   :result-set ResultSet
    :strength-set/id :uuid
    :strength-set StrengthSet
    :mono-set/id :uuid

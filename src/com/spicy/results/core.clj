@@ -27,13 +27,16 @@
                                            [result :result/user user]]}
                               [(parse-uuid (:id path-params)) (:uid session)]))]
     (biff/submit-tx ctx
-                    [{:db/op        :update
+                    [{:xt/id       (parse-uuid (:id path-params))
+                      :db/op       :update
+                      :db/doc-type :result
+                      :result/date (instant/read-instant-date (:date params))}
+                     {:db/op        :update
                       :db/doc-type  :wod-result
                       :xt/id        (:result/type result)
-                      :result/score (params->score params)
                       :result/notes (:notes params)
-                      :result/scale (keyword (:scale params))
-                      :result/date  (instant/read-instant-date (:date params))}])
+                      :result/score (params->score params)
+                      :result/scale (keyword (:scale params))}])
     {:status  303
      :headers {"Location" (str "/app/results/" (:id path-params))}}))
 
@@ -83,12 +86,12 @@
                     :xt/id          :db.id/wod-result
                     :result/workout (parse-uuid (:workout params))
                     :result/score   (params->score params)
-                    :result/notes   (:notes params)
                     :result/scale   (keyword (:scale params))
-                    :result/date    (instant/read-instant-date (:date params))}
+                    :result/notes   (:notes params)}
                    {:db/op       :merge
                     :db/doc-type :result
                     :result/user (:uid session)
+                    :result/date (instant/read-instant-date (:date params))
                     :result/type :db.id/wod-result}])
   (let [{:xt/keys [id] :as w} (xt/entity db (parse-uuid (:workout params)))]
     {:status  303

@@ -16,7 +16,7 @@
 
 
 (defn scheme-forms
-  [{:result/keys [workout score]}]
+  [{:keys [workout score]}]
   (case (:workout/scheme workout)
     :time  (let [[minutes seconds] (string/split (or score ":") #":")]
              [:div.flex.gap-3
@@ -49,13 +49,15 @@
 
 
 (defn result-form
-  [{:keys [result action hidden hx-key form-props]} & children]
+  [{:keys [result workout action hidden hx-key form-props]} & children]
   (biff/form
     (merge (or form-props {})
            {(or hx-key :action) action
             :class              "flex flex-col gap-3"
             :hidden             hidden})
-    (scheme-forms result)
+    (scheme-forms (assoc {}
+                         :score (-> result :result/type :result/score)
+                         :workout (or workout (-> result :result/type :result/workout))))
     [:input.pink-input.teal-focus
      {:type  "date"
       :name  "date"
