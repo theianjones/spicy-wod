@@ -10,7 +10,7 @@
 
 (defn show
   [{:keys [biff/db session path-params]}]
-  (let [result (first (biff/q db '{:find (pull result [* {:result/workout [*]}])
+  (let [result (first (biff/q db '{:find (pull result [* {:result/type [* {:result/workout [*]}]}])
                                    :in [[result-id user]]
                                    :where [[result :xt/id result-id]
                                            [result :result/user user]]}
@@ -21,28 +21,30 @@
 (defn update-handler
   [{:keys [biff/db params session path-params] :as ctx}]
 
-  (let [result (first (biff/q db '{:find (pull result [* {:result/workout [*]}])
-                                   :in [[result-id user]]
+  (let [result (first (biff/q db '{:find  (pull result [* {:result/workout [*]}])
+                                   :in    [[result-id user]]
                                    :where [[result :xt/id result-id]
                                            [result :result/user user]]}
-                              [(parse-uuid (:id path-params)) (:uid session)]))
-        tx (biff/submit-tx ctx
-                           [{:db/op :update
-                             :db/doc-type :result
-                             :xt/id (parse-uuid (:id path-params))
-                             :result/user (:uid session)
-                             :result/score (params->score params)
-                             :result/notes (:notes params)
-                             :result/scale (keyword (:scale params))
-                             :result/date (instant/read-instant-date (:date params))}])]
-    {:status 303
+                              [(parse-uuid (:id path-params)) (:uid session)]))]
+    (biff/submit-tx ctx
+                    [{:xt/id       (parse-uuid (:id path-params))
+                      :db/op       :update
+                      :db/doc-type :result
+                      :result/date (instant/read-instant-date (:date params))}
+                     {:db/op        :update
+                      :db/doc-type  :wod-result
+                      :xt/id        (:result/type result)
+                      :result/notes (:notes params)
+                      :result/score (params->score params)
+                      :result/scale (keyword (:scale params))}])
+    {:status  303
      :headers {"Location" (str "/app/results/" (:id path-params))}}))
 
 
 (defn edit
   [{:keys [biff/db session path-params]}]
-  (let [{:result/keys [workout] :as result}
-        (first (biff/q db '{:find  (pull result [* {:result/workout [*]}])
+  (let [{:result/keys [type] :as result}
+        (first (biff/q db '{:find  (pull result [* {:result/type [* {:result/workout [*]}]}])
                             :in    [[result-id user]]
                             :where [[result :xt/id result-id]
                                     [result :result/user user]]}
@@ -51,8 +53,8 @@
     [:div#edit-result
      (result-form
        (assoc {}
-              :result result
-              :workout workout
+              :result type
+              :workout (:result/workout type)
               :action result-path
               :hx-key :hx-put
               :form-props {:hx-target "closest #result-ui"
@@ -64,17 +66,16 @@
 
 (defn index
   [{:keys [biff/db session] :as _ctx}]
-  (let [results (biff/q db '{:find (pull result [* {:result/workout [:workout/name]}])
-                             :in [[user]]
+  (let [results (biff/q db '{:find  (pull result [* {:result/type [* {:result/workout [*]}]}])
+                             :in    [[user]]
                              :where [[result :result/user user]]}
                         [(:uid session)])]
     (ui/page {} [:div
                  [:h1 "Results"]
                  [:ul
                   (map (fn [r]
-                         (let [workout-name (get-in r [:result/workout :workout/name])]
-                           [:li
-                            (result-ui r)])) results)]])))
+                         [:li
+                          (result-ui r)]) results)]])))
 
 
 (defn create
@@ -85,12 +86,12 @@
                     :xt/id          :db.id/wod-result
                     :result/workout (parse-uuid (:workout params))
                     :result/score   (params->score params)
-                    :result/notes   (:notes params)
                     :result/scale   (keyword (:scale params))
-                    :result/date    (instant/read-instant-date (:date params))}
+                    :result/notes   (:notes params)}
                    {:db/op       :merge
                     :db/doc-type :result
                     :result/user (:uid session)
+                    :result/date (instant/read-instant-date (:date params))
                     :result/type :db.id/wod-result}])
   (let [{:xt/keys [id] :as w} (xt/entity db (parse-uuid (:workout params)))]
     {:status  303
