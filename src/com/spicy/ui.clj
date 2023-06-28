@@ -74,7 +74,7 @@
 
 (defn panel
   [& children]
-  [:div {:class (str  "rounded-3xl bg-brand-pink md:p-12 sm:p-4 "
+  [:div {:class (str  "rounded-3xl bg-brand-pink md:p-12 p-4 "
                       "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
                       "flex flex-col item-center ")}
    children])

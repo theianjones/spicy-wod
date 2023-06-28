@@ -176,33 +176,51 @@
 
 
 (defn log-session
-  [{:keys [path-params]}]
-  (ui/page {} (ui/panel
-                [:a.btn.w-fit {:href (str "/app/movements/" (:id path-params))} "Back"]
-                (biff/form {:hx-get   (str "/app/movements/" (:id path-params) "/form")
+  [{:keys [biff/db path-params]}]
+  (let [movement-id (parse-uuid (:id path-params))
+        m                (xt/entity db movement-id)]
+  (ui/page {} [:div {:class (str "lg:w-2/3 mx-auto pb-8")}
+               (ui/panel
+                [:div.flex.justify-around.sm:justify-between.my-4
+                 [:h1.text-3xl.cursor-default.capitalize.self-center (:movement/name m)]
+                 [:a.btn-no-bg.w-fit.self-center {:href (str "/app/movements/" (:id path-params))} "Back"]]
+                (biff/form {:hx-get  (str "/app/movements/" (:id path-params) "/form")
                             :hx-swap "outerHTML"}
-                           [:select {:name :type}
+                           [:select.rounded.bg-brand-background.brutal-shadow.teal-focus.cursor-pointer.block.mx-auto.sm:mx-0 {:name :type}
                             [:option {:value :constant} "Constant Reps"]
                             [:option {:value :variable} "Variable Reps"]]
-                           [:div {:x-data "{sets: 5, reps: 5}"}
-                            [:div
-                             [:p {:x-text :sets}]
-                             [:input {:x-model :sets
-                                      :name    :sets
-                                      :id      :sets
-                                      :type    :hidden}]
-                             [:button.btn {:x-on:click "sets++" :type "button"} "+"]
-                             [:button.btn {:x-on:click "sets--" :type "button"} "-"]]
-                            [:p "X"]
-                            [:div
-                             [:p {:x-text :reps}]
-                             [:input {:x-model :reps
-                                      :name    :reps
-                                      :id      :reps
-                                      :type    :hidden}]
-                             [:button.btn {:x-on:click "reps++" :type "button"} "+"]
-                             [:button.btn {:x-on:click "reps--" :type "button"} "-"]]]
-                           [:button.btn {:type "submit"} "Submit"]))))
+                           [:div.w-fit.mt-8.mx-auto {:x-data "{sets: 5, reps: 5}"} 
+                            [:div.flex.flex-row.justify-center.gap-8
+                             [:div.w-36.text-center
+                              [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :sets} "Sets"]
+                              [:p.text-9xl.font-bold.cursor-default {:x-text :sets}]
+                              [:input {:x-model :sets
+                                       :name    :sets
+                                       :id      :sets
+                                       :type    :hidden}]
+                              [:div.space-x-2
+                               [:button.btn.w-12 {:x-on:click "sets--"
+                                                  :type       "button"} "-"]
+                               [:button.btn.w-12 {:x-on:click "sets++"
+                                                  :type       "button"} "+"]]
+                              ]
+                             [:p.text-7xl.font-bold.self-center.cursor-default "X"]
+                             [:div.w-36.text-center
+                              [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :reps} "Reps"]
+                              [:p.text-9xl.font-bold.cursor-default {:x-text :reps}]
+                              [:input {:x-model :reps
+                                       :name    :reps
+                                       :id      :reps
+                                       :type    :hidden}]
+                              [:div.space-x-2
+                               
+                               [:button.btn.w-12 {:x-on:click "reps--"
+                                                  :type       "button"} "-"]
+                               [:button.btn.w-12 {:x-on:click "reps++"
+                                                  :type       "button"} "+"]]
+                              ]]
+                            ]
+                           [:button.btn.mt-8.block.mx-auto {:type "submit"} "Submit"]))])))
 
 
 (defn ->key
