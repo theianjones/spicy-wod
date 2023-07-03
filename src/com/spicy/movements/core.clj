@@ -7,6 +7,11 @@
      [xtdb.api :as xt]))
 
 
+(defn ->key
+  [n s]
+  (keyword (str s "-" n)))
+
+
 (defn htmx-request?
   [ctx]
   (-> ctx :headers
@@ -59,7 +64,7 @@
   (let [reps (into #{} (map :result-set/reps sets))]
     (if (= 1 (count reps))
       (string/join (interpose "x" [(count sets) (count reps)]))
-      (string/join (interpose "-" (map :result-set/reps sets))))))
+      (string/join (interpose "-" (map :result-set/reps  (sort-by :result-set/number sets)))))))
 
 
 (defn movement-results-ui
@@ -137,25 +142,37 @@
    [:fieldset
     [:.flex.gap-2
      [:label
-      [:input {:name     (str "hit-miss-" set-number)
-               :id       (str "hit-" set-number)
-               :value    :hit
-               :type     :checkbox}]
+      [:input {:name  (str "hit-miss-" set-number)
+               :id    (str "hit-" set-number)
+               :value :hit
+               :type  :checkbox}]
       "Hit"]]]])
 
 
-(defn get-strength-sets
+(defn get-constant-strength-sets
   [{:keys [n] :as opts}]
   (let [count (atom 0)]
     (repeatedly n
                 #(strength-set-inputs (merge {:set-number (swap! count inc)} opts)))))
 
 
+(defn get-variable-strength-sets
+  [{:keys [sets] :as opts}]
+  (loop [set-n      1
+         result [:div]]
+    (if (< sets set-n)
+      result
+      (recur (inc set-n)
+             (conj result (strength-set-inputs {:set-number set-n :reps (get opts (->key set-n "rep"))}))))))
+
+
 (defn create-log-session-form
   [{:keys [session path-params params] :as ctx}]
-  (let [reps        (parse-int (:reps params))
-        sets        (parse-int (:sets params))
+  (let [reps        (safe-parse-int (:reps params))
+        sets        (safe-parse-int (:sets params))
+        type        (:type params)
         strength-id (random-uuid)]
+    (tap> ctx)
     (biff/form {:hidden {:user     (:uid session)
                          :movement (:id path-params)
                          :strength strength-id
@@ -163,7 +180,10 @@
                          :sets     sets}
                 :method "POST"
                 :action (str "/app/movements/" (:id path-params) "/set")}
-               [:div (get-strength-sets {:n sets :reps reps})]
+               (when (= type "constant")
+                 [:div (get-constant-strength-sets {:n sets :reps reps})])
+               (when (= type "variable")
+                 [:div (get-variable-strength-sets (merge params {:sets sets}))])
                [:input.pink-input.teal-focus
                 {:type  "date"
                  :name  "date"
@@ -175,57 +195,113 @@
                [:button.btn "Submit"])))
 
 
+(defn variable-reps-form
+  [{:keys [path-params] :as _ctx}]
+  (biff/form {:id      "sets-scheme"
+              :hx-get  (str "/app/movements/" (:id path-params) "/form")
+              :hx-swap "outerHTML"}
+             [:select.rounded.bg-brand-background.brutal-shadow.teal-focus.cursor-pointer.block.mx-auto.sm:mx-0
+              {:name      :type
+               :hx-get    (str "/app/movements/" (:id path-params) "/constant-reps")
+               :hx-target "#sets-scheme"
+               :hx-swap   "outerHTML"}
+              [:option {:value :constant} "Constant Reps"]
+              [:option {:value    :variable
+                        :selected true} "Variable Reps"]]
+             [:div.mt-8.mx-auto {:x-data "{reps: [5, 5, 5, 5, 5]}"}
+              [:div.flex.flex-row.justify-around.gap-8.md:mx-20
+               [:div.w-36.text-center
+                [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :sets} "Sets"]
+                [:p.text-9xl.font-bold.cursor-default {:x-text "reps.length"}]
+                [:input {:name    :sets
+                         :id      :sets
+                         :type    :hidden
+                         ":value" "reps.length"}]
+                [:div.space-x-2
+                 [:button.btn.w-12 {:x-on:click "if (reps.length > 1) reps.pop()"
+                                    :type       "button"} "-"]
+                 [:button.btn.w-12 {:x-on:click "reps.push(5)"
+                                    :type       "button"} "+"]]]
+               [:.flex.gap-2.self-center.m-0.flex-col
+                [:template {:x-for "(rep, index) in reps"}
+                 [:div.text-center {:x-id "['rep']"}
+                  [:div.flex.flex-row.gap-4
+                   [:p {:class (str "w-4 text-xl font-bold cursor-default opacity-30 self-center")
+                        :x-text "index + 1"}]
+                   [:p.text-3xl.font-bold.cursor-default.w-12 {:x-text "rep"}]
+                   [:label.text-2xl.font-bold.block.text-center.mb-2 {":for" "$id('rep')"} "Reps"] 
+                   [:div.gap-2.flex.flex-row
+                    [:button {:x-on:click "if(reps[index] > 1) reps[index]--"
+                              :type       "button"
+                              :class      (str " border-2 border-black rounded font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] h-8 w-8 text-center bg-brand-background ")
+                              }"-"]
+                    [:button {:x-on:click "reps[index]++" 
+                              :type       "button"
+                              :class (str " border-2 border-black rounded font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] h-8 w-8 text-center bg-brand-background ")} "+"]]
+                   ]
+                  
+                  [:input {:x-model "reps[index]"
+                           ":name"  "$id('rep')"
+                           ":id"    "$id('rep')"
+                           :type    :hidden}]
+                  ]]]]]
+             [:button.btn.mt-8.block.mx-auto {:type "submit"} "Submit"]))
+
+
+(defn constant-reps-form
+  [{:keys [path-params] :as _ctx}]
+  (biff/form {:id      "sets-scheme"
+              :hx-get  (str "/app/movements/" (:id path-params) "/form")
+              :hx-swap "outerHTML"}
+             [:select.rounded.bg-brand-background.brutal-shadow.teal-focus.cursor-pointer.block.mx-auto.sm:mx-0
+              {:name      :type
+               :hx-get    (str "/app/movements/" (:id path-params) "/variable-reps")
+               :hx-target "#sets-scheme"
+               :hx-swap   "outerHTML"}
+              [:option {:value    :constant
+                        :selected true} "Constant Reps"]
+              [:option {:value :variable} "Variable Reps"]]
+             [:div.w-fit.mt-8.mx-auto {:x-data "{sets: 5, reps: 5}"}
+              [:div.flex.flex-row.justify-center.gap-8
+               [:div.w-36.text-center
+                [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :sets} "Sets"]
+                [:p.text-9xl.font-bold.cursor-default {:x-text :sets}]
+                [:input {:x-model :sets
+                         :name    :sets
+                         :id      :sets
+                         :type    :hidden}]
+                [:div.space-x-2
+                 [:button.btn.w-12 {:x-on:click "if (sets > 1) sets--"
+                                    :type       "button"} "-"]
+                 [:button.btn.w-12 {:x-on:click "sets++"
+                                    :type       "button"} "+"]]]
+               [:p.text-7xl.font-bold.self-center.cursor-default "X"]
+               [:div.w-36.text-center
+                [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :reps} "Reps"]
+                [:p.text-9xl.font-bold.cursor-default {:x-text :reps}]
+                [:input {:x-model :reps
+                         :name    :reps
+                         :id      :reps
+                         :type    :hidden}]
+                [:div.space-x-2
+
+                 [:button.btn.w-12 {:x-on:click "if (reps > 1) reps--"
+                                    :type       "button"} "-"]
+                 [:button.btn.w-12 {:x-on:click "reps++"
+                                    :type       "button"} "+"]]]]]
+             [:button.btn.mt-8.block.mx-auto {:type "submit"} "Submit"]))
+
+
 (defn log-session
-  [{:keys [biff/db path-params]}]
+  [{:keys [biff/db path-params] :as ctx}]
   (let [movement-id (parse-uuid (:id path-params))
         m                (xt/entity db movement-id)]
-  (ui/page {} [:div {:class (str "lg:w-2/3 mx-auto pb-8")}
-               (ui/panel
-                [:div.flex.justify-around.sm:justify-between.my-4
-                 [:h1.text-3xl.cursor-default.capitalize.self-center (:movement/name m)]
-                 [:a.btn-no-bg.w-fit.self-center {:href (str "/app/movements/" (:id path-params))} "Back"]]
-                (biff/form {:hx-get  (str "/app/movements/" (:id path-params) "/form")
-                            :hx-swap "outerHTML"}
-                           [:select.rounded.bg-brand-background.brutal-shadow.teal-focus.cursor-pointer.block.mx-auto.sm:mx-0 {:name :type}
-                            [:option {:value :constant} "Constant Reps"]
-                            [:option {:value :variable} "Variable Reps"]]
-                           [:div.w-fit.mt-8.mx-auto {:x-data "{sets: 5, reps: 5}"} 
-                            [:div.flex.flex-row.justify-center.gap-8
-                             [:div.w-36.text-center
-                              [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :sets} "Sets"]
-                              [:p.text-9xl.font-bold.cursor-default {:x-text :sets}]
-                              [:input {:x-model :sets
-                                       :name    :sets
-                                       :id      :sets
-                                       :type    :hidden}]
-                              [:div.space-x-2
-                               [:button.btn.w-12 {:x-on:click "sets--"
-                                                  :type       "button"} "-"]
-                               [:button.btn.w-12 {:x-on:click "sets++"
-                                                  :type       "button"} "+"]]
-                              ]
-                             [:p.text-7xl.font-bold.self-center.cursor-default "X"]
-                             [:div.w-36.text-center
-                              [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :reps} "Reps"]
-                              [:p.text-9xl.font-bold.cursor-default {:x-text :reps}]
-                              [:input {:x-model :reps
-                                       :name    :reps
-                                       :id      :reps
-                                       :type    :hidden}]
-                              [:div.space-x-2
-                               
-                               [:button.btn.w-12 {:x-on:click "reps--"
-                                                  :type       "button"} "-"]
-                               [:button.btn.w-12 {:x-on:click "reps++"
-                                                  :type       "button"} "+"]]
-                              ]]
-                            ]
-                           [:button.btn.mt-8.block.mx-auto {:type "submit"} "Submit"]))])))
-
-
-(defn ->key
-  [n s]
-  (keyword (str s "-" n)))
+    (ui/page {} [:div {:class (str "lg:w-2/3 mx-auto pb-8")}
+                 (ui/panel
+                   [:div.flex.justify-around.sm:justify-between.my-4
+                    [:h1.text-3xl.cursor-default.capitalize.self-center (:movement/name m)]
+                    [:a.btn-no-bg.w-fit.self-center {:href (str "/app/movements/" (:id path-params))} "Back"]]
+                   (constant-reps-form ctx))])))
 
 
 (defn ->sets-tx
@@ -249,6 +325,7 @@
 
 (defn create-session
   [{:keys [path-params session params] :as ctx}]
+  (tap> params)
   (let [result-id (random-uuid)
         tx (concat [{:xt/id            :db.id/strength-result
                      :db/doc-type      :strength-result
@@ -273,6 +350,8 @@
    ["/" {:get index}]
    ["/:id"
     ["" {:get show}]
+    ["/constant-reps" {:get constant-reps-form}]
+    ["/variable-reps" {:get variable-reps-form}]
     ["/set" {:post create-session}]
     ["/form" {:get create-log-session-form}]
     ["/new" {:get log-session}]]])
