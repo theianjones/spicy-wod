@@ -68,7 +68,7 @@
 
 
 (defn movement-results-ui
-  [{:result/keys [type] :as result}]
+  [{:result/keys [type] :as _result}]
   (let [sets (:result-set/_parent type)]
     [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center
      [:p.m-0 (sets-n-reps sets)]
@@ -78,7 +78,7 @@
 
 
 (defn show
-  [{:keys [biff/db path-params session]}]
+  [{:keys [biff/db path-params session] :as _ctx}]
   (let [movement-id (parse-uuid (:id path-params))
         m                (xt/entity db movement-id)
         movement-results (biff/q db '{:find  (pull result [* {:result/type
@@ -157,22 +157,31 @@
 
 
 (defn get-variable-strength-sets
-  [{:keys [sets] :as opts}]
-  (loop [set-n      1
+  [{:keys [sets reps] :as _opts}]
+
+  (loop [set-n      0
          result [:div]]
-    (if (< sets set-n)
+    (if (<= sets set-n)
       result
       (recur (inc set-n)
-             (conj result (strength-set-inputs {:set-number set-n :reps (get opts (->key set-n "rep"))}))))))
+             (conj result (strength-set-inputs {:set-number (inc set-n) :reps (nth reps set-n)}))))))
+
+
+(defn params->reps
+  [{:keys [reps type] :as _params}]
+  (cond
+    (= "constant" type) (safe-parse-int reps)
+    (= "variable" type) (->> (string/split reps #",")
+                             (mapv safe-parse-int))
+    :else reps))
 
 
 (defn create-log-session-form
-  [{:keys [session path-params params] :as ctx}]
-  (let [reps        (safe-parse-int (:reps params))
+  [{:keys [session path-params params] :as _ctx}]
+  (let [reps        (params->reps params)
         sets        (safe-parse-int (:sets params))
         type        (:type params)
         strength-id (random-uuid)]
-    (tap> ctx)
     (biff/form {:hidden {:user     (:uid session)
                          :movement (:id path-params)
                          :strength strength-id
@@ -183,7 +192,8 @@
                (when (= type "constant")
                  [:div (get-constant-strength-sets {:n sets :reps reps})])
                (when (= type "variable")
-                 [:div (get-variable-strength-sets (merge params {:sets sets}))])
+                 [:div (get-variable-strength-sets {:sets sets
+                                                    :reps reps})])
                [:input.pink-input.teal-focus
                 {:type  "date"
                  :name  "date"
@@ -222,6 +232,9 @@
                                     :type       "button"} "-"]
                  [:button.btn.w-12 {:x-on:click "reps.push(5)"
                                     :type       "button"} "+"]]]
+               [:input#reps {":value" "reps.join(',')"
+                             :name    :reps
+                             :type    :hidden}]
                [:.flex.gap-2.self-center.m-0.flex-col
                 [:template {:x-for "(rep, index) in reps"}
                  [:div.text-center {:x-id "['rep']"}
@@ -229,22 +242,14 @@
                    [:p {:class (str "w-4 text-xl font-bold cursor-default opacity-30 self-center")
                         :x-text "index + 1"}]
                    [:p.text-3xl.font-bold.cursor-default.w-12 {:x-text "rep"}]
-                   [:label.text-2xl.font-bold.block.text-center.mb-2 {":for" "$id('rep')"} "Reps"] 
+                   [:label.text-2xl.font-bold.block.text-center.mb-2 {":for" "$id('rep')"} "Reps"]
                    [:div.gap-2.flex.flex-row
                     [:button {:x-on:click "if(reps[index] > 1) reps[index]--"
                               :type       "button"
-                              :class      (str " border-2 border-black rounded font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] h-8 w-8 text-center bg-brand-background ")
-                              }"-"]
-                    [:button {:x-on:click "reps[index]++" 
+                              :class      (str " border-2 border-black rounded font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] h-8 w-8 text-center bg-brand-background ")} "-"]
+                    [:button {:x-on:click "reps[index]++"
                               :type       "button"
-                              :class (str " border-2 border-black rounded font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] h-8 w-8 text-center bg-brand-background ")} "+"]]
-                   ]
-                  
-                  [:input {:x-model "reps[index]"
-                           ":name"  "$id('rep')"
-                           ":id"    "$id('rep')"
-                           :type    :hidden}]
-                  ]]]]]
+                              :class (str " border-2 border-black rounded font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] h-8 w-8 text-center bg-brand-background ")} "+"]]]]]]]]
              [:button.btn.mt-8.block.mx-auto {:type "submit"} "Submit"]))
 
 
@@ -325,9 +330,7 @@
 
 (defn create-session
   [{:keys [path-params session params] :as ctx}]
-  (tap> params)
-  (let [result-id (random-uuid)
-        tx (concat [{:xt/id            :db.id/strength-result
+  (let [tx (concat [{:xt/id            :db.id/strength-result
                      :db/doc-type      :strength-result
                      :db/op            :create
                      :result/movement  (parse-uuid (:movement params))

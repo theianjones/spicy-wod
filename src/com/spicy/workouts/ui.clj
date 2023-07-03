@@ -18,7 +18,8 @@
      (if (zero? (count results))
        [:p {:class (str " w-fit m-auto ")} "Log a workout to see your history!"]
        [:ul.list-none.list-inside.gap-3.pl-0.ml-0
-        (map (fn [{{:result/keys [score scale date notes]} :result/type}]
+        (map (fn [{{:result/keys [score scale notes]} :result/type
+                   :result/keys [date]}]
                [:li {:class (str "w-1/2")}
                 [:div.flex.gap-3.flex-col
                  [:.flex.justify-between.flex-wrap.gap-2
