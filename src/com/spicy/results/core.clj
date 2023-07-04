@@ -21,11 +21,14 @@
 (defn update-handler
   [{:keys [biff/db params session path-params] :as ctx}]
 
-  (let [result (first (biff/q db '{:find  (pull result [* {:result/workout [*]}])
-                                   :in    [[result-id user]]
-                                   :where [[result :xt/id result-id]
-                                           [result :result/user user]]}
-                              [(parse-uuid (:id path-params)) (:uid session)]))]
+  (let [result      (first (biff/q db '{:find  (pull result [* {:result/workout [*]
+                                                                :result/type    [* {:result-set/_parent [*]}]}])
+                                        :in    [[result-id user]]
+                                        :where [[result :xt/id result-id]
+                                                [result :result/user user]]}
+                                   [(parse-uuid (:id path-params)) (:uid session)]))
+        result-sets (-> result :result/type :result-set/_parent)
+        result-set  (first result-sets)]
     (biff/submit-tx ctx
                     [{:xt/id       (parse-uuid (:id path-params))
                       :db/op       :update
@@ -35,8 +38,11 @@
                       :db/doc-type  :wod-result
                       :xt/id        (:result/type result)
                       :result/notes (:notes params)
-                      :result/score (params->score params)
-                      :result/scale (keyword (:scale params))}])
+                      :result/scale (keyword (:scale params))}
+                     {:db/op            :update
+                      :db/doc-type      :wod-set
+                      :xt/id            (:xt/id result-set)
+                      :result-set/score (params->score params)}])
     {:status  303
      :headers {"Location" (str "/app/results/" (:id path-params))}}))
 
@@ -80,19 +86,24 @@
 
 (defn create
   [{:keys [biff/db session params] :as ctx}]
-  (biff/submit-tx ctx
-                  [{:db/op          :create
-                    :db/doc-type    :wod-result
-                    :xt/id          :db.id/wod-result
-                    :result/workout (parse-uuid (:workout params))
-                    :result/score   (params->score params)
-                    :result/scale   (keyword (:scale params))
-                    :result/notes   (:notes params)}
-                   {:db/op       :merge
-                    :db/doc-type :result
-                    :result/user (:uid session)
-                    :result/date (instant/read-instant-date (:date params))
-                    :result/type :db.id/wod-result}])
+  (let [workout-id (parse-uuid (:workout params))
+        {:workout/keys [reps-per-round] :as _workout} (xt/entity db workout-id)]
+    (biff/submit-tx ctx
+                    [{:db/op          :create
+                      :db/doc-type    :wod-result
+                      :xt/id          :db.id/wod-result
+                      :result/workout workout-id
+                      :result/scale   (keyword (:scale params))
+                      :result/notes   (:notes params)}
+                     {:db/op       :merge
+                      :db/doc-type :result
+                      :result/user (:uid session)
+                      :result/date (instant/read-instant-date (:date params))
+                      :result/type :db.id/wod-result}
+                     {:db/op             :create
+                      :db/doc-type       :wod-set
+                      :result-set/score  (params->score (assoc params :reps-per-round reps-per-round))
+                      :result-set/parent :db.id/wod-result}]))
   (let [{:xt/keys [id] :as w} (xt/entity db (parse-uuid (:workout params)))]
     {:status  303
      :headers {"location" (str "/app/workouts/" id)}}))

@@ -1,7 +1,8 @@
 (ns com.spicy.results.ui
   (:require
     [clojure.string :as string]
-    [com.biffweb :as biff]))
+    [com.biffweb :as biff]
+    [com.spicy.numbers :as n]))
 
 
 (defn result-ui
@@ -91,10 +92,37 @@
     children))
 
 
+(defn time->score
+  [{:keys [minutes seconds]}]
+  (+ (or 0 (n/safe-parse-int seconds))
+     (* 60 (or (n/safe-parse-int minutes) 0))))
+
+
+(defn reps-rounds->score
+  [{:keys [reps rounds reps-per-round]}]
+  (+ (or (n/safe-parse-int reps) 0)
+     (* reps-per-round (n/parse-int rounds))))
+
+
 (defn params->score
-  [{:keys [minutes seconds rounds reps]}]
+  [{:keys [minutes seconds rounds reps] :as params}]
   (cond
-    (or (some? minutes) (some? seconds)) (str minutes ":" seconds)
-    (and (some? rounds) (some? reps)) (str rounds "+" reps)
-    (some? reps) reps
+    (or (some? minutes) (some? seconds)) (time->score params)
+    (and (some? rounds) (some? reps)) (reps-rounds->score params)
+    (some? reps) (n/parse-int reps)
     :else nil))
+
+
+(comment
+  (params->score {:seconds "45"})
+  ;; => 45
+  (params->score {:minutes "3" :seconds "45"})
+  ;; => 225
+  (params->score {:rounds "20" :rounds-multiplier 30})
+  ;; => nil
+
+  (params->score {:rounds "20" :reps "5" :rounds-multiplier 30})
+  ;; => 605
+  (params->score {:reps "42"})
+  ;; => 42
+  )

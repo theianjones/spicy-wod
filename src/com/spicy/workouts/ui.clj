@@ -1,29 +1,59 @@
 (ns com.spicy.workouts.ui
   (:require
     [com.biffweb :as biff :refer [q]]
+    [com.spicy.time :as t]
     [com.spicy.ui :as ui]))
+
+
+(defn ->rounds-reps
+  [reps-per-round reps]
+  (if (> 0 reps)
+    "0+0"
+    (str (quot reps reps-per-round)
+         "+"
+         (rem reps reps-per-round))))
+
+
+(comment
+  (->rounds-reps 30 60)
+  (->rounds-reps 30 61)
+  (->rounds-reps 30 300)
+  (->rounds-reps 30 301)
+  (->rounds-reps 30 329)
+  (->rounds-reps 30 330))
+
+
+(defn display-score
+  [{:keys [result-set workout]}]
+  (case (:workout/scheme workout)
+    :rounds-reps (->rounds-reps (:workout/reps-per-round workout) (:result-set/score result-set))
+    :time (t/->time (:result-set/score result-set))
+    (:result-set/score result-set)))
 
 
 (defn workout-results
   [{:keys [user workout biff/db]}]
-  (let [results (biff/q db '{:find (pull result [* {:result/type [*]}])
-                             :in [[user-id workout-id]]
+  (let [results (biff/q db '{:find  (pull result [* {:result/type [*
+                                                                   {:result-set/_parent [*]}
+                                                                   {:result/workout [*]}]}])
+                             :in    [[user-id workout-id]]
                              :where [[result :result/user user-id]
                                      [result :result/type wod]
                                      [wod :result/workout workout-id]]}
                         [user workout])]
     [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] p-8 rounded-md shadow-[-2px_-2px_0px_rgba(0,0,0,100)] m-4")}
-     [:div {:class "absolute h-full rounded-md  bg-brand-background shadow-[-2px_-2px_0px_rgba(0,0,0,100)] -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
+     [:div {:class "absolute h-full rounded-md bg-brand-background shadow-[-2px_-2px_0px_rgba(0,0,0,100)] -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
      [:h2.text-3xl "Log Book"]
      (if (zero? (count results))
        [:p {:class (str " w-fit m-auto ")} "Log a workout to see your history!"]
        [:ul.list-none.list-inside.gap-3.pl-0.ml-0
-        (map (fn [{{:result/keys [score scale notes]} :result/type
-                   :result/keys [date]}]
+        (map (fn [{{:result/keys [scale notes workout]
+                    sets         :result-set/_parent} :result/type
+                   :result/keys               [date]}]
                [:li {:class (str "w-1/2")}
                 [:div.flex.gap-3.flex-col
                  [:.flex.justify-between.flex-wrap.gap-2
-                  [:div.text-2xl.font-bold.self-center score
+                  [:div.text-2xl.font-bold.self-center (display-score {:result-set (first sets) :workout workout})
                    [:span.pl-2.font-normal (name scale)]]
                   [:div.self-center (biff/format-date
                                       date "EEE, YYYY-MM-dd")]]

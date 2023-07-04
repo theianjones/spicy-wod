@@ -55,6 +55,7 @@
       [:nav
        [:ul.flex.list-none.list-inside.gap-3.pl-0.ml-0
         [:li [:a.btn {:href "/app/workouts"} "Workouts"]]
+        [:li [:a.btn {:href "/app/movements"} "Movements"]]
         [:li [:a.btn {:href "/app/results"} "Scores"]]
         (when (:uid session)
           (biff/form
