@@ -30,11 +30,12 @@
   :workout/description "Every minute on the minute for 30 minutes: 5 pull-ups 10 push-ups 15 squats"
   :workout/scheme      :pass-fail
   :db/doc-type         :workout}
- {:xt/id               :db.id/cindy
-  :workout/name        "Cindy"
-  :workout/description "As many rounds as possible in 20 minutes: 5 pull-ups 10 push-ups 15 squats"
-  :workout/scheme      :rounds-reps
-  :db/doc-type         :workout}
+ {:xt/id                  :db.id/cindy
+  :workout/name           "Cindy"
+  :workout/description    "As many rounds as possible in 20 minutes: 5 pull-ups 10 push-ups 15 squats"
+  :workout/scheme         :rounds-reps
+  :workout/reps-per-round 30
+  :db/doc-type            :workout}
  {:xt/id               :db.id/diane
   :workout/name        "Diane"
   :workout/description "21-15-9 reps of deadlifts (225/155 lbs) and handstand push-ups"
@@ -75,11 +76,12 @@
   :workout/description "10-9-8-7-6-5-4-3-2-1 reps for time: deadlift (1.5 bodyweight) bench press (bodyweight) clean (0.75 bodyweight)"
   :workout/scheme      :time
   :db/doc-type         :workout}
- {:xt/id               :db.id/mary
-  :workout/name        "Mary"
-  :workout/description "As many rounds as possible in 20 minutes: 5 handstand push-ups 10 one-legged squats 15 pull-ups"
-  :workout/scheme      :rounds-reps
-  :db/doc-type         :workout}
+ {:xt/id                  :db.id/mary
+  :workout/name           "Mary"
+  :workout/description    "As many rounds as possible in 20 minutes: 5 handstand push-ups 10 one-legged squats 15 pull-ups"
+  :workout/scheme         :rounds-reps
+  :workout/reps-per-round 30
+  :db/doc-type            :workout}
  {:xt/id               :db.id/nancy
   :workout/name        "Nancy"
   :workout/description "5 rounds for time: 400m run 15 overhead squats (95/65 lbs)"
@@ -92,46 +94,56 @@
   :db/doc-type         :workout}
  {:xt/id          :db.id/ida
   :result/workout :db.id/fran
-  :result/score   "5:34"
   :result/date    :db/now
   :result/scale   :rx
   :db/doc-type    :wod-result}
+ {:db/doc-type       :result-set
+  :result-set/score  334
+  :result-set/parent :db.id/ida}
  {:result/user :db.id/a
   :result/type :db.id/ida
   :db/doc-type :result}
  {:xt/id          :db.id/idb
   :result/workout :db.id/grace
-  :result/score   "2:22"
-  :result/date  :db/now
-  :result/scale :scaled
-  :db/doc-type  :wod-result}
+  :result/date    :db/now
+  :result/scale   :scaled
+  :db/doc-type    :wod-result}
+ {:db/doc-type       :result-set
+  :result-set/score  142
+  :result-set/parent :db.id/idb}
  {:result/user :db.id/a
   :result/type :db.id/idb
   :db/doc-type :result}
  {:xt/id          :db.id/idc
   :result/workout :db.id/cindy
-  :result/score   "12 rounds + 6 pull-ups"
   :result/date    :db/now
   :result/scale   :rx
   :db/doc-type    :wod-result}
+ {:db/doc-type       :result-set
+  :result-set/score  366
+  :result-set/parent :db.id/idc}
  {:result/user :db.id/b
   :result/type :db.id/idc
   :db/doc-type :result}
  {:xt/id          :db.id/idd
   :result/workout :db.id/annie
-  :result/score   "10:01"
   :result/date    :db/now
   :result/scale   :scaled
   :db/doc-type    :wod-result}
+ {:db/doc-type       :result-set
+  :result-set/score  489
+  :result-set/parent :db.id/idd}
  {:result/user :db.id/b
   :result/type :db.id/idd
   :db/doc-type :result}
  {:xt/id          :db.id/ide
   :result/workout :db.id/nancy
-  :result/score   "21:45"
   :result/date    :db/now
   :result/scale   :rx+
   :db/doc-type    :wod-result}
+ {:db/doc-type       :result-set
+  :result-set/score  1305
+  :result-set/parent :db.id/ide}
  {:result/user :db.id/c
   :result/type :db.id/ide
   :db/doc-type :result}
@@ -141,6 +153,9 @@
   :result/date    :db/now
   :result/scale   :scaled
   :db/doc-type    :wod-result}
+ {:db/doc-type       :result-set
+  :result-set/score  1124
+  :result-set/parent :db.id/idf}
  {:result/user :db.id/c
   :result/type :db.id/idf
   :db/doc-type :result}]
