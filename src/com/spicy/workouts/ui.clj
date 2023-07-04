@@ -85,7 +85,11 @@
      :hidden hidden}
     [:input.pink-input.p-2.teal-focus#name {:placeholder "Name" :name "name" :required true}]
     [:textarea.pink-input.h-48.row-5.teal-focus#description {:placeholder "Description" :name "description" :required true}]
-    [:select.pink-input.teal-focus#scheme {:name "scheme" :required true}
+    [:select.pink-input.teal-focus#scheme {:name      "scheme"
+                                           :required  true
+                                           :hx-get    "/app/workouts/new/scheme-inputs"
+                                           :hx-target "#scheme-inputs"
+                                           :hx-swap   "outerHTML"}
      [:option {:value "" :label "--Select a Workout Scheme--"}]
      [:option {:value "time"
                :label "time"}]
@@ -109,6 +113,7 @@
                :label "feet"}]
      [:option {:value "points"
                :label "points"}]]
+    [:div.hidden#scheme-inputs]
     [:div
      [:input.pink-input.teal-focus.w-full
       {:name        "search"

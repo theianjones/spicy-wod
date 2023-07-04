@@ -2,6 +2,7 @@
   (:require
     [clojure.string :as string]
     [com.biffweb :as biff]
+    [com.spicy.numbers :as n]
     [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
     [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]))
@@ -80,6 +81,7 @@
                             :xt/id               workout-uuid
                             :workout/name        (:name params)
                             :workout/user        (:uid session)
+                            :workout/reps-per-round (n/safe-parse-int (:reps-per-round params))
                             :workout/scheme      (keyword (:scheme params))
                             :workout/description (:description params)}]
         workout-movements (map (fn [movement-id]
@@ -165,6 +167,15 @@
                         :hx-target "#selected-movements"} name]) results)]))
 
 
+(defn get-scheme-inputs
+  [{:keys [params] :as _ctx}]
+  [:div#scheme-inputs
+   (case (:scheme params)
+     "rounds-reps" [:input.w-full.pink-input.p-2.teal-focus#reps-per-round
+                    {:placeholder "Reps per round" :name "reps-per-round" :required true}]
+     nil)])
+
+
 (def routes
   ["/workouts"
    ["" {:get  index
@@ -173,7 +184,8 @@
    ["/new/search" {:get search}]
    ["/new/selected" {:get    show-selected-movement
                      :post   set-selected-movement
-                     :delete remove-selected-movement}]])
+                     :delete remove-selected-movement}]
+   ["/new/scheme-inputs" {:get get-scheme-inputs}]])
 
 
 (comment
