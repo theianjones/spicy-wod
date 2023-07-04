@@ -12,7 +12,7 @@
 (defn app
   [{:keys [session biff/db] :as ctx}]
   (let [{:user/keys [email foo bar]} (xt/entity db (:uid session))]
-    (ui/page {} [:div "TODO"])))
+    (ui/page {:session session} [:div "TODO"])))
 
 
 (def about-page

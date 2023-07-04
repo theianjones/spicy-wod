@@ -94,68 +94,68 @@
   :db/doc-type         :workout}
  {:xt/id          :db.id/ida
   :result/workout :db.id/fran
-  :result/date    :db/now
   :result/scale   :rx
   :db/doc-type    :wod-result}
- {:db/doc-type       :result-set
+ {:db/doc-type       :wod-set
   :result-set/score  334
   :result-set/parent :db.id/ida}
  {:result/user :db.id/a
   :result/type :db.id/ida
+  :result/date :db/now
   :db/doc-type :result}
  {:xt/id          :db.id/idb
   :result/workout :db.id/grace
-  :result/date    :db/now
   :result/scale   :scaled
   :db/doc-type    :wod-result}
- {:db/doc-type       :result-set
+ {:db/doc-type       :wod-set
   :result-set/score  142
   :result-set/parent :db.id/idb}
  {:result/user :db.id/a
   :result/type :db.id/idb
+  :result/date :db/now
   :db/doc-type :result}
  {:xt/id          :db.id/idc
   :result/workout :db.id/cindy
-  :result/date    :db/now
   :result/scale   :rx
   :db/doc-type    :wod-result}
- {:db/doc-type       :result-set
+ {:db/doc-type       :wod-set
   :result-set/score  366
   :result-set/parent :db.id/idc}
  {:result/user :db.id/b
   :result/type :db.id/idc
+  :result/date :db/now
   :db/doc-type :result}
  {:xt/id          :db.id/idd
   :result/workout :db.id/annie
-  :result/date    :db/now
   :result/scale   :scaled
   :db/doc-type    :wod-result}
- {:db/doc-type       :result-set
+ {:db/doc-type       :wod-set
   :result-set/score  489
   :result-set/parent :db.id/idd}
  {:result/user :db.id/b
   :result/type :db.id/idd
+  :result/date :db/now
   :db/doc-type :result}
  {:xt/id          :db.id/ide
   :result/workout :db.id/nancy
-  :result/date    :db/now
   :result/scale   :rx+
   :db/doc-type    :wod-result}
- {:db/doc-type       :result-set
+ {:db/doc-type       :wod-set
   :result-set/score  1305
   :result-set/parent :db.id/ide}
  {:result/user :db.id/c
   :result/type :db.id/ide
+  :result/date :db/now
   :db/doc-type :result}
  {:xt/id          :db.id/idf
   :result/workout :db.id/linda
   :result/score   "18:45"
-  :result/date    :db/now
   :result/scale   :scaled
   :db/doc-type    :wod-result}
- {:db/doc-type       :result-set
+ {:db/doc-type       :wod-set
   :result-set/score  1124
   :result-set/parent :db.id/idf}
  {:result/user :db.id/c
   :result/type :db.id/idf
+  :result/date :db/now
   :db/doc-type :result}]
