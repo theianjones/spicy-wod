@@ -3,6 +3,7 @@
      [clojure.instant :as instant]
      [clojure.string :as string]
      [com.biffweb :as biff]
+     [com.spicy.numbers :refer [parse-int safe-parse-int]]
      [com.spicy.ui :as ui]
      [xtdb.api :as xt]))
 
@@ -110,19 +111,6 @@
                       [:h2.text-xl.mb-4 "Related workouts"]
                       [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
                        (map movement-workout-ui workouts)]])]))))
-
-
-(defn parse-int
-  [s]
-  (Integer/parseInt (re-find #"\A-?\d+" s)))
-
-
-(defn safe-parse-int
-  [s]
-  (try
-    (parse-int s)
-    (catch Exception e
-      (prn "Error while parsing int: " e))))
 
 
 (defn strength-set-inputs
