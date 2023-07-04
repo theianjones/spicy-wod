@@ -76,14 +76,14 @@
                                                          :in    [[name ...]]
                                                          :where [[e :movement/name name]]}
                                                     movements)))
-        workout           [{:db/op               :create
-                            :db/doc-type         :workout
-                            :xt/id               workout-uuid
-                            :workout/name        (:name params)
-                            :workout/user        (:uid session)
-                            :workout/reps-per-round (n/safe-parse-int (:reps-per-round params))
-                            :workout/scheme      (keyword (:scheme params))
-                            :workout/description (:description params)}]
+        workout           [(merge {:db/op               :create
+                                   :db/doc-type         :workout
+                                   :xt/id               workout-uuid
+                                   :workout/name        (:name params)
+                                   :workout/user        (:uid session)
+                                   :workout/scheme      (keyword (:scheme params))
+                                   :workout/description (:description params)}
+                                  (when (:reps-per-round params) {:workout/reps-per-round (n/safe-parse-int (:reps-per-round params))}))]
         workout-movements (map (fn [movement-id]
                                  {:db/op                     :create
                                   :db/doc-type               :workout-movement
