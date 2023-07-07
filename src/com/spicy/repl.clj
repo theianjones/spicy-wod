@@ -41,6 +41,12 @@
     (add-fixtures "movements.edn")))
 
 
+(def user-a
+  (first (let [{:keys [biff/db]} (get-context)]
+           (biff/q db '{:find u
+                        :where [[u :user/email "user.a@example.com"]]}))))
+
+
 (comment
   ;; Call this in dev if you'd like to add some seed data to your database. If
   ;; you edit the seed data (in resources/fixtures.edn), you can reset the

@@ -94,7 +94,7 @@
 
 (defn time->score
   [{:keys [minutes seconds]}]
-  (+ (or 0 (n/safe-parse-int seconds))
+  (+ (or (n/safe-parse-int seconds) 0)
      (* 60 (or (n/safe-parse-int minutes) 0))))
 
 
