@@ -83,7 +83,14 @@
                                    :workout/user        (:uid session)
                                    :workout/scheme      (keyword (:scheme params))
                                    :workout/description (:description params)}
-                                  (when (:reps-per-round params) {:workout/reps-per-round (n/safe-parse-int (:reps-per-round params))}))]
+                                  (when
+                                    (:reps-per-round params)
+                                    {:workout/reps-per-round
+                                     (n/safe-parse-int (:reps-per-round params))})
+                                  (when
+                                    (:rounds params)
+                                    {:workout/rounds-to-score
+                                     (n/safe-parse-int (:rounds params))}))]
         workout-movements (map (fn [movement-id]
                                  {:db/op                     :create
                                   :db/doc-type               :workout-movement
@@ -169,11 +176,19 @@
 
 (defn get-scheme-inputs
   [{:keys [params] :as _ctx}]
-  [:div#scheme-inputs
-   (case (:scheme params)
-     "rounds-reps" [:input.w-full.pink-input.p-2.teal-focus#reps-per-round
-                    {:placeholder "Reps per round" :name "reps-per-round" :required true}]
-     nil)])
+  (case (:scheme params)
+    "rounds-reps" [:div#scheme-inputs [:input.w-full.pink-input.p-2.teal-focus#reps-per-round
+                                       {:placeholder "Reps per round" :name "reps-per-round" :required true}]]
+    [:div.hidden#scheme-inputs]))
+
+
+(defn get-score-separately
+  [{:keys [params] :as _ctx}]
+  (if (= "on" (:score-separately params))
+    [:div#rounds
+     [:input.w-full.pink-input.p-2.teal-focus#rounds
+      {:placeholder "Rounds to score" :name "rounds" :required true}]]
+    [:div.hidden#rounds]))
 
 
 (def routes
@@ -185,7 +200,8 @@
    ["/new/selected" {:get    show-selected-movement
                      :post   set-selected-movement
                      :delete remove-selected-movement}]
-   ["/new/scheme-inputs" {:get get-scheme-inputs}]])
+   ["/new/scheme-inputs" {:get get-scheme-inputs}]
+   ["/new/score-separately" {:get get-score-separately}]])
 
 
 (comment

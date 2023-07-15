@@ -9,6 +9,18 @@
       (handler request))))
 
 
+(defn ->key
+  [n s]
+  (keyword (str s "-" n)))
+
+
+(defn htmx-request?
+  [ctx]
+  (-> ctx :headers
+      (get "hx-request")
+      (= "true")))
+
+
 (comment
   (def handler (wildcard-override (constantly "default") {:new (constantly "new")}))
   (handler {:path-params {:id "some-id"}})

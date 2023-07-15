@@ -55,7 +55,8 @@
   (add-fixtures "workouts.edn")
   (add-fixtures "movements.edn")
 
-  (def user-a  #uuid "e6af46b4-b20e-4782-9de9-8d56f8d0a3a0")
+  (scary-reset-db!)
+  (xt/entity (:biff/db (get-context)) #uuid "2af37195-ac44-40f4-a546-41c52f558ee6")
   (def mu-movement #uuid "078726e4-1225-40e9-a48a-edb38d38dfa8")
 
   (biff/submit-tx (get-context)
@@ -118,7 +119,7 @@
   (def cindy (first (let [{:keys [biff/db]} (get-context)]
                       (biff/q db '{:find (pull w [*])
                                    :where [[w :workout/name "Cindy"]]}))))
-
+  
   (biff/submit-tx (get-context)
                   [{:xt/id cindy
                     :db/doc-type :workout

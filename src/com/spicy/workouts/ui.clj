@@ -114,6 +114,15 @@
      [:option {:value "points"
                :label "points"}]]
     [:div.hidden#scheme-inputs]
+    [:div.flex.gap-3.items-center
+     [:label "Score rounds separately?"]
+     [:input#score-separately
+      {:name      "score-separately"
+       :type      :checkbox
+       :hx-get    "/app/workouts/new/score-separately"
+       :hx-target "#rounds"
+       :hx-swap   "outerHTML"}]]
+    [:div.hidden#rounds]
     [:div
      [:input.pink-input.teal-focus.w-full
       {:name        "search"

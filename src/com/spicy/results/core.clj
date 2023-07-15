@@ -2,7 +2,8 @@
   (:require
     [clojure.instant :as instant]
     [com.biffweb :as biff]
-    [com.spicy.results.ui :refer [result-ui result-form params->score]]
+    [com.spicy.results.score :refer [scores->tx ->scores params->score]]
+    [com.spicy.results.ui :refer [result-ui result-form]]
     [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
     [xtdb.api :as xt]))
@@ -86,24 +87,32 @@
 
 (defn create
   [{:keys [biff/db session params] :as ctx}]
-  (let [workout-id (parse-uuid (:workout params))
-        {:workout/keys [reps-per-round] :as _workout} (xt/entity db workout-id)]
-    (biff/submit-tx ctx
-                    [{:db/op          :create
-                      :db/doc-type    :wod-result
-                      :xt/id          :db.id/wod-result
-                      :result/workout workout-id
-                      :result/scale   (keyword (:scale params))
-                      :result/notes   (:notes params)}
-                     {:db/op       :merge
-                      :db/doc-type :result
-                      :result/user (:uid session)
-                      :result/date (instant/read-instant-date (:date params))
-                      :result/type :db.id/wod-result}
-                     {:db/op             :create
-                      :db/doc-type       :wod-set
-                      :result-set/score  (params->score (assoc params :reps-per-round reps-per-round))
-                      :result-set/parent :db.id/wod-result}]))
+  (let [workout-id                       (parse-uuid (:workout params))
+        {:workout/keys
+         [reps-per-round
+          scheme
+          rounds-to-score] :as workout} (xt/entity db workout-id)
+        result-tx                        [{:db/op          :create
+                                           :db/doc-type    :wod-result
+                                           :xt/id          :db.id/wod-result
+                                           :result/workout workout-id
+                                           :result/scale   (keyword (:scale params))
+                                           :result/notes   (:notes params)}
+                                          {:db/op       :merge
+                                           :db/doc-type :result
+                                           :result/user (:uid session)
+                                           :result/date (instant/read-instant-date (:date params))
+                                           :result/type :db.id/wod-result}]
+        wod-sets-tx                      (transduce
+                                           (scores->tx {:op :create :parent :db.id/wod-result})
+                                           conj
+                                           (->scores
+                                             (merge params
+                                                    {:reps-per-round  reps-per-round
+                                                     :scheme          scheme
+                                                     :rounds-to-score rounds-to-score})))]
+
+    (biff/submit-tx ctx (concat result-tx wod-sets-tx)))
   (let [{:xt/keys [id] :as w} (xt/entity db (parse-uuid (:workout params)))]
     {:status  303
      :headers {"location" (str "/app/workouts/" id)}}))

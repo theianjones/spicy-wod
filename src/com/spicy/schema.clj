@@ -39,6 +39,7 @@
   [:map
    [:xt/id :wod-set/id]
    [:result-set/score :int]
+   [:result-set/number :int]
    [:result-set/parent :wod-result/id]])
 
 
@@ -95,8 +96,7 @@
              [:workout/description :string]
              [:workout/scheme workout-types]
              [:workout/reps-per-round {:optional true} :int]
-             [:workout/sets {:optional true} :int]
-             [:workout/number {:optional true} :int]
+             [:workout/rounds-to-score {:optional true} :int]
              [:workout/user {:optional true} :user/id]
              [:workout/tiebreak-scheme {:optional true} [:enum :time :reps]]
              [:workout/secondary-scheme {:optional true} (into [] (filter #(not (= :time-with-cap %)) workout-types))]]

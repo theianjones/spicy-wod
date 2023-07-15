@@ -4,20 +4,9 @@
      [clojure.string :as string]
      [com.biffweb :as biff]
      [com.spicy.numbers :refer [parse-int safe-parse-int]]
+     [com.spicy.route-helpers :refer [->key htmx-request?]]
      [com.spicy.ui :as ui]
      [xtdb.api :as xt]))
-
-
-(defn ->key
-  [n s]
-  (keyword (str s "-" n)))
-
-
-(defn htmx-request?
-  [ctx]
-  (-> ctx :headers
-      (get "hx-request")
-      (= "true")))
 
 
 (defn movements-list
