@@ -133,7 +133,7 @@
 
 (defn show-selected-movement
   [{:keys [session] :as _context}]
-  [:div.flex.gap-2
+  [:div.flex.flex-wrap.gap-2
    (map-indexed (fn [idx m]
                   [:div.flex.flex-row.gap-2.border.border-black.w-fit.px-2.rounded-full#selected-movement
                    [:div.w-fit.self-center m]

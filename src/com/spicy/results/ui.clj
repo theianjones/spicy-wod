@@ -60,7 +60,7 @@
          :value       reps
          :min         0
          :required    true}]])
-    [:input.w-full {:type        "number"
+    [:input.w-full.pink-input.teal-focus {:type        "number"
                     :name        (str "reps-" identifier)
                     :id          (str "id-" identifier)
                     :placeholder "Reps"
