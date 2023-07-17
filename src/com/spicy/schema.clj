@@ -35,14 +35,20 @@
    [:result-set/time :int]])
 
 
+(def WodSet
+  [:map
+   [:xt/id :wod-set/id]
+   [:result-set/score :int]
+   [:result-set/number :int]
+   [:result-set/parent :wod-result/id]])
+
+
 (def WodResult
   [:map
    [:xt/id :wod-result/id]
    [:result/workout :workout/id]
-   [:result/score :string]
    [:result/notes {:optional true} :string]
-   [:result/scale [:enum :rx :scaled :rx+]]
-   [:result/tie-break {:optional true} [:or inst? :string]]])
+   [:result/scale [:enum :rx :scaled :rx+]]])
 
 
 (def StrengthResult
@@ -89,8 +95,8 @@
              [:workout/name :string]
              [:workout/description :string]
              [:workout/scheme workout-types]
-             [:workout/sets {:optional true} :int]
-             [:workout/number {:optional true} :int]
+             [:workout/reps-per-round {:optional true} :int]
+             [:workout/rounds-to-score {:optional true} :int]
              [:workout/user {:optional true} :user/id]
              [:workout/tiebreak-scheme {:optional true} [:enum :time :reps]]
              [:workout/secondary-scheme {:optional true} (into [] (filter #(not (= :time-with-cap %)) workout-types))]]
@@ -100,6 +106,8 @@
    :mono-set MonostructuralSet
    :wod-result/id :uuid
    :wod-result WodResult
+   :wod-set/id :uuid
+   :wod-set WodSet
    :strength-result/id :uuid
    :strength-result StrengthResult
    :mono-result/id :uuid

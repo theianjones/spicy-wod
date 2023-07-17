@@ -29,6 +29,24 @@
           [user]))
 
 
+(defn scary-reset-db!
+  []
+  (let [{:keys [biff/db] :as ctx} (get-context)
+        ids (biff/q db '{:find [e]
+                         :where [[e :xt/id]]})]
+    (biff/submit-tx ctx (map (fn [[id]]
+                               {:db/op :delete
+                                :xt/id id}) ids))
+    (add-fixtures "workouts.edn")
+    (add-fixtures "movements.edn")))
+
+
+(def user-a
+  (first (let [{:keys [biff/db]} (get-context)]
+           (biff/q db '{:find u
+                        :where [[u :user/email "user.a@example.com"]]}))))
+
+
 (comment
   ;; Call this in dev if you'd like to add some seed data to your database. If
   ;; you edit the seed data (in resources/fixtures.edn), you can reset the
@@ -37,7 +55,8 @@
   (add-fixtures "workouts.edn")
   (add-fixtures "movements.edn")
 
-  (def user-a  #uuid "e6af46b4-b20e-4782-9de9-8d56f8d0a3a0")
+  (scary-reset-db!)
+  (xt/entity (:biff/db (get-context)) #uuid "2af37195-ac44-40f4-a546-41c52f558ee6")
   (def mu-movement #uuid "078726e4-1225-40e9-a48a-edb38d38dfa8")
 
   (biff/submit-tx (get-context)
@@ -63,7 +82,7 @@
                     :result-set/reps   5
                     :result-set/weight 15}
                    {:db/doc-type       :strength-set
-                                        :result-set/parent :db.id/strength-result
+                    :result-set/parent :db.id/strength-result
 
                     :result-set/status :fail
                     :result-set/reps   5
@@ -80,17 +99,40 @@
                     :db/doc-type :result
                     :db/op       :create
                     :result/user user-a
+                    :result/date    (biff/now)
                     :result/type :db.id/wod-result}
                    {:xt/id          :db.id/wod-result
                     :db/doc-type    :wod-result
-                    :result/workout #uuid "c96c70c7-03ff-4825-8b31-ea69f3bd43a0"
-                    :result/score   "4:00"
-                    :result/date    (biff/now)
-                    :result/scale   :rx}])
+                    :result/workout #uuid "4b4c75c1-56d5-49c7-b555-9747d54a16ea"
+                    :result/scale   :rx}
+                   {:db/doc-type :wod-set
+                    :result-set/score 240
+                    :result-set/parent :db.id/wod-result}])
+
+  (let [{:keys [biff/db]} (get-context)]
+    (xt/entity db #uuid "4b4c75c1-56d5-49c7-b555-9747d54a16ea"))
 
   (let [{:keys [biff/db]} (get-context)]
     (biff/q db '{:find  (pull r [* {:result-set/_result [*]}])
                  :where [[r :result/strength]]}))
+
+  (def cindy (first (let [{:keys [biff/db]} (get-context)]
+                      (biff/q db '{:find (pull w [*])
+                                   :where [[w :workout/name "Cindy"]]}))))
+  
+  (biff/submit-tx (get-context)
+                  [{:xt/id cindy
+                    :db/doc-type :workout
+                    :db/op :update
+                    :workout/reps-per-round 30}])
+
+
+  (let [{:keys [biff/db]} (get-context)]
+    (biff/q db '{:find  (pull r [* {:result/type [* {:result-set/_parent [*]}]}])
+                 :where [[r :result/user user-a]
+                         [r :result/type rt]
+                         [rt :result/workout]
+                         [rs :result-set/parent rt]]}))
 
   (let [{:keys [biff/db]} (get-context)]
     (biff/q db '{:find  [(pull result [* {:result/type [*]}])]

@@ -2,6 +2,7 @@
   (:require
     [clojure.string :as string]
     [com.biffweb :as biff]
+    [com.spicy.numbers :as n]
     [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
     [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]))
@@ -75,13 +76,21 @@
                                                          :in    [[name ...]]
                                                          :where [[e :movement/name name]]}
                                                     movements)))
-        workout           [{:db/op               :create
-                            :db/doc-type         :workout
-                            :xt/id               workout-uuid
-                            :workout/name        (:name params)
-                            :workout/user        (:uid session)
-                            :workout/scheme      (keyword (:scheme params))
-                            :workout/description (:description params)}]
+        workout           [(merge {:db/op               :create
+                                   :db/doc-type         :workout
+                                   :xt/id               workout-uuid
+                                   :workout/name        (:name params)
+                                   :workout/user        (:uid session)
+                                   :workout/scheme      (keyword (:scheme params))
+                                   :workout/description (:description params)}
+                                  (when
+                                    (:reps-per-round params)
+                                    {:workout/reps-per-round
+                                     (n/safe-parse-int (:reps-per-round params))})
+                                  (when
+                                    (:rounds params)
+                                    {:workout/rounds-to-score
+                                     (n/safe-parse-int (:rounds params))}))]
         workout-movements (map (fn [movement-id]
                                  {:db/op                     :create
                                   :db/doc-type               :workout-movement
@@ -124,7 +133,7 @@
 
 (defn show-selected-movement
   [{:keys [session] :as _context}]
-  [:div.flex.gap-2
+  [:div.flex.flex-wrap.gap-2
    (map-indexed (fn [idx m]
                   [:div.flex.flex-row.gap-2.border.border-black.w-fit.px-2.rounded-full#selected-movement
                    [:div.w-fit.self-center m]
@@ -165,6 +174,23 @@
                         :hx-target "#selected-movements"} name]) results)]))
 
 
+(defn get-scheme-inputs
+  [{:keys [params] :as _ctx}]
+  (case (:scheme params)
+    "rounds-reps" [:div#scheme-inputs [:input.w-full.pink-input.p-2.teal-focus#reps-per-round
+                                       {:placeholder "Reps per round" :name "reps-per-round" :required true}]]
+    [:div.hidden#scheme-inputs]))
+
+
+(defn get-score-separately
+  [{:keys [params] :as _ctx}]
+  (if (= "on" (:score-separately params))
+    [:div#rounds
+     [:input.w-full.pink-input.p-2.teal-focus#rounds
+      {:placeholder "Rounds to score" :name "rounds" :required true}]]
+    [:div.hidden#rounds]))
+
+
 (def routes
   ["/workouts"
    ["" {:get  index
@@ -173,7 +199,9 @@
    ["/new/search" {:get search}]
    ["/new/selected" {:get    show-selected-movement
                      :post   set-selected-movement
-                     :delete remove-selected-movement}]])
+                     :delete remove-selected-movement}]
+   ["/new/scheme-inputs" {:get get-scheme-inputs}]
+   ["/new/score-separately" {:get get-score-separately}]])
 
 
 (comment

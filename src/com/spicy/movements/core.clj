@@ -3,20 +3,10 @@
      [clojure.instant :as instant]
      [clojure.string :as string]
      [com.biffweb :as biff]
+     [com.spicy.numbers :refer [parse-int safe-parse-int]]
+     [com.spicy.route-helpers :refer [->key htmx-request?]]
      [com.spicy.ui :as ui]
      [xtdb.api :as xt]))
-
-
-(defn ->key
-  [n s]
-  (keyword (str s "-" n)))
-
-
-(defn htmx-request?
-  [ctx]
-  (-> ctx :headers
-      (get "hx-request")
-      (= "true")))
 
 
 (defn movements-list
@@ -110,19 +100,6 @@
                       [:h2.text-xl.mb-4 "Related workouts"]
                       [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
                        (map movement-workout-ui workouts)]])]))))
-
-
-(defn parse-int
-  [s]
-  (Integer/parseInt (re-find #"\A-?\d+" s)))
-
-
-(defn safe-parse-int
-  [s]
-  (try
-    (parse-int s)
-    (catch Exception e
-      (prn "Error while parsing int: " e))))
 
 
 (defn strength-set-inputs
