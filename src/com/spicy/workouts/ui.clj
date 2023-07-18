@@ -31,6 +31,11 @@
     (:result-set/score result-set)))
 
 
+(defn merge-set-score-with
+  [sets fn]
+  (apply (partial merge-with fn) (map #(select-keys % [:result-set/score]) sets)))
+
+
 (defn workout-results
   [{:keys [user workout biff/db]}]
   (let [results (biff/q db '{:find  (pull result [* {:result/type [*
@@ -53,7 +58,7 @@
                [:li {:class (str "w-1/2")}
                 [:div.flex.gap-3.flex-col
                  [:.flex.justify-between.flex-wrap.gap-2
-                  [:div.text-2xl.font-bold.self-center (display-score {:result-set (first sets) :workout workout})
+                  [:div.text-2xl.font-bold.self-center (display-score (merge {:workout workout} {:result-set (merge-set-score-with sets +)}))
                    [:span.pl-2.font-normal (name scale)]]
                   [:div.self-center (biff/format-date
                                       date "EEE, YYYY-MM-dd")]]
