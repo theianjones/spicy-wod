@@ -32,8 +32,8 @@
 
 
 (defn merge-set-score-with
-  [sets fn]
-  (apply (partial merge-with fn) (map #(select-keys % [:result-set/score]) sets)))
+  [sets f]
+  (apply (partial merge-with f) (map #(select-keys % [:result-set/score]) sets)))
 
 
 (defn workout-results
