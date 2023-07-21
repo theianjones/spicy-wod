@@ -24,7 +24,7 @@
         (merge #:base{:title (str settings/app-name " | A workout tracking app you can trust")
                       :lang "en-US"
                       :icon "/img/favicon-32x32.png"
-                      :description (str settings/app-name "is a workout tracking app that builds a graph of your fitness progress over time connecting movements to workouts to results.")
+                      :description (str settings/app-name " is a workout tracking app that builds a graph of your fitness progress over time connecting movements to workouts to results.")
                       :image "/img/spicy-og-banner.png"})
         (update :base/head (fn [head]
                              (concat [[:link {:rel "preload" :href "/fonts/DDSans-Regular.otf" :as "font" :type "font/otf" :crossorigin "anonymous"}]
