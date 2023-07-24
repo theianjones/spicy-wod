@@ -138,7 +138,8 @@
                   [:div.flex.flex-row.gap-2.border.border-black.w-fit.px-2.rounded-full#selected-movement
                    [:div.w-fit.self-center m]
                    [:input {:type "hidden" :value m :name (str "movements[" idx "]")}]
-                   [:button.font-display.text-lg {:hx-delete (str "/app/workouts/new/selected?movement=" m)
+                   [:button.font-display.text-lg {:tabindex  1
+                                                  :hx-delete (str "/app/workouts/new/selected?movement=" m)
                                                   :hx-target "#selected-movements"} "x"]]) (get @selected-movements (:uid session)))])
 
 
@@ -170,8 +171,14 @@
                                      [(clojure.string/includes? name search)]]}
                         [(or (:search params) "")])]
     [:div (map (fn [{:movement/keys [name] :xt/keys [id]}]
-                 [:div {:hx-post (str "/app/workouts/new/selected?movement=" name)
-                        :hx-target "#selected-movements"} name]) results)]))
+                 [:div.cursor-pointer {:tabindex      0
+                                       :id            (str "search-" id)
+                                       :hx-post       (str "/app/workouts/new/selected?movement=" name)
+                                       "@click"       "document.getElementById('search').focus()"
+                                       "@keyup.enter" (format "htmx.trigger('%s', 'click')
+                                                               document.getElementById('search').focus()"
+                                                              (str "#search-" id))
+                                       :hx-target     "#selected-movements"} name]) results)]))
 
 
 (defn get-scheme-inputs
