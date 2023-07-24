@@ -132,6 +132,7 @@
      [:input.pink-input.teal-focus.w-full
       {:name        "search"
        :type        "search"
+       :id          "search"
        :placeholder "Search for Movements..."
        :hx-get      "/app/workouts/new/search"
        :hx-trigger  "keyup changed delay:500ms, search"

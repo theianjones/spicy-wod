@@ -98,6 +98,7 @@
   :db/doc-type    :wod-result}
  {:db/doc-type       :wod-set
   :result-set/score  334
+  :result-set/number 0
   :result-set/parent :db.id/ida}
  {:result/user :db.id/a
   :result/type :db.id/ida
@@ -109,6 +110,7 @@
   :db/doc-type    :wod-result}
  {:db/doc-type       :wod-set
   :result-set/score  142
+  :result-set/number 0
   :result-set/parent :db.id/idb}
  {:result/user :db.id/a
   :result/type :db.id/idb
@@ -120,6 +122,7 @@
   :db/doc-type    :wod-result}
  {:db/doc-type       :wod-set
   :result-set/score  366
+  :result-set/number 0
   :result-set/parent :db.id/idc}
  {:result/user :db.id/b
   :result/type :db.id/idc
@@ -131,6 +134,7 @@
   :db/doc-type    :wod-result}
  {:db/doc-type       :wod-set
   :result-set/score  489
+  :result-set/number 0
   :result-set/parent :db.id/idd}
  {:result/user :db.id/b
   :result/type :db.id/idd
@@ -142,6 +146,7 @@
   :db/doc-type    :wod-result}
  {:db/doc-type       :wod-set
   :result-set/score  1305
+  :result-set/number 0
   :result-set/parent :db.id/ide}
  {:result/user :db.id/c
   :result/type :db.id/ide
@@ -149,11 +154,11 @@
   :db/doc-type :result}
  {:xt/id          :db.id/idf
   :result/workout :db.id/linda
-  :result/score   "18:45"
   :result/scale   :scaled
   :db/doc-type    :wod-result}
  {:db/doc-type       :wod-set
   :result-set/score  1124
+  :result-set/number 0
   :result-set/parent :db.id/idf}
  {:result/user :db.id/c
   :result/type :db.id/idf
