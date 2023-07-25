@@ -11,7 +11,10 @@
 
 (defn show
   [{:keys [biff/db session path-params]}]
-  (let [result (first (biff/q db '{:find (pull result [* {:result/type [* {:result/workout [*]}]}])
+  (let [result (first (biff/q db '{:find (pull result [* {:result/type [*
+                                                                        {:result/workout [*]}
+                                                                        {:result/movement [*]}
+                                                                        {:result-set/_parent [*]}]}])
                                    :in [[result-id user]]
                                    :where [[result :xt/id result-id]
                                            [result :result/user user]]}
@@ -49,7 +52,7 @@
 
 
 (defn edit
-  [{:keys [biff/db session path-params]}]
+  [{:keys [biff/db session path-params] :as _ctx}]
   (let [{:result/keys [type] :as result}
         (first (biff/q db '{:find  (pull result [* {:result/type [* {:result/workout [*]}]}])
                             :in    [[result-id user]]
@@ -72,17 +75,25 @@
 
 
 (defn index
-  [{:keys [biff/db session] :as _ctx}]
-  (let [results (biff/q db '{:find  (pull result [* {:result/type [* {:result/workout [*]}]}])
-                             :in    [[user]]
-                             :where [[result :result/user user]]}
-                        [(:uid session)])]
-    (ui/page {} [:div
-                 [:h1 "Results"]
-                 [:ul
-                  (map (fn [r]
-                         [:li
-                          (result-ui r)]) results)]])))
+  [{:keys [biff/db session] :as ctx}]
+  (let [date-and-results (biff/q db '{:find     [date (pull result
+                                                            [*
+                                                             {:result/type [*
+                                                                            {:result/workout [*]}
+                                                                            {:result/movement [*]}
+                                                                            {:result-set/_parent [*]}]}])]
+                                      :in       [[user]]
+                                      :where    [[result :result/user user]
+                                                 [result :result/date date]]
+                                      :order-by [[date :desc]]}
+                                 [(:uid session)])
+        results (map second date-and-results)]
+    (ui/page ctx [:div
+                  [:h1 "Results"]
+                  [:ul
+                   (map (fn [r]
+                          [:li
+                           (result-ui r)]) results)]])))
 
 
 (defn create
@@ -126,16 +137,16 @@
                                  :where [[workout :workout/name name]]}
                                [(:workout params)]))]
 
-    (ui/page {} [:div.pb-8
-                 (ui/panel
-                   [:div {:class (str "md:min-h-[60vh] p-4 pb-8")}
-                    [:h1 {:class (str "text-5xl mt-8 mb-14 text-center sm:text-left")} "Log Result"]
-                    [:.flex.flex-col.gap-6.md:flex-row
-                     (ui/workout-ui workout)
-                     [:.flex-1
-                      (result-form
-                        (merge {:workout workout} {:action "/app/results" :hidden {:workout (:xt/id workout)}})
-                        [:button.btn {:type "submit"} "Log Result"])]]])])))
+    (ui/page ctx [:div.pb-8
+                  (ui/panel
+                    [:div {:class (str "md:min-h-[60vh] p-4 pb-8")}
+                     [:h1 {:class (str "text-5xl mt-8 mb-14 text-center sm:text-left")} "Log Result"]
+                     [:.flex.flex-col.gap-6.md:flex-row
+                      (ui/workout-ui workout)
+                      [:.flex-1
+                       (result-form
+                         (merge {:workout workout} {:action "/app/results" :hidden {:workout (:xt/id workout)}})
+                         [:button.btn {:type "submit"} "Log Result"])]]])])))
 
 
 (def routes

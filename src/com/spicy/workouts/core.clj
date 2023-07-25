@@ -9,14 +9,14 @@
 
 
 (defn index
-  [{:keys [biff/db session] :as _ctx}]
+  [{:keys [biff/db session] :as ctx}]
   (let [workouts (biff/q db '{:find (pull workout [*])
                               :in [[user]]
                               :where [(or (and [workout :workout/name]
                                                (not [workout :workout/user]))
                                           [workout :workout/user user])]}
                          [(:uid session)])]
-    (ui/page {}
+    (ui/page ctx
              [:div.pb-8
               (ui/panel
                 [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.mb-14.justify-center
@@ -40,7 +40,7 @@
 
 
 (defn show
-  [{:keys [biff/db path-params session params] :as _ctx}]
+  [{:keys [biff/db path-params session params] :as ctx}]
   (let [workout   (first (biff/q db '{:find  (pull workout [* {:workout-movement/_workout [{:workout-movement/movement [*]}]}])
                                       :in    [[name id]]
                                       :where [(or [workout :workout/name name]
@@ -52,20 +52,20 @@
                        (map :workout-movement/movement))]
     (if (true? (:fragment params))
       (ui/workout-ui workout)
-      (ui/page {} [:div.pb-8
-                   (ui/panel [:div {:class (str "h-full flex flex-col gap-6 md:flex-row pb-20")}
-                              [:div.flex.gap-2.flex-col.justify-between
-                               (workout-logbook-ui workout)
-                               (when (seq movements)
-                                 [:ul.list-none.flex.flex-wrap.gap-2.my-0
-                                  (map (fn [m]
-                                         [:li.px-2.border.border-black.brutal-shadow.border-1.border-black
-                                          [:a {:href (str "/app/movements/" (:xt/id m))} (:movement/name m)]]) movements)])]
-                              [:.flex-1
-                               (workout-results
-                                 {:user    (:uid session)
-                                  :workout (:xt/id workout)
-                                  :biff/db db})]])]))))
+      (ui/page ctx [:div.pb-8
+                    (ui/panel [:div {:class (str "h-full flex flex-col gap-6 md:flex-row pb-20")}
+                               [:div.flex.gap-2.flex-col.justify-between
+                                (workout-logbook-ui workout)
+                                (when (seq movements)
+                                  [:ul.list-none.flex.flex-wrap.gap-2.my-0
+                                   (map (fn [m]
+                                          [:li.px-2.border.border-black.brutal-shadow.border-1.border-black
+                                           [:a {:href (str "/app/movements/" (:xt/id m))} (:movement/name m)]]) movements)])]
+                               [:.flex-1
+                                (workout-results
+                                  {:user    (:uid session)
+                                   :workout (:xt/id workout)
+                                   :biff/db db})]])]))))
 
 
 (defn create
@@ -115,7 +115,7 @@
 
 
 (defn new
-  [{:keys [biff/db path-params session params] :as _ctx}]
+  [{:keys [biff/db path-params session params] :as ctx}]
   (update-selected-movement! {:user (:uid session)
                               :method (constantly #{})
                               :movement nil})
@@ -123,7 +123,7 @@
     (if fragment?
       (workout-form {:hidden {:fragment (str (true? fragment?))}})
 
-      (ui/page {}
+      (ui/page ctx
                [:div.max-w-md.mx-auto
                 (ui/panel
                   [:div.p-4
@@ -182,7 +182,7 @@
 
 
 (defn get-scheme-inputs
-  [{:keys [params] :as _ctx}]
+  [{:keys [params] :as ctx}]
   (case (:scheme params)
     "rounds-reps" [:div#scheme-inputs [:input.w-full.pink-input.p-2.teal-focus#reps-per-round
                                        {:placeholder "Reps per round" :name "reps-per-round" :required true}]]
@@ -190,7 +190,7 @@
 
 
 (defn get-score-separately
-  [{:keys [params] :as _ctx}]
+  [{:keys [params] :as ctx}]
   (if (= "on" (:score-separately params))
     [:div#rounds
      [:input.w-full.pink-input.p-2.teal-focus#rounds
