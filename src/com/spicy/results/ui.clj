@@ -1,18 +1,36 @@
 (ns com.spicy.results.ui
   (:require
     [clojure.string :as string]
-    [com.biffweb :as biff]))
+    [com.biffweb :as biff]
+    [com.spicy.movements.core :refer [movement-results-ui]]
+    [com.spicy.workouts.ui :refer [display-summed-score]]))
+
+
+(defn normalized-result
+  [result]
+  (let [workout  (-> result :result/type :result/workout)
+        movement (-> result :result/type :result/movement)
+        sets     (-> result :result/type :result-set/_parent)
+        name     (or (:movement/name movement)
+                     (:workout/name workout))]
+    {:workout  workout
+     :movement movement
+     :sets     sets
+     :name     name}))
 
 
 (defn result-ui
-  [{{:result/keys [score workout]} :result/type
-    :as result}]
-  [:div#result-ui
-   [:div
-    [:a {:href (str "/app/workouts/" (string/lower-case (:workout/name workout)))} (:workout/name workout)]]
-   [:div score]
-   [:button.btn {:hx-get (str "/app/results/" (:xt/id result) "/edit")
-                 :hx-target "closest #result-ui"} "Edit"]])
+  [result]
+  (let [{:keys [workout movement sets name]} (normalized-result result)]
+    [:div#result-ui
+     [:div
+      [:a {:href (str "/app/workouts/" (:xt/id result))} name]]
+     (when (some? workout)
+       (display-summed-score {:workout workout :sets sets}))
+     (when (some? movement)
+       (movement-results-ui result))
+     [:button.btn {:hx-get (str "/app/results/" (:xt/id result) "/edit")
+                   :hx-target "closest #result-ui"} "Edit"]]))
 
 
 (defn scheme-forms
@@ -61,12 +79,12 @@
          :min         0
          :required    true}]])
     [:input.w-full.pink-input.teal-focus {:type        "number"
-                    :name        (str "reps-" identifier)
-                    :id          (str "id-" identifier)
-                    :placeholder "Reps"
-                    :value       score
-                    :min         0
-                    :required    true}]))
+                                          :name        (str "reps-" identifier)
+                                          :id          (str "id-" identifier)
+                                          :placeholder "Reps"
+                                          :value       score
+                                          :min         0
+                                          :required    true}]))
 
 
 (defn result-form
