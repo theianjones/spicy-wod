@@ -72,7 +72,7 @@
 
 
 (defn workout-logbook-ui
-  [{:workout/keys [name description scheme] :keys [children class]}]
+  [{:xt/keys [id] :workout/keys [name description scheme] :keys [children class]}]
   [:div
    {:class (str
              "flex flex-col gap-3 mx-auto text-center sm:text-left "
@@ -84,7 +84,7 @@
    [:p.whitespace-pre-wrap.text-left description]
    (when (some? children)
      children)
-   [:a {:href  (str "/app/results/new?workout=" name)
+   [:a {:href  (str "/app/results/new?workout=" id)
         :class (str "btn h-fit w-fit")} "Log workout"]])
 
 

@@ -54,7 +54,8 @@
 (defn edit
   [{:keys [biff/db session path-params] :as _ctx}]
   (let [{:result/keys [type] :as result}
-        (first (biff/q db '{:find  (pull result [* {:result/type [* {:result/workout [*]}]}])
+        (first (biff/q db '{:find  (pull result [* {:result/type [* {:result/workout [*]}
+                                                                  {:result-set/_parent [*]}]}])
                             :in    [[result-id user]]
                             :where [[result :xt/id result-id]
                                     [result :result/user user]]}
@@ -133,9 +134,9 @@
   [{:keys [biff/db session params] :as ctx}]
   (let [workout (first (biff/q db
                                '{:find (pull workout [*])
-                                 :in [[name]]
-                                 :where [[workout :workout/name name]]}
-                               [(:workout params)]))]
+                                 :in [[id]]
+                                 :where [[workout :xt/id id]]}
+                               [(parse-uuid (:workout params))]))]
 
     (ui/page ctx [:div.pb-8
                   (ui/panel
