@@ -11,9 +11,9 @@
 
 (defn movements-list
   [movements]
-  [:ul#movement-list.list-none.flex.flex-wrap.gap-4.mt-8.justify-center
+  [:ul#movement-list.list-none.list-inside.pl-0.flex.flex-wrap.gap-2.sm:gap-4.mt-8.justify-center
    (map (fn [m]
-          [:li {:class (str "w-fit z-[1] rounded border-2 border-black bg-brand-background p-2 text-2xl font-bold text-black text-center whitespace-nowrap hover:border-brand-teal hover:shadow-[2px_2px_0px_rgba(131, 242, 179,100)")}
+          [:li {:class (str "w-full sm:w-fit z-[1] rounded border-2 border-black bg-brand-background p-2 sm:text-2xl font-bold text-black text-center whitespace-nowrap hover:border-brand-teal ")}
            [:a {:href (str "/app/movements/" (:xt/id m))} (:movement/name m)]]) movements)])
 
 
@@ -39,7 +39,7 @@
     (if (htmx-request? ctx)
       (movements-list movements)
       (ui/page {} (ui/panel [:div
-                             [:div.flex.justify-between.mt-8
+                             [:div.flex.flex-wrap.justify-center.sm:justify-between.gap-4.mt-8
                               [:h1.text-5xl.w-fit.self-center "Movements"]
                               [:select.btn.text-base.w-32.h-12.teal-focus {:name      "type"
                                                                            :onchange "window.open('?type=' + this.value,'_self')"}
