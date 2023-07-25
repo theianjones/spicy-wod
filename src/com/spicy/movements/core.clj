@@ -38,15 +38,15 @@
                           [(or (keyword (:type params)) :strength)])]
     (if (htmx-request? ctx)
       (movements-list movements)
-      (ui/page {} (ui/panel [:div
-                             [:div.flex.flex-wrap.justify-center.sm:justify-between.gap-4.mt-8
-                              [:h1.text-5xl.w-fit.self-center "Movements"]
-                              [:select.btn.text-base.w-32.h-12.teal-focus {:name      "type"
-                                                                           :onchange "window.open('?type=' + this.value,'_self')"}
-                               [:option.text-base {:value :strength :selected (or (= (:type params) "stregnth") (empty? (:type params)))} "Strength"]
-                               [:option.text-base {:value :gymnastic :selected (= (:type params) "gymnastic")} "Gymnastic"]
-                               [:option.text-base {:value :monostructural :selected (= (:type params) "monostructural")} "Cardio"]]]
-                             (movements-list movements)])))))
+      (ui/page ctx (ui/panel [:div
+                              [:div.flex.flex-wrap.justify-center.sm:justify-between.gap-4.mt-8
+                               [:h1.text-5xl.w-fit.self-center "Movements"]
+                               [:select.btn.text-base.w-32.h-12.teal-focus {:name      "type"
+                                                                            :onchange "window.open('?type=' + this.value,'_self')"}
+                                [:option.text-base {:value :strength :selected (or (= (:type params) "stregnth") (empty? (:type params)))} "Strength"]
+                                [:option.text-base {:value :gymnastic :selected (= (:type params) "gymnastic")} "Gymnastic"]
+                                [:option.text-base {:value :monostructural :selected (= (:type params) "monostructural")} "Cardio"]]]
+                              (movements-list movements)])))))
 
 
 (defn sets-n-reps
@@ -68,7 +68,7 @@
 
 
 (defn show
-  [{:keys [biff/db path-params session] :as _ctx}]
+  [{:keys [biff/db path-params session] :as ctx}]
   (let [movement-id (parse-uuid (:id path-params))
         m                (xt/entity db movement-id)
         movement-results (biff/q db '{:find  (pull result [* {:result/type
@@ -88,18 +88,18 @@
                                               [wm :workout-movement/workout w]
                                               [wm :workout-movement/movement movement]]}
                                  [movement-id (:uid session)])]
-    (ui/page {} (ui/panel
-                  [:div
-                   [:div.flex.justify-between.items-center.mb-14
-                    [:h1.text-3xl.cursor-default.capitalize (:movement/name m)]
-                    [:a.btn {:href (str "/app/movements/" (:xt/id m) "/new")} "Log session"]]
-                   (when (not-empty movement-results)
-                     (map movement-results-ui movement-results))
-                   (when (not-empty workouts)
-                     [:div
-                      [:h2.text-xl.mb-4 "Related workouts"]
-                      [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
-                       (map movement-workout-ui workouts)]])]))))
+    (ui/page ctx (ui/panel
+                   [:div
+                    [:div.flex.justify-between.items-center.mb-14
+                     [:h1.text-3xl.cursor-default.capitalize (:movement/name m)]
+                     [:a.btn {:href (str "/app/movements/" (:xt/id m) "/new")} "Log session"]]
+                    (when (not-empty movement-results)
+                      (map movement-results-ui movement-results))
+                    (when (not-empty workouts)
+                      [:div
+                       [:h2.text-xl.mb-4 "Related workouts"]
+                       [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
+                        (map movement-workout-ui workouts)]])]))))
 
 
 (defn strength-set-inputs
@@ -154,7 +154,7 @@
 
 
 (defn create-log-session-form
-  [{:keys [session path-params params] :as _ctx}]
+  [{:keys [session path-params params] :as ctx}]
   (let [reps        (params->reps params)
         sets        (safe-parse-int (:sets params))
         type        (:type params)
@@ -183,7 +183,7 @@
 
 
 (defn variable-reps-form
-  [{:keys [path-params] :as _ctx}]
+  [{:keys [path-params] :as ctx}]
   (biff/form {:id      "sets-scheme"
               :hx-get  (str "/app/movements/" (:id path-params) "/form")
               :hx-swap "outerHTML"}
@@ -231,7 +231,7 @@
 
 
 (defn constant-reps-form
-  [{:keys [path-params] :as _ctx}]
+  [{:keys [path-params] :as ctx}]
   (biff/form {:id      "sets-scheme"
               :hx-get  (str "/app/movements/" (:id path-params) "/form")
               :hx-swap "outerHTML"}
@@ -278,12 +278,12 @@
   [{:keys [biff/db path-params] :as ctx}]
   (let [movement-id (parse-uuid (:id path-params))
         m                (xt/entity db movement-id)]
-    (ui/page {} [:div {:class (str "lg:w-2/3 mx-auto pb-8")}
-                 (ui/panel
-                   [:div.flex.justify-around.sm:justify-between.my-4
-                    [:h1.text-3xl.cursor-default.capitalize.self-center (:movement/name m)]
-                    [:a.btn-no-bg.w-fit.self-center {:href (str "/app/movements/" (:id path-params))} "Back"]]
-                   (constant-reps-form ctx))])))
+    (ui/page ctx [:div {:class (str "lg:w-2/3 mx-auto pb-8")}
+                  (ui/panel
+                    [:div.flex.justify-around.sm:justify-between.my-4
+                     [:h1.text-3xl.cursor-default.capitalize.self-center (:movement/name m)]
+                     [:a.btn-no-bg.w-fit.self-center {:href (str "/app/movements/" (:id path-params))} "Back"]]
+                    (constant-reps-form ctx))])))
 
 
 (defn ->sets-tx
