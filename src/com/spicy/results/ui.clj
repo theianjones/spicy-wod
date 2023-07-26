@@ -20,15 +20,17 @@
      :sets        sets
      :name        name
      :description description
-     :notes       notes}))
+     :notes       notes
+     :date        (biff/format-date (:result/date result) "YYYY-MM-dd")}))
 
 
 (defn result-ui
   [result]
-  (let [{:keys [workout movement description sets name notes]} (normalized-result result)]
+  (let [{:keys [workout movement description sets name notes date]} (normalized-result result)]
     [:div.flex.justify-between.max-w-sm.sm:max-w-xl.mx-auto#result-ui
      [:div.flex.flex-col.gap-2
       [:a.text-2xl.font-bold {:href (str "/app/workouts/" (string/lower-case name))} name]
+      [:p.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.mb-0 date]
       [:div.flex.justify-between
        [:p.hidden.sm:block.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.italic description]
        [:div.ml-1.flex.flex-col.self-center.sm:hidden
