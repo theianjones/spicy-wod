@@ -24,29 +24,34 @@
 
 (defn update-handler
   [{:keys [biff/db params session path-params] :as ctx}]
-
-  (let [result      (first (biff/q db '{:find  (pull result [* {:result/workout [*]
-                                                                :result/type    [* {:result-set/_parent [*]}]}])
+  (let [result      (first (biff/q db '{:find  (pull result [* {:result/type [*
+                                                                              {:result/workout [*]}
+                                                                              {:result-set/_parent [*]}]}])
                                         :in    [[result-id user]]
                                         :where [[result :xt/id result-id]
                                                 [result :result/user user]]}
                                    [(parse-uuid (:id path-params)) (:uid session)]))
-        result-sets (-> result :result/type :result-set/_parent)
-        result-set  (first result-sets)]
+        workout     (-> result :result/type :result/workout)
+        wod-sets-tx (transduce
+                      (scores->tx {:op :update :parent (-> result :result/type :xt/id)})
+                      conj
+                      (->scores
+                        (merge params
+                               {:reps-per-round  (:workout/reps-per-round workout)
+                                :scheme          (:workout/scheme workout)
+                                :rounds-to-score (:workout/rounds-to-score workout)})))]
     (biff/submit-tx ctx
-                    [{:xt/id       (parse-uuid (:id path-params))
-                      :db/op       :update
-                      :db/doc-type :result
-                      :result/date (instant/read-instant-date (:date params))}
-                     {:db/op        :update
-                      :db/doc-type  :wod-result
-                      :xt/id        (:result/type result)
-                      :result/notes (:notes params)
-                      :result/scale (keyword (:scale params))}
-                     {:db/op            :update
-                      :db/doc-type      :wod-set
-                      :xt/id            (:xt/id result-set)
-                      :result-set/score (params->score params)}])
+                    (concat
+                      [{:xt/id       (parse-uuid (:id path-params))
+                        :db/op       :update
+                        :db/doc-type :result
+                        :result/date (instant/read-instant-date (:date params))}
+                       {:db/op        :update
+                        :db/doc-type  :wod-result
+                        :xt/id        (-> result :result/type :xt/id)
+                        :result/notes (:notes params)
+                        :result/scale (keyword (:scale params))}]
+                      wod-sets-tx))
     {:status  303
      :headers {"Location" (str "/app/results/" (:id path-params))}}))
 
@@ -54,8 +59,11 @@
 (defn edit
   [{:keys [biff/db session path-params] :as _ctx}]
   (let [{:result/keys [type] :as result}
-        (first (biff/q db '{:find  (pull result [* {:result/type [* {:result/workout [*]}
-                                                                  {:result-set/_parent [*]}]}])
+        (first (biff/q db '{:find  (pull result [*
+                                                 {:result/type [*
+                                                                {:result/movement [*]}
+                                                                {:result/workout [*]}
+                                                                {:result-set/_parent [*]}]}])
                             :in    [[result-id user]]
                             :where [[result :xt/id result-id]
                                     [result :result/user user]]}
@@ -64,7 +72,7 @@
     [:div#edit-result
      (result-form
        (assoc {}
-              :result type
+              :result result
               :workout (:result/workout type)
               :action result-path
               :hx-key :hx-put
@@ -103,7 +111,7 @@
         {:workout/keys
          [reps-per-round
           scheme
-          rounds-to-score] :as workout} (xt/entity db workout-id)
+          rounds-to-score] :as _workout} (xt/entity db workout-id)
         result-tx                        [{:db/op          :create
                                            :db/doc-type    :wod-result
                                            :xt/id          :db.id/wod-result
@@ -131,7 +139,7 @@
 
 
 (defn new
-  [{:keys [biff/db session params] :as ctx}]
+  [{:keys [biff/db params] :as ctx}]
   (let [workout (first (biff/q db
                                '{:find (pull workout [*])
                                  :in [[id]]

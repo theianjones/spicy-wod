@@ -89,55 +89,64 @@
 
 (defn result-form
   [{:keys [result workout action hidden hx-key form-props]} & children]
-  (let [rounds-to-score (or (:workout/rounds-to-score workout) 1)]
+  (let [workout-result (:result/type result)
+        w (or workout (:result/workout workout-result))
+        rounds-to-score (or (:workout/rounds-to-score w) 1)]
     (biff/form
       (merge (or form-props {})
              {(or hx-key :action) action
               :class              "flex flex-col gap-3"
               :hidden             hidden})
-
       (if (= 1 rounds-to-score)
-        (scheme-forms (assoc {}
-                             :score (-> result :result/type :result/score)
-                             :workout (or workout (-> result :result/type :result/workout))))
+        [:div
+         (scheme-forms (assoc {}
+                              :score (display-summed-score {:workout w :sets (-> workout-result :result-set/_parent)})
+                              :workout w))
+         [:input {:type "hidden"
+                  :name "id-0"
+                  :value (:xt/id (first (-> workout-result :result-set/_parent)))}]]
         [:ul.list-none.p-0.m-0
          (map (fn [i]
                 [:li.flex.gap-3.mb-3
                  [:p.m-0.w-2 (str (inc i) ".")]
                  (scheme-forms (assoc {}
-                                      :workout (or workout (-> result :result/type :result/workout))
+                                      :workout w
+                                      :score (display-summed-score {:workout workout :sets [(nth (-> workout-result :result-set/_parent) i)]})
                                       :identifier i))
-                 [:input.w-full.pink-input.teal-focus {:name (str "notes-" i)
-                                                       :id (str "notes-" i)
+                 [:input {:type "hidden"
+                          :name (str "id-" i)
+                          :value (:xt/id (nth (-> workout-result :result-set/_parent) i))}]
+                 [:input.w-full.pink-input.teal-focus {:name        (str "notes-" i)
+                                                       :id          (str "notes-" i)
                                                        :placeholder "Notes"}]]) (range 0 rounds-to-score))])
       [:input.pink-input.teal-focus
        {:type  "date"
         :name  "date"
         :value (biff/format-date
-                 (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
+                 (or (:result/date workout-result) (biff/now)) "YYYY-MM-dd")}]
       [:div.flex.gap-2.items-center
        [:div.flex-1.flex.gap-2.items-center
         [:input#rx {:type     "radio"
                     :name     "scale"
                     :value    "rx"
                     :required true
-                    :checked  (= (:result/scale result) :rx)}]
+                    :checked  (= (:result/scale workout-result) :rx)}]
         [:label {:for "rx"} "Rx"]]
        [:div.flex-1.flex.gap-2.items-center
         [:input#scaled {:type     "radio"
                         :name     "scale"
                         :value    "scaled"
                         :required true
-                        :checked  (= (:result/scale result) :scaled)}]
+                        :checked  (= (:result/scale workout-result) :scaled)}]
         [:label {:for "scaled"} "Scaled"]]
        [:div.flex-1.flex.gap-2.items-center
         [:input#rx+ {:type     "radio"
                      :name     "scale"
                      :value    "rx+"
                      :required true
-                     :checked  (= (:result/scale result) :rx+)}]
+                     :checked  (= (:result/scale workout-result) :rx+)}]
         [:label {:for "rx+"} "Rx+"]]]
       [:textarea.w-full.pink-input.teal-focus#notes {:name        "notes"
                                                      :placeholder "notes"
-                                                     :value       (:result/notes result)}]
+                                                     :value       (:result/notes workout-result)}]
       children)))
