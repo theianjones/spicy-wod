@@ -32,15 +32,19 @@
 
 
 (def scheme->score-params
-  {:time        ["minutes" "seconds" "notes"]
-   :rounds-reps ["rounds" "reps" "notes"]
-   :reps        ["reps" "notes"]})
+  {:time        ["minutes" "seconds"]
+   :rounds-reps ["rounds" "reps"]
+   :reps        ["reps"]})
+
+
+(def default-score-params
+  ["notes" "id"])
 
 
 (defn ->score
   [{:keys [n scheme] :as params}]
   (let [key-builder (partial ->key n)
-        score-params (scheme scheme->score-params)
+        score-params (concat default-score-params (scheme scheme->score-params))
         score-keys (map key-builder score-params)]
     (map (fn [key]
            (let [[key-name index] (string/split (name key) #"-")]
@@ -64,13 +68,17 @@
 
 (defn scores->tx
   [{:keys [op parent]}]
-  (map (fn [{:keys [index] :as score}]
-         {:db/op op
-          :db/doc-type :wod-set
-          :result-set/parent parent
-          :result-set/number index
-          :result-set/score (params->score score)
-          :result-set/notes (:notes score)})))
+  (map (fn [{:keys [index id] :as score}]
+         (merge {:db/op op
+                 :db/doc-type :wod-set
+                 :result-set/parent parent
+                 :result-set/number index
+                 :result-set/score (params->score score)
+                 :result-set/notes (:notes score)}
+                (when id
+                  {:xt/id (if (uuid? id)
+                            id
+                            (parse-uuid id))})))))
 
 
 (comment
@@ -166,4 +174,4 @@
   ;;     {:minutes "102", :index "1", :seconds "2", :notes "fell off my pace"}
   ;;     {:minutes "96", :index "2", :seconds "1", :notes "couldnt think anymore"})
   ;;
-  (transduce (scores->tx {:op :create :parent :db.id/wod-result}) conj (->scores p-3)))
+  (transduce (scores->tx {:op :create :parent :db.id/wod-result}) conj (->scores x)))

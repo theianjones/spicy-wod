@@ -115,7 +115,7 @@
           [:li.py-1 (biff/form
             {:action "/auth/signout"
              :class "p-0 w-fit h-fit "}
-            [:button.rounded.border-2.border-black.bg-brand-background.p-2.text-2xl.font-bold.text-black {:type "submit"}
+            [:button.btn-no-shadow {:type "submit"}
              "Sign out"])])]]]
      [:.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
       (when (bound? #'csrf/*anti-forgery-token*)

@@ -8,29 +8,52 @@
 
 (defn normalized-result
   [result]
-  (let [workout  (-> result :result/type :result/workout)
-        movement (-> result :result/type :result/movement)
-        sets     (-> result :result/type :result-set/_parent)
-        name     (or (:movement/name movement)
-                     (:workout/name workout))]
-    {:workout  workout
-     :movement movement
-     :sets     sets
-     :name     name}))
+  (let [workout     (-> result :result/type :result/workout)
+        movement    (-> result :result/type :result/movement)
+        sets        (-> result :result/type :result-set/_parent)
+        notes       (-> result :result/type :result/notes)
+        description (-> workout :workout/description )
+        name        (or (:movement/name movement)
+                        (:workout/name workout))]
+    {:workout     workout
+     :movement    movement
+     :sets        sets
+     :name        name
+     :description description
+     :notes       notes}))
 
 
 (defn result-ui
   [result]
-  (let [{:keys [workout movement sets name]} (normalized-result result)]
-    [:div#result-ui
-     [:div
-      [:a {:href (str "/app/workouts/" (:xt/id result))} name]]
-     (when (some? workout)
-       (display-summed-score {:workout workout :sets sets}))
+  (let [{:keys [workout movement description sets name notes]} (normalized-result result)]
+    [:div.flex.justify-between.max-w-sm.sm:max-w-xl.mx-auto#result-ui
+     [:div.flex.flex-col.gap-2
+      [:a.text-2xl.font-bold {:href (str "/app/workouts/" (string/lower-case name))} name] 
+      [:div.flex.justify-between
+       [:p.hidden.sm:block.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.italic description]
+       [:div.ml-1.flex.flex-col.self-center.sm:hidden
+        (when (some? workout)
+          [:span.text-xl
+           (display-summed-score {:workout workout
+                                  :sets    sets})])
+        (when (some? notes)
+          [:span
+           notes])]]
+      ]
      (when (some? movement)
        (movement-results-ui result))
-     [:button.btn {:hx-get (str "/app/results/" (:xt/id result) "/edit")
-                   :hx-target "closest #result-ui"} "Edit"]]))
+     [:div.flex.gap-4.h-fit.self-center
+      [:div.hidden.sm:flex.sm:flex-col.ml-1.self-center.text-right
+       (when (some? workout)
+         [:span.text-xl
+          (display-summed-score {:workout workout
+                                 :sets    sets})])
+       (when (some? notes)
+         [:span
+          notes])]
+      [:button {:hx-get    (str "/app/results/" (:xt/id result) "/edit")
+               :hx-target "closest #result-ui"
+               :class (str "btn-no-shadow bg-brand-pink h-1/2 self-center text-xl font-normal ")} "Edit"]]]))
 
 
 (defn scheme-forms
@@ -89,55 +112,64 @@
 
 (defn result-form
   [{:keys [result workout action hidden hx-key form-props]} & children]
-  (let [rounds-to-score (or (:workout/rounds-to-score workout) 1)]
+  (let [workout-result (:result/type result)
+        w (or workout (:result/workout workout-result))
+        rounds-to-score (or (:workout/rounds-to-score w) 1)]
     (biff/form
       (merge (or form-props {})
              {(or hx-key :action) action
               :class              "flex flex-col gap-3"
               :hidden             hidden})
-
       (if (= 1 rounds-to-score)
-        (scheme-forms (assoc {}
-                             :score (-> result :result/type :result/score)
-                             :workout (or workout (-> result :result/type :result/workout))))
+        [:div
+         (scheme-forms (assoc {}
+                              :score (display-summed-score {:workout w :sets (-> workout-result :result-set/_parent)})
+                              :workout w))
+         [:input {:type "hidden"
+                  :name "id-0"
+                  :value (:xt/id (first (-> workout-result :result-set/_parent)))}]]
         [:ul.list-none.p-0.m-0
          (map (fn [i]
                 [:li.flex.gap-3.mb-3
                  [:p.m-0.w-2 (str (inc i) ".")]
                  (scheme-forms (assoc {}
-                                      :workout (or workout (-> result :result/type :result/workout))
+                                      :workout w
+                                      :score (display-summed-score {:workout workout :sets [(nth (-> workout-result :result-set/_parent) i)]})
                                       :identifier i))
-                 [:input.w-full.pink-input.teal-focus {:name (str "notes-" i)
-                                                       :id (str "notes-" i)
+                 [:input {:type "hidden"
+                          :name (str "id-" i)
+                          :value (:xt/id (nth (-> workout-result :result-set/_parent) i))}]
+                 [:input.w-full.pink-input.teal-focus {:name        (str "notes-" i)
+                                                       :id          (str "notes-" i)
                                                        :placeholder "Notes"}]]) (range 0 rounds-to-score))])
       [:input.pink-input.teal-focus
        {:type  "date"
         :name  "date"
         :value (biff/format-date
-                 (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
+                 (or (:result/date workout-result) (biff/now)) "YYYY-MM-dd")}]
       [:div.flex.gap-2.items-center
        [:div.flex-1.flex.gap-2.items-center
         [:input#rx {:type     "radio"
                     :name     "scale"
                     :value    "rx"
                     :required true
-                    :checked  (= (:result/scale result) :rx)}]
+                    :checked  (= (:result/scale workout-result) :rx)}]
         [:label {:for "rx"} "Rx"]]
        [:div.flex-1.flex.gap-2.items-center
         [:input#scaled {:type     "radio"
                         :name     "scale"
                         :value    "scaled"
                         :required true
-                        :checked  (= (:result/scale result) :scaled)}]
+                        :checked  (= (:result/scale workout-result) :scaled)}]
         [:label {:for "scaled"} "Scaled"]]
        [:div.flex-1.flex.gap-2.items-center
         [:input#rx+ {:type     "radio"
                      :name     "scale"
                      :value    "rx+"
                      :required true
-                     :checked  (= (:result/scale result) :rx+)}]
+                     :checked  (= (:result/scale workout-result) :rx+)}]
         [:label {:for "rx+"} "Rx+"]]]
       [:textarea.w-full.pink-input.teal-focus#notes {:name        "notes"
                                                      :placeholder "notes"
-                                                     :value       (:result/notes result)}]
+                                                     :value       (:result/notes workout-result)}]
       children)))
