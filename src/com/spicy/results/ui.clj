@@ -27,35 +27,37 @@
 (defn result-ui
   [result]
   (let [{:keys [workout movement description sets name notes date]} (normalized-result result)]
-    [:div.flex.justify-between.max-w-sm.sm:max-w-xl.mx-auto#result-ui
-     [:div.flex.flex-col.gap-2
+    [:div.flex.flex-col.max-w-sm.sm:max-w-xl.mx-auto#result-ui
+     [:.flex.flex-row.items-baseline.justify-between.mb-3
       [:a.text-2xl.font-bold {:href (str "/app/workouts/" (string/lower-case name))} name]
-      [:p.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.mb-0 date]
-      [:div.flex.justify-between
-       [:p.hidden.sm:block.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.italic description]
-       [:div.ml-1.flex.flex-col.self-center.sm:hidden
+      [:p.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.mb-0 date]]
+     [:.flex.justify-between
+      [:div.flex.flex-col.gap-2
+       [:div.flex.justify-between
+        [:p.hidden.sm:block.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.italic description]
+        [:div.ml-1.flex.flex-col.self-center.sm:hidden
+         (when (some? workout)
+           [:span.text-xl
+            (display-summed-score {:workout workout
+                                   :sets    sets})])
+         (when (some? notes)
+           [:span
+            notes])]]]
+      (when (some? movement)
+        (movement-results-ui result))
+      [:div.flex.gap-4.h-fit.self-center.flex-col.justify-between
+       [:div.hidden.sm:flex.sm:flex-col.ml-1.self-center.text-right
         (when (some? workout)
           [:span.text-xl
            (display-summed-score {:workout workout
                                   :sets    sets})])
         (when (some? notes)
           [:span
-           notes])]]]
-     (when (some? movement)
-       (movement-results-ui result))
-     [:div.flex.gap-4.h-fit.self-center
-      [:div.hidden.sm:flex.sm:flex-col.ml-1.self-center.text-right
-       (when (some? workout)
-         [:span.text-xl
-          (display-summed-score {:workout workout
-                                 :sets    sets})])
-       (when (some? notes)
-         [:span
-          notes])]
-      [:button {:hx-get    (str "/app/results/" (:xt/id result) "/edit")
-                :hx-target "closest #result-ui"
-                :hx-swap   "outerHTML"
-                :class     (str "btn-no-shadow bg-brand-pink h-1/2 self-center text-xl font-normal ")} "Edit"]]]))
+           notes])]
+       [:button {:hx-get    (str "/app/results/" (:xt/id result) "/edit")
+                 :hx-target "closest #result-ui"
+                 :hx-swap   "outerHTML"
+                 :class     (str "self-end btn-no-shadow bg-brand-pink h-1/2 text-xl font-normal ")} "Edit"]]]]))
 
 
 (defn scheme-forms
