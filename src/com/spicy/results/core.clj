@@ -3,7 +3,7 @@
     [clojure.instant :as instant]
     [com.biffweb :as biff]
     [com.spicy.results.score :refer [scores->tx ->scores params->score]]
-    [com.spicy.results.ui :refer [result-ui result-form]]
+    [com.spicy.results.ui :refer [result-ui result-form normalized-result]]
     [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
     [xtdb.api :as xt]))
@@ -70,13 +70,14 @@
                        [(parse-uuid (:id path-params)) (:uid session)]))
         result-path (str "/app/results/" (:xt/id result))]
     [:div#edit-result
+     [:h2.text-2xl.font-bold (:name (normalized-result result))]
      (result-form
        (assoc {}
               :result result
               :workout (:result/workout type)
               :action result-path
               :hx-key :hx-put
-              :form-props {:hx-target "closest #result-ui"
+              :form-props {:hx-target "closest #edit-ui"
                            :hx-swap   "outerHTML"})
        [:button.btn {:type "submit"} "Update Result"]
        [:button.btn.bg-red-400.hover:bg-red-600 {:hx-get    result-path
@@ -98,11 +99,11 @@
                                  [(:uid session)])
         results (map second date-and-results)]
     (ui/page ctx (ui/panel [:div {:class (str "p-4 max-w-xl sm:mx-auto")}
-                  [:h1.text-3xl.cursor-default.capitalize.text-center.sm:text-left "Results"]
-                  [:ul.list-none.p-0.m-0.space-y-4
-                   (map (fn [r]
-                          [:li
-                           (result-ui r)]) results)]]))))
+                            [:h1.text-3xl.cursor-default.capitalize.text-center.sm:text-left "Results"]
+                            [:ul.list-none.p-0.m-0.space-y-4
+                             (map (fn [r]
+                                    [:li
+                                     (result-ui r)]) results)]]))))
 
 
 (defn create

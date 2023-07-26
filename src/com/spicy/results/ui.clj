@@ -12,7 +12,7 @@
         movement    (-> result :result/type :result/movement)
         sets        (-> result :result/type :result-set/_parent)
         notes       (-> result :result/type :result/notes)
-        description (-> workout :workout/description )
+        description (-> workout :workout/description)
         name        (or (:movement/name movement)
                         (:workout/name workout))]
     {:workout     workout
@@ -28,7 +28,7 @@
   (let [{:keys [workout movement description sets name notes]} (normalized-result result)]
     [:div.flex.justify-between.max-w-sm.sm:max-w-xl.mx-auto#result-ui
      [:div.flex.flex-col.gap-2
-      [:a.text-2xl.font-bold {:href (str "/app/workouts/" (string/lower-case name))} name] 
+      [:a.text-2xl.font-bold {:href (str "/app/workouts/" (string/lower-case name))} name]
       [:div.flex.justify-between
        [:p.hidden.sm:block.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.italic description]
        [:div.ml-1.flex.flex-col.self-center.sm:hidden
@@ -38,8 +38,7 @@
                                   :sets    sets})])
         (when (some? notes)
           [:span
-           notes])]]
-      ]
+           notes])]]]
      (when (some? movement)
        (movement-results-ui result))
      [:div.flex.gap-4.h-fit.self-center
@@ -52,8 +51,9 @@
          [:span
           notes])]
       [:button {:hx-get    (str "/app/results/" (:xt/id result) "/edit")
-               :hx-target "closest #result-ui"
-               :class (str "btn-no-shadow bg-brand-pink h-1/2 self-center text-xl font-normal ")} "Edit"]]]))
+                :hx-target "closest #result-ui"
+                :hx-swap   "outerHTML"
+                :class     (str "btn-no-shadow bg-brand-pink h-1/2 self-center text-xl font-normal ")} "Edit"]]]))
 
 
 (defn scheme-forms
