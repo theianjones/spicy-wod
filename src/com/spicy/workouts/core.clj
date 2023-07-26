@@ -57,7 +57,7 @@
                                [:div.flex.gap-2.flex-col.justify-between
                                 (workout-logbook-ui workout)
                                 (when (seq movements)
-                                  [:ul.list-none.flex.flex-wrap.gap-2.my-0
+                                  [:ul.list-none.flex.flex-wrap.gap-2.my-0.sm:justify-start.justify-center.sm:pl-8.p-0.mt-4
                                    (map (fn [m]
                                           [:li.px-2.border.border-black.brutal-shadow.border-1.border-black
                                            [:a {:href (str "/app/movements/" (:xt/id m))} (:movement/name m)]]) movements)])]

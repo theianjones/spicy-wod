@@ -97,12 +97,12 @@
                                       :order-by [[date :desc]]}
                                  [(:uid session)])
         results (map second date-and-results)]
-    (ui/page ctx [:div
-                  [:h1 "Results"]
-                  [:ul
+    (ui/page ctx (ui/panel [:div {:class (str "p-4 max-w-xl sm:mx-auto")}
+                  [:h1.text-3xl.cursor-default.capitalize.text-center.sm:text-left "Results"]
+                  [:ul.list-none.p-0.m-0.space-y-4
                    (map (fn [r]
                           [:li
-                           (result-ui r)]) results)]])))
+                           (result-ui r)]) results)]]))))
 
 
 (defn create

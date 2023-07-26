@@ -71,8 +71,12 @@
     @apply z-[1] rounded border-2 border-black bg-brand-background p-2 text-2xl font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] 
   }
 
+  .btn-no-shadow {
+    @apply rounded border-2 border-black bg-brand-background p-2 text-2xl font-bold text-black
+  }
+
   .btn-no-bg {
-    @apply z-[1] rounded border-2 border-black bg-transparent p-2 text-2xl font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)]
+    @apply z-[1] rounded border-2 border-black bg-transparent p-2 text-2xl font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)]  
   }
 
   .btn-hover {
