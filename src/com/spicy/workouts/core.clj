@@ -23,7 +23,7 @@
                 [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.mb-14.justify-center
                  [:h1.text-5xl.w-fit.self-center.mt-8 "Workouts"]
                  [:a
-                  {:class (str "text-2xl brutal-shadow btn-hover border border-radius rounded border-black py-1 px-2 h-fit text-center w-1/2 sm:w-auto self-center ")
+                  {:class (str "text-2xl brutal-shadow btn-hover border border-radius border-black py-1 px-2 h-fit text-center w-1/2 sm:w-auto self-center ")
                    :href  (str "/app/workouts/new")}
                   "Add Workout"]]
 
@@ -31,7 +31,7 @@
                  (map #(ui/workout-ui
                          (assoc %
                                 :children
-                                [:a.brutal-shadow.btn-hover.border.border-radius.rounded.border-black.py-1.px-2.mt-auto
+                                [:a.brutal-shadow.btn-hover.border.border-radius.border-black.py-1.px-2.mt-auto
                                  {:href (str "/app/workouts/" (string/lower-case
                                                                 (if (:workout/user %)
                                                                   (:xt/id %)
@@ -211,7 +211,7 @@
   [{:keys [session] :as _context}]
   [:div.flex.flex-wrap.gap-2
    (map-indexed (fn [idx m]
-                  [:div.flex.flex-row.gap-2.border.border-black.w-fit.px-2.rounded-full#selected-movement
+                  [:div.flex.flex-row.gap-2.border.border-black.w-fit.px-2#selected-movement
                    [:div.w-fit.self-center m]
                    [:input {:type "hidden" :value m :name (str "movements[" idx "]")}]
                    [:button.font-display.text-lg {:tabindex  1

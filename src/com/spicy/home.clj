@@ -10,7 +10,7 @@
 
 
 (def email-disabled-notice
-  [:.text-sm.mt-3.bg-blue-100.rounded.p-2
+  [:.text-sm.mt-3.bg-blue-100.p-2
    "Until you add API keys for Postmark and reCAPTCHA, we'll print your sign-up "
    "link to the console. See config.edn."])
 

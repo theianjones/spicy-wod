@@ -52,8 +52,8 @@
                                      [result :result/type wod]
                                      [wod :result/workout workout-id]]}
                         [user workout])]
-    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] p-8 rounded-md shadow-[-2px_-2px_0px_rgba(0,0,0,100)] m-4")}
-     [:div {:class "absolute h-full rounded-md bg-brand-background shadow-[-2px_-2px_0px_rgba(0,0,0,100)] -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
+    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] p-8 shadow-[-2px_-2px_0px_rgba(0,0,0,100)] m-4")}
+     [:div {:class "absolute h-full bg-brand-background shadow-[-2px_-2px_0px_rgba(0,0,0,100)] -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
      [:h2.text-3xl "Log Book"]
      (if (zero? (count results))
        [:p {:class (str " w-fit m-auto ")} "Log a workout to see your history!"]

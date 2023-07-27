@@ -13,7 +13,7 @@
   [movements]
   [:ul#movement-list.list-none.list-inside.pl-0.flex.flex-wrap.gap-2.sm:gap-4.mt-8.justify-center
    (map (fn [m]
-          [:li {:class (str "w-full sm:w-fit z-[1] rounded border-2 border-black bg-brand-background p-2 sm:text-2xl font-bold text-black text-center whitespace-nowrap hover:border-brand-teal ")}
+          [:li {:class (str "w-full sm:w-fit z-[1] border-2 border-black bg-brand-background p-2 sm:text-2xl font-bold text-black text-center whitespace-nowrap hover:border-brand-teal ")}
            [:a {:href (str "/app/movements/" (:xt/id m))} (:movement/name m)]]) movements)])
 
 
@@ -21,7 +21,7 @@
   [w]
   (ui/workout-ui (assoc w
                         :children
-                        [:a.brutal-shadow.btn-hover.border.border-radius.rounded.border-black.py-1.px-2.mt-auto
+                        [:a.brutal-shadow.btn-hover.border.border-radius.border-black.py-1.px-2.mt-auto
                          {:href (str "/app/workouts/" (string/lower-case
                                                         (if (:workout/user w)
                                                           (:xt/id w)
@@ -315,7 +315,7 @@
   (biff/form {:id      "sets-scheme"
               :hx-get  (str "/app/movements/" (:id path-params) "/form")
               :hx-swap "outerHTML"}
-             [:select.rounded.bg-brand-background.brutal-shadow.teal-focus.cursor-pointer.block.mx-auto.sm:mx-0
+             [:select.bg-brand-background.brutal-shadow.teal-focus.cursor-pointer.block.mx-auto.sm:mx-0
               {:name      :type
                :hx-get    (str "/app/movements/" (:id path-params) "/constant-reps")
                :hx-target "#sets-scheme"
@@ -351,10 +351,10 @@
                    [:div.gap-2.flex.flex-row
                     [:button {:x-on:click "if(reps[index] > 1) reps[index]--"
                               :type       "button"
-                              :class      (str " border-2 border-black rounded font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] h-8 w-8 text-center bg-brand-background ")} "-"]
+                              :class      (str " border-2 border-black font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] h-8 w-8 text-center bg-brand-background ")} "-"]
                     [:button {:x-on:click "reps[index]++"
                               :type       "button"
-                              :class (str " border-2 border-black rounded font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] h-8 w-8 text-center bg-brand-background ")} "+"]]]]]]]]
+                              :class (str " border-2 border-black font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)] h-8 w-8 text-center bg-brand-background ")} "+"]]]]]]]]
              [:button.btn.mt-8.block.mx-auto {:type "submit"} "Submit"]))
 
 
@@ -363,7 +363,7 @@
   (biff/form {:id      "sets-scheme"
               :hx-get  (str "/app/movements/" (:id path-params) "/form")
               :hx-swap "outerHTML"}
-             [:select.rounded.bg-brand-background.brutal-shadow.teal-focus.cursor-pointer.block.mx-auto.sm:mx-0
+             [:select.bg-brand-background.brutal-shadow.teal-focus.cursor-pointer.block.mx-auto.sm:mx-0
               {:name      :type
                :hx-get    (str "/app/movements/" (:id path-params) "/variable-reps")
                :hx-target "#sets-scheme"

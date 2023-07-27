@@ -71,14 +71,14 @@
           [:span.sr-only "Open options"]
           "Menu" 
           ]]
-        [:div {:class            (str "absolute -right-16 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ")
+        [:div {:class            (str "absolute -right-16 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ")
                :role             "menu"
                :aria-orientation "vertical"
                :aria-labelledby  "menu-button"
                :tabindex         "-1"
                :x-show           "open"
                }
-         [:div {:role "none" :class (str "py-1 bg-[#e5d6dc] rounded ")}
+         [:div {:role "none" :class (str "py-1 bg-[#e5d6dc] ")}
           [:a {:href     "/app/workouts"
                :class    (str "text-black font-bold block px-4 py-2 text-sm border-b ")
                :role     "menuitem"
@@ -129,8 +129,8 @@
 
 (defn panel
   [& children]
-  [:div {:class (str  "rounded-3xl bg-brand-pink md:p-12 p-4 "
-                      "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
+  [:div {:class (str  "bg-brand-pink md:p-12 p-4 border-2 border-black "
+                      " "
                       "flex flex-col item-center ")}
    children])
 
@@ -157,7 +157,7 @@
   [:div
    {:class (str
              "flex flex-col justify-between items-center gap-3 "
-             "w-full sm:w-[354px] bg-brand-background p-6 sm:rounded-md "
+             "w-full sm:w-[354px] bg-brand-background p-6 "
              "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
              (or class ""))}
    [:div.flex.items-center.justify-between.pb-2.sm:pb-4.w-full
@@ -165,7 +165,7 @@
     [:div.block.sm:hidden
      (when (some? children)
        children)]
-    [:div.hidden.sm:block.border.border-radius.rounded-full.border-black.py-1.px-2.cursor-default.whitespace-nowrap.text-sm.self-start (display-scheme scheme)]]
+    [:div.hidden.sm:block.border.border-radius.border-black.py-1.px-2.cursor-default.whitespace-nowrap.text-sm.self-start (display-scheme scheme)]]
    [:span.block.sm:hidden.cursor-default.w-fit.self-start.whitespace-nowrap (display-scheme scheme)]
    [:p.self-start.sm:self-center.whitespace-pre-wrap description]
    [:div.hidden.sm:block
