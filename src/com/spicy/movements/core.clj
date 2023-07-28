@@ -202,6 +202,9 @@
                     [:div.flex.justify-between.items-center.mb-14
                      [:h1.text-3xl.cursor-default.capitalize (:movement/name m)]
                      [:a.btn {:href (str "/app/movements/" (:xt/id m) "/new")} "Log session"]]
+                    (when (empty? movement-results)
+                      [:div
+                       [:p.text-md "Log a session and it will show up here."]])
                     (when (not-empty movement-results)
                       [:div {:class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full border-b-4 border-r-4 border-black mb-4 rounded-md bg-brand-teal"}
                        [:div.px-2.py-4.border-2.border-black.text-lg.font-bold "Date"]
