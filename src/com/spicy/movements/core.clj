@@ -13,7 +13,7 @@
   [movements]
   [:ul#movement-list.list-none.list-inside.pl-0.flex.flex-wrap.gap-2.sm:gap-4.mt-8.justify-center
    (map (fn [m]
-          [:li {:class (str "w-full sm:w-fit z-[1] border-2 border-black bg-brand-background p-2 sm:text-2xl font-bold text-black text-center whitespace-nowrap hover:border-brand-teal ")}
+          [:li {:class (str "w-full sm:w-fit z-[1] border-2 border-black bg-white p-2 sm:text-2xl font-bold text-black text-center whitespace-nowrap hover:brutal-shadow ")}
            [:a {:href (str "/app/movements/" (:xt/id m))} (:movement/name m)]]) movements)])
 
 
@@ -41,8 +41,8 @@
       (ui/page ctx (ui/panel [:div
                               [:div.flex.flex-wrap.justify-center.sm:justify-between.gap-4.mt-8
                                [:h1.text-5xl.w-fit.self-center "Movements"]
-                               [:select.btn.text-base.w-32.h-12.teal-focus {:name      "type"
-                                                                            :onchange "window.open('?type=' + this.value,'_self')"}
+                               [:select.btn.text-base.w-32.h-12.teal-focus.hover:cursor-pointer {:name      "type"
+                                                                            :onchange "window.open('?type=' + this.value,'_self')"} 
                                 [:option.text-base {:value :strength :selected (or (= (:type params) "stregnth") (empty? (:type params)))} "Strength"]
                                 [:option.text-base {:value :gymnastic :selected (= (:type params) "gymnastic")} "Gymnastic"]
                                 [:option.text-base {:value :monostructural :selected (= (:type params) "monostructural")} "Cardio"]]]
@@ -201,7 +201,7 @@
                    [:div
                     [:div.flex.justify-between.items-center.mb-14
                      [:h1.text-3xl.cursor-default.capitalize (:movement/name m)]
-                     [:a.btn {:href (str "/app/movements/" (:xt/id m) "/new")} "Log session"]]
+                     [:a.btn.bg-brand-teal {:href (str "/app/movements/" (:xt/id m) "/new")} "Log session"]]
                     (when (empty? movement-results)
                       [:div
                        [:p.text-md "Log a session and it will show up here."]])
@@ -363,7 +363,7 @@
   (biff/form {:id      "sets-scheme"
               :hx-get  (str "/app/movements/" (:id path-params) "/form")
               :hx-swap "outerHTML"}
-             [:select.bg-brand-background.brutal-shadow.teal-focus.cursor-pointer.block.mx-auto.sm:mx-0
+             [:select.bg-white.brutal-shadow.teal-focus.cursor-pointer.block.mx-auto.sm:mx-0
               {:name      :type
                :hx-get    (str "/app/movements/" (:id path-params) "/variable-reps")
                :hx-target "#sets-scheme"
@@ -399,7 +399,7 @@
                                     :type       "button"} "-"]
                  [:button.btn.w-12 {:x-on:click "reps++"
                                     :type       "button"} "+"]]]]]
-             [:button.btn.mt-8.block.mx-auto {:type "submit"} "Submit"]))
+             [:button.btn.bg-brand-teal.mt-8.block.mx-auto {:type "submit"} "Submit"]))
 
 
 (defn log-session
