@@ -53,18 +53,127 @@
   [sets]
   (let [reps (into #{} (map :result-set/reps sets))]
     (if (= 1 (count reps))
-      (string/join (interpose "x" [(count sets) (count reps)]))
+      (string/join (interpose "x" [(count sets) (-> sets first :result-set/reps)]))
       (string/join (interpose "-" (map :result-set/reps  (sort-by :result-set/number sets)))))))
 
 
 (defn movement-results-ui
-  [{:result/keys [type] :as _result}]
+  [{:result/keys [type] :as result}]
   (let [sets (:result-set/_parent type)]
-    [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center
-     [:p.m-0 (sets-n-reps sets)]
-     [:p.m-0 (apply max (map #(if (= :pass (:result-set/status %))
-                                (:result-set/weight %)
-                                0) sets))]]))
+    [:<>
+     [:div.p-2.text-lg.border-r-2.border-l-2.border-b-2.border-black
+      (biff/format-date (:result/date result) "YYYY-MM-dd")]
+     [:div.p-2.text-lg.border-r-2.border-b-2.border-black
+      (sets-n-reps sets)]
+     [:div.p-2.text-lg.border-r-2.border-b-2.border-black
+      (apply max (map #(if (= :pass (:result-set/status %))
+                         (:result-set/weight %)
+                         0) sets))]
+     [:div.border-r-2.border-b-2.border-black.text-md.font-bold
+      [:div.flex.h-full.flex-1.sm:flex-row.flex-col
+       [:button.p-2.text-md.grow.bg-darker-brand-teal.sm:border-r-2.border-b-2.border-black.sm:border-b-0
+
+        {:hx-get (str "/app/movements/" (:result/movement type) "/results/" (:xt/id result))
+         :hx-target (str "#expanded-" (:xt/id result))
+         :hx-swap "outerHTML"}
+        "View"]
+       [:button.p-2.text-md.grow.bg-brand-blue
+        {:hx-get (str "/app/movements/" (:result/movement type) "/results/" (:xt/id result) "/edit")
+         :hx-target (str "#expanded-" (:xt/id result))
+         :hx-swap "outerHTML"}
+        "Edit"]]]
+     [:div.col-span-4.hidden {:id (str "expanded-" (:xt/id result))}]]))
+
+
+(defn closed-result
+  [{:keys [path-params] :as _ctx}]
+  [:div.col-span-4.hidden {:id (str "expanded-" (:result-id path-params))}])
+
+
+(defn expanded-edit-result
+  [{:keys [biff/db path-params] :as _ctx}]
+  (let [result
+        (first (biff/q db '{:find  (pull result [* {:result/type
+                                                    [*
+                                                     {:result-set/_parent [*]}]}])
+                            :in    [[r]]
+                            :where [[result :xt/id r]]}
+                       [(parse-uuid (:result-id path-params))]))]
+    [:<>
+     (biff/form {:id        (str "expanded-" (:xt/id result))
+                 :class     "col-span-4 grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-brand-teal"
+                 :hidden    {:sets (count (-> result :result/type :result-set/_parent))}
+                 :hx-put    (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
+                 :hx-swap   "outerHTML"
+                 :hx-target (str "#expanded-" (:xt/id result))}
+                [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg.font-bold "Set #"]
+                [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Reps"]
+                [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Weight"]
+                [:div.px-2.py-4.border-r-2.border-b-2.border-black.font-bold "Hit?"]
+                (map (fn [{:result-set/keys [number reps weight status] :xt/keys [id]}]
+                       [:<>
+                        [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg number]
+                        [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg reps]
+                        [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg
+                         [:input {:name  (str "id-" number)
+                                  :id    (str "id-" number)
+                                  :type  :hidden
+                                  :value id}]
+                         [:input {:name     (str "weight-" number)
+                                  :id       (str "weight-" number)
+                                  :required true
+                                  :type     :number
+                                  :value    weight}]]
+                        [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.capitalize
+                         [:input {:name    (str "hit-miss-" number)
+                                  :id      (str "hit-" number)
+                                  :value   :hit
+                                  :type    :checkbox
+                                  :checked (= :pass status)}]]])
+                     (sort-by :result-set/number (-> result :result/type :result-set/_parent)))
+                [:div.px-2.py-6.border-r-2.border-b-2.border-l-2.border-black ""]
+                [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
+                [:button.p-2.text-md.grow.bg-darker-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
+                 {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
+                  :hx-target (str "#expanded-" (:xt/id result))
+                  :hx-swap   "outerHTML"}
+                 "Close"]
+                [:button.p-2.text-md.grow.bg-brand-blue.border-b-2.border-black.font-bold
+                 {:type :submit}
+                 "Save"])]))
+
+
+(defn expanded-result
+  [{:keys [biff/db path-params] :as _ctx}]
+  (let [result
+        (first (biff/q db '{:find  (pull result [* {:result/type
+                                                    [*
+                                                     {:result-set/_parent [*]}]}])
+                            :in    [[r]]
+                            :where [[result :xt/id r]]}
+                       [(parse-uuid (:result-id path-params))]))]
+    [:<>
+     [:div.col-span-4 {:id    (str "expanded-" (:xt/id result))
+                       :class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-brand-teal"}
+      [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg.font-bold "Set #"]
+      [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Reps"]
+      [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Weight"]
+      [:div.px-2.py-4.border-r-2.border-b-2.border-black.font-bold "Hit?"]
+      (map (fn [{:result-set/keys [number reps weight status]}]
+             [:<>
+              [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg number]
+              [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg reps]
+              [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg weight]
+              [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.capitalize (name status)]])
+           (sort-by :result-set/number (-> result :result/type :result-set/_parent)))
+      [:div.px-2.py-6.border-r-2.border-b-2.border-l-2.border-black ""]
+      [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
+      [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
+      [:button.p-2.text-md.grow.bg-darker-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
+       {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
+        :hx-target (str "#expanded-" (:xt/id result))
+        :hx-swap   "outerHTML"}
+       "Close"]]]))
 
 
 (defn show
@@ -93,8 +202,16 @@
                     [:div.flex.justify-between.items-center.mb-14
                      [:h1.text-3xl.cursor-default.capitalize (:movement/name m)]
                      [:a.btn {:href (str "/app/movements/" (:xt/id m) "/new")} "Log session"]]
+                    (when (empty? movement-results)
+                      [:div
+                       [:p.text-md "Log a session and it will show up here."]])
                     (when (not-empty movement-results)
-                      (map movement-results-ui movement-results))
+                      [:div {:class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full border-b-4 border-r-4 border-black mb-4 rounded-md bg-brand-teal"}
+                       [:div.px-2.py-4.border-2.border-black.text-lg.font-bold "Date"]
+                       [:div.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold "Rep Scheme"]
+                       [:div.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold "Best Lift"]
+                       [:div.border-r-2.border-b-2.border-t-2.border-black ""]
+                       (map movement-results-ui movement-results)])
                     (when (not-empty workouts)
                       [:div
                        [:h2.text-xl.mb-4 "Related workouts"]
@@ -105,25 +222,33 @@
 (defn strength-set-inputs
   [{:keys [set-number reps]}]
   [:div
-   [:p (str "Set #" set-number)]
+   [:p.text-2xl.font-medium.text-center.mt-4 (str "Set #" set-number)]
    [:input {:value reps
             :type  "hidden"
             :id    (str "reps-" set-number)
             :name  (str "reps-" set-number)}]
-   [:.flex.gap-2.items-center.m-0
-    [:input {:name     (str "weight-" set-number)
-             :id       (str "weight-" set-number)
-             :required true
-             :type     :number}]
-    [:p.m-0 (str "x " reps " reps")]]
-   [:fieldset
-    [:.flex.gap-2
-     [:label
+   [:.flex.justify-center.items-center.m-0
+    [:fieldset
+     [:.flex.gap-2
+      [:label.text-lg.sm:text-2xl.font-medium.text-center.h-fit.my-auto
+       {:for (str "hit-" set-number)}
+       "Hit"]
       [:input {:name  (str "hit-miss-" set-number)
                :id    (str "hit-" set-number)
+               :class (str "appearance-none p-7 border-2 border-r-0 border-black cursor-pointer "
+                           "checked:bg-brand-teal checked:text-brand-teal checked:color-brand-teal hover:bg-brand-teal checked:border-black checked:ring-0 checked:ring-offset-0 checked:ring-brand-teal checked:ring-opacity-100 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-opacity-100")
                :value :hit
                :type  :checkbox}]
-      "Hit"]]]])
+      ]]
+    [:input{:name     (str "weight-" set-number)
+             :id       (str "weight-" set-number)
+             :class    (str "p-4 border-2 border-black w-1/2 text-center font-bold teal-focus ")
+             :required true
+             :type     :number}]
+    [:p.m-0.bg-white.p-4.border-2.border-l-0.border-black.font-medium.whitespace-nowrap (str "x " reps " reps")]
+    
+    ]
+   ])
 
 
 (defn get-constant-strength-sets
@@ -171,15 +296,18 @@
                (when (= type "variable")
                  [:div (get-variable-strength-sets {:sets sets
                                                     :reps reps})])
-               [:input.pink-input.teal-focus
+               [:div.flex.flex-col.justify-center.items-center.gap-4
+                [:input.pink-input.teal-focus.mt-4.mx-auto
                 {:type  "date"
                  :name  "date"
                  :value (biff/format-date
                           (biff/now) "YYYY-MM-dd")}]
-               [:textarea.w-full.pink-input.teal-focus#notes
+               [:textarea#notes
                 {:name        "notes"
-                 :placeholder "notes"}]
-               [:button.btn "Submit"])))
+                 :placeholder "notes"
+                 :rows        7
+                 :class       (str "w-full pink-input teal-focus")}]
+               [:button.btn "Submit"]])))
 
 
 (defn variable-reps-form
@@ -247,7 +375,7 @@
               [:div.flex.flex-row.justify-center.gap-8
                [:div.w-36.text-center
                 [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :sets} "Sets"]
-                [:p.text-9xl.font-bold.cursor-default {:x-text :sets}]
+                [:p.text-5xl.sm:text-9xl.font-bold.cursor-default {:x-text :sets}]
                 [:input {:x-model :sets
                          :name    :sets
                          :id      :sets
@@ -257,10 +385,10 @@
                                     :type       "button"} "-"]
                  [:button.btn.w-12 {:x-on:click "sets++"
                                     :type       "button"} "+"]]]
-               [:p.text-7xl.font-bold.self-center.cursor-default "X"]
+               [:p.text-3xl.sm:text-7xl.font-bold.self-center.cursor-default "X"]
                [:div.w-36.text-center
                 [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :reps} "Reps"]
-                [:p.text-9xl.font-bold.cursor-default {:x-text :reps}]
+                [:p.text-5xl.sm:text-9xl.font-bold.cursor-default {:x-text :reps}]
                 [:input {:x-model :reps
                          :name    :reps
                          :id      :reps
@@ -325,6 +453,32 @@
      :headers {"Location" (str "/app/movements/" (:id path-params))}}))
 
 
+(defn ->update-tx
+  [{:keys [sets] :as params}]
+  (mapv (fn [n]
+          (let [set-n       (inc n)
+                key-builder (partial ->key set-n)
+                id          (key-builder "id")
+                status-key  (key-builder "hit-miss")
+                weight-key  (key-builder "weight")]
+            {:db/doc-type       :strength-set
+             :db/op             :update
+             :xt/id             (parse-uuid (id params))
+             :result-set/status (if (= "hit" (status-key params))
+                                  :pass
+                                  :fail)
+             :result-set/weight (parse-int (weight-key params))}))
+        (range (parse-int sets))))
+
+
+(defn update-result-set
+  [{:keys [path-params params] :as ctx}]
+  (let [tx (->update-tx params)]
+    (biff/submit-tx ctx tx)
+    {:status  303
+     :headers {"Location" (str "/app/movements/" (:id path-params) "/results/" (:result-id path-params))}}))
+
+
 (def routes
   ["/movements"
    ["/" {:get index}]
@@ -334,4 +488,8 @@
     ["/variable-reps" {:get variable-reps-form}]
     ["/set" {:post create-session}]
     ["/form" {:get create-log-session-form}]
-    ["/new" {:get log-session}]]])
+    ["/new" {:get log-session}]
+    ["/results/:result-id/edit" {:get expanded-edit-result}]
+    ["/results/:result-id" {:get    expanded-result
+                            :delete closed-result
+                            :put    update-result-set}]]])
