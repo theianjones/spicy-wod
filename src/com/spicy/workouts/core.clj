@@ -5,7 +5,8 @@
     [com.spicy.numbers :as n]
     [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
-    [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]))
+    [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]
+    [xtdb.api :as xt]))
 
 
 (defn index
@@ -55,7 +56,7 @@
       (ui/page ctx [:div.pb-8
                     (ui/panel [:div {:class (str "h-full flex flex-col gap-6 md:flex-row pb-20")}
                                [:div.flex.gap-2.flex-col.justify-between
-                                (workout-logbook-ui workout)
+                                (workout-logbook-ui (merge  workout {:current-user (:uid session)}))
                                 (when (seq movements)
                                   [:ul.list-none.flex.flex-wrap.gap-2.my-0.sm:justify-start.justify-center.sm:pl-8.p-0.mt-4
                                    (map (fn [m]
@@ -66,6 +67,56 @@
                                   {:user    (:uid session)
                                    :workout (:xt/id workout)
                                    :biff/db db})]])]))))
+
+
+(defn update
+  [{:keys [biff/db path-params session params] :as ctx}]
+  (let [workout-uuid          (parse-uuid (:id path-params))
+        workout               (first (biff/q db '{:find  (pull w [* {:workout-movement/_workout [* {:workout-movement/movement [*]}]}])
+                                                  :in    [[workout]]
+                                                  :where [[w :xt/id workout]]}
+                                             [workout-uuid]))
+        workout-movements (-> workout
+                              :workout-movement/_workout)
+        existing-movement-ids (->> workout-movements
+                                   (map (comp :xt/id  :workout-movement/movement))
+                                   (into #{}))
+        movements             (or (into [] (vals (:movements params))) [])
+        movement-ids          (flatten (into [] (biff/q db '{:find  [e]
+                                                             :in    [[name ...]]
+                                                             :where [[e :movement/name name]]}
+                                                        movements)))
+        workout-tx            [(merge {:db/op               :update
+                                       :db/doc-type         :workout
+                                       :xt/id               workout-uuid
+                                       :workout/name        (:name params)
+                                       :workout/scheme      (keyword (:scheme params))
+                                       :workout/description (:description params)}
+                                      (when
+                                        (:reps-per-round params)
+                                        {:workout/reps-per-round
+                                         (n/safe-parse-int (:reps-per-round params))})
+                                      (when
+                                        (:rounds params)
+                                        {:workout/rounds-to-score
+                                         (n/safe-parse-int (:rounds params))}))]
+        movements-tx     (filterv (comp not nil?)
+                                  (concat
+                                    (map (fn [possibly-new-movement-id]
+                                           (when (not (contains? existing-movement-ids possibly-new-movement-id))
+                                             {:db/op                     :create
+                                              :db/doc-type               :workout-movement
+                                              :workout-movement/workout  workout-uuid
+                                              :workout-movement/movement possibly-new-movement-id})) movement-ids)
+                                    (map (fn [{:keys [workout-movement/movement xt/id] :as wm}]
+                                           (when (not (contains? (into #{} movement-ids) (:xt/id movement)))
+                                             {:db/op :delete
+                                              :xt/id id}))
+                                         workout-movements)))]
+    (biff/submit-tx ctx (concat workout-tx
+                                movements-tx))
+    {:status  303
+     :headers {"HX-Location" (str "/app/workouts/" workout-uuid "?fragment=" (true? (:fragment params)))}}))
 
 
 (defn create
@@ -100,7 +151,7 @@
     (biff/submit-tx ctx (into [] (concat workout
                                          workout-movements)))
     {:status  303
-     :headers {"location" (str "/app/workouts/" workout-uuid "?fragment=" (true? (:fragment params)))}}))
+     :headers {"HX-Location" (str "/app/workouts/" workout-uuid "?fragment=" (true? (:fragment params)))}}))
 
 
 (defonce selected-movements (atom {}))
@@ -112,6 +163,31 @@
         new-movements (into #{} (method movements movement))]
     (swap! selected-movements
            update-in [user] (constantly new-movements))))
+
+
+(defn edit
+  [{:keys [biff/db path-params session params] :as ctx}]
+  (let [workout        (first (biff/q db '{:find  (pull workout [* {:workout-movement/_workout [{:workout-movement/movement [*]}]}])
+                                           :in    [[name id]]
+                                           :where [(or [workout :workout/name name]
+                                                       [workout :xt/id id])]}
+                                      [(string/capitalize (:id path-params))
+                                       (parse-uuid (:id path-params))]))
+        movements      (->> workout
+                            :workout-movement/_workout
+                            (map :workout-movement/movement))
+        movement-names (map :movement/name movements)]
+    (update-selected-movement! {:user     (:uid session)
+                                :method   (constantly (into #{} movement-names))
+                                :movement nil})
+    (ui/page ctx
+             [:div.max-w-md.mx-auto
+              (ui/panel
+                [:a.btn.w-fit {:href (str "/app/workouts/" (:id path-params))} "Back"]
+                [:div.p-4
+                 [:h1.text-5xl.mb-14.pt-8.text-center (str "Update " (:workout/name workout))]
+                 (workout-form {:hidden  {}
+                                :workout workout})])])))
 
 
 (defn new
@@ -193,8 +269,10 @@
   [{:keys [params] :as ctx}]
   (if (= "on" (:score-separately params))
     [:div#rounds
-     [:input.w-full.pink-input.p-2.teal-focus#rounds
-      {:placeholder "Rounds to score" :name "rounds" :required true}]]
+     [:div.flex.flex-col.w-full
+      [:label {:for :rounds} "Rounds to score"]
+      [:input.w-full.pink-input.p-2.teal-focus#rounds
+       {:placeholder "Rounds to score" :name "rounds" :required true}]]]
     [:div.hidden#rounds]))
 
 
@@ -202,7 +280,9 @@
   ["/workouts"
    ["" {:get  index
         :post create}]
-   ["/:id" {:get (wildcard-override show {:new new :selected show-selected-movement})}]
+   ["/:id" {:get (wildcard-override show {:new new :selected show-selected-movement})
+            :put update}]
+   ["/:id/edit" {:get edit}]
    ["/new/search" {:get search}]
    ["/new/selected" {:get    show-selected-movement
                      :post   set-selected-movement

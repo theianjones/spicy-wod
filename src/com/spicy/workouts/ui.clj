@@ -72,7 +72,7 @@
 
 
 (defn workout-logbook-ui
-  [{:xt/keys [id] :workout/keys [name description scheme] :keys [children class]}]
+  [{:xt/keys [id] :workout/keys [name description scheme user] :keys [children class current-user]}]
   [:div
    {:class (str
              "flex flex-col gap-3 mx-auto text-center sm:text-left "
@@ -84,47 +84,75 @@
    [:p.whitespace-pre-wrap.sm:text-left description]
    (when (some? children)
      children)
+   (when (= user current-user)
+     [:a {:href  (str "/app/workouts/" id "/edit")
+          :class (str "btn h-fit w-fit mx-auto sm:mx-0")} "Edit"])
    [:a {:href  (str "/app/results/new?workout=" id)
         :class (str "btn h-fit w-fit mx-auto sm:mx-0")} "Log workout"]])
 
 
 (defn workout-form
-  [{:keys [hidden]}]
+  [{:keys [hidden workout]}]
   (biff/form
-    {:class  "flex flex-col gap-4"
-     :action "/app/workouts"
-     :hidden hidden}
-    [:input.pink-input.p-2.teal-focus#name {:placeholder "Name" :name "name" :required true}]
-    [:textarea.pink-input.h-48.row-5.teal-focus#description {:placeholder "Description" :name "description" :required true}]
-    [:select.pink-input.teal-focus#scheme {:name      "scheme"
-                                           :required  true
-                                           :hx-get    "/app/workouts/new/scheme-inputs"
-                                           :hx-target "#scheme-inputs"
-                                           :hx-swap   "outerHTML"}
-     [:option {:value "" :label "--Select a Workout Scheme--"}]
-     [:option {:value "time"
-               :label "time"}]
-     [:option {:value "time-with-cap"
-               :label "time-with-cap"}]
-     [:option {:value "pass-fail"
-               :label "pass-fail"}]
-     [:option {:value "rounds-reps"
-               :label "rounds-reps"}]
-     [:option {:value "reps"
-               :label "reps"}]
-     [:option {:value "emom"
-               :label "emom"}]
-     [:option {:value "load"
-               :label "load"}]
-     [:option {:value "calories"
-               :label "calories"}]
-     [:option {:value "meters"
-               :label "meters"}]
-     [:option {:value "feet"
-               :label "feet"}]
-     [:option {:value "points"
-               :label "points"}]]
-    [:div.hidden#scheme-inputs]
+    (merge {:class     "flex flex-col gap-4"
+            :hidden    hidden
+            :hx-target :body}
+           (if (nil? workout)
+             {:hx-post "/app/workouts"}
+             {:hx-put (str "/app/workouts/" (:xt/id workout))}))
+    [:div.flex.flex-col.w-full
+     [:label {:for :name} "Title"]
+     [:input.pink-input.p-2.teal-focus#name
+      {:placeholder "Name"
+       :name        "name"
+       :required    true
+       :value       (:workout/name workout)}]]
+    [:div.flex.flex-col.w-full
+     [:label {:for :description} "Description"]
+     [:textarea.pink-input.h-48.row-5.teal-focus#description
+      {:placeholder "Description"
+       :name        "description"
+       :required    true
+       :value       (:workout/description workout)}]]
+    [:div.flex.flex-col.w-full
+     [:label {:for :scheme} "Scheme"]
+     [:select.pink-input.teal-focus#scheme
+      {:name      "scheme"
+       :required  true
+       :hx-get    "/app/workouts/new/scheme-inputs"
+       :hx-target "#scheme-inputs"
+       :hx-swap   "outerHTML"
+       :value     (name (:workout/scheme workout))}
+      [:option {:value "" :label "--Select a Workout Scheme--"}]
+      [:option {:value "time"
+                :label "time"}]
+      [:option {:value "time-with-cap"
+                :label "time-with-cap"}]
+      [:option {:value "pass-fail"
+                :label "pass-fail"}]
+      [:option {:value "rounds-reps"
+                :label "rounds-reps"}]
+      [:option {:value "reps"
+                :label "reps"}]
+      [:option {:value "emom"
+                :label "emom"}]
+      [:option {:value "load"
+                :label "load"}]
+      [:option {:value "calories"
+                :label "calories"}]
+      [:option {:value "meters"
+                :label "meters"}]
+      [:option {:value "feet"
+                :label "feet"}]
+      [:option {:value "points"
+                :label "points"}]]]
+    (if (= :rounds-reps (:workout/scheme workout))
+      [:div#scheme-inputs
+       [:div.flex.flex-col.w-full
+        [:label {:for :reps-per-round} "Reps per round"]
+        [:input.w-full.pink-input.p-2.teal-focus#reps-per-round
+         {:placeholder "Reps per round" :name "reps-per-round" :required true}]]]
+      [:div.hidden#scheme-inputs])
     [:div.flex.gap-3.items-center
      [:label "Score rounds separately?"]
      [:input#score-separately
@@ -132,17 +160,32 @@
        :type      :checkbox
        :hx-get    "/app/workouts/new/score-separately"
        :hx-target "#rounds"
-       :hx-swap   "outerHTML"}]]
-    [:div.hidden#rounds]
+       :hx-swap   "outerHTML"
+       :checked   (not (nil? (:workout/rounds-to-score workout)))}]]
+    (if (not (nil? (:workout/rounds-to-score workout)))
+      [:div#rounds
+       (when (not (nil? (:workout/rounds-to-score workout)))
+         [:div.flex.flex-col.w-full
+          [:label {:for :rounds} "Rounds to score"]
+          [:input.w-full.pink-input.p-2.teal-focus#rounds
+           {:placeholder "Rounds to score"
+            :name        "rounds"
+            :required    true
+            :value       (:workout/rounds-to-score workout)}]])]
+      [:div.hidden#rounds])
     [:div
-     [:input.pink-input.teal-focus.w-full
-      {:name        "search"
-       :type        "search"
-       :id          "search"
-       :placeholder "Search for Movements..."
-       :hx-get      "/app/workouts/new/search"
-       :hx-trigger  "keyup changed delay:500ms, search"
-       :hx-target   "#search-results"}]]
-    [:div#selected-movements]
+     [:div.flex.flex-col.w-full
+      [:label {:for :search} "Search and tag workout with movements"
+       [:input.pink-input.teal-focus.w-full
+        {:name        "search"
+         :type        "search"
+         :id          "search"
+         :placeholder "Search for Movements..."
+         :hx-get      "/app/workouts/new/search"
+         :hx-trigger  "keyup changed delay:500ms, search"
+         :hx-target   "#search-results"}]]]]
+    [:div#selected-movements {:hx-trigger :load
+                              :hx-target  :this
+                              :hx-get     "/app/workouts/new/selected"}]
     [:div#search-results]
-    [:button.btn {:type "submit"} "Create Workout"]))
+    [:button.btn {:type "submit"} (if (nil? workout) "Create Workout" "Update Workout")]))
