@@ -236,19 +236,13 @@
       [:input {:name  (str "hit-miss-" set-number)
                :id    (str "hit-" set-number)
                :class (str "appearance-none p-7 border-2 border-r-0 border-black cursor-pointer "
-                           "checked:bg-brand-teal checked:text-brand-teal checked:color-brand-teal hover:bg-brand-teal checked:border-black checked:ring-0 checked:ring-offset-0 checked:ring-brand-teal checked:ring-opacity-100 checked:ring-off focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-opacity-100 focus:ring-off ")
+                           "checked:bg-brand-teal checked:text-brand-teal checked:color-brand-teal hover:bg-brand-teal checked:border-black checked:ring-0 checked:ring-offset-0 checked:ring-brand-teal checked:ring-opacity-100 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-opacity-100")
                :value :hit
                :type  :checkbox}]
-      ;; [:input.sm:hidden {:name  (str "hit-miss-" set-number)
-      ;;          :id    (str "hit-" set-number)
-      ;;          :class (str "appearance-none p-7 border-2 border-r-0 border-black cursor-pointer "
-      ;;                      "checked:bg-brand-teal checked:text-brand-teal checked:color-brand-teal hover:bg-brand-teal checked:border-black checked:ring-0 checked:ring-offset-0 checked:ring-brand-teal checked:ring-opacity-100 checked:ring-off focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-opacity-100 focus:ring-off ")
-      ;;          :value :hit
-      ;;          :type  :checkbox}]
       ]]
     [:input{:name     (str "weight-" set-number)
              :id       (str "weight-" set-number)
-             :class    (str "p-4 border-2 border-black w-1/2 text-center font-bold")
+             :class    (str "p-4 border-2 border-black w-1/2 text-center font-bold teal-focus ")
              :required true
              :type     :number}]
     [:p.m-0.bg-white.p-4.border-2.border-l-0.border-black.font-medium.whitespace-nowrap (str "x " reps " reps")]
