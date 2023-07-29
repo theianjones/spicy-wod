@@ -222,25 +222,39 @@
 (defn strength-set-inputs
   [{:keys [set-number reps]}]
   [:div
-   [:p (str "Set #" set-number)]
+   [:p.text-2xl.font-medium.text-center.mt-4 (str "Set #" set-number)]
    [:input {:value reps
             :type  "hidden"
             :id    (str "reps-" set-number)
             :name  (str "reps-" set-number)}]
-   [:.flex.gap-2.items-center.m-0
-    [:input {:name     (str "weight-" set-number)
-             :id       (str "weight-" set-number)
-             :required true
-             :type     :number}]
-    [:p.m-0 (str "x " reps " reps")]]
-   [:fieldset
-    [:.flex.gap-2
-     [:label
+   [:.flex.justify-center.items-center.m-0
+    [:fieldset
+     [:.flex.gap-2
+      [:label.text-lg.sm:text-2xl.font-medium.text-center.h-fit.my-auto
+       {:for (str "hit-" set-number)}
+       "Hit"]
       [:input {:name  (str "hit-miss-" set-number)
                :id    (str "hit-" set-number)
+               :class (str "appearance-none p-7 border-2 border-r-0 border-black cursor-pointer "
+                           "checked:bg-brand-teal checked:text-brand-teal checked:color-brand-teal hover:bg-brand-teal checked:border-black checked:ring-0 checked:ring-offset-0 checked:ring-brand-teal checked:ring-opacity-100 checked:ring-off focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-opacity-100 focus:ring-off ")
                :value :hit
                :type  :checkbox}]
-      "Hit"]]]])
+      ;; [:input.sm:hidden {:name  (str "hit-miss-" set-number)
+      ;;          :id    (str "hit-" set-number)
+      ;;          :class (str "appearance-none p-7 border-2 border-r-0 border-black cursor-pointer "
+      ;;                      "checked:bg-brand-teal checked:text-brand-teal checked:color-brand-teal hover:bg-brand-teal checked:border-black checked:ring-0 checked:ring-offset-0 checked:ring-brand-teal checked:ring-opacity-100 checked:ring-off focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-opacity-100 focus:ring-off ")
+      ;;          :value :hit
+      ;;          :type  :checkbox}]
+      ]]
+    [:input{:name     (str "weight-" set-number)
+             :id       (str "weight-" set-number)
+             :class    (str "p-4 border-2 border-black w-1/2 text-center font-bold")
+             :required true
+             :type     :number}]
+    [:p.m-0.bg-white.p-4.border-2.border-l-0.border-black.font-medium.whitespace-nowrap (str "x " reps " reps")]
+    
+    ]
+   ])
 
 
 (defn get-constant-strength-sets
@@ -288,15 +302,18 @@
                (when (= type "variable")
                  [:div (get-variable-strength-sets {:sets sets
                                                     :reps reps})])
-               [:input.pink-input.teal-focus
+               [:div.flex.flex-col.justify-center.items-center.gap-4
+                [:input.pink-input.teal-focus.mt-4.mx-auto
                 {:type  "date"
                  :name  "date"
                  :value (biff/format-date
                           (biff/now) "YYYY-MM-dd")}]
-               [:textarea.w-full.pink-input.teal-focus#notes
+               [:textarea#notes
                 {:name        "notes"
-                 :placeholder "notes"}]
-               [:button.btn "Submit"])))
+                 :placeholder "notes"
+                 :rows        7
+                 :class       (str "w-full pink-input teal-focus")}]
+               [:button.btn "Submit"]])))
 
 
 (defn variable-reps-form
@@ -364,7 +381,7 @@
               [:div.flex.flex-row.justify-center.gap-8
                [:div.w-36.text-center
                 [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :sets} "Sets"]
-                [:p.text-9xl.font-bold.cursor-default {:x-text :sets}]
+                [:p.text-5xl.sm:text-9xl.font-bold.cursor-default {:x-text :sets}]
                 [:input {:x-model :sets
                          :name    :sets
                          :id      :sets
@@ -374,10 +391,10 @@
                                     :type       "button"} "-"]
                  [:button.btn.w-12 {:x-on:click "sets++"
                                     :type       "button"} "+"]]]
-               [:p.text-7xl.font-bold.self-center.cursor-default "X"]
+               [:p.text-3xl.sm:text-7xl.font-bold.self-center.cursor-default "X"]
                [:div.w-36.text-center
                 [:label.text-2xl.font-bold.block.text-center.mb-2 {:for :reps} "Reps"]
-                [:p.text-9xl.font-bold.cursor-default {:x-text :reps}]
+                [:p.text-5xl.sm:text-9xl.font-bold.cursor-default {:x-text :reps}]
                 [:input {:x-model :reps
                          :name    :reps
                          :id      :reps
