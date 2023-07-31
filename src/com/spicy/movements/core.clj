@@ -61,11 +61,11 @@
   [{:result/keys [type] :as result}]
   (let [sets (:result-set/_parent type)]
     [:<>
-     [:div.p-2.text-lg.border-r-2.border-l-2.border-b-2.border-black
+     [:div.flex.justify-center.items-center.p-2.text-lg.border-r-2.border-l-2.border-b-2.border-black
       (biff/format-date (:result/date result) "YYYY-MM-dd")]
-     [:div.p-2.text-lg.border-r-2.border-b-2.border-black
+     [:div.p-2.text-lg.flex.justify-center.items-center.border-r-2.border-b-2.border-black
       (sets-n-reps sets)]
-     [:div.p-2.text-lg.border-r-2.border-b-2.border-black
+     [:div.p-2.flex.justify-center.items-center.text-lg.border-r-2.border-b-2.border-black
       (apply max (map #(if (= :pass (:result-set/status %))
                          (:result-set/weight %)
                          0) sets))]
@@ -101,19 +101,23 @@
                        [(parse-uuid (:result-id path-params))]))]
     [:<>
      (biff/form {:id        (str "expanded-" (:xt/id result))
-                 :class     "col-span-4 grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-brand-teal"
+                 :class     (str "col-span-4 grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-darker-brand-teal")
                  :hidden    {:sets (count (-> result :result/type :result-set/_parent))}
                  :hx-put    (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
                  :hx-swap   "outerHTML"
                  :hx-target (str "#expanded-" (:xt/id result))}
-                [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg.font-bold "Set #"]
-                [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Reps"]
-                [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Weight"]
-                [:div.px-2.py-4.border-r-2.border-b-2.border-black.font-bold "Hit?"]
+                [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg.font-bold.whitespace-nowrap "Set #"]
+                [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Reps"]
+                [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold 
+                 "Weight" 
+                 [:span.font-normal.ml-2 "(edit)"]]
+                [:div.px-2.py-4.border-r-2.border-b-2.border-black.flex.justify-center.items-center.font-bold 
+                 "Hit?" 
+                 [:span.font-normal.ml-2 "(edit)"]]
                 (map (fn [{:result-set/keys [number reps weight status] :xt/keys [id]}]
                        [:<>
-                        [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg number]
-                        [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg reps]
+                        [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg number]
+                        [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg reps]
                         [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg
                          [:input {:name  (str "id-" number)
                                   :id    (str "id-" number)
@@ -121,19 +125,21 @@
                                   :value id}]
                          [:input {:name     (str "weight-" number)
                                   :id       (str "weight-" number)
+                                  :class    (str "w-32 sm:w-full text-center ")
                                   :required true
                                   :type     :number
                                   :value    weight}]]
-                        [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.capitalize
+                        [:div.flex.justify-center.items-center.w-full.px-4.sm:px-2.py-4.border-r-2.border-b-2.border-black.text-lg.capitalize
                          [:input {:name    (str "hit-miss-" number)
                                   :id      (str "hit-" number)
+                                  :class   (str "")
                                   :value   :hit
                                   :type    :checkbox
                                   :checked (= :pass status)}]]])
                      (sort-by :result-set/number (-> result :result/type :result-set/_parent)))
                 [:div.px-2.py-6.border-r-2.border-b-2.border-l-2.border-black ""]
                 [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
-                [:button.p-2.text-md.grow.bg-darker-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
+                [:button.p-2.text-md.grow.bg-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
                  {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
                   :hx-target (str "#expanded-" (:xt/id result))
                   :hx-swap   "outerHTML"}
@@ -154,22 +160,22 @@
                        [(parse-uuid (:result-id path-params))]))]
     [:<>
      [:div.col-span-4 {:id    (str "expanded-" (:xt/id result))
-                       :class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-brand-teal"}
-      [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg.font-bold "Set #"]
-      [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Reps"]
-      [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Weight"]
-      [:div.px-2.py-4.border-r-2.border-b-2.border-black.font-bold "Hit?"]
+                       :class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-darker-brand-teal"}
+      [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-center.text-lg.font-bold.whitespace-nowrap "Set #"]
+      [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-center.text-lg.font-bold "Reps"]
+      [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-center.text-lg.font-bold "Weight"]
+      [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-center.font-bold "Hit?"]
       (map (fn [{:result-set/keys [number reps weight status]}]
              [:<>
-              [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg number]
-              [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg reps]
-              [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg weight]
-              [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.capitalize (name status)]])
+              [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-center.text-lg number]
+              [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg reps]
+              [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg weight]
+              [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.capitalize (name status)]])
            (sort-by :result-set/number (-> result :result/type :result-set/_parent)))
       [:div.px-2.py-6.border-r-2.border-b-2.border-l-2.border-black ""]
       [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
       [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
-      [:button.p-2.text-md.grow.bg-darker-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
+      [:button.p-2.text-md.grow.bg-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
        {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
         :hx-target (str "#expanded-" (:xt/id result))
         :hx-swap   "outerHTML"}
@@ -209,9 +215,9 @@
                        [:p.text-md "Log a session and it will show up here."]])
                     (when (not-empty movement-results)
                       [:div {:class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full border-b-4 border-r-4 border-black mb-4 rounded-md bg-brand-teal"}
-                       [:div.px-2.py-4.border-2.border-black.text-lg.font-bold "Date"]
-                       [:div.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold "Rep Scheme"]
-                       [:div.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold "Best Lift"]
+                       [:div.flex.justify-center.items-center.px-2.py-4.border-2.border-black.text-lg.font-bold "Date"]
+                       [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold.whitespace-nowrap "Rep Scheme"]
+                       [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold.whitespace-nowrap "Best Lift"]
                        [:div.border-r-2.border-b-2.border-t-2.border-black ""]
                        (map movement-results-ui movement-results)])
                     (when (not-empty workouts)
@@ -224,7 +230,7 @@
 (defn strength-set-inputs
   [{:keys [set-number reps]}]
   [:div
-   [:p.text-2xl.font-medium.text-center.mt-4 (str "Set #" set-number)]
+   [:p.text-2xl.font-medium.text-center.mt-4.whitespace-nowrap (str "Set #" set-number)]
    [:input {:value reps
             :type  "hidden"
             :id    (str "reps-" set-number)
