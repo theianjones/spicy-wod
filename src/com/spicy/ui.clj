@@ -1,9 +1,8 @@
-
-
 (ns com.spicy.ui
   (:require
     [cheshire.core :as cheshire]
     [clojure.java.io :as io]
+    [clojure.string :as string]
     [com.biffweb :as biff]
     [com.spicy.settings :as settings]
     [ring.middleware.anti-forgery :as csrf]))
@@ -63,21 +62,19 @@
        [:div {:class (str "relative text-left block sm:hidden ") :x-data "{ open: false }"}
         [:div
          [:button.btn {:type "button"
-                   :class (str "flex items-center focus:ring-0 mx-auto ")
-                   :id "menu-button"
-                   :aria-expanded "true"
-                   :aria-haspopup "true"
-                   :x-on:click "open = ! open"}
+                       :class (str "flex items-center focus:ring-0 mx-auto ")
+                       :id "menu-button"
+                       :aria-expanded "true"
+                       :aria-haspopup "true"
+                       :x-on:click "open = ! open"}
           [:span.sr-only "Open options"]
-          "Menu" 
-          ]]
+          "Menu"]]
         [:div {:class            (str "absolute -right-16 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ")
                :role             "menu"
                :aria-orientation "vertical"
                :aria-labelledby  "menu-button"
                :tabindex         "-1"
-               :x-show           "open"
-               }
+               :x-show           "open"}
          [:div {:role "none" :class (str "py-1 bg-white border-2 border-black ")}
           [:a {:href     "/app/workouts"
                :class    (str "text-black font-bold block px-4 py-2 text-sm border-b ")
@@ -94,29 +91,28 @@
                :role     "menuitem"
                :tabindex "-1"
                :id       "menu-item-0"} "Scores"]
-          (when (:uid session) 
+          (when (:uid session)
             [:a {:href     "/app/results"
-               :class    (str "text-black font-bold block px-4 py-2 border-t text-sm  ")
-               :role     "menuitem"
-               :tabindex "-1"
-               :id       "menu-item-0"} 
+                 :class    (str "text-black font-bold block px-4 py-2 border-t text-sm  ")
+                 :role     "menuitem"
+                 :tabindex "-1"
+                 :id       "menu-item-0"}
              (biff/form
-              {:action "/auth/signout"
-               :class  ""}
-              [:button {:type  "submit"
-                        :class (str "text-black font-bold block p-0  text-sm ")}
-               "Sign out"])
-             ])]]]
+               {:action "/auth/signout"
+                :class  ""}
+               [:button {:type  "submit"
+                         :class (str "text-black font-bold block p-0  text-sm ")}
+                "Sign out"])])]]]
        [:div.hidden.sm:flex.gap-4.pl-0.ml-0
         [:a.btn  {:href "/app/workouts"} "Workouts"]
         [:a.btn {:href "/app/movements"} "Movements"]
         [:a.btn {:href "/app/results"} "Scores"]
         (when (:uid session)
           [:div (biff/form
-            {:action "/auth/signout"
-             :class "p-0 w-fit h-fit "}
-            [:button.btn {:type "submit"}
-             "Sign out"])])]]]
+                  {:action "/auth/signout"
+                   :class "p-0 w-fit h-fit "}
+                  [:button.btn {:type "submit"}
+                   "Sign out"])])]]]
      [:.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
       (when (bound? #'csrf/*anti-forgery-token*)
         {:hx-headers (cheshire/generate-string
@@ -153,13 +149,16 @@
 
 
 (defn workout-ui
-  [{:workout/keys [name description scheme] :keys [children class]}]
-  [:div
+  [{:workout/keys [name description scheme] :keys [xt/id children class]}]
+  [:a
    {:class (str
              "flex flex-col justify-between items-center gap-3 "
              "w-full sm:w-[354px] bg-white p-6 "
              "border-2 border-black hover:brutal-shadow"
-             (or class ""))}
+             (or class ""))
+    :href  (str "/app/workouts/" id)
+    :title (str "View " name)
+    :aria-label (str "View " name)}
    [:div.flex.items-center.justify-between.pb-2.sm:pb-4.w-full
     [:h2.text-3xl.cursor-default name]
     [:div.block.sm:hidden

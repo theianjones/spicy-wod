@@ -52,8 +52,7 @@
   }
 
   body {
-    @apply bg-brand-pink absolute h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center;
-
+    @apply bg-brand-pink/40 absolute h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center;
   }
 
   h1,
@@ -68,45 +67,44 @@
 
 @layer components {
   .btn {
-    @apply z-[1] border-2 border-black bg-white p-2 text-2xl font-bold text-black hover:shadow-[2px_2px_0px_rgba(0,0,0,100)] 
+    @apply z-[1] border-2 border-black bg-white p-2 text-2xl font-bold text-black hover:shadow-[2px_2px_0px_rgba(0,0,0,100)];
   }
 
   .btn-no-shadow {
-    @apply border-2 border-black bg-white p-2 text-2xl font-bold text-black
+    @apply border-2 border-black bg-white p-2 text-2xl font-bold text-black;
   }
 
   .btn-no-bg {
-    @apply z-[1] border-2 border-black bg-white p-2 text-2xl font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)]  
+    @apply z-[1] border-2 border-black bg-white p-2 text-2xl font-bold text-black shadow-[2px_2px_0px_rgba(0,0,0,100)];
   }
 
   .btn-hover {
     @apply hover:shadow-[2px_2px_0px_rgba(242,154,218,100)] hover:border-brand-pink  hover:bg-black hover:bg-opacity-10;
   }
-  
-  .pink-input { 
-    @apply bg-white border-2 focus:ring-0 
+
+  .pink-input {
+    @apply bg-white border-2 focus:ring-0;
   }
 
   .pink-focus {
-    @apply focus:ring-offset-0 focus:border-brand-pink focus:bg-brand-pink focus:bg-opacity-10
+    @apply focus:ring-offset-0 focus:border-brand-pink focus:bg-brand-pink focus:bg-opacity-10;
   }
-  
+
   .teal-focus {
-    @apply  focus:ring-0 focus:ring-offset-0 focus:border-brand-teal
+    @apply focus:ring-0 focus:ring-offset-0 focus:border-brand-teal;
   }
 
   .brutal-shadow {
-    @apply shadow-[2px_2px_0px_rgba(0,0,0,100)]
+    @apply shadow-[2px_2px_0px_rgba(0,0,0,100)];
   }
 
   .brutal-inner-shadow {
-    @apply shadow-[-2px_-2px_0px_rgba(0,0,0,100)]
+    @apply shadow-[-2px_-2px_0px_rgba(0,0,0,100)];
   }
-  
 }
 
 @layer utilities {
-   link {
+  link {
     @apply text-blue-600 hover:underline;
   }
 }
