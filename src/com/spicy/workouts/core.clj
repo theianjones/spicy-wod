@@ -23,22 +23,12 @@
                 [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.mb-14.justify-center
                  [:h1.text-5xl.w-fit.self-center.mt-8 "Workouts"]
                  [:a
-                  {:class (str "btn bg-brand-teal h-1/2 self-center"
-                  )
+                  {:class (str "btn bg-brand-teal h-1/2 self-center")
                    :href  (str "/app/workouts/new")}
                   "Add Workout"]]
 
                 [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
-                 (map #(ui/workout-ui
-                         (assoc %
-                                :children
-                                [:a.btn.bg-white.text-sm.font-normal.border.border-radius.border-black.py-1.px-2.mt-auto
-                                 {:href (str "/app/workouts/" (string/lower-case
-                                                                (if (:workout/user %)
-                                                                  (:xt/id %)
-                                                                  (:workout/name %))))}
-                                 "History"]))
-                      workouts)])])))
+                 (map ui/workout-ui workouts)])])))
 
 
 (defn show
