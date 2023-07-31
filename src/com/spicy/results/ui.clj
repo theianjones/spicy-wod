@@ -29,7 +29,7 @@
   (let [{:keys [workout movement description sets name notes date]} (normalized-result result)]
     [:div.flex.flex-col.max-w-sm.sm:max-w-xl.mx-auto#result-ui
      [:.flex.flex-row.items-baseline.justify-between.mb-3
-      [:a.text-2xl.font-bold {:href (str "/app/workouts/" (string/lower-case name))} name]
+      [:a.text-2xl.font-bold {:href (str "/app/workouts/" (:xt/id workout))} name]
       [:p.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.mb-0 date]]
      [:.flex.justify-between
       [:div.flex.flex-col.gap-2
