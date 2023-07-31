@@ -1,6 +1,6 @@
 (ns com.spicy.workouts.ui
   (:require
-    [com.biffweb :as biff :refer [q]] 
+    [com.biffweb :as biff :refer [q]]
     [com.spicy.time :as t]
     [com.spicy.ui :as ui]))
 
@@ -110,7 +110,7 @@
        :value       (:workout/name workout)}]]
     [:div.flex.flex-col.w-full
      [:label {:for :description} "Description"]
-     [:textarea.pink-input.h-48.row-5.teal-focus#description 
+     [:textarea.pink-input.h-48.row-5.teal-focus#description
       {:placeholder "Description"
        :name        "description"
        :required    true
@@ -123,7 +123,7 @@
        :hx-get    "/app/workouts/new/scheme-inputs"
        :hx-target "#scheme-inputs"
        :hx-swap   "outerHTML"
-       :value     (name (:workout/scheme workout))}
+       :value     (when (not (nil? workout)) (name (:workout/scheme workout)))}
       [:option {:value "" :label "--Select a Workout Scheme--"}]
       [:option {:value "time"
                 :label "time"}]

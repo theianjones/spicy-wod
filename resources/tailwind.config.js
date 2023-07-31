@@ -9,7 +9,7 @@ module.exports = {
       colors: {
         "brand-pink": "#FD8FF4",
         "brand-background": "#FFF1F3",
-        "brand-teal": "#99FBFF",
+        "brand-teal": "#73E59E",
         "darker-brand-teal": "rgb(59 201 121)",
         "brand-purple": "#95A2FA",
         "brand-blue": "#95A2FA",
