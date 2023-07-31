@@ -42,7 +42,7 @@
                               [:div.flex.flex-wrap.justify-center.sm:justify-between.gap-4.mt-8
                                [:h1.text-5xl.w-fit.self-center "Movements"]
                                [:select.btn.text-base.w-32.h-12.teal-focus.hover:cursor-pointer {:name      "type"
-                                                                            :onchange "window.open('?type=' + this.value,'_self')"} 
+                                                                                                 :onchange "window.open('?type=' + this.value,'_self')"}
                                 [:option.text-base {:value :strength :selected (or (= (:type params) "stregnth") (empty? (:type params)))} "Strength"]
                                 [:option.text-base {:value :gymnastic :selected (= (:type params) "gymnastic")} "Gymnastic"]
                                 [:option.text-base {:value :monostructural :selected (= (:type params) "monostructural")} "Cardio"]]]
@@ -180,14 +180,16 @@
   [{:keys [biff/db path-params session] :as ctx}]
   (let [movement-id (parse-uuid (:id path-params))
         m                (xt/entity db movement-id)
-        movement-results (biff/q db '{:find  (pull result [* {:result/type
-                                                              [*
-                                                               {:result-set/_parent [*]}]}])
-                                      :in    [[user movement]]
-                                      :where [[result :result/user user]
-                                              [result :result/type type]
-                                              [type :result/movement movement]]}
-                                 [(:uid session) movement-id])
+        movement-results (map second (biff/q db '{:find  [date (pull result [* {:result/type
+                                                                                [*
+                                                                                 {:result-set/_parent [*]}]}])]
+                                                  :in    [[user movement]]
+                                                  :where [[result :result/user user]
+                                                          [result :result/type type]
+                                                          [result :result/date date]
+                                                          [type :result/movement movement]]
+                                                  :order-by [[date :desc]]}
+                                             [(:uid session) movement-id]))
         workouts         (biff/q db '{:find  (pull w [*])
                                       :in    [[movement user]]
                                       :where [[w :workout/name]
@@ -238,17 +240,13 @@
                :class (str "appearance-none p-7 border-2 border-r-0 border-black cursor-pointer "
                            "checked:bg-brand-teal checked:text-brand-teal checked:color-brand-teal hover:bg-brand-teal checked:border-black checked:ring-0 checked:ring-offset-0 checked:ring-brand-teal checked:ring-opacity-100 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-opacity-100")
                :value :hit
-               :type  :checkbox}]
-      ]]
-    [:input{:name     (str "weight-" set-number)
+               :type  :checkbox}]]]
+    [:input {:name     (str "weight-" set-number)
              :id       (str "weight-" set-number)
              :class    (str "p-4 border-2 border-black w-1/2 text-center font-bold teal-focus ")
              :required true
              :type     :number}]
-    [:p.m-0.bg-white.p-4.border-2.border-l-0.border-black.font-medium.whitespace-nowrap (str "x " reps " reps")]
-    
-    ]
-   ])
+    [:p.m-0.bg-white.p-4.border-2.border-l-0.border-black.font-medium.whitespace-nowrap (str "x " reps " reps")]]])
 
 
 (defn get-constant-strength-sets
@@ -298,16 +296,16 @@
                                                     :reps reps})])
                [:div.flex.flex-col.justify-center.items-center.gap-4
                 [:input.pink-input.teal-focus.mt-4.mx-auto
-                {:type  "date"
-                 :name  "date"
-                 :value (biff/format-date
-                          (biff/now) "YYYY-MM-dd")}]
-               [:textarea#notes
-                {:name        "notes"
-                 :placeholder "notes"
-                 :rows        7
-                 :class       (str "w-full pink-input teal-focus")}]
-               [:button.btn "Submit"]])))
+                 {:type  "date"
+                  :name  "date"
+                  :value (biff/format-date
+                           (biff/now) "YYYY-MM-dd")}]
+                [:textarea#notes
+                 {:name        "notes"
+                  :placeholder "notes"
+                  :rows        7
+                  :class       (str "w-full pink-input teal-focus")}]
+                [:button.btn "Submit"]])))
 
 
 (defn variable-reps-form
