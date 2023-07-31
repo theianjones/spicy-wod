@@ -52,8 +52,8 @@
                                      [result :result/type wod]
                                      [wod :result/workout workout-id]]}
                         [user workout])]
-    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] p-8 rounded-md shadow-[-2px_-2px_0px_rgba(0,0,0,100)] m-4")}
-     [:div {:class "absolute h-full rounded-md bg-brand-background shadow-[-2px_-2px_0px_rgba(0,0,0,100)] -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
+    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] border-2 border-black p-8 m-4 bg-white ")}
+     [:div {:class "absolute h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
      [:h2.text-3xl "Log Book"]
      (if (zero? (count results))
        [:p {:class (str " w-fit m-auto ")} "Log a workout to see your history!"]
@@ -88,7 +88,7 @@
      [:a {:href  (str "/app/workouts/" id "/edit")
           :class (str "btn h-fit w-fit mx-auto sm:mx-0")} "Edit"])
    [:a {:href  (str "/app/results/new?workout=" id)
-        :class (str "btn h-fit w-fit mx-auto sm:mx-0")} "Log workout"]])
+        :class (str "btn h-fit w-fit mx-auto sm:mx-0 bg-brand-teal ")} "Log workout"]])
 
 
 (defn workout-form
@@ -102,9 +102,10 @@
              {:hx-put (str "/app/workouts/" (:xt/id workout))}))
     [:div.flex.flex-col.w-full
      [:label {:for :name} "Title"]
-     [:input.pink-input.p-2.teal-focus#name
+     [:input#name
       {:placeholder "Name"
        :name        "name"
+       :class       (str "pink-input p-2 outline-none focus-teal")
        :required    true
        :value       (:workout/name workout)}]]
     [:div.flex.flex-col.w-full
@@ -122,7 +123,7 @@
        :hx-get    "/app/workouts/new/scheme-inputs"
        :hx-target "#scheme-inputs"
        :hx-swap   "outerHTML"
-       :value     (name (:workout/scheme workout))}
+       :value     (when (not (nil? workout)) (name (:workout/scheme workout)))}
       [:option {:value "" :label "--Select a Workout Scheme--"}]
       [:option {:value "time"
                 :label "time"}]
@@ -188,4 +189,4 @@
                               :hx-target  :this
                               :hx-get     "/app/workouts/new/selected"}]
     [:div#search-results]
-    [:button.btn {:type "submit"} (if (nil? workout) "Create Workout" "Update Workout")]))
+    [:button.btn.bg-brand-teal {:type "submit"} (if (nil? workout) "Create Workout" "Update Workout")]))

@@ -62,7 +62,7 @@
       [:nav
        [:div {:class (str "relative text-left block sm:hidden ") :x-data "{ open: false }"}
         [:div
-         [:button.btn.pink-focus {:type "button"
+         [:button.btn {:type "button"
                    :class (str "flex items-center focus:ring-0 mx-auto ")
                    :id "menu-button"
                    :aria-expanded "true"
@@ -71,14 +71,14 @@
           [:span.sr-only "Open options"]
           "Menu" 
           ]]
-        [:div {:class            (str "absolute -right-16 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ")
+        [:div {:class            (str "absolute -right-16 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ")
                :role             "menu"
                :aria-orientation "vertical"
                :aria-labelledby  "menu-button"
                :tabindex         "-1"
                :x-show           "open"
                }
-         [:div {:role "none" :class (str "py-1 bg-[#e5d6dc] rounded ")}
+         [:div {:role "none" :class (str "py-1 bg-white border-2 border-black ")}
           [:a {:href     "/app/workouts"
                :class    (str "text-black font-bold block px-4 py-2 text-sm border-b ")
                :role     "menuitem"
@@ -107,15 +107,15 @@
                         :class (str "text-black font-bold block p-0  text-sm ")}
                "Sign out"])
              ])]]]
-       [:ul.hidden.sm:flex.list-none.list-inside.gap-4.pl-0.ml-0
-        [:li.py-3 [:a.btn {:href "/app/workouts"} "Workouts"]]
-        [:li.py-3 [:a.btn {:href "/app/movements"} "Movements"]]
-        [:li.py-3 [:a.btn {:href "/app/results"} "Scores"]]
+       [:div.hidden.sm:flex.gap-4.pl-0.ml-0
+        [:a.btn  {:href "/app/workouts"} "Workouts"]
+        [:a.btn {:href "/app/movements"} "Movements"]
+        [:a.btn {:href "/app/results"} "Scores"]
         (when (:uid session)
-          [:li.py-1 (biff/form
+          [:div (biff/form
             {:action "/auth/signout"
              :class "p-0 w-fit h-fit "}
-            [:button.btn-no-shadow {:type "submit"}
+            [:button.btn {:type "submit"}
              "Sign out"])])]]]
      [:.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
       (when (bound? #'csrf/*anti-forgery-token*)
@@ -129,8 +129,8 @@
 
 (defn panel
   [& children]
-  [:div {:class (str  "rounded-3xl bg-brand-pink md:p-12 p-4 "
-                      "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
+  [:div {:class (str  "bg-brand-background md:p-12 p-4 border-2 border-black "
+                      " "
                       "flex flex-col item-center ")}
    children])
 
@@ -157,15 +157,15 @@
   [:div
    {:class (str
              "flex flex-col justify-between items-center gap-3 "
-             "w-full sm:w-[354px] bg-brand-background p-6 sm:rounded-md "
-             "drop-shadow-[2px_2px_0px_rgba(0,0,0,100)] "
+             "w-full sm:w-[354px] bg-white p-6 "
+             "border-2 border-black hover:brutal-shadow"
              (or class ""))}
    [:div.flex.items-center.justify-between.pb-2.sm:pb-4.w-full
     [:h2.text-3xl.cursor-default name]
     [:div.block.sm:hidden
      (when (some? children)
        children)]
-    [:div.hidden.sm:block.border.border-radius.rounded-full.border-black.py-1.px-2.cursor-default.whitespace-nowrap.text-sm.self-start (display-scheme scheme)]]
+    [:div.hidden.sm:block.border.border-radius.border-black.py-1.px-2.cursor-default.whitespace-nowrap.text-sm.self-start (display-scheme scheme)]]
    [:span.block.sm:hidden.cursor-default.w-fit.self-start.whitespace-nowrap (display-scheme scheme)]
    [:p.self-start.sm:self-center.whitespace-pre-wrap description]
    [:div.hidden.sm:block

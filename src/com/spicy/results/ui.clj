@@ -57,7 +57,7 @@
        [:button {:hx-get    (str "/app/results/" (:xt/id result) "/edit")
                  :hx-target "closest #result-ui"
                  :hx-swap   "outerHTML"
-                 :class     (str "self-end btn-no-shadow bg-brand-pink h-1/2 text-xl font-normal ")} "Edit"]]]]))
+                 :class     (str "self-end btn-no-shadow bg-white text-sm px-4 py-2 font-normal ")} "edit"]]]]))
 
 
 (defn scheme-forms
