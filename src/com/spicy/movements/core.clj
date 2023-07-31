@@ -101,15 +101,19 @@
                        [(parse-uuid (:result-id path-params))]))]
     [:<>
      (biff/form {:id        (str "expanded-" (:xt/id result))
-                 :class     (str "col-span-4 grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-[#73E59E]")
+                 :class     (str "col-span-4 grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-darker-brand-teal")
                  :hidden    {:sets (count (-> result :result/type :result-set/_parent))}
                  :hx-put    (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
                  :hx-swap   "outerHTML"
                  :hx-target (str "#expanded-" (:xt/id result))}
                 [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg.font-bold.whitespace-nowrap "Set #"]
                 [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Reps"]
-                [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Weight"]
-                [:div.px-2.py-4.border-r-2.border-b-2.border-black.flex.justify-center.items-center.font-bold "Hit?"]
+                [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold 
+                 "Weight" 
+                 [:span.font-normal.ml-2 "(edit)"]]
+                [:div.px-2.py-4.border-r-2.border-b-2.border-black.flex.justify-center.items-center.font-bold 
+                 "Hit?" 
+                 [:span.font-normal.ml-2 "(edit)"]]
                 (map (fn [{:result-set/keys [number reps weight status] :xt/keys [id]}]
                        [:<>
                         [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg number]
@@ -135,7 +139,7 @@
                      (sort-by :result-set/number (-> result :result/type :result-set/_parent)))
                 [:div.px-2.py-6.border-r-2.border-b-2.border-l-2.border-black ""]
                 [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
-                [:button.p-2.text-md.grow.bg-darker-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
+                [:button.p-2.text-md.grow.bg-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
                  {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
                   :hx-target (str "#expanded-" (:xt/id result))
                   :hx-swap   "outerHTML"}
@@ -156,7 +160,7 @@
                        [(parse-uuid (:result-id path-params))]))]
     [:<>
      [:div.col-span-4 {:id    (str "expanded-" (:xt/id result))
-                       :class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-[#73E59E]"}
+                       :class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-darker-brand-teal"}
       [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-center.text-lg.font-bold.whitespace-nowrap "Set #"]
       [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-center.text-lg.font-bold "Reps"]
       [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-center.text-lg.font-bold "Weight"]
@@ -171,7 +175,7 @@
       [:div.px-2.py-6.border-r-2.border-b-2.border-l-2.border-black ""]
       [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
       [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
-      [:button.p-2.text-md.grow.bg-darker-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
+      [:button.p-2.text-md.grow.bg-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
        {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
         :hx-target (str "#expanded-" (:xt/id result))
         :hx-swap   "outerHTML"}
