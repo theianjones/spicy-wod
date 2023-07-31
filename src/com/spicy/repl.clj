@@ -38,7 +38,8 @@
                                {:db/op :delete
                                 :xt/id id}) ids))
     (add-fixtures "workouts.edn")
-    (add-fixtures "movements.edn")))
+    (add-fixtures "movements.edn")
+    (add-fixtures "movements_cont.edn")))
 
 
 (def user-a
@@ -54,6 +55,7 @@
   ;; restarting your app, and calling add-fixtures again.
   (add-fixtures "workouts.edn")
   (add-fixtures "movements.edn")
+  (add-fixtures "movements_cont.edn")
 
   (scary-reset-db!)
   (xt/entity (:biff/db (get-context)) #uuid "2af37195-ac44-40f4-a546-41c52f558ee6")
