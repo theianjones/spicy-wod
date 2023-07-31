@@ -1,0 +1,135 @@
+[{:movement/name "back pause squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "back squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "box squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "front box squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "front pause squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "front squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "high bar back squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "low bar back squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "overhead squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "split squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "zurcher squat"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "clean extension"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "hang clean"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "hang power clean"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "hang squat clean"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "muscle clean"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "power clean"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "squat clean"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "squat pause clean"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "floor press"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "seated press"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "snatch grip push press"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "jerk balance"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "jerk dip"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "push jerk"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "split jerk"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "squat jerk"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "hang power snatch"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "hang squat snatch"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "muscle snatch"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "power snatch"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "snatch extension"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "snatch pull"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "squat pause snatch"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "squat snatch"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "romainian deadlift"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "snatch grip deadlift"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "stiff-legged deadlift"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "sumo deadlift high pull"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "power clean and jerk"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "bent over rows"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "front rack lunges"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "good morning"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "pendlay row"
+  :movement/type :strength
+  :db/doc-type   :movement}
+ {:movement/name "squat clean thruster (cluster)"
+  :movement/type :strength
+  :db/doc-type   :movement}]
