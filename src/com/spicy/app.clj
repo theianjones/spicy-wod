@@ -42,8 +42,8 @@
                                              :order-by [[d :desc]]}
                                         [(:uid session)]))]
     (ui/page
-      {:session session}
-      (ui/panel [:div.flex.gap-4
+      ctx
+      (ui/panel [:div.flex.gap-4.flex-col.sm:flex-row
                  [:div.p-4.border-2.border-black.bg-white
                   [:h2.text-2xl.font-bold "Latest WODs"]
                   (if (zero? (count wod-results))

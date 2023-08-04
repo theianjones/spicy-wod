@@ -47,8 +47,23 @@
     body))
 
 
+(defn link
+  [{:keys [match href class] :as attrs
+    :or {class ""}}
+   & children]
+  (let [current-route? (or (= (:path match) href)
+                           (= (:path match) (str href "/")))
+        tag (if current-route? :div :a)
+        current-route-class (when current-route? " bg-brand-background ")]
+    [tag (merge attrs
+                {:class    (str "text-black font-bold block p-4 text-lg border-b " class current-route-class)
+                 :role     "menuitem"
+                 :tabindex "-1"
+                 :id       "menu-item-0"}) children]))
+
+
 (defn page
-  [{:keys [session] :as ctx} & body]
+  [{:keys [session reitit.core/match] :as ctx} & body]
   (base
     ctx
     [:.relative.h-full.p-4
@@ -61,12 +76,13 @@
       [:nav
        [:div {:class (str "relative text-left block sm:hidden ") :x-data "{ open: false }"}
         [:div
-         [:button.btn {:type "button"
-                       :class (str "flex items-center focus:ring-0 mx-auto ")
-                       :id "menu-button"
-                       :aria-expanded "true"
-                       :aria-haspopup "true"
-                       :x-on:click "open = ! open"}
+         [:button.btn {:type               "button"
+                       :class              (str "flex items-center focus:ring-0 mx-auto ")
+                       :id                 "menu-button"
+                       :aria-expanded      "true"
+                       :aria-haspopup      "true"
+                       :x-on:click         "open = ! open"
+                       :x-on:click.outside "open = false"}
           [:span.sr-only "Open options"]
           "Menu"]]
         [:div {:class            (str "absolute -right-16 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ")
@@ -75,25 +91,18 @@
                :aria-labelledby  "menu-button"
                :tabindex         "-1"
                :x-show           "open"}
-         [:div {:role "none" :class (str "py-1 bg-white border-2 border-black ")}
-          [:a {:href     "/app/workouts"
-               :class    (str "text-black font-bold block px-4 py-2 text-sm border-b ")
-               :role     "menuitem"
-               :tabindex "-1"
-               :id       "menu-item-0"} "Workouts"]
-          [:a {:href     "/app/movements"
-               :class    (str "text-black font-bold block px-4 py-2 text-sm border-b ")
-               :role     "menuitem"
-               :tabindex "-1"
-               :id       "menu-item-0"} "Movements"]
-          [:a {:href     "/app/results"
-               :class    (str "text-black font-bold block px-4 py-2 text-sm ")
-               :role     "menuitem"
-               :tabindex "-1"
-               :id       "menu-item-0"} "Scores"]
+         [:div {:role "none" :class (str "bg-white border-2 border-black ")}
+          (link {:href "/app"
+                 :match match} "Dashboard")
+          (link {:href "/app/workouts"
+                 :match match} "Workouts")
+          (link {:href "/app/movements"
+                 :match match} "Movements")
+          (link {:href "/app/results"
+                 :match match} "Scores")
           (when (:uid session)
             [:a {:href     "/app/results"
-                 :class    (str "text-black font-bold block px-4 py-2 border-t text-sm  ")
+                 :class    (str "text-black font-bold block p-4 border-t text-lg  ")
                  :role     "menuitem"
                  :tabindex "-1"
                  :id       "menu-item-0"}
@@ -101,7 +110,7 @@
                {:action "/auth/signout"
                 :class  ""}
                [:button {:type  "submit"
-                         :class (str "text-black font-bold block p-0  text-sm ")}
+                         :class (str "text-black font-bold block p-0 text-lg ")}
                 "Sign out"])])]]]
        [:div.hidden.sm:flex.gap-4.pl-0.ml-0
         [:a.btn  {:href "/app/workouts"} "Workouts"]
@@ -110,7 +119,7 @@
         (when (:uid session)
           [:div (biff/form
                   {:action "/auth/signout"
-                   :class "p-0 w-fit h-fit "}
+                   :class  "p-0 w-fit h-fit "}
                   [:button.btn {:type "submit"}
                    "Sign out"])])]]]
      [:.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
