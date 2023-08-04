@@ -58,8 +58,7 @@
     [tag (merge attrs
                 {:class    (str "text-black font-bold block p-4 text-lg border-b " class current-route-class)
                  :role     "menuitem"
-                 :tabindex "-1"
-                 :id       "menu-item-0"}) children]))
+                 :tabindex "-1"}) children]))
 
 
 (defn page
@@ -92,20 +91,24 @@
                :tabindex         "-1"
                :x-show           "open"}
          [:div {:role "none" :class (str "bg-white border-2 border-black ")}
-          (link {:href "/app"
-                 :match match} "Dashboard")
-          (link {:href "/app/workouts"
-                 :match match} "Workouts")
-          (link {:href "/app/movements"
-                 :match match} "Movements")
-          (link {:href "/app/results"
-                 :match match} "Scores")
+          (link {:href  "/app"
+                 :match match
+                 :id    "menu-item-0"} "Dashboard")
+          (link {:href  "/app/workouts"
+                 :match match
+                 :id    "menu-item-1"} "Workouts")
+          (link {:href  "/app/movements"
+                 :match match
+                 :id    "menu-item-2"} "Movements")
+          (link {:href  "/app/results"
+                 :match match
+                 :id    "menu-item-3"} "Scores")
           (when (:uid session)
             [:a {:href     "/app/results"
                  :class    (str "text-black font-bold block p-4 border-t text-lg  ")
                  :role     "menuitem"
                  :tabindex "-1"
-                 :id       "menu-item-0"}
+                 :id       "menu-item-4"}
              (biff/form
                {:action "/auth/signout"
                 :class  ""}
