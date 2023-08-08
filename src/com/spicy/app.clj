@@ -1,7 +1,6 @@
 (ns com.spicy.app
   (:require
     [com.biffweb :as biff :refer [q]]
-    [com.biffweb.impl.auth :as auth]
     [com.spicy.middleware :as mid]
     [com.spicy.movements.core :as movements]
     [com.spicy.results.core :as results]
@@ -9,15 +8,12 @@
     [com.spicy.settings :as settings]
     [com.spicy.ui :as ui]
     [com.spicy.workouts.core :as workouts]
-    [com.spicy.workouts.ui :as w]
-    [xtdb.api :as xt]))
+    [com.spicy.workouts.ui :as w]))
 
 
 (defn app
-  "I'm a missspelledd wurd"
   [{:keys [session biff/db] :as ctx}]
-  (let [{:user/keys [email foo bar]} (xt/entity db (:uid session))
-        wod-results (map second (q db '{:find [d (pull r [*
+  (let [wod-results (map second (q db '{:find [d (pull r [*
                                                           {:result/type
                                                            [*
                                                             {:result/workout [*]}
