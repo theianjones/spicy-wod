@@ -80,16 +80,20 @@
              "sm:w-[354px] p-8 pb-0 sm:pb-6 "
              (or class ""))}
    [:div.flex.flex-col.w-full
-    [:h2.text-3xl.cursor-default name]
+    [:div.flex.justify-between.flex-col.gap-4.sm:flex-row-reverse
+     (when (= user current-user)
+       [:a {:href  (str "/app/workouts/" id "/edit")
+            :class (str "btn border bg-opacity-0 text-sm font-normal h-fit w-fit mx-auto sm:mx-0")} "Edit"])
+     [:h2.text-3xl.cursor-default name]
+    ]
     [:div.py-1.cursor-default.mt-4 (ui/display-scheme scheme)]]
    [:p.whitespace-pre-wrap.sm:text-left description]
    (when (some? children)
-     children)
-   (when (= user current-user)
-     [:a {:href  (str "/app/workouts/" id "/edit")
-          :class (str "btn h-fit w-fit mx-auto sm:mx-0")} "Edit"])
+     children) 
    [:a {:href  (str "/app/results/new?workout=" id)
-        :class (str "btn h-fit w-fit mx-auto sm:mx-0 bg-brand-teal ")} "Log workout"]])
+        :class (str "btn h-fit w-fit mx-auto sm:mx-0 bg-brand-teal ")} "Log workout"]
+   [:a {:href  (str "/app/workouts/" id "/share")
+        :class (str "btn h-fit w-fit mx-auto sm:mx-0 bg-brand-background ")} "Share"]])
 
 
 (defn workout-form
