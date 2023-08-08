@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       checks: write
-      contents: read
-      pull-requests: read
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: hmarr/debug-action@v2
 
@@ -52,8 +53,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       checks: write
-      contents: read
-      pull-requests: read
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3.0.2
       - name: clj-kondo
