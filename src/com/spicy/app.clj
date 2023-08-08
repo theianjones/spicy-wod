@@ -1,6 +1,7 @@
 (ns com.spicy.app
   (:require
     [com.biffweb :as biff :refer [q]]
+    [com.biffweb.impl.auth :as auth]
     [com.spicy.middleware :as mid]
     [com.spicy.movements.core :as movements]
     [com.spicy.results.core :as results]
@@ -13,6 +14,7 @@
 
 
 (defn app
+  "I'm a missspelledd wurd"
   [{:keys [session biff/db] :as ctx}]
   (let [{:user/keys [email foo bar]} (xt/entity db (:uid session))
         wod-results (map second (q db '{:find [d (pull r [*
