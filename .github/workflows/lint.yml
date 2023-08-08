@@ -6,7 +6,10 @@ on:
 jobs:
   spellcheck:
     runs-on: ubuntu-latest
-
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: read
     steps:
       - uses: hmarr/debug-action@v2
 
@@ -47,6 +50,10 @@ jobs:
   clj-kondo:
     name: runner / clj-kondo
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: read
     steps:
       - uses: actions/checkout@v3.0.2
       - name: clj-kondo
