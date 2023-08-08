@@ -23,7 +23,6 @@
   (let [movement-type (or (keyword (:type params)) :strength)
         results (map second (biff/q db '{:find [name (pull movement [*])]
                                          :in    [[search type]]
-                                         :limit 10
                                          :where [[movement :movement/name name]
                                                  [(clojure.string/includes? name search)]
                                                  [movement :movement/type type]]
