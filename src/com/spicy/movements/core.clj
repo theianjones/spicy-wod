@@ -4,6 +4,7 @@
      [clojure.string :as string]
      [com.biffweb :as biff]
      [com.spicy.numbers :refer [parse-int safe-parse-int]]
+     [com.spicy.route-helpers :refer [wildcard-override]]
      [com.spicy.route-helpers :refer [->key htmx-request?]]
      [com.spicy.ui :as ui]
      [xtdb.api :as xt]))
@@ -11,10 +12,25 @@
 
 (defn movements-list
   [movements]
-  [:ul#movement-list.list-none.list-inside.pl-0.flex.flex-wrap.gap-2.sm:gap-4.mt-8.justify-center
+  [:ul#movement-list.w-full.lg:w-96.list-none.list-inside.pl-0.flex.flex-wrap.gap-2.sm:gap-4.justify-center
    (map (fn [m]
-          [:li {:class (str "w-full sm:w-fit z-[1] border-2 border-black bg-white p-2 sm:text-2xl font-bold text-black text-center whitespace-nowrap hover:brutal-shadow ")}
-           [:a {:href (str "/app/movements/" (:xt/id m))} (:movement/name m)]]) movements)])
+          [:li {:class (str "w-full z-[1] border-2 border-black bg-white sm:text-2xl font-bold text-black text-center whitespace-nowrap hover:brutal-shadow ")}
+           [:a.p-2.block.w-full.capitalize.whitespace-break-spaces {:href (str "/app/movements/" (:xt/id m))} (:movement/name m)]]) movements)])
+
+
+(defn search
+  [{:keys [biff/db params] :as _ctx}]
+  (let [movement-type (or (keyword (:type params)) :strength)
+        results (map second (biff/q db '{:find [name (pull movement [*])]
+                                         :in    [[search type]]
+                                         :where [[movement :movement/name name]
+                                                 [(clojure.string/includes? name search)]
+                                                 [movement :movement/type type]]
+                                         :order-by [[name]]}
+                                    [(or (:search params) "") movement-type]))]
+    [:div.lg:mt-4.w-full.lg:mx-auto
+     {:id "search-results"}
+     (movements-list results)]))
 
 
 (defn movement-workout-ui
@@ -24,22 +40,36 @@
 
 (defn index
   [{:keys [biff/db params] :as ctx}]
-  (let [movements (biff/q db '{:find  (pull m [*])
-                               :in    [[type]]
-                               :where [[m :movement/name]
-                                       [m :movement/type type]]}
-                          [(or (keyword (:type params)) :strength)])]
+  (let [movement-type (or (keyword (:type params)) :strength)
+        movements (map second (biff/q db '{:find  [name (pull m [*])]
+                                           :in    [[type]]
+                                           :where [[m :movement/name name]
+                                                   [m :movement/type type]]
+                                           :order-by [[name]]}
+                                      [movement-type]))]
     (if (htmx-request? ctx)
       (movements-list movements)
-      (ui/page ctx (ui/panel [:div
-                              [:div.flex.flex-wrap.justify-center.sm:justify-between.gap-4.mt-8
-                               [:h1.text-5xl.w-fit.self-center "Movements"]
-                               [:select.btn.text-base.w-32.h-12.teal-focus.hover:cursor-pointer {:name      "type"
-                                                                                                 :onchange "window.open('?type=' + this.value,'_self')"}
+      (ui/page ctx (ui/panel [:div.flex.flex-col.lg:flex-row.gap-4
+                              [:div.mt-8
+                               [:h1.text-5xl.w-fit.self-center.mb-4 "Movements"]
+                               [:select.btn.text-base.w-full.h-12.teal-focus.hover:cursor-pointer {:name     "type"
+                                                                                                   :onchange "window.open('?type=' + this.value,'_self')"}
                                 [:option.text-base {:value :strength :selected (or (= (:type params) "stregnth") (empty? (:type params)))} "Strength"]
                                 [:option.text-base {:value :gymnastic :selected (= (:type params) "gymnastic")} "Gymnastic"]
                                 [:option.text-base {:value :monostructural :selected (= (:type params) "monostructural")} "Cardio"]]]
-                              (movements-list movements)])))))
+                              [:input.pink-input.teal-focus.w-full
+                               {:name        "search"
+                                :type        "search"
+                                :id          "search"
+                                :placeholder "Search for Movements..."
+                                :hx-get      "/app/movements/search"
+                                :hx-trigger  "keyup changed delay:500ms, search"
+                                :hx-target   "#search-results"
+                                :hx-swap     "outerHTML"
+                                :hx-include "[name='type']"}]
+                              [:div.lg:mt-2.w-full.lg:mx-auto
+                               {:id "search-results"}
+                               (movements-list movements)]])))))
 
 
 (defn sets-n-reps
@@ -480,7 +510,7 @@
   ["/movements"
    ["/" {:get index}]
    ["/:id"
-    ["" {:get show}]
+    ["" {:get (wildcard-override show {:search search})}]
     ["/constant-reps" {:get constant-reps-form}]
     ["/variable-reps" {:get variable-reps-form}]
     ["/set" {:post create-session}]
