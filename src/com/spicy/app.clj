@@ -8,14 +8,12 @@
     [com.spicy.settings :as settings]
     [com.spicy.ui :as ui]
     [com.spicy.workouts.core :as workouts]
-    [com.spicy.workouts.ui :as w]
-    [xtdb.api :as xt]))
+    [com.spicy.workouts.ui :as w]))
 
 
 (defn app
   [{:keys [session biff/db] :as ctx}]
-  (let [{:user/keys [email foo bar]} (xt/entity db (:uid session))
-        wod-results (map second (q db '{:find [d (pull r [*
+  (let [wod-results (map second (q db '{:find [d (pull r [*
                                                           {:result/type
                                                            [*
                                                             {:result/workout [*]}

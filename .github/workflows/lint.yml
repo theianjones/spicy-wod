@@ -1,0 +1,69 @@
+name: Lint
+
+on:
+  pull_request: {}
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: hmarr/debug-action@v2
+
+      - name: git checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Spellcheck Files
+        uses: reviewdog/action-misspell@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          locale: "US"
+          reporter: github-pr-review
+          path: |
+            src/com/spicy
+          exclude: |
+            ./.clj-kondo/*
+          filter_mode: file
+          ignore: cancelled,optimise,transito
+
+  labeler:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: hmarr/debug-action@v2
+
+      - name: git checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Label Pull Request
+        uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          sync-labels: true
+
+  clj-kondo:
+    name: runner / clj-kondo
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v3.0.2
+      - name: clj-kondo
+        uses: nnichols/clojure-lint-action@v2
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          fail_on_error: true
