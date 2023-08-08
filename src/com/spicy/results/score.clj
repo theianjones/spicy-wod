@@ -32,9 +32,20 @@
 
 
 (def scheme->score-params
-  {:time        ["minutes" "seconds"]
-   :rounds-reps ["rounds" "reps"]
-   :reps        ["reps"]})
+  "The form defaults to reps so we do too.
+  This generally means that we havent implemented the
+  scheme for results yet"
+  {:time          ["minutes" "seconds"]
+   :rounds-reps   ["rounds" "reps"]
+   :reps          ["reps"]
+   :time-with-cap ["reps"]
+   :pass-fail     ["reps"]
+   :emom          ["reps"]
+   :load          ["reps"]
+   :calories      ["reps"]
+   :meters        ["reps"]
+   :feet          ["reps"]
+   :points        ["reps"]})
 
 
 (def default-score-params

@@ -138,7 +138,9 @@
                  [:p.m-0.w-2 (str (inc i) ".")]
                  (scheme-forms (assoc {}
                                       :workout w
-                                      :score (display-summed-score {:workout workout :sets [(nth (-> workout-result :result-set/_parent) i)]})
+                                      :score (display-summed-score
+                                               {:workout workout
+                                                :sets (filter (complement nil?) [(nth (-> workout-result :result-set/_parent) i)])})
                                       :identifier i))
                  [:input {:type "hidden"
                           :name (str "id-" i)
