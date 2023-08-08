@@ -37,8 +37,9 @@
 
 
 (defn display-summed-score
-  [{:keys [workout sets]}]
-  (when (and workout sets)
+  [{:keys [workout sets] :as a}]
+  (when (and (not-empty workout)
+             (not-empty sets))
     (display-score (merge {:workout workout} {:result-set (merge-set-score-with sets +)}))))
 
 
