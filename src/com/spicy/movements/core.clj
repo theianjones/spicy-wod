@@ -19,14 +19,7 @@
 
 (defn movement-workout-ui
   [w]
-  (ui/workout-ui (assoc w
-                        :children
-                        [:a.brutal-shadow.btn-hover.border.border-radius.border-black.py-1.px-2.mt-auto
-                         {:href (str "/app/workouts/" (string/lower-case
-                                                        (if (:workout/user w)
-                                                          (:xt/id w)
-                                                          (:workout/name w))))}
-                         "History"])))
+  (ui/workout-ui w))
 
 
 (defn index
@@ -108,11 +101,11 @@
                  :hx-target (str "#expanded-" (:xt/id result))}
                 [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg.font-bold.whitespace-nowrap "Set #"]
                 [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Reps"]
-                [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold 
-                 "Weight" 
+                [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold
+                 "Weight"
                  [:span.font-normal.ml-2 "(edit)"]]
-                [:div.px-2.py-4.border-r-2.border-b-2.border-black.flex.justify-center.items-center.font-bold 
-                 "Hit?" 
+                [:div.px-2.py-4.border-r-2.border-b-2.border-black.flex.justify-center.items-center.font-bold
+                 "Hit?"
                  [:span.font-normal.ml-2 "(edit)"]]
                 (map (fn [{:result-set/keys [number reps weight status] :xt/keys [id]}]
                        [:<>
