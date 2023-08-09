@@ -6,8 +6,7 @@
     [com.spicy.numbers :as n]
     [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
-    [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]
-    [xtdb.api :as xt]))
+    [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]))
 
 
 (defn index
@@ -62,16 +61,13 @@
 
 
 (defn share
-  [{:keys [biff/db path-params session params] :as ctx}]
+  [{:keys [biff/db path-params] :as ctx}]
   (let [workout   (first (biff/q db '{:find  (pull workout [* {:workout-movement/_workout [{:workout-movement/movement [*]}]}])
                                       :in    [[name id]]
                                       :where [(or [workout :workout/name name]
                                                   [workout :xt/id id])]}
                                  [(string/capitalize (:id path-params))
-                                  (parse-uuid (:id path-params))]))
-        movements (->> workout
-                       :workout-movement/_workout
-                       (map :workout-movement/movement))]
+                                  (parse-uuid (:id path-params))]))]
     (ui/share-page ctx
                    [:div
                     {:class (str "max-w-sm mx-auto h-[80vh] flex flex-col justify-between")}
@@ -96,8 +92,8 @@
                      "spicywod.com"]])))
 
 
-(defn update
-  [{:keys [biff/db path-params session params] :as ctx}]
+(defn update-page
+  [{:keys [biff/db path-params params] :as ctx}]
   (let [workout-uuid          (parse-uuid (:id path-params))
         workout               (first (biff/q db '{:find  (pull w [* {:workout-movement/_workout [* {:workout-movement/movement [*]}]}])
                                                   :in    [[workout]]
@@ -135,7 +131,7 @@
                                               :db/doc-type               :workout-movement
                                               :workout-movement/workout  workout-uuid
                                               :workout-movement/movement possibly-new-movement-id})) movement-ids)
-                                    (map (fn [{:keys [workout-movement/movement xt/id] :as wm}]
+                                    (map (fn [{:keys [workout-movement/movement xt/id] :as _wm}]
                                            (when (not (contains? (into #{} movement-ids) (:xt/id movement)))
                                              {:db/op :delete
                                               :xt/id id}))
@@ -147,7 +143,7 @@
 
 
 (defn create
-  [{:keys [biff/db path-params session params] :as ctx}]
+  [{:keys [biff/db session params] :as ctx}]
   (let [workout-uuid      (random-uuid)
         movements         (or (into [] (vals (:movements params))) [])
         movement-ids      (flatten (into [] (biff/q db '{:find  [e]
@@ -193,7 +189,7 @@
 
 
 (defn edit
-  [{:keys [biff/db path-params session params] :as ctx}]
+  [{:keys [biff/db path-params session] :as ctx}]
   (let [workout        (first (biff/q db '{:find  (pull workout [* {:workout-movement/_workout [{:workout-movement/movement [*]}]}])
                                            :in    [[name id]]
                                            :where [(or [workout :workout/name name]
@@ -218,7 +214,7 @@
 
 
 (defn new
-  [{:keys [biff/db path-params session params] :as ctx}]
+  [{:keys [session params] :as ctx}]
   (update-selected-movement! {:user (:uid session)
                               :method (constantly #{})
                               :movement nil})
@@ -266,7 +262,7 @@
 
 
 (defn search
-  [{:keys [biff/db session params] :as ctx}]
+  [{:keys [biff/db params] :as _ctx}]
   (let [results (biff/q db '{:find  (pull movement [*])
                              :in    [[search]]
                              :limit 10
@@ -285,7 +281,7 @@
 
 
 (defn get-scheme-inputs
-  [{:keys [params] :as ctx}]
+  [{:keys [params] :as _ctx}]
   (case (:scheme params)
     "rounds-reps" [:div#scheme-inputs [:input.w-full.pink-input.p-2.teal-focus#reps-per-round
                                        {:placeholder "Reps per round" :name "reps-per-round" :required true}]]
@@ -293,7 +289,7 @@
 
 
 (defn get-score-separately
-  [{:keys [params] :as ctx}]
+  [{:keys [params] :as _ctx}]
   (if (= "on" (:score-separately params))
     [:div#rounds
      [:div.flex.flex-col.w-full
@@ -309,7 +305,7 @@
         :post create}]
    ["/:id" {:middleware [mid/wrap-ensure-owner]}
     ["" {:get (wildcard-override show {:new new :selected show-selected-movement})
-         :put update}]
+         :put update-page}]
     ["/edit" {:get edit}]
     ["/share" {:get share}]]
    ["/new/search" {:get search}]
@@ -322,7 +318,6 @@
 
 (comment
 
-  (def m {:movements {"0" "air squats"}})
   (reset! selected-movements {})
 
   (update-selected-movement! {:user     "user"

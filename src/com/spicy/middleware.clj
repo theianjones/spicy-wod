@@ -33,7 +33,7 @@
 
 (defn wrap-ensure-owner
   [handler]
-  (fn [{:keys [biff/db session path-params params] :as req}]
+  (fn [{:keys [biff/db session path-params] :as req}]
     (let [entity-id (some-> (:id path-params)
                             parse-uuid)
           user      (:uid session)
