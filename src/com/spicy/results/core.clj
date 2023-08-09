@@ -164,7 +164,7 @@
   ["/results"
    ["" {:get  index
         :post create}]
-   ["/:id" {:middleware [mid/wrap-ensure-owner]}
+   ["/:id" {:middleware [(partial mid/wrap-ensure-owner #{"new"})]}
     ["" {:get (wildcard-override show {:new new})
          :put update-handler}]
     ["/edit" {:get edit}]]])

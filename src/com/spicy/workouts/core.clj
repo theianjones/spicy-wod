@@ -303,7 +303,7 @@
   ["/workouts"
    ["" {:get  index
         :post create}]
-   ["/:id" {:middleware [mid/wrap-ensure-owner]}
+   ["/:id" {:middleware [(partial mid/wrap-ensure-owner #{"new" "selected"})]}
     ["" {:get (wildcard-override show {:new new :selected show-selected-movement})
          :put update-page}]
     ["/edit" {:get edit}]
