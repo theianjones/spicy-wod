@@ -70,9 +70,9 @@
                                   (parse-uuid (:id path-params))]))]
     (ui/share-page ctx
                    [:div
-                    {:class (str "max-w-sm mx-auto h-[80vh] flex flex-col justify-between")}
-                    [:div.mt-12.h-full
-                     [:div.flex.flex-col.gap-4
+                    {:class (str "max-w-sm mx-auto h-[80vh] flex flex-col")}
+                    [:div.mt-8.h-full
+                     [:div.flex.flex-col.gap-8
                       [:h1
                        {:class (str " font-display text-5xl text-center")}
                        [:a
@@ -84,7 +84,7 @@
                      [:div
                       {:class (str " h-[calc(100%-8rem)] flex flex-col")}
                       [:p
-                       {:class (str "my-auto text-center font-bold text-xl whitespace-pre-wrap line-clamp-[17]")}
+                       {:class (str "mt-12 text-center font-bold text-xl whitespace-pre-wrap line-clamp-[17]")}
                        (:workout/description workout)]]]
 
                     [:p
