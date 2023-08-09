@@ -32,14 +32,17 @@
 
 
 (defn wrap-ensure-owner
-  [handler]
+  [skip-middleware handler]
   (fn [{:keys [biff/db session path-params] :as req}]
-    (let [entity-id (some-> (:id path-params)
-                            parse-uuid)
-          user      (:uid session)
-          entity    (some->> entity-id
-                             (xt/entity db)
-                             (ensure-owner user))]
-      (if (seq entity)
-        (handler (merge req {:entity entity}))
-        {:status 403}))))
+    (if (contains? skip-middleware (:id path-params))
+      (handler req)
+      (let [entity-id (some-> (:id path-params)
+                              parse-uuid)
+            user      (:uid session)
+            entity    (some->> entity-id
+                               (xt/entity db)
+                               (ensure-owner user))]
+
+        (if (seq entity)
+          (handler (merge req {:entity entity}))
+          {:status 403})))))
