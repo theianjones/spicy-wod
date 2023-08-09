@@ -2,6 +2,7 @@
   (:require
     [clojure.instant :as instant]
     [com.biffweb :as biff]
+    [com.spicy.middleware :as mid]
     [com.spicy.results.score :refer [scores->tx ->scores params->score]]
     [com.spicy.results.ui :refer [result-ui result-form normalized-result]]
     [com.spicy.route-helpers :refer [wildcard-override]]
@@ -163,7 +164,7 @@
   ["/results"
    ["" {:get  index
         :post create}]
-   ["/:id"
+   ["/:id" {:middleware [mid/wrap-ensure-owner]}
     ["" {:get (wildcard-override show {:new new})
          :put update-handler}]
     ["/edit" {:get edit}]]])

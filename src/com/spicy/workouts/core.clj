@@ -1,12 +1,13 @@
 (ns com.spicy.workouts.core
   (:require
-   [clojure.string :as string]
-   [com.biffweb :as biff]
-   [com.spicy.numbers :as n]
-   [com.spicy.route-helpers :refer [wildcard-override]]
-   [com.spicy.ui :as ui]
-   [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]
-   [xtdb.api :as xt]))
+    [clojure.string :as string]
+    [com.biffweb :as biff]
+    [com.spicy.middleware :as mid]
+    [com.spicy.numbers :as n]
+    [com.spicy.route-helpers :refer [wildcard-override]]
+    [com.spicy.ui :as ui]
+    [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]
+    [xtdb.api :as xt]))
 
 
 (defn index
@@ -20,15 +21,15 @@
     (ui/page ctx
              [:div.pb-8
               (ui/panel
-               [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.mb-14.justify-center
-                [:h1.text-5xl.w-fit.self-center.mt-8 "Workouts"]
-                [:a
-                 {:class (str "btn bg-brand-teal h-1/2 self-center")
-                  :href  (str "/app/workouts/new")}
-                 "Add Workout"]]
+                [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.mb-14.justify-center
+                 [:h1.text-5xl.w-fit.self-center.mt-8 "Workouts"]
+                 [:a
+                  {:class (str "btn bg-brand-teal h-1/2 self-center")
+                   :href  (str "/app/workouts/new")}
+                  "Add Workout"]]
 
-               [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
-                (map ui/workout-ui workouts)])])))
+                [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
+                 (map ui/workout-ui workouts)])])))
 
 
 (defn show
@@ -55,9 +56,10 @@
                                            [:a {:href (str "/app/movements/" (:xt/id m))} (:movement/name m)]]) movements)])]
                                [:.flex-1
                                 (workout-results
-                                 {:user    (:uid session)
-                                  :workout (:xt/id workout)
-                                  :biff/db db})]])]))))
+                                  {:user    (:uid session)
+                                   :workout (:xt/id workout)
+                                   :biff/db db})]])]))))
+
 
 (defn share
   [{:keys [biff/db path-params session params] :as ctx}]
@@ -77,10 +79,9 @@
                      [:div.flex.flex-col.gap-4
                       [:h1
                        {:class (str " font-display text-5xl text-center")}
-                       [:a 
-                        {:href  (str "/app/workouts/"(parse-uuid (:id path-params)))}
-                        (:workout/name workout)] 
-                       ]
+                       [:a
+                        {:href  (str "/app/workouts/" (parse-uuid (:id path-params)))}
+                        (:workout/name workout)]]
                       [:div
                        {:class (str "w-fit bg-gradient-to-tr from-[#FF6750] to-[#991640] px-4 py-2 text-white font-bold self-center ")}
                        (ui/display-scheme (:workout/scheme workout))]]
@@ -119,26 +120,26 @@
                                        :workout/scheme      (keyword (:scheme params))
                                        :workout/description (:description params)}
                                       (when
-                                       (:reps-per-round params)
+                                        (:reps-per-round params)
                                         {:workout/reps-per-round
                                          (n/safe-parse-int (:reps-per-round params))})
                                       (when
-                                       (:rounds params)
+                                        (:rounds params)
                                         {:workout/rounds-to-score
                                          (n/safe-parse-int (:rounds params))}))]
         movements-tx     (filterv (comp not nil?)
                                   (concat
-                                   (map (fn [possibly-new-movement-id]
-                                          (when (not (contains? existing-movement-ids possibly-new-movement-id))
-                                            {:db/op                     :create
-                                             :db/doc-type               :workout-movement
-                                             :workout-movement/workout  workout-uuid
-                                             :workout-movement/movement possibly-new-movement-id})) movement-ids)
-                                   (map (fn [{:keys [workout-movement/movement xt/id] :as wm}]
-                                          (when (not (contains? (into #{} movement-ids) (:xt/id movement)))
-                                            {:db/op :delete
-                                             :xt/id id}))
-                                        workout-movements)))]
+                                    (map (fn [possibly-new-movement-id]
+                                           (when (not (contains? existing-movement-ids possibly-new-movement-id))
+                                             {:db/op                     :create
+                                              :db/doc-type               :workout-movement
+                                              :workout-movement/workout  workout-uuid
+                                              :workout-movement/movement possibly-new-movement-id})) movement-ids)
+                                    (map (fn [{:keys [workout-movement/movement xt/id] :as wm}]
+                                           (when (not (contains? (into #{} movement-ids) (:xt/id movement)))
+                                             {:db/op :delete
+                                              :xt/id id}))
+                                         workout-movements)))]
     (biff/submit-tx ctx (concat workout-tx
                                 movements-tx))
     {:status  303
@@ -161,11 +162,11 @@
                                    :workout/scheme      (keyword (:scheme params))
                                    :workout/description (:description params)}
                                   (when
-                                   (:reps-per-round params)
+                                    (:reps-per-round params)
                                     {:workout/reps-per-round
                                      (n/safe-parse-int (:reps-per-round params))})
                                   (when
-                                   (:rounds params)
+                                    (:rounds params)
                                     {:workout/rounds-to-score
                                      (n/safe-parse-int (:rounds params))}))]
         workout-movements (map (fn [movement-id]
@@ -209,11 +210,11 @@
     (ui/page ctx
              [:div.max-w-md.mx-auto
               (ui/panel
-               [:a.btn.w-fit {:href (str "/app/workouts/" (:id path-params))} "Back"]
-               [:div.p-4
-                [:h1.text-5xl.mb-14.pt-8.text-center (str "Update " (:workout/name workout))]
-                (workout-form {:hidden  {}
-                               :workout workout})])])))
+                [:a.btn.w-fit {:href (str "/app/workouts/" (:id path-params))} "Back"]
+                [:div.p-4
+                 [:h1.text-5xl.mb-14.pt-8.text-center (str "Update " (:workout/name workout))]
+                 (workout-form {:hidden  {}
+                                :workout workout})])])))
 
 
 (defn new
@@ -228,9 +229,9 @@
       (ui/page ctx
                [:div.max-w-md.mx-auto
                 (ui/panel
-                 [:div.p-4
-                  [:h1.text-5xl.mb-14.pt-8.text-center "New Workout"]
-                  (workout-form {:hidden {:fragment (str (true? fragment?))}})])]))))
+                  [:div.p-4
+                   [:h1.text-5xl.mb-14.pt-8.text-center "New Workout"]
+                   (workout-form {:hidden {:fragment (str (true? fragment?))}})])]))))
 
 
 (defn show-selected-movement
@@ -306,10 +307,11 @@
   ["/workouts"
    ["" {:get  index
         :post create}]
-   ["/:id" {:get (wildcard-override show {:new new :selected show-selected-movement})
-            :put update}]
-   ["/:id/edit" {:get edit}]
-   ["/:id/share" {:get share}]
+   ["/:id" {:middleware [mid/wrap-ensure-owner]}
+    ["" {:get (wildcard-override show {:new new :selected show-selected-movement})
+         :put update}]
+    ["/edit" {:get edit}]
+    ["/share" {:get share}]]
    ["/new/search" {:get search}]
    ["/new/selected" {:get    show-selected-movement
                      :post   set-selected-movement
