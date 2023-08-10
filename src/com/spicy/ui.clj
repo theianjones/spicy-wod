@@ -135,7 +135,7 @@
   [{:keys [session reitit.core/match] :as ctx} & body]
   (base
    ctx
-   [:.relative.h-full.px-4.pt-20
+   [:.relative.h-full.px-4.pt-8
     [:div {:class "absolute bg-brand-background h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
     [:.p-3.mx-auto.max-w-screen-xl.w-full.flex.flex-col.sm:flex-row.gap-4.items-center.flex-wrap.space-y-2.justify-center
      [:a.flex.items-center.gap-2.cursor-pointer
