@@ -4,15 +4,14 @@
      [clojure.string :as string]
      [com.biffweb :as biff]
      [com.spicy.numbers :refer [parse-int safe-parse-int]]
-     [com.spicy.route-helpers :refer [wildcard-override]]
-     [com.spicy.route-helpers :refer [->key htmx-request?]]
+     [com.spicy.route-helpers :refer [wildcard-override ->key htmx-request?]]
      [com.spicy.ui :as ui]
      [xtdb.api :as xt]))
 
 
 (defn movements-list
   [movements]
-  [:ul#movement-list.w-full.lg:w-96.list-none.list-inside.pl-0.flex.flex-wrap.gap-2.sm:gap-4.justify-center
+  [:ul#movement-list.w-full.lg:w-96.list-none.list-inside.pl-0.flex.flex-wrap.gap-2.sm:gap-4.justify-center.lg:mx-auto
    (map (fn [m]
           [:li {:class (str "w-full z-[1] border-2 border-black bg-white sm:text-2xl font-bold text-black text-center whitespace-nowrap hover:brutal-shadow ")}
            [:a.p-2.block.w-full.capitalize.whitespace-break-spaces {:href (str "/app/movements/" (:xt/id m))} (:movement/name m)]]) movements)])
@@ -52,22 +51,22 @@
       (ui/page ctx (ui/panel [:div.flex.flex-col.lg:flex-row.gap-4
                               [:div.mt-8
                                [:h1.text-5xl.w-fit.self-center.mb-4 "Movements"]
-                               [:select.btn.text-base.w-full.h-12.teal-focus.hover:cursor-pointer {:name     "type"
-                                                                                                   :onchange "window.open('?type=' + this.value,'_self')"}
+                               [:select.btn.text-base.w-full.h-12.teal-focus.hover:cursor-pointer.mb-4 {:name     "type"
+                                                                                                        :onchange "window.open('?type=' + this.value,'_self')"}
                                 [:option.text-base {:value :strength :selected (or (= (:type params) "stregnth") (empty? (:type params)))} "Strength"]
                                 [:option.text-base {:value :gymnastic :selected (= (:type params) "gymnastic")} "Gymnastic"]
-                                [:option.text-base {:value :monostructural :selected (= (:type params) "monostructural")} "Cardio"]]]
-                              [:input.pink-input.teal-focus.w-full
-                               {:name        "search"
-                                :type        "search"
-                                :id          "search"
-                                :placeholder "Search for Movements..."
-                                :hx-get      "/app/movements/search"
-                                :hx-trigger  "keyup changed delay:500ms, search"
-                                :hx-target   "#search-results"
-                                :hx-swap     "outerHTML"
-                                :hx-include "[name='type']"}]
-                              [:div.lg:mt-2.w-full.lg:mx-auto
+                                [:option.text-base {:value :monostructural :selected (= (:type params) "monostructural")} "Cardio"]]
+                               [:input.pink-input.teal-focus.w-full
+                                {:name        "search"
+                                 :type        "search"
+                                 :id          "search"
+                                 :placeholder "Search for Movements..."
+                                 :hx-get      "/app/movements/search"
+                                 :hx-trigger  "keyup changed delay:500ms, search"
+                                 :hx-target   "#search-results"
+                                 :hx-swap     "outerHTML"
+                                 :hx-include "[name='type']"}]]
+                              [:div.lg:mt-8.w-full
                                {:id "search-results"}
                                (movements-list movements)]])))))
 
@@ -306,7 +305,7 @@
 
 
 (defn create-log-session-form
-  [{:keys [session path-params params] :as ctx}]
+  [{:keys [session path-params params] :as _ctx}]
   (let [reps        (params->reps params)
         sets        (safe-parse-int (:sets params))
         type        (:type params)
@@ -338,7 +337,7 @@
 
 
 (defn variable-reps-form
-  [{:keys [path-params] :as ctx}]
+  [{:keys [path-params] :as _ctx}]
   (biff/form {:id      "sets-scheme"
               :hx-get  (str "/app/movements/" (:id path-params) "/form")
               :hx-swap "outerHTML"}
@@ -386,7 +385,7 @@
 
 
 (defn constant-reps-form
-  [{:keys [path-params] :as ctx}]
+  [{:keys [path-params] :as _ctx}]
   (biff/form {:id      "sets-scheme"
               :hx-get  (str "/app/movements/" (:id path-params) "/form")
               :hx-swap "outerHTML"}
