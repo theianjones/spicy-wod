@@ -96,6 +96,15 @@
                                {:db/op :delete
                                 :xt/id id}) ids)))
 
+  (let [{:keys [biff/db] :as ctx} (get-context)
+        ids (biff/q db '{:find [e]
+                         :where [[e :workout/name]]})]
+    (biff/submit-tx ctx (map (fn [[id]]
+                               {:db/op :update
+                                :db/doc-type :workout
+                                :workout/created-at :db/now
+                                :xt/id id}) ids)))
+
   (biff/submit-tx (get-context)
                   [{:xt/id       :db.id/result
                     :db/doc-type :result
@@ -115,13 +124,16 @@
     (xt/entity db #uuid "4b4c75c1-56d5-49c7-b555-9747d54a16ea"))
 
   (let [{:keys [biff/db]} (get-context)]
+    (biff/q db '{:find  (pull w [*])
+                 :where [[w :workout/created-at]]}))
+  (let [{:keys [biff/db]} (get-context)]
     (biff/q db '{:find  (pull r [* {:result-set/_result [*]}])
                  :where [[r :result/strength]]}))
 
   (def cindy (first (let [{:keys [biff/db]} (get-context)]
                       (biff/q db '{:find (pull w [*])
                                    :where [[w :workout/name "Cindy"]]}))))
-  
+
   (biff/submit-tx (get-context)
                   [{:xt/id cindy
                     :db/doc-type :workout
