@@ -80,7 +80,7 @@
              "sm:w-[354px] p-8 pb-0 sm:pb-6 "
              (or class ""))}
    [:div.flex.flex-col.w-full
-    [:div.flex.justify-between.flex-col.gap-4.sm:flex-row-reverse
+    [:div.flex.justify-between.flex-col.gap-4
      (when (= user current-user)
        [:a {:href  (str "/app/workouts/" id "/edit")
             :class (str "btn border bg-opacity-0 text-sm font-normal h-fit w-fit mx-auto sm:mx-0")} "Edit"])

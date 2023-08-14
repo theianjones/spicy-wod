@@ -62,6 +62,16 @@
   (def mu-movement #uuid "078726e4-1225-40e9-a48a-edb38d38dfa8")
 
   (biff/submit-tx (get-context)
+                  [{
+                    :db/op       :create
+                    :db/doc-type   :movement
+                    :movement/name "ring muscle up"
+                    :movement/type :gymnastic
+                    :xt/id         :db.id/movement-ddd
+                    }
+                    ])
+
+  (biff/submit-tx (get-context)
                   [{:xt/id       :db.id/result
                     :db/doc-type :result
                     :db/op       :create
