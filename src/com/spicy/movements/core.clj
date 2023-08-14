@@ -53,7 +53,7 @@
                                [:h1.text-5xl.w-fit.self-center.mb-4 "Movements"]
                                [:select.btn.text-base.w-full.h-12.teal-focus.hover:cursor-pointer.mb-4 {:name     "type"
                                                                                                         :onchange "window.open('?type=' + this.value,'_self')"}
-                                [:option.text-base {:value :strength :selected (or (= (:type params) "stregnth") (empty? (:type params)))} "Strength"]
+                                [:option.text-base {:value :strength :selected (or (= (:type params) "strength") (empty? (:type params)))} "Strength"]
                                 [:option.text-base {:value :gymnastic :selected (= (:type params) "gymnastic")} "Gymnastic"]
                                 [:option.text-base {:value :monostructural :selected (= (:type params) "monostructural")} "Cardio"]]
                                [:input.pink-input.teal-focus.w-full
