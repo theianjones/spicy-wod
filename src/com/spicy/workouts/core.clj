@@ -11,12 +11,16 @@
 
 (defn index
   [{:keys [biff/db session] :as ctx}]
-  (let [workouts (biff/q db '{:find (pull workout [*])
-                              :in [[user]]
-                              :where [(or (and [workout :workout/name]
-                                               (not [workout :workout/user]))
-                                          [workout :workout/user user])]}
-                         [(:uid session)])]
+  (let [workouts (map first (biff/q db '{:find [(pull workout [*]) created-at name]
+                                         :in [[user]]
+                                         :where [(or (and [workout :workout/name]
+                                                          (not [workout :workout/user]))
+                                                     [workout :workout/user user])
+                                                 [workout :workout/created-at created-at]
+                                                 [workout :workout/name name]]
+                                         :order-by [[created-at :desc]
+                                                    [name :asc]]}
+                                    [(:uid session)]))]
     (ui/page ctx
              [:div.pb-8
               (ui/panel
@@ -156,6 +160,7 @@
                                    :workout/name        (:name params)
                                    :workout/user        (:uid session)
                                    :workout/scheme      (keyword (:scheme params))
+                                   :workout/created-at  :db/now
                                    :workout/description (:description params)}
                                   (when
                                     (:reps-per-round params)

@@ -95,6 +95,7 @@
              [:workout/name :string]
              [:workout/description :string]
              [:workout/scheme workout-types]
+             [:workout/created-at {:optional true} inst?]
              [:workout/reps-per-round {:optional true} :int]
              [:workout/rounds-to-score {:optional true} :int]
              [:workout/user {:optional true} :user/id]
