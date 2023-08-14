@@ -23,9 +23,6 @@
     [:select.pink-input.teal-focus#type
      {:name      "type"
       :required  true
-      :hx-get    "/app/movements/new/movment-inputs"
-      :hx-target "#movement-inputs"
-      :hx-swap   "outerHTML"
       :value     (when (not (nil? movement)) (name (:movement/type movement)))}
      [:option {:value "" :label "--Select a Movement type--"}]
      [:option {:value "strength"

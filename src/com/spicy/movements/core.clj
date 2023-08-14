@@ -3,7 +3,6 @@
      [clojure.instant :as instant]
      [clojure.string :as string]
      [com.biffweb :as biff]
-     [com.spicy.middleware :as mid]
      [com.spicy.numbers :refer [parse-int safe-parse-int]]
      [com.spicy.route-helpers :refer [wildcard-override]]
      [com.spicy.route-helpers :refer [->key htmx-request?]]
