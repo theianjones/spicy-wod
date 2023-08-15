@@ -12,6 +12,8 @@
 (defn workout-search
   [{:keys [biff/db params session]}]
   ;; searching name like this will be unperformant
+  ;; when an optimization needs to be made, refer to this
+  ;; https://docs.xtdb.com/extensions/full-text-search/
   (let [workouts (map second (biff/q db '{:find [name (pull workout [*])]
                                           :in    [[search user]]
                                           :where [[workout :workout/name name]
