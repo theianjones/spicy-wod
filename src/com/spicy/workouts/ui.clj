@@ -84,12 +84,11 @@
      (when (= user current-user)
        [:a {:href  (str "/app/workouts/" id "/edit")
             :class (str "btn border bg-opacity-0 text-sm font-normal h-fit w-fit mx-auto sm:mx-0")} "Edit"])
-     [:h2.text-3xl.cursor-default name]
-    ]
+     [:h2.text-3xl.cursor-default name]]
     [:div.py-1.cursor-default.mt-4 (ui/display-scheme scheme)]]
    [:p.whitespace-pre-wrap.sm:text-left description]
    (when (some? children)
-     children) 
+     children)
    [:a {:href  (str "/app/results/new?workout=" id)
         :class (str "btn h-fit w-fit mx-auto sm:mx-0 bg-brand-teal ")} "Log workout"]
    [:a {:href  (str "/app/workouts/" id "/share")
@@ -195,3 +194,10 @@
                               :hx-get     "/app/workouts/new/selected"}]
     [:div#search-results]
     [:button.btn.bg-brand-teal {:type "submit"} (if (nil? workout) "Create Workout" "Update Workout")]))
+
+
+(defn workouts-list
+  [{:keys [workouts id]}]
+  [:div.flex.gap-2.sm:gap-4.flex-wrap.pb-20
+   {:id id}
+   (map ui/workout-ui workouts)])

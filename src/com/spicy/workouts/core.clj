@@ -6,7 +6,10 @@
     [com.spicy.numbers :as n]
     [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
-    [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]))
+    [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form workouts-list]]))
+
+
+(def SEARCH_ID "search-results")
 
 
 (defn workout-search
@@ -21,9 +24,7 @@
                                                   [(clojure.string/includes? lower-name search)]]
                                           :order-by [[name]]}
                                      [(string/lower-case (or (:search params) "")) (:uid session)]))]
-    [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
-     {:id "search-results"}
-     (map ui/workout-ui workouts)]))
+    (workouts-list {:workouts workouts :id SEARCH_ID})))
 
 
 (defn index
@@ -55,12 +56,10 @@
                    :placeholder "Search for workouts..."
                    :hx-get      "/app/workouts/search"
                    :hx-trigger  "keyup changed delay:500ms, search"
-                   :hx-target   "#search-results"
+                   :hx-target   (str "#" SEARCH_ID)
                    :hx-swap     "outerHTML"}]]
 
-                [:div.flex.gap-2.sm:gap-4.flex-wrap.pb-20
-                 {:id "search-results"}
-                 (map ui/workout-ui workouts)])])))
+                (workouts-list {:workouts workouts :id SEARCH_ID}))])))
 
 
 (defn show
