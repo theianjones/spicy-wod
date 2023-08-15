@@ -9,6 +9,21 @@
     [com.spicy.workouts.ui :refer [workout-logbook-ui workout-results workout-form]]))
 
 
+(defn workout-search
+  [{:keys [biff/db params session]}]
+  ;; searching name like this will be unperformant
+  (let [workouts (map second (biff/q db '{:find [name (pull workout [*])]
+                                          :in    [[search user]]
+                                          :where [[workout :workout/name name]
+                                                  [(clojure.string/lower-case name) lower-name]
+                                                  [(clojure.string/includes? lower-name search)]]
+                                          :order-by [[name]]}
+                                     [(string/lower-case (or (:search params) "")) (:uid session)]))]
+    [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
+     {:id "search-results"}
+     (map ui/workout-ui workouts)]))
+
+
 (defn index
   [{:keys [biff/db session] :as ctx}]
   (let [workouts (map first (biff/q db '{:find [(pull workout [*]) created-at name]
@@ -24,14 +39,25 @@
     (ui/page ctx
              [:div.pb-8
               (ui/panel
-                [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.mb-14.justify-center
+                [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.justify-center.mb-8
                  [:h1.text-5xl.w-fit.self-center.mt-8 "Workouts"]
                  [:a
                   {:class (str "btn bg-brand-teal h-1/2 self-center")
                    :href  (str "/app/workouts/new")}
                   "Add Workout"]]
+                [:div.pb-8
+                 [:input.pink-input.teal-focus.w-full.h-full.md:w-96
+                  {:name        "search"
+                   :type        "search"
+                   :id          "search"
+                   :placeholder "Search for workouts..."
+                   :hx-get      "/app/workouts/search"
+                   :hx-trigger  "keyup changed delay:500ms, search"
+                   :hx-target   "#search-results"
+                   :hx-swap     "outerHTML"}]]
 
-                [:div.flex.gap-2.sm:gap-4.flex-wrap.justify-center.pb-20
+                [:div.flex.gap-2.sm:gap-4.flex-wrap.pb-20
+                 {:id "search-results"}
                  (map ui/workout-ui workouts)])])))
 
 
@@ -308,8 +334,10 @@
   ["/workouts"
    ["" {:get  index
         :post create}]
-   ["/:id" {:middleware [(partial mid/wrap-ensure-owner #{"new" "selected"})]}
-    ["" {:get (wildcard-override show {:new new :selected show-selected-movement})
+   ["/:id" {:middleware [(partial mid/wrap-ensure-owner #{"new" "selected" "search"})]}
+    ["" {:get (wildcard-override show {:new      new
+                                       :selected show-selected-movement
+                                       :search   workout-search})
          :put update-page}]
     ["/edit" {:get edit}]
     ["/share" {:get share}]]
