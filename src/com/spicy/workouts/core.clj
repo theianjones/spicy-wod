@@ -19,7 +19,10 @@
   ;; https://docs.xtdb.com/extensions/full-text-search/
   (let [workouts (map second (biff/q db '{:find [name (pull workout [*])]
                                           :in    [[search user]]
-                                          :where [[workout :workout/name name]
+                                          :where [(or (and [workout :workout/name]
+                                                           (not [workout :workout/user]))
+                                                      [workout :workout/user user])
+                                                  [workout :workout/name name]
                                                   [(clojure.string/lower-case name) lower-name]
                                                   [(clojure.string/includes? lower-name search)]]
                                           :order-by [[name]]}
