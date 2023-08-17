@@ -66,7 +66,7 @@
                   [:option.text-base {:value    :your-workouts
                                       :selected (= type "your-workouts")} "Your Workouts"]
                   [:option.text-base {:value    :girls
-                                      :selected (= type "girls")} "Classic Benchmarks"]]
+                                      :selected (= type "girls")} "CrossFit Benchmarks"]]
                  [:input.pink-input.teal-focus.w-full.md:w-96
                   {:name        "search"
                    :type        "search"
