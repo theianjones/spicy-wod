@@ -68,22 +68,3 @@
              :value    weight
              :type     :number}]
     [:p.m-0.bg-white.p-4.border-2.border-l-0.border-black.font-medium.whitespace-nowrap (str "x " reps " reps")]]])
-
-
-(defn movement-results-form
-  [opts {:result/keys [date notes]} & children]
-  (biff/form opts
-             children
-             [:div.flex.flex-col.justify-center.items-center.gap-4
-              [:input.pink-input.teal-focus.mt-4.mx-auto
-               {:type  "date"
-                :name  "date"
-                :value (biff/format-date
-                         (or date (biff/now)) "YYYY-MM-dd")}]
-              [:textarea#notes
-               {:name        "notes"
-                :placeholder "notes"
-                :rows        7
-                :value       notes
-                :class       (str "w-full pink-input teal-focus")}]
-              [:button.btn "Submit"]]))

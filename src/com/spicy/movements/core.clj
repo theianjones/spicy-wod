@@ -3,7 +3,7 @@
      [clojure.instant :as instant]
      [clojure.string :as string]
      [com.biffweb :as biff]
-     [com.spicy.movements.ui :refer [movement-form strength-set-inputs movement-results-form]]
+     [com.spicy.movements.ui :refer [movement-form strength-set-inputs]]
      [com.spicy.numbers :refer [parse-int safe-parse-int]]
      [com.spicy.route-helpers :refer [->key htmx-request? wildcard-override]]
      [com.spicy.ui :as ui]
