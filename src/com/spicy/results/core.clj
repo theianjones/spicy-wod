@@ -3,7 +3,8 @@
     [clojure.instant :as instant]
     [com.biffweb :as biff]
     [com.spicy.middleware :as mid]
-    [com.spicy.results.score :refer [scores->tx ->scores params->score]]
+    [com.spicy.movements.ui :refer [strength-set-inputs]]
+    [com.spicy.results.score :refer [scores->tx ->scores]]
     [com.spicy.results.ui :refer [result-ui result-form normalized-result]]
     [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
@@ -57,6 +58,11 @@
      :headers {"Location" (str "/app/results/" (:id path-params))}}))
 
 
+(defn remove-keys-ns
+  [m]
+  (update-keys m (comp keyword name)))
+
+
 (defn edit
   [{:keys [biff/db session path-params] :as _ctx}]
   (let [{:result/keys [type] :as result}
@@ -69,20 +75,45 @@
                             :where [[result :xt/id result-id]
                                     [result :result/user user]]}
                        [(parse-uuid (:id path-params)) (:uid session)]))
-        result-path (str "/app/results/" (:xt/id result))]
+        result-path (str "/app/results/" (:xt/id result))
+        workout?    (seq (:result/workout type))
+        movement?   (seq (:result/movement type))]
     [:div#edit-result
      [:h2.text-2xl.font-bold (:name (normalized-result result))]
-     (result-form
-       (assoc {}
-              :result result
-              :workout (:result/workout type)
-              :action result-path
-              :hx-key :hx-put
-              :form-props {:hx-target "closest #edit-ui"
-                           :hx-swap   "outerHTML"})
-       [:button.btn {:type "submit"} "Update Result"]
-       [:button.btn.bg-red-400.hover:bg-red-600 {:hx-get    result-path
-                                                 :hx-target "closest #edit-result"} "Cancel"])]))
+     (when movement?
+       (biff/form  {:hidden    {:sets      (count (-> result :result/type :result-set/_parent))
+                                :strength-result-id   (:xt/id type)
+                                :location  result-path}
+                    :hx-put    (str "/app/movements/" (-> result :result/type :result/movement :xt/id) "/results/" (:xt/id result))
+                    :hx-target "closest #edit-result"}
+                   (map (comp strength-set-inputs remove-keys-ns) (sort-by :result-set/number (:result-set/_parent type)))
+                   [:div.flex.flex-col.justify-center.items-center.gap-4
+                    [:input.pink-input.teal-focus.mt-4.mx-auto
+                     {:type  "date"
+                      :name  "date"
+                      :value (biff/format-date
+                               (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
+                    [:textarea#notes
+                     {:name        "notes"
+                      :placeholder "notes"
+                      :value       (:result/notes type)
+                      :rows        7
+                      :class       (str "w-full pink-input teal-focus")}]
+                    [:button.btn.w-full {:type "submit"} "Update Result"]
+                    [:button.btn.bg-red-400.hover:bg-red-600.w-full {:hx-get    result-path
+                                                                     :hx-target "closest #edit-result"} "Cancel"]]))
+     (when workout?
+       (result-form
+         (assoc {}
+                :result result
+                :workout (:result/workout type)
+                :action result-path
+                :hx-key :hx-put
+                :form-props {:hx-target "closest #edit-result"
+                             :hx-swap   "outerHTML"})
+         [:button.btn {:type "submit"} "Update Result"]
+         [:button.btn.bg-red-400.hover:bg-red-600 {:hx-get    result-path
+                                                   :hx-target "closest #edit-result"} "Cancel"]))]))
 
 
 (defn index

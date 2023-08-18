@@ -31,7 +31,6 @@
                                              :where where-clause
                                              :order-by '[[name]]}
                                          [(string/lower-case (or (:search params) "")) (:uid session)]))]
-    (tap> workouts)
     (workouts-list {:workouts workouts :id SEARCH_ID})))
 
 
