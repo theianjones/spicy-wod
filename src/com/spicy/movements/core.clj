@@ -3,10 +3,9 @@
      [clojure.instant :as instant]
      [clojure.string :as string]
      [com.biffweb :as biff]
+     [com.spicy.movements.ui :refer [movement-form strength-set-inputs movement-results-form]]
      [com.spicy.numbers :refer [parse-int safe-parse-int]]
-     [com.spicy.route-helpers :refer [wildcard-override]]
-     [com.spicy.route-helpers :refer [->key htmx-request?]]
-     [com.spicy.movements.ui :refer [movement-form]]
+     [com.spicy.route-helpers :refer [->key htmx-request? wildcard-override]]
      [com.spicy.ui :as ui]
      [xtdb.api :as xt]))
 
@@ -37,6 +36,8 @@
 (defn movement-workout-ui
   [w]
   (ui/workout-ui w))
+
+
 (defn index
   [{:keys [biff/db params] :as ctx}]
   (let [movement-type (or (keyword (:type params)) :strength)
@@ -52,7 +53,7 @@
                               [:div.w-full.mt-8.flex.flex-wrap.justify-center.items-center.sm:justify-between.mb-4
                                [:h1.text-5xl.w-fit.self-center.mb-4.md:mb-0 "Movements"]
                                [:a {:class (str "btn bg-brand-teal w-full sm:w-fit self-center")
-                                         :href  (str "/app/movements/new")} "Add Movement"]]
+                                    :href  (str "/app/movements/new")} "Add Movement"]]
                               [:div.flex.flex-col.sm:flex-row.justify-end.gap-4
                                [:select.btn.text-base.w-full.md:w-96.h-12.teal-focus.hover:cursor-pointer {:name     "type"
                                                                                                            :onchange "window.open('?type=' + this.value,'_self')"}
@@ -75,15 +76,16 @@
                                {:id "search-results"}
                                (movements-list movements)]])))))
 
+
 (defn new
-  [ctx] 
+  [ctx]
   (ui/page ctx
            [:div.max-w-md.mx-auto
             (ui/panel
-             [:div.p-4
-              [:h1.text-5xl.mb-14.pt-8.text-center "New Movement"]
-              (movement-form {})
-              ])]))
+              [:div.p-4
+               [:h1.text-5xl.mb-14.pt-8.text-center "New Movement"]
+               (movement-form {})])]))
+
 
 (defn create
   [{:keys [params] :as ctx}]
@@ -92,8 +94,7 @@
                         :db/doc-type   :movement
                         :movement/name (:name params)
                         :movement/type (keyword (:type params))
-                        :xt/id         movement-uuid}]
-        ]
+                        :xt/id         movement-uuid}]]
     (biff/submit-tx ctx new-movement)
     {:status  303
      :headers {"location" (str "/app/movements/" movement-uuid)}}))
@@ -277,39 +278,11 @@
                         (map movement-workout-ui workouts)]])]))))
 
 
-(defn strength-set-inputs
-  [{:keys [set-number reps]}]
-  [:div
-   [:p.text-2xl.font-medium.text-center.mt-4.whitespace-nowrap (str "Set #" set-number)]
-   [:input {:value reps
-            :type  "hidden"
-            :id    (str "reps-" set-number)
-            :name  (str "reps-" set-number)}]
-   [:.flex.justify-center.items-center.m-0
-    [:fieldset
-     [:.flex.gap-2
-      [:label.text-lg.sm:text-2xl.font-medium.text-center.h-fit.my-auto
-       {:for (str "hit-" set-number)}
-       "Hit"]
-      [:input {:name  (str "hit-miss-" set-number)
-               :id    (str "hit-" set-number)
-               :class (str "appearance-none p-7 border-2 border-r-0 border-black cursor-pointer "
-                           "checked:bg-brand-teal checked:text-brand-teal checked:color-brand-teal hover:bg-brand-teal checked:border-black checked:ring-0 checked:ring-offset-0 checked:ring-brand-teal checked:ring-opacity-100 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-opacity-100")
-               :value :hit
-               :type  :checkbox}]]]
-    [:input {:name     (str "weight-" set-number)
-             :id       (str "weight-" set-number)
-             :class    (str "p-4 border-2 border-black w-1/2 text-center font-bold teal-focus ")
-             :required true
-             :type     :number}]
-    [:p.m-0.bg-white.p-4.border-2.border-l-0.border-black.font-medium.whitespace-nowrap (str "x " reps " reps")]]])
-
-
 (defn get-constant-strength-sets
   [{:keys [n] :as opts}]
   (let [count (atom 0)]
     (repeatedly n
-                #(strength-set-inputs (merge {:set-number (swap! count inc)} opts)))))
+                #(strength-set-inputs (merge {:number (swap! count inc)} opts)))))
 
 
 (defn get-variable-strength-sets
@@ -320,7 +293,7 @@
     (if (<= sets set-n)
       result
       (recur (inc set-n)
-             (conj result (strength-set-inputs {:set-number (inc set-n) :reps (nth reps set-n)}))))))
+             (conj result (strength-set-inputs {:number (inc set-n) :reps (nth reps set-n)}))))))
 
 
 (defn params->reps
@@ -338,30 +311,30 @@
         sets        (safe-parse-int (:sets params))
         type        (:type params)
         strength-id (random-uuid)]
-    (biff/form {:hidden {:user     (:uid session)
-                         :movement (:id path-params)
-                         :strength strength-id
-                         :reps     reps
-                         :sets     sets}
-                :method "POST"
-                :action (str "/app/movements/" (:id path-params) "/set")}
-               (when (= type "constant")
-                 [:div (get-constant-strength-sets {:n sets :reps reps})])
-               (when (= type "variable")
-                 [:div (get-variable-strength-sets {:sets sets
-                                                    :reps reps})])
-               [:div.flex.flex-col.justify-center.items-center.gap-4
-                [:input.pink-input.teal-focus.mt-4.mx-auto
-                 {:type  "date"
-                  :name  "date"
-                  :value (biff/format-date
-                           (biff/now) "YYYY-MM-dd")}]
-                [:textarea#notes
-                 {:name        "notes"
-                  :placeholder "notes"
-                  :rows        7
-                  :class       (str "w-full pink-input teal-focus")}]
-                [:button.btn "Submit"]])))
+    (biff/form  {:hidden {:user     (:uid session)
+                          :movement (:id path-params)
+                          :strength strength-id
+                          :reps     reps
+                          :sets     sets}
+                 :method "POST"
+                 :action (str "/app/movements/" (:id path-params) "/set")}
+                (when (= type "constant")
+                  [:div (get-constant-strength-sets {:n sets :reps reps})])
+                (when (= type "variable")
+                  [:div (get-variable-strength-sets {:sets sets
+                                                     :reps reps})])
+                [:div.flex.flex-col.justify-center.items-center.gap-4
+                 [:input.pink-input.teal-focus.mt-4.mx-auto
+                  {:type  "date"
+                   :name  "date"
+                   :value (biff/format-date
+                            (biff/now) "YYYY-MM-dd")}]
+                 [:textarea#notes
+                  {:name        "notes"
+                   :placeholder "notes"
+                   :rows        7
+                   :class       (str "w-full pink-input teal-focus")}]
+                 [:button.btn "Submit"]])))
 
 
 (defn variable-reps-form
@@ -527,17 +500,30 @@
 
 (defn update-result-set
   [{:keys [path-params params] :as ctx}]
-  (let [tx (->update-tx params)]
-    (biff/submit-tx ctx tx)
+  (let [result-tx (if (:date params)
+                    [{:xt/id       (parse-uuid (:result-id path-params))
+                      :db/doc-type :result
+                      :db/op       :update
+                      :result/date (instant/read-instant-date (:date params))}]
+                    [])
+        type-tx   (if (and (:notes params) (:strength-result-id params))
+                    [{:xt/id        (parse-uuid (:strength-result-id params))
+                      :db/doc-type  :strength-result
+                      :db/op        :update
+                      :result/notes (:notes params)}]
+                    [])
+        sets-tx   (->update-tx params)
+        location  (or (:location params) (str "/app/movements/" (:id path-params) "/results/" (:result-id path-params)))]
+    (biff/submit-tx ctx (concat result-tx type-tx sets-tx))
     {:status  303
-     :headers {"Location" (str "/app/movements/" (:id path-params) "/results/" (:result-id path-params))}}))
+     :headers {"Location" location}}))
 
 
 (def routes
   ["/movements"
    ["/" {:get index
-        :post create}]
-   ["/:id" 
+         :post create}]
+   ["/:id"
     ["" {:get (wildcard-override show {:search search
                                        :new new})}]
     ["/constant-reps" {:get constant-reps-form}]
