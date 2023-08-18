@@ -220,7 +220,7 @@
        {:type  "date"
         :name  "date"
         :value (biff/format-date
-                 (or (:result/date workout-result) (biff/now)) "YYYY-MM-dd")}]
+                 (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
       [:div.flex.gap-2.items-center
        [:div.flex-1.flex.gap-2.items-center
         [:input#rx {:type     "radio"
