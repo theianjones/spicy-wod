@@ -132,58 +132,6 @@
                                           :required    true}]))
 
 
-(defn movement-form
-  [{:keys [result]}]
-
-  (biff/form {:id        (str "expanded-" (:xt/id result))
-              :class     (str "col-span-4 grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-darker-brand-teal")
-              :hidden    {:sets (count (-> result :result/type :result-set/_parent))}
-              :hx-put    (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
-              :hx-swap   "outerHTML"
-              :hx-target (str "#expanded-" (:xt/id result))}
-             [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg.font-bold.whitespace-nowrap "Set #"]
-             [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold "Reps"]
-             [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg.font-bold
-              "Weight"
-              [:span.font-normal.ml-2 "(edit)"]]
-             [:div.px-2.py-4.border-r-2.border-b-2.border-black.flex.justify-center.items-center.font-bold
-              "Hit?"
-              [:span.font-normal.ml-2 "(edit)"]]
-             (map (fn [{:result-set/keys [number reps weight status] :xt/keys [id]}]
-                    [:<>
-                     [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-lg number]
-                     [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-black.text-lg reps]
-                     [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-lg
-                      [:input {:name  (str "id-" number)
-                               :id    (str "id-" number)
-                               :type  :hidden
-                               :value id}]
-                      [:input {:name     (str "weight-" number)
-                               :id       (str "weight-" number)
-                               :class    (str "w-32 sm:w-full text-center ")
-                               :required true
-                               :type     :number
-                               :value    weight}]]
-                     [:div.flex.justify-center.items-center.w-full.px-4.sm:px-2.py-4.border-r-2.border-b-2.border-black.text-lg.capitalize
-                      [:input {:name    (str "hit-miss-" number)
-                               :id      (str "hit-" number)
-                               :class   (str "")
-                               :value   :hit
-                               :type    :checkbox
-                               :checked (= :pass status)}]]])
-                  (sort-by :result-set/number (-> result :result/type :result-set/_parent)))
-             [:div.px-2.py-6.border-r-2.border-b-2.border-l-2.border-black ""]
-             [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
-             [:button.p-2.text-md.grow.bg-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
-              {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
-               :hx-target (str "#expanded-" (:xt/id result))
-               :hx-swap   "outerHTML"}
-              "Close"]
-             [:button.p-2.text-md.grow.bg-brand-blue.border-b-2.border-black.font-bold
-              {:type :submit}
-              "Save"]))
-
-
 (defn result-form
   [{:keys [result workout action hidden hx-key form-props]} & children]
   (let [workout-result (:result/type result)
