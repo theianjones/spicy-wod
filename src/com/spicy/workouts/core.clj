@@ -17,42 +17,57 @@
   ;; searching name like this will be unperformant
   ;; when an optimization needs to be made, refer to this
   ;; https://docs.xtdb.com/extensions/full-text-search/
-  (let [workouts (map second (biff/q db '{:find [name (pull workout [*])]
-                                          :in    [[search user]]
-                                          :where [(or (and [workout :workout/name]
-                                                           (not [workout :workout/user]))
-                                                      [workout :workout/user user])
-                                                  [workout :workout/name name]
-                                                  [(clojure.string/lower-case name) lower-name]
-                                                  [(clojure.string/includes? lower-name search)]]
-                                          :order-by [[name]]}
-                                     [(string/lower-case (or (:search params) "")) (:uid session)]))]
+  (let [where-clause (if (= "girls" (:type params))
+                       '[(not [workout :workout/user])
+                         [workout :workout/name name]
+                         [(clojure.string/lower-case name) lower-name]
+                         [(clojure.string/includes? lower-name search)]]
+                       '[[workout :workout/user user]
+                         [workout :workout/name name]
+                         [(clojure.string/lower-case name) lower-name]
+                         [(clojure.string/includes? lower-name search)]])
+        workouts     (map second (biff/q db {:find     '[name (pull workout [*])]
+                                             :in       '[[search user]]
+                                             :where where-clause
+                                             :order-by '[[name]]}
+                                         [(string/lower-case (or (:search params) "")) (:uid session)]))]
+    (tap> workouts)
     (workouts-list {:workouts workouts :id SEARCH_ID})))
 
 
 (defn index
-  [{:keys [biff/db session] :as ctx}]
-  (let [workouts (map first (biff/q db '{:find [(pull workout [*]) created-at name]
-                                         :in [[user]]
-                                         :where [(or (and [workout :workout/name]
-                                                          (not [workout :workout/user]))
-                                                     [workout :workout/user user])
-                                                 [workout :workout/created-at created-at]
-                                                 [workout :workout/name name]]
-                                         :order-by [[created-at :desc]
-                                                    [name :asc]]}
-                                    [(:uid session)]))]
+  [{:keys [biff/db session params] :as ctx}]
+  (let [type         (or (:type params) "your-workouts")
+        where-clause (if (= "girls" type)
+                       '[(not [workout :workout/user])
+                         [workout :workout/created-at created-at]
+                         [workout :workout/name name]]
+                       '[[workout :workout/user user]
+                         [workout :workout/created-at created-at]
+                         [workout :workout/name name]])
+        workouts     (map first (biff/q db {:find     '[(pull workout [*]) created-at name]
+                                            :in       '[[user]]
+                                            :where    where-clause
+                                            :order-by '[[created-at :desc]
+                                                        [name :asc]]} [(:uid session)]))]
     (ui/page ctx
              [:div.pb-8
               (ui/panel
                 [:div.flex.sm:justify-between.align-start.flex-col.sm:flex-row.gap-4.justify-center.mb-8
                  [:h1.text-5xl.w-fit.self-center.mt-8 "Workouts"]
-                 [:a
-                  {:class (str "btn bg-brand-teal h-1/2 self-center")
-                   :href  (str "/app/workouts/new")}
-                  "Add Workout"]]
-                [:div.pb-8
-                 [:input.pink-input.teal-focus.w-full.h-full.md:w-96
+                 (when (not (zero? (count workouts)))
+                   [:a
+                    {:class (str "btn bg-brand-teal h-1/2 self-center")
+                     :href  (str "/app/workouts/new")}
+                    "Create Workout"])]
+                [:div.pb-8.flex.flex-col.sm:flex-row.justify-center.gap-4
+                 [:select.btn.text-base.w-full.md:w-96.h-12.teal-focus.hover:cursor-pointer {:name     "type"
+                                                                                             :onchange "window.open('?type=' + this.value,'_self')"}
+                  [:option.text-base {:value    :your-workouts
+                                      :selected (= type "your-workouts")} "Your Workouts"]
+                  [:option.text-base {:value    :girls
+                                      :selected (= type "girls")} "CrossFit Benchmarks"]]
+                 [:input.pink-input.teal-focus.w-full.md:w-96
                   {:name        "search"
                    :type        "search"
                    :id          "search"
@@ -60,9 +75,17 @@
                    :hx-get      "/app/workouts/search"
                    :hx-trigger  "keyup changed delay:500ms, search"
                    :hx-target   (str "#" SEARCH_ID)
-                   :hx-swap     "outerHTML"}]]
-
-                (workouts-list {:workouts workouts :id SEARCH_ID}))])))
+                   :hx-swap     "outerHTML"
+                   :hx-include  "[name='type']"}]]
+                (if (zero? (count workouts))
+                  [:div.flex.flex-col.gap-4.justify-center
+                   [:p.text-center
+                    "Create a workout and they will show up here"]
+                   [:a
+                    {:class (str "btn bg-brand-teal h-1/2 self-center")
+                     :href  (str "/app/workouts/new")}
+                    "Create Workout"]]
+                  (workouts-list {:workouts workouts :id SEARCH_ID})))])))
 
 
 (defn show
