@@ -23,7 +23,9 @@
                                                 (filter
                                                   #(= :pass (:result-set/status %)) sets)))]
                         (str (:result-set/reps best-set) "x" (:result-set/weight best-set))))
-        name        (or (:movement/name movement)
+        name        (or (some-> movement
+                                :movement/name
+                                string/capitalize)
                         (:workout/name workout))
         href        (if (:workout/name workout)
                       (str "/app/workouts/" (:xt/id workout))
