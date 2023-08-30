@@ -170,8 +170,11 @@
       [:input.pink-input.teal-focus
        {:type  "date"
         :name  "date"
-        :value (biff/format-date
-                 (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
+        :x-init (when-not (:result/date result)
+                  "$el.valueAsDate = new Date();")
+        :value (when (:result/date result)
+                 (biff/format-date
+                   (:result/date result) "YYYY-MM-dd"))}]
       [:div.flex.gap-2.items-center
        [:div.flex-1.flex.gap-2.items-center
         [:input#rx {:type     "radio"
