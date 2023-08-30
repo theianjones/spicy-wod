@@ -176,7 +176,7 @@
 
 
 (defn calendar-view
-  [{:keys [params session biff/db] :as ctx}]
+  [{:keys [params session biff/db] :as _ctx}]
   (let [date       (if (:date params)
                      (apply jt/local-date (c/safe-parse-date (:date params)))
                      (jt/zoned-date-time (jt/zone-id "America/Boise")))

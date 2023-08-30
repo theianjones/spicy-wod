@@ -3,7 +3,6 @@
     [clojure.string :as string]
     [com.biffweb :as biff]
     [com.spicy.results.ui :as r]
-    [com.spicy.ui :as ui]
     [java-time.api :as jt]
     [java-time.repl :as jtr]))
 
@@ -28,11 +27,6 @@
 
 
 (comment
-  (require '[java-time.api :as jt]
-           ;; for REPL experimentation
-           '[java-time.repl :as jtr])
-
-
 
   (monthly-frame-days (jt/local-date))
   (jt/iterate jt/plus (jt/local-date) (jt/days 1))
@@ -105,7 +99,7 @@
 
 
 (defn desktop-day
-  [{:keys [day date now results] :as day-props}]
+  [{:keys [day date now results] :as _day-props}]
   (let [is-today? (= (jt/as day :year :month-of-year :day-of-month)
                      (jt/as now :year :month-of-year :day-of-month))
         is-current-month? (= (jt/as day :month-of-year) (jt/as date :month-of-year))]
@@ -123,7 +117,7 @@
 
 
 (defn mobile-day
-  [{:keys [day date now results]}]
+  [{:keys [day date now results] :as _day-props}]
   (let [is-today? (= (jt/as day :year :month-of-year :day-of-month)
                      (jt/as now :year :month-of-year :day-of-month))
         is-current-month? (= (jt/as day :month-of-year) (jt/as date :month-of-year))]
