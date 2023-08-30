@@ -118,7 +118,7 @@
                                                    :hx-target "closest #edit-result"} "Cancel"]))]))
 
 
-(def list-icon [:svg.w-6.h-6.flex-none {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor"} [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}]])
+(def list-icon [:svg.w-6.h-6.flex-none {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1" :stroke "currentColor"} [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}]])
 (def calendar-icon [:svg.w-6.h-6.flex-none {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor"} [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"}]])
 
 
@@ -139,12 +139,13 @@
     (ui/page ctx (ui/panel [:div {:class (str "p-4")}
                             [:div.flex.justify-between
                              [:h1.text-3xl.cursor-default.capitalize.text-center.sm:text-left "Results"]
-                             [:div.flex.space-x-1.bg-slate-100.p-0.5.border-2.border-black
+                             [:div
                               {:role             "tablist"
+                               :class (str "flex space-x-1 bg-slate-100 p-0 5 border border-black min-w-[95px]")
                                :aria-orientation "horizontal"
                                :id               "results-view-toggle"}
                               [:button#headlessui-tabs-tab-8
-                               {:class                 '[flex items-center pl-2 pr-2 text-sm font-semibold lg:pr-3 bg-white]
+                               {:class                 '[flex items-center w-full pl-2 pr-2 text-base lg:pr-3 bg-brand-teal]
                                 :role                  "tab"
                                 :type                  "button"
                                 :aria-selected         "true"
@@ -152,9 +153,9 @@
                                 :data-headlessui-state "selected"
                                 :aria-controls         "headlessui-tabs-panel-10"}
                                list-icon
-                               [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-900 "List"]]
+                               [:span.sr-only.lg:not-sr-only.lg:ml-2.text-black.text-base "List"]]
                               [:button#headlessui-tabs-tab-9
-                               {:class                 '[flex items-center pl-2 pr-2 text-sm font-semibold lg:pr-3]
+                               {:class                 '[flex items-center w-full pl-2 pr-2 text-base lg:pr-3]
                                 :role                  "tab"
                                 :type                  "button"
                                 :aria-selected         "false"
@@ -196,12 +197,14 @@
                                             :order-by [[d :desc]]}
                                        [(:uid session) (c/->date start-date) (c/->date end-date)]))]
     [:<>
-     [:div.flex.space-x-1.bg-slate-100.p-0.5.border-2.border-black
-      {:role             "tablist"
+     [:div
+      {
+       :role             "tablist"
+       :class (str " flex sm:space-x-1 bg-slate-100 p-0 5 border border-black min-w-[95px]")
        :aria-orientation "horizontal"
        :id               "results-view-toggle"}
       [:button#headlessui-tabs-tab-8
-       {:class                 '[flex items-center pl-2 pr-2 text-sm font-semibold lg:pr-3]
+       {:class                 '[flex items-center w-full pl-2 pr-2 text-base lg:pr-3]
         :role                  "tab"
         :type                  "button"
         :aria-selected         "true"
@@ -214,9 +217,9 @@
         :hx-select-oob         "#results-panel"
         :aria-controls         "headlessui-tabs-panel-10"}
        list-icon
-       [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-900 "List"]]
+       [:span.sr-only.lg:not-sr-only.lg:ml-2.text-black.text-base "List"]]
       [:button#headlessui-tabs-tab-9
-       {:class                 '[flex items-center pl-2 pr-2 text-sm font-semibold lg:pr-3 bg-white]
+       {:class                 '[flex items-center w-full m-0 pl-2 pr-2 text-base lg:pr-3 bg-brand-teal]
         :role                  "tab"
         :type                  "button"
         :aria-selected         "false"
@@ -224,7 +227,7 @@
         :data-headlessui-state ""
         :aria-controls         "headlessui-tabs-panel-11"}
        calendar-icon
-       [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-900 "Calendar"]]]
+       [:span.sr-only.lg:not-sr-only.lg:ml-2.text-black.text-base "Calendar"]]]
      [:div {:id "results-panel"}
       (c/calendar {:date    date
                    :today   (jt/zoned-date-time (jt/zone-id "America/Boise"))
