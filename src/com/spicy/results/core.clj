@@ -139,12 +139,12 @@
     (ui/page ctx (ui/panel [:div {:class (str "p-4")}
                             [:div.flex.justify-between
                              [:h1.text-3xl.cursor-default.capitalize.text-center.sm:text-left "Results"]
-                             [:div.flex.space-x-1.rounded-lg.bg-slate-100.p-0.5
+                             [:div.flex.space-x-1.bg-slate-100.p-0.5.border-2.border-black
                               {:role             "tablist"
                                :aria-orientation "horizontal"
                                :id               "results-view-toggle"}
                               [:button#headlessui-tabs-tab-8
-                               {:class                 '[flex items-center rounded-md pl-2 pr-2 text-sm font-semibold lg:pr-3 bg-white shadow]
+                               {:class                 '[flex items-center pl-2 pr-2 text-sm font-semibold lg:pr-3 bg-white]
                                 :role                  "tab"
                                 :type                  "button"
                                 :aria-selected         "true"
@@ -154,7 +154,7 @@
                                list-icon
                                [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-900 "List"]]
                               [:button#headlessui-tabs-tab-9
-                               {:class                 '[flex items-center rounded-md pl-2 pr-2 text-sm font-semibold lg:pr-3]
+                               {:class                 '[flex items-center pl-2 pr-2 text-sm font-semibold lg:pr-3]
                                 :role                  "tab"
                                 :type                  "button"
                                 :aria-selected         "false"
@@ -167,7 +167,7 @@
                                 :hx-select-oob         "#results-panel"
                                 :aria-controls "headlessui-tabs-panel-11"}
                                calendar-icon
-                               [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-600 "Calendar"]]]]
+                               [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-900 "Calendar"]]]]
                             [:div {:id "results-panel"}
                              [:ul.list-none.p-0.m-0.mt-4.space-y-4.max-w-xl.sm:mx-auto
                               (map (fn [r]
@@ -196,12 +196,12 @@
                                             :order-by [[d :desc]]}
                                        [(:uid session) (c/->date start-date) (c/->date end-date)]))]
     [:<>
-     [:div.flex.space-x-1.rounded-lg.bg-slate-100.p-0.5
+     [:div.flex.space-x-1.bg-slate-100.p-0.5.border-2.border-black
       {:role             "tablist"
        :aria-orientation "horizontal"
        :id               "results-view-toggle"}
       [:button#headlessui-tabs-tab-8
-       {:class                 '[flex items-center rounded-md pl-2 pr-2 text-sm font-semibold lg:pr-3]
+       {:class                 '[flex items-center pl-2 pr-2 text-sm font-semibold lg:pr-3]
         :role                  "tab"
         :type                  "button"
         :aria-selected         "true"
@@ -216,7 +216,7 @@
        list-icon
        [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-900 "List"]]
       [:button#headlessui-tabs-tab-9
-       {:class                 '[flex items-center rounded-md pl-2 pr-2 text-sm font-semibold lg:pr-3 bg-white shadow]
+       {:class                 '[flex items-center pl-2 pr-2 text-sm font-semibold lg:pr-3 bg-white]
         :role                  "tab"
         :type                  "button"
         :aria-selected         "false"
@@ -224,7 +224,7 @@
         :data-headlessui-state ""
         :aria-controls         "headlessui-tabs-panel-11"}
        calendar-icon
-       [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-600 "Calendar"]]]
+       [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-900 "Calendar"]]]
      [:div {:id "results-panel"}
       (c/calendar {:date    date
                    :today   (jt/zoned-date-time (jt/zone-id "America/Boise"))

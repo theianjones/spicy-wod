@@ -65,8 +65,8 @@
    [:h1.text-base.font-semibold.leading-6.text-gray-900
     [:time {:datetime (jt/format "YYYY-MM" date)} (jt/format "MMMM YYYY" date)]]
    [:div.flex.items-center
-    [:div.relative.flex.items-center.rounded-md.bg-white.shadow-sm.md:items-stretch
-     [:button.flex.h-9.w-12.items-center.justify-center.rounded-l-md.border-y.border-l.border-gray-300.pr-1.text-gray-400.hover:text-gray-500.focus:relative.md:w-9.md:pr-0.md:hover:bg-gray-50
+    [:div.relative.flex.items-center.bg-white.shadow-sm.md:items-stretch
+     [:button.flex.h-9.w-12.items-center.justify-center.border-y.border-l.border-gray-300.pr-1.text-gray-400.hover:text-gray-500.focus:relative.md:w-9.md:pr-0.md:hover:bg-gray-50
       {:type "button"
        :hx-get (str "/app/results/calendar?date=" (jt/format "YYYY-MM-dd" (jt/minus date (jt/months 1))))
        :hx-select "#calendar-header"
@@ -85,7 +85,7 @@
        :hx-swap "outerHTML"}
       "Today"]
      [:span.relative.-mx-px.h-5.w-px.bg-gray-300.md:hidden]
-     [:button.flex.h-9.w-12.items-center.justify-center.rounded-r-md.border-y.border-r.border-gray-300.pl-1.text-gray-400.hover:text-gray-500.focus:relative.md:w-9.md:pl-0.md:hover:bg-gray-50
+     [:button.flex.h-9.w-12.items-center.justify-center.border-y.border-r.border-gray-300.pl-1.text-gray-400.hover:text-gray-500.focus:relative.md:w-9.md:pl-0.md:hover:bg-gray-50
       {:type "button"
        :hx-get (str "/app/results/calendar?date=" (jt/format "YYYY-MM-dd" (jt/plus date (jt/months 1))))
        :hx-select "#calendar-header"
@@ -112,7 +112,7 @@
     [:div {:class (concat '[relative px-3 py-2]
                           (when-not is-current-month? '[bg-gray-50 text-gray-500])
                           (when is-current-month? '[bg-white]))}
-     [:time {:class (concat [] (when is-today? '[flex h-6 w-6 items-center justify-center rounded-full bg-brand-teal font-semibold]))
+     [:time {:class (concat [] (when is-today? '[flex h-6 w-6 items-center justify-center bg-brand-teal font-semibold]))
              :datetime (jt/format "YYYY-MM-dd" day)} (jt/as day :day-of-month)]
      (when (not-empty results)
        [:ol.mt-2.list-none.m-0.p-0
@@ -139,12 +139,12 @@
      [:time.ml-auto
       {:datetime (jt/format "YYYY-MM-dd" day)
        :class (concat '[ml-auto]
-                      (when is-today? '[flex h-6 w-6 items-center justify-center rounded-full bg-brand-teal font-semibold]))}
+                      (when is-today? '[flex h-6 w-6 items-center justify-center bg-brand-teal font-semibold]))}
       (jt/as day :day-of-month)]
      [:span.sr-only (str (count results) " events")]
      (when (not-empty results)
        [:span.-mx-0.5.mt-auto.flex.flex-wrap-reverse
-        (map (fn [_] [:span.mx-0.5.mb-1.h-1.5.w-1.5.rounded-full.bg-gray-400]) results)])]))
+        (map (fn [_] [:span.mx-0.5.mb-1.h-1.5.w-1.5.bg-gray-400]) results)])]))
 
 
 (defmulti ->instant
@@ -200,12 +200,12 @@
       [:div.px-4.py-10.sm:px-6
        {:id "mobile-day-view"}
        [:h2.mb-4 (jt/format "EEE, MMMM dd" date)]
-       [:ol.divide-y.divide-gray-100.overflow-hidden.rounded-lg.bg-white.text-sm.shadow.ring-1.ring-black.ring-opacity-5
+       [:ol.divide-y.divide-gray-100.overflow-hidden.bg-white.text-sm.shadow.ring-1.ring-black.ring-opacity-5
         (map (comp (fn [{:keys [name href]}]
                      [:li.group.flex.p-4.pr-6.focus-within:bg-gray-50.hover:bg-gray-50
                       [:div.flex-auto
                        [:p.font-semibold.text-gray-900 name]]
-                      [:a.ml-6.flex-none.self-center.rounded-md.bg-white.px-3.py-2.font-semibold.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300.hover:ring-gray-400 {:href href} "View"
+                      [:a.ml-6.flex-none.self-center.bg-white.px-3.py-2.font-semibold.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300.hover:ring-gray-400 {:href href} "View"
                        [:span.sr-only (str ", " name)]]]) r/normalized-result) results)]]
       [:div.px-4.py-10.sm:px-6.lg:hidden
        {:id "mobile-day-view"}
