@@ -265,7 +265,7 @@
                       [:div
                        [:p.text-md "Log a session and it will show up here."]])
                     (when (not-empty movement-results)
-                      [:div {:class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full border-b-4 border-r-4 border-black mb-4 rounded-md bg-brand-teal"}
+                      [:div {:class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full border-b-4 border-r-4 border-black mb-4  bg-brand-teal"}
                        [:div.flex.justify-center.items-center.px-2.py-4.border-2.border-black.text-lg.font-bold "Date"]
                        [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold.whitespace-nowrap "Rep Scheme"]
                        [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold.whitespace-nowrap "Best Lift"]

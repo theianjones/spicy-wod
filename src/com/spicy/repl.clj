@@ -2,8 +2,7 @@
   (:require
     [clojure.edn :as edn]
     [clojure.java.io :as io]
-    [clojure.string :as string]
-    [com.biffweb :as biff :refer [q]]
+    [com.biffweb :as biff]
     [com.spicy :as main]
     [xtdb.api :as xt]))
 
@@ -39,7 +38,8 @@
                                 :xt/id id}) ids))
     (add-fixtures "workouts.edn")
     (add-fixtures "movements.edn")
-    (add-fixtures "movements_cont.edn")))
+    (add-fixtures "movements_cont.edn")
+    (add-fixtures "hero-workouts.edn")))
 
 
 (def user-a
@@ -56,6 +56,10 @@
   (add-fixtures "workouts.edn")
   (add-fixtures "movements.edn")
   (add-fixtures "movements_cont.edn")
+  (add-fixtures "hero-workouts.edn")
+
+
+  (biff/add-libs)
 
   (scary-reset-db!)
   (xt/entity (:biff/db (get-context)) #uuid "2af37195-ac44-40f4-a546-41c52f558ee6")
@@ -69,7 +73,7 @@
                     :movement/type :gymnastic
                     :xt/id         :db.id/movement-ddd
                     }
-                    ])
+                   ])
 
   (biff/submit-tx (get-context)
                   [{:xt/id       :db.id/result
@@ -139,6 +143,14 @@
   (let [{:keys [biff/db]} (get-context)]
     (biff/q db '{:find  (pull r [* {:result-set/_result [*]}])
                  :where [[r :result/strength]]}))
+
+  (let [{:keys [biff/db]} (get-context)]
+    (biff/q db '{:find  (pull r [*])
+                 :in [[start end]]
+                 :where [[r :result/date d]
+                         [(>= d start)]
+                         [(<= d end)]]}
+            [#inst "2023-08-31T00:00:00.000-00:00" #inst "2023-09-02T00:00:00.000-00:00"]))
 
   (def cindy (first (let [{:keys [biff/db]} (get-context)]
                       (biff/q db '{:find (pull w [*])

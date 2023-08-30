@@ -25,7 +25,8 @@
                         (str (:result-set/reps best-set) "x" (:result-set/weight best-set))))
         name        (or (some-> movement
                                 :movement/name
-                                string/capitalize)
+                                string/capitalize
+                                (str " (" (sets-n-reps sets) ")"))
                         (:workout/name workout))
         href        (if (:workout/name workout)
                       (str "/app/workouts/" (:xt/id workout))
