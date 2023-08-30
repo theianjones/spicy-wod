@@ -138,8 +138,8 @@
       (jt/as day :day-of-month)]
      [:span.sr-only (str (count results) " events")]
      (when (not-empty results)
-       [:span.-mx-0.5.mt-auto.flex.flex-wrap-reverse
-        (map (fn [_] [:span.mx-0.5.mb-1.h-1.5.w-1.5.bg-gray-400]) results)])]))
+       [:span.mt-auto.flex.flex-wrap-reverse
+        (map (fn [_] [:span.mr-1.mb-1.h-1.w-1.bg-gray-400]) results)])]))
 
 
 (defmulti ->instant
@@ -241,7 +241,7 @@
      [:div.flex.bg-gray-200.text-xs.leading-6.text-gray-700.lg:flex-auto
       [:div.hidden.w-full.lg:grid.lg:grid-cols-7.lg:grid-rows-6.lg:gap-px.bg-black
        (map #(desktop-day {:day % :now today :date date :results (get results-by-month-day (jt/as % :month-of-year :day-of-month))}) (monthly-frame-days date))]
-      [:div.isolate.grid.w-full.grid-cols-7.grid-rows-6.gap-px.lg:hidden.bg-black
+      [:div.isolate.grid.w-full.grid-cols-7.grid-rows-6.gap-px.lg:hidden.bg-black.border-b.border-black
        (map #(mobile-day {:day % :now today :date date :results (get results-by-month-day (jt/as % :month-of-year :day-of-month))}) (monthly-frame-days date))]]
      [:div.px-4.py-10.sm:px-6.lg:hidden
       {:id "mobile-day-view"}
