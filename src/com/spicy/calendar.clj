@@ -3,8 +3,7 @@
     [clojure.string :as string]
     [com.biffweb :as biff]
     [com.spicy.results.ui :as r]
-    [java-time.api :as jt]
-    [java-time.repl :as jtr]))
+    [java-time.api :as jt]))
 
 
 (defn time-frame-start-day
@@ -111,7 +110,7 @@
              :datetime (jt/format "YYYY-MM-dd" day)} (jt/as day :day-of-month)]
      (when (not-empty results)
        [:ol.mt-2.list-none.m-0.p-0
-        
+
         (map (comp (fn [{:keys [name href]}]
                      [:li
                       [:a.group.flex {:href href}
