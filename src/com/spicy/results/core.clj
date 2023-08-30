@@ -93,8 +93,11 @@
                     [:input.pink-input.teal-focus.mt-4.mx-auto
                      {:type  "date"
                       :name  "date"
-                      :value (biff/format-date
-                               (or (:result/date result) (biff/now)) "YYYY-MM-dd")}]
+                      :x-init (when-not (:result/date result)
+                                "$el.valueAsDate = new Date();")
+                      :value (when (:result/date result)
+                               (biff/format-date
+                                 (:result/date result) "YYYY-MM-dd"))}]
                     [:textarea#notes
                      {:name        "notes"
                       :placeholder "notes"
@@ -198,8 +201,7 @@
                                        [(:uid session) (c/->date start-date) (c/->date end-date)]))]
     [:<>
      [:div
-      {
-       :role             "tablist"
+      {:role             "tablist"
        :class (str " flex sm:space-x-1 bg-slate-100 p-0 5 border border-black min-w-[95px]")
        :aria-orientation "horizontal"
        :id               "results-view-toggle"}
