@@ -59,8 +59,8 @@
     [:time.select-none {:datetime (jt/format "YYYY-MM" date)} (jt/format "MMMM YYYY" date)]]
    [:div.flex.items-center
     [:div
-     {:class (str "relative flex items-center bg-white justify-between shadow-sm md:items-stretch sm:min-w-[197.25px]")}
-     [:button.flex.h-9.w-12.md:w-9.lg:w-full.items-center.justify-center.border-y.border-l.border-black.pr-1.text-black.hover:text-black.focus:relative.md:pr-0.md:hover:bg-brand-teal
+     {:class (str "relative flex items-center bg-white justify-between shadow-sm md:items-stretch lg:min-w-[197.25px]")}
+     [:button.flex.h-9.w-12.sm:w-9.lg:w-full.items-center.justify-center.border-y.border-l.border-black.pr-1.text-black.hover:text-black.focus:relative.md:pr-0.md:hover:bg-brand-teal
       {:type "button"
        :hx-get (str "/app/results/calendar?date=" (jt/format "YYYY-MM-dd" (jt/minus date (jt/months 1))))
        :hx-select "#calendar-header"
@@ -79,7 +79,7 @@
        :hx-swap "outerHTML"}
       "Today"]
      [:span.relative.-mx-px.h-5.w-px.bg-gray-300.md:hidden]
-     [:button.flex.h-9.w-12.md:w-9.lg:w-full.items-center.justify-center.border-y.border-r.border-black.pl-1.text-black.hover:text-gray-500.focus:relative.md:pl-0.md:hover:bg-brand-teal
+     [:button.flex.h-9.w-12.sm:w-9.lg:w-full.items-center.justify-center.border-y.border-r.border-black.pl-1.text-black.hover:text-gray-500.focus:relative.md:pl-0.md:hover:bg-brand-teal
       {:type "button"
        :hx-get (str "/app/results/calendar?date=" (jt/format "YYYY-MM-dd" (jt/plus date (jt/months 1))))
        :hx-select "#calendar-header"
