@@ -48,7 +48,7 @@
 
   ul,
   ol {
-    @apply pl-10 my-3;
+    @apply m-0;
   }
 
   body {

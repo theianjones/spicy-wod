@@ -1,0 +1,447 @@
+[{:xt/id             :db.id/murph
+  :workout/name      "Murph"
+  :workout/created-at :db/now
+  :workout/description "1 mile run, 100 pull-ups, 200 push-ups, 300 air squats, 1 mile run"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/dt
+  :workout/name      "DT"
+  :workout/created-at :db/now
+  :workout/description "5 rounds for time of: 12 deadlifts, 9 hang power cleans, 6 push jerks"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/randy
+  :workout/name      "Randy"
+  :workout/created-at :db/now
+  :workout/description "75 power snatches (75 lb/55 lb)"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/mary
+  :workout/name      "Mary"
+  :workout/created-at :db/now
+  :workout/description "5 handstand push-ups, 10 single-leg squats, 15 pull-ups, 20-minute AMRAP"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+ {:xt/id             :db.id/the-seven
+  :workout/name      "The Seven"
+  :workout/created-at :db/now
+  :workout/description "7 rounds for time of: 7 handstand push-ups, 7 thrusters, 7 knees-to-elbows, 7 deadlifts, 7 burpees, 7 kettlebell swings, 7 pull-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/jt
+  :workout/name      "JT"
+  :workout/created-at :db/now
+  :workout/description "21-15-9 reps of: Handstand push-ups, Ring dips, Push-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/nate
+  :workout/name      "Nate"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 20 minutes of: 2 muscle-ups, 4 handstand push-ups, 8 kettlebell swings"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+ {:xt/id             :db.id/ryan
+  :workout/name      "Ryan"
+  :workout/created-at :db/now
+  :workout/description "5 rounds for time of: 7 muscle-ups, 21 burpees"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/luce
+  :workout/name      "Luce"
+  :workout/created-at :db/now
+  :workout/description "3 rounds for time of: 1000-meter run, 10 muscle-ups, 100 squats"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/badger
+  :workout/name      "Badger"
+  :workout/created-at :db/now
+  :workout/description "3 rounds for time of: 30 squat cleans, 30 pull-ups, 800-meter run"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/holleyman
+  :workout/name      "Holleyman"
+  :workout/created-at :db/now
+  :workout/description "30 rounds for time of: 5 wall balls, 3 handstand push-ups, 1 power clean"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/tommy-v
+  :workout/name      "Tommy V"
+  :workout/created-at :db/now
+  :workout/description "21 thrusters, 12 rope climbs, 15 thrusters, 9 rope climbs, 9 thrusters, 6 rope climbs"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/danny
+  :workout/name      "Danny"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 20 minutes of: 30 box jumps, 20 push presses, 30 pull-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/morrison
+  :workout/name      "Morrison"
+  :workout/created-at :db/now
+  :workout/description "50-40-30-20-10 reps for time of: Wall ball shots, Box jumps, Kettlebell swings"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/bradley
+  :workout/name      "Bradley"
+  :workout/created-at :db/now
+  :workout/description "10 rounds for time of: 100-meter sprint, 10 pull-ups, 100-meter sprint, 10 burpees, Rest 30 seconds"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/jerry
+  :workout/name      "Jerry"
+  :workout/created-at :db/now
+  :workout/description "For time: Run 1 mile, Row 2K, Run 1 mile"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/nutts
+  :workout/name      "Nutts"
+  :workout/created-at :db/now
+  :workout/description "For time: 10 handstand push-ups, 15 deadlifts, 25 box jumps, 50 pull-ups, 100 wall ball shots, 200 double-unders, Run 400 meters with a 45 lb/35 lb plate"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+ {:xt/id             :db.id/ryan
+  :workout/name      "Ryan"
+  :workout/created-at :db/now
+  :workout/description "5 rounds for time of: 7 muscle-ups, 21 burpees"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/luce
+  :workout/name      "Luce"
+  :workout/created-at :db/now
+  :workout/description "3 rounds for time of: 1000-meter run, 10 muscle-ups, 100 squats"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/badger
+  :workout/name      "Badger"
+  :workout/created-at :db/now
+  :workout/description "3 rounds for time of: 30 squat cleans, 30 pull-ups, 800-meter run"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/holleyman
+  :workout/name      "Holleyman"
+  :workout/created-at :db/now
+  :workout/description "30 rounds for time of: 5 wall balls, 3 handstand push-ups, 1 power clean"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/tommy-v
+  :workout/name      "Tommy V"
+  :workout/created-at :db/now
+  :workout/description "21 thrusters, 12 rope climbs, 15 thrusters, 9 rope climbs, 9 thrusters, 6 rope climbs"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/danny
+  :workout/name      "Danny"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 20 minutes of: 30 box jumps, 20 push presses, 30 pull-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/morrison
+  :workout/name      "Morrison"
+  :workout/created-at :db/now
+  :workout/description "50-40-30-20-10 reps for time of: Wall ball shots, Box jumps, Kettlebell swings"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/bradley
+  :workout/name      "Bradley"
+  :workout/created-at :db/now
+  :workout/description "10 rounds for time of: 100-meter sprint, 10 pull-ups, 100-meter sprint, 10 burpees, Rest 30 seconds"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/jerry
+  :workout/name      "Jerry"
+  :workout/created-at :db/now
+  :workout/description "For time: Run 1 mile, Row 2K, Run 1 mile"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/nutts
+  :workout/name      "Nutts"
+  :workout/created-at :db/now
+  :workout/description "For time: 10 handstand push-ups, 15 deadlifts, 25 box jumps, 50 pull-ups, 100 wall ball shots, 200 double-unders, Run 400 meters with a 45 lb/35 lb plate"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+ {:xt/id             :db.id/josh
+  :workout/name      "Josh"
+  :workout/created-at :db/now
+  :workout/description "For time: 21 overhead squats, 42 pull-ups, 15 overhead squats, 30 pull-ups, 9 overhead squats, 18 pull-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/jenny
+  :workout/name      "Jenny"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 20 minutes of: 20 overhead squats, 20 back squats, 400-meter run"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/arnie
+  :workout/name      "Arnie"
+  :workout/created-at :db/now
+  :workout/description "21 Turkish get-ups, 50 kettlebell swings, 21 overhead squats, 50 kettlebell swings, 21 Turkish get-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/bull
+  :workout/name      "Bull"
+  :workout/created-at :db/now
+  :workout/description "2 rounds for time of: 200 double-unders, 50 overhead squats, 50 pull-ups, Run 1 mile"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/blake
+  :workout/name      "Blake"
+  :workout/created-at :db/now
+  :workout/description "4 rounds for time of: 100-foot walking lunge, 30 box jumps, 20 wall ball shots, 10 handstand push-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/scott
+  :workout/name      "Scott"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 30 minutes of: 11 push-ups, 11 box jumps, 11 thrusters"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/white
+  :workout/name      "White"
+  :workout/created-at :db/now
+  :workout/description "5 rounds for time of: 3 rope climbs, 10 toes-to-bars, 21 overhead walking lunges, 400-meter run"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/jason
+  :workout/name      "Jason"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 20 minutes of: 100 squats, 5 muscle-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/mcghee
+  :workout/name      "McGhee"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 30 minutes of: 5 deadlifts, 13 push-ups, 9 box jumps"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/tyler
+  :workout/name      "Tyler"
+  :workout/created-at :db/now
+  :workout/description "5 rounds for time of: 7 muscle-ups, 21 sumo deadlift high pulls"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+ {:xt/id             :db.id/bradshaw
+  :workout/name      "Bradshaw"
+  :workout/created-at :db/now
+  :workout/description "10 rounds for time of: 3 handstand push-ups, 6 deadlifts, 12 pull-ups, 24 double-unders"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/sisson
+  :workout/name      "Sisson"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 20 minutes of: 15-ft rope climb, 5 burpees, Run 200 meters"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/lumberjack-20
+  :workout/name      "Lumberjack 20"
+  :workout/created-at :db/now
+  :workout/description "20 rounds for time of: 20 deadlifts, 400-meter run, 20 kettlebell swings, 20 overhead squats, Run 400 meters"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/carse
+  :workout/name      "Carse"
+  :workout/created-at :db/now
+  :workout/description "21-18-15-12-9-6-3 reps for time of: squat clean, double-unders, deadlift, box jumps"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/whitten
+  :workout/name      "Whitten"
+  :workout/created-at :db/now
+  :workout/description "5 rounds for time of: 22 kettlebell swings, 22 box jumps, 400-meter run, 22 burpees, 22 wall ball shots"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/jack
+  :workout/name      "Jack"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 20 minutes of: 10 push presses, 10 kettlebell swings, 10 box jumps"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/tommy-mac
+  :workout/name      "Tommy Mac"
+  :workout/created-at :db/now
+  :workout/description "2 rounds for time of: 12 burpees, 12 thrusters, 12 burpees, 12 power snatches, 12 burpees, 12 push jerks"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/the-chief
+  :workout/name      "The Chief"
+  :workout/created-at :db/now
+  :workout/description "5 rounds of 3-minute AMRAPs: 3 power cleans, 6 push-ups, 9 squats, Rest 1 minute"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/tom
+  :workout/name      "Tom"
+  :workout/created-at :db/now
+  :workout/description "7 rounds for time of: 250-meter row, 15 dumbbell power snatches, 25-foot overhead lunge"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/thompson
+  :workout/name      "Thompson"
+  :workout/created-at :db/now
+  :workout/description "10 rounds for time of: 1 rope climb, 29 back squats, 10-meter shuttle sprint"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+ {:xt/id             :db.id/small
+  :workout/name      "Small"
+  :workout/created-at :db/now
+  :workout/description "3 rounds for time of: Row 1000 meters, 50 burpees, 50 box jumps, 800-meter run"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/dunn
+  :workout/name      "Dunn"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 19 minutes of: 3 muscle-ups, 1 shuttle sprint, 6 burpee box jumps"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/dae-han
+  :workout/name      "Dae Han"
+  :workout/created-at :db/now
+  :workout/description "3 rounds for time of: 800-meter run, 3 rope climbs, 12 thrusters"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/rj
+  :workout/name      "RJ"
+  :workout/created-at :db/now
+  :workout/description "5 rounds for time of: 800-meter run, 5 rope climbs, 50 push-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/tk
+  :workout/name      "TK"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 20 minutes of: 8 strict pull-ups, 8 box jumps, 12 kettlebell swings"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/baz
+  :workout/name      "Baz"
+  :workout/created-at :db/now
+  :workout/description "For time: 30 kettlebell swings, 30 pull-ups, 30 kettlebell snatches, 30 pull-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/wood
+  :workout/name      "Wood"
+  :workout/created-at :db/now
+  :workout/description "5 rounds for time of: 400-meter run, 10 burpee box jumps, 10 sumo deadlift high pulls, 95 lb/65 lb"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/coe
+  :workout/name      "Coe"
+  :workout/created-at :db/now
+  :workout/description "10 rounds for time of: 10 thrusters, 10 ring push-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/moore
+  :workout/name      "Moore"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 20 minutes of: 1 rope climb, Run 400 meters, Max-rep handstand push-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/rahoi
+  :workout/name      "Rahoi"
+  :workout/created-at :db/now
+  :workout/description "12-minute AMRAP of: 12 box jumps, 6 thrusters, 6 bar-facing burpees"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+ {:xt/id             :db.id/ship
+  :workout/name      "Ship"
+  :workout/created-at :db/now
+  :workout/description "9 rounds for time of: 185 lb/135 lb squat cleans, 7 chest-to-bar pull-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/forrest
+  :workout/name      "Forrest"
+  :workout/created-at :db/now
+  :workout/description "3 rounds for time of: 20 L-pull-ups, 30 toes-to-bars, 40 burpees, Run 800 meters"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/gallant
+  :workout/name      "Gallant"
+  :workout/created-at :db/now
+  :workout/description "For time: 1 mile run, 60 burpee pull-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/moore
+  :workout/name      "Moore"
+  :workout/created-at :db/now
+  :workout/description "15 ft rope climbs, Run 400 meters, Max rep handstand push-ups"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/hildy
+  :workout/name      "Hildy"
+  :workout/created-at :db/now
+  :workout/description "For time: 100-calorie row, 75 thrusters, 50 pull-ups, 75 wall ball shots, 100-calorie row"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/donny
+  :workout/name      "Donny"
+  :workout/created-at :db/now
+  :workout/description "21-15-9-9-15-21 reps for time of: Deadlifts, Burpees, 225 lb/155 lb"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/scooter
+  :workout/name      "Scooter"
+  :workout/created-at :db/now
+  :workout/description "AMRAP in 30 minutes of: 30 double-unders, 15 pull-ups, 15 push-ups, Run 800 meters"
+  :workout/scheme    :time
+  :db/doc-type       :workout}
+
+ {:xt/id             :db.id/whitman
+  :workout/name      "Whitman"
+  :workout/created-at :db/now
+  :workout/description "4 rounds for time of: 800-meter run, 29 kettlebell swings, 29 2/1.5-pood"
+  :workout/scheme    :time
+  :db/doc-type       :workout}]

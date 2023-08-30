@@ -2,12 +2,14 @@
   (:require
     [clojure.instant :as instant]
     [com.biffweb :as biff]
+    [com.spicy.calendar :as c]
     [com.spicy.middleware :as mid]
     [com.spicy.movements.ui :refer [strength-set-inputs]]
     [com.spicy.results.score :refer [scores->tx ->scores]]
     [com.spicy.results.ui :refer [result-ui result-form normalized-result]]
     [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
+    [java-time.api :as jt]
     [xtdb.api :as xt]))
 
 
@@ -116,6 +118,10 @@
                                                    :hx-target "closest #edit-result"} "Cancel"]))]))
 
 
+(def list-icon [:svg.w-6.h-6.flex-none {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor"} [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}]])
+(def calendar-icon [:svg.w-6.h-6.flex-none {:xmlns "http://www.w3.org/2000/svg" :fill "none" :viewBox "0 0 24 24" :stroke-width "1.5" :stroke "currentColor"} [:path {:stroke-linecap "round" :stroke-linejoin "round" :d "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"}]])
+
+
 (defn index
   [{:keys [biff/db session] :as ctx}]
   (let [date-and-results (biff/q db '{:find     [date (pull result
@@ -129,13 +135,100 @@
                                                  [result :result/date date]]
                                       :order-by [[date :desc]]}
                                  [(:uid session)])
-        results (map second date-and-results)]
-    (ui/page ctx (ui/panel [:div {:class (str "p-4 max-w-xl sm:mx-auto")}
-                            [:h1.text-3xl.cursor-default.capitalize.text-center.sm:text-left "Results"]
-                            [:ul.list-none.p-0.m-0.mt-4.space-y-4
-                             (map (fn [r]
-                                    [:li.p-4.border-2.border-black.bg-white
-                                     (result-ui r)]) results)]]))))
+        results          (map second date-and-results)]
+    (ui/page ctx (ui/panel [:div {:class (str "p-4")}
+                            [:div.flex.justify-between
+                             [:h1.text-3xl.cursor-default.capitalize.text-center.sm:text-left "Results"]
+                             [:div.flex.space-x-1.rounded-lg.bg-slate-100.p-0.5
+                              {:role             "tablist"
+                               :aria-orientation "horizontal"
+                               :id               "results-view-toggle"}
+                              [:button#headlessui-tabs-tab-8
+                               {:class                 '[flex items-center rounded-md pl-2 pr-2 text-sm font-semibold lg:pr-3 bg-white shadow]
+                                :role                  "tab"
+                                :type                  "button"
+                                :aria-selected         "true"
+                                :tabindex              "0"
+                                :data-headlessui-state "selected"
+                                :aria-controls         "headlessui-tabs-panel-10"}
+                               list-icon
+                               [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-900 "List"]]
+                              [:button#headlessui-tabs-tab-9
+                               {:class                 '[flex items-center rounded-md pl-2 pr-2 text-sm font-semibold lg:pr-3]
+                                :role                  "tab"
+                                :type                  "button"
+                                :aria-selected         "false"
+                                :tabindex              "-1"
+                                :data-headlessui-state ""
+                                :hx-get                "/app/results/calendar"
+                                :hx-target             "#results-view-toggle"
+                                :hx-select             "#results-view-toggle"
+                                :hx-swap               "outerHTML"
+                                :hx-select-oob         "#results-panel"
+                                :aria-controls "headlessui-tabs-panel-11"}
+                               calendar-icon
+                               [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-600 "Calendar"]]]]
+                            [:div {:id "results-panel"}
+                             [:ul.list-none.p-0.m-0.mt-4.space-y-4.max-w-xl.sm:mx-auto
+                              (map (fn [r]
+                                     [:li.p-4.border-2.border-black.bg-white
+                                      (result-ui r)]) results)]]]))))
+
+
+(defn calendar-view
+  [{:keys [params session biff/db] :as ctx}]
+  (let [date       (if (:date params)
+                     (apply jt/local-date (c/safe-parse-date (:date params)))
+                     (jt/zoned-date-time (jt/zone-id "America/Boise")))
+        start-date (c/time-frame-start-day date)
+        end-date   (jt/plus start-date (jt/days 42))
+        results    (map second (biff/q db '{:find     [d (pull r [*
+                                                                  {:result/type
+                                                                   [*
+                                                                    {:result/workout [*]}
+                                                                    {:result/movement [*]}
+                                                                    {:result-set/_parent [*]}]}])]
+                                            :in       [[user start end]]
+                                            :where    [[r :result/user user]
+                                                       [r :result/date d]
+                                                       [(>= d start)]
+                                                       [(<= d end)]]
+                                            :order-by [[d :desc]]}
+                                       [(:uid session) (c/->date start-date) (c/->date end-date)]))]
+    [:<>
+     [:div.flex.space-x-1.rounded-lg.bg-slate-100.p-0.5
+      {:role             "tablist"
+       :aria-orientation "horizontal"
+       :id               "results-view-toggle"}
+      [:button#headlessui-tabs-tab-8
+       {:class                 '[flex items-center rounded-md pl-2 pr-2 text-sm font-semibold lg:pr-3]
+        :role                  "tab"
+        :type                  "button"
+        :aria-selected         "true"
+        :tabindex              "0"
+        :data-headlessui-state "selected"
+        :hx-get                "/app/results"
+        :hx-target             "#results-view-toggle"
+        :hx-select             "#results-view-toggle"
+        :hx-swap               "outerHTML"
+        :hx-select-oob         "#results-panel"
+        :aria-controls         "headlessui-tabs-panel-10"}
+       list-icon
+       [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-900 "List"]]
+      [:button#headlessui-tabs-tab-9
+       {:class                 '[flex items-center rounded-md pl-2 pr-2 text-sm font-semibold lg:pr-3 bg-white shadow]
+        :role                  "tab"
+        :type                  "button"
+        :aria-selected         "false"
+        :tabindex              "-1"
+        :data-headlessui-state ""
+        :aria-controls         "headlessui-tabs-panel-11"}
+       calendar-icon
+       [:span.sr-only.lg:not-sr-only.lg:ml-2.text-slate-600 "Calendar"]]]
+     [:div {:id "results-panel"}
+      (c/calendar {:date    date
+                   :today   (jt/zoned-date-time (jt/zone-id "America/Boise"))
+                   :results results})]]))
 
 
 (defn create
@@ -195,7 +288,9 @@
   ["/results"
    ["" {:get  index
         :post create}]
-   ["/:id" {:middleware [(partial mid/wrap-ensure-owner #{"new"})]}
-    ["" {:get (wildcard-override show {:new new})
+   ["/:id" {:middleware [(partial mid/wrap-ensure-owner #{"new" "calendar" "calendar-day"})]}
+    ["" {:get (wildcard-override show {:new new
+                                       :calendar calendar-view
+                                       :calendar-day c/day-view})
          :put update-handler}]
     ["/edit" {:get edit}]]])

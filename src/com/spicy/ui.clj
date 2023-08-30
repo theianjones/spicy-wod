@@ -2,7 +2,6 @@
   (:require
     [cheshire.core :as cheshire]
     [clojure.java.io :as io]
-    [clojure.string :as string]
     [com.biffweb :as biff]
     [com.spicy.settings :as settings]
     [ring.middleware.anti-forgery :as csrf]))
@@ -122,7 +121,7 @@
                    :class  "p-0 w-fit h-fit "}
                   [:button.btn {:type "submit"}
                    "Sign out"])])]]]
-     [:.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
+     [:.h-full.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
       (when (bound? #'csrf/*anti-forgery-token*)
         {:hx-headers (cheshire/generate-string
                        {:x-csrf-token csrf/*anti-forgery-token*})})
@@ -131,25 +130,24 @@
      [:.flex-grow]
      [:.flex-grow]]))
 
-(defn share-page
-  [{:keys [session reitit.core/match] :as ctx} & body]
-  (base
-   ctx
-   [:.relative.h-full.px-4.pt-8
-    [:div {:class "absolute bg-brand-background h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
-    [:.p-3.mx-auto.max-w-screen-xl.w-full.flex.flex-col.sm:flex-row.gap-4.items-center.flex-wrap.space-y-2.justify-center
-     [:a.flex.items-center.gap-2.cursor-pointer
-      {:href "/"}
-      [:img {:src "/img/spicywod-logo.png" :width 60 :height 60 :alt "spicy pepper"}]
-      [:div {:class "font-display text-3xl w-[140px]"} "Spicy WOD"]]
-     ]
-    [:.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
-     (when (bound? #'csrf/*anti-forgery-token*)
-       {:hx-headers (cheshire/generate-string
-                     {:x-csrf-token csrf/*anti-forgery-token*})})
 
-     body]
-    ]))
+(defn share-page
+  [ctx & body]
+  (base
+    ctx
+    [:.relative.h-full.px-4.pt-8
+     [:div {:class "absolute bg-brand-background h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
+     [:.p-3.mx-auto.max-w-screen-xl.w-full.flex.flex-col.sm:flex-row.gap-4.items-center.flex-wrap.space-y-2.justify-center
+      [:a.flex.items-center.gap-2.cursor-pointer
+       {:href "/"}
+       [:img {:src "/img/spicywod-logo.png" :width 60 :height 60 :alt "spicy pepper"}]
+       [:div {:class "font-display text-3xl w-[140px]"} "Spicy WOD"]]]
+     [:.relative.sm:p-3.mx-auto.max-w-screen-xl.w-full
+      (when (bound? #'csrf/*anti-forgery-token*)
+        {:hx-headers (cheshire/generate-string
+                       {:x-csrf-token csrf/*anti-forgery-token*})})
+
+      body]]))
 
 
 (defn panel

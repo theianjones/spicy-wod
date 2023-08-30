@@ -65,7 +65,7 @@
                     [:div (map (fn [result]
                                  (let [{:keys [movement name date sets] :as normalized} (r/normalized-result result)]
                                    [:div.mb-2
-                                    [:a.text-lg.font-sans {:href (str "/app/movements/" (:xt/id movement))} [:h3.font-sans.capitalize (str name " (" (movements/sets-n-reps sets) ")")]]
+                                    [:a.text-lg.font-sans {:href (str "/app/movements/" (:xt/id movement))} [:h3.font-sans.capitalize name]]
                                     [:div
                                      [:span.font-bold (apply max (map #(if (= :pass (:result-set/status %))
                                                                          (:result-set/weight %)
