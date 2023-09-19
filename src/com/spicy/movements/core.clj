@@ -233,18 +233,15 @@
        "Close"]]]))
 
 
-(def x '({:result/date #inst "2023-08-31T00:00:00.000-00:00", :result/user #uuid "8cdef6f4-a747-4135-aaf3-36ef2f73ce99", :result/type {:result/movement #uuid "6fffd335-f2bb-4672-ba2f-e91a14ed21e1", :result/notes "actually felt good!!!!", :result/set-count 5, :xt/id #uuid "615fa13b-fd38-4704-8d82-1157c795d296", :result-set/_parent ({:result-set/parent #uuid "615fa13b-fd38-4704-8d82-1157c795d296", :result-set/reps 5, :result-set/status :fail, :result-set/number 4, :result-set/weight 270, :xt/id #uuid "244f7fe3-6afc-4542-aeb7-48ee3cbcbff2"} {:result-set/parent #uuid "615fa13b-fd38-4704-8d82-1157c795d296", :result-set/reps 5, :result-set/status :pass, :result-set/number 5, :result-set/weight 265, :xt/id #uuid "3bddf6b2-ce7d-479a-aca0-9aa309c15167"} {:result-set/parent #uuid "615fa13b-fd38-4704-8d82-1157c795d296", :result-set/reps 5, :result-set/status :pass, :result-set/number 1, :result-set/weight 240, :xt/id #uuid "6fafc46c-3d8e-4c86-99c5-5a0e5ced7358"} {:result-set/parent #uuid "615fa13b-fd38-4704-8d82-1157c795d296", :result-set/reps 5, :result-set/status :pass, :result-set/number 2, :result-set/weight 250, :xt/id #uuid "eabf08b6-366c-41a5-b47c-ee314293a0be"} {:result-set/parent #uuid "615fa13b-fd38-4704-8d82-1157c795d296", :result-set/reps 5, :result-set/status :pass, :result-set/number 3, :result-set/weight 260, :xt/id #uuid "f5f36aa4-a5a3-4695-ab95-aa4f1326e74d"})}, :xt/id #uuid "729fd4ed-7d3c-4b5f-90bd-5817765f3d53"} {:result/date #inst "2023-08-18T00:00:00.000-00:00", :result/user #uuid "8cdef6f4-a747-4135-aaf3-36ef2f73ce99", :result/type {:result/movement #uuid "6fffd335-f2bb-4672-ba2f-e91a14ed21e1", :result/notes "", :result/set-count 5, :xt/id #uuid "32605bd0-bfb9-4fa9-ae90-7ae8df42a408", :result-set/_parent ({:result-set/parent #uuid "32605bd0-bfb9-4fa9-ae90-7ae8df42a408", :result-set/reps 3, :result-set/status :fail, :result-set/number 5, :result-set/weight 5, :xt/id #uuid "89afe3a5-4827-47a8-aaae-84f175fcab75"} {:result-set/parent #uuid "32605bd0-bfb9-4fa9-ae90-7ae8df42a408", :result-set/reps 4, :result-set/status :pass, :result-set/number 3, :result-set/weight 3, :xt/id #uuid "92434991-523b-4aae-9b2b-746ce638fe0a"} {:result-set/parent #uuid "32605bd0-bfb9-4fa9-ae90-7ae8df42a408", :result-set/reps 5, :result-set/status :pass, :result-set/number 1, :result-set/weight 1, :xt/id #uuid "98f8ef65-abf8-4061-b88e-338385891a5f"} {:result-set/parent #uuid "32605bd0-bfb9-4fa9-ae90-7ae8df42a408", :result-set/reps 4, :result-set/status :pass, :result-set/number 2, :result-set/weight 2, :xt/id #uuid "a61cc08b-a392-4e2c-9b20-63de33794bf9"} {:result-set/parent #uuid "32605bd0-bfb9-4fa9-ae90-7ae8df42a408", :result-set/reps 3, :result-set/status :pass, :result-set/number 4, :result-set/weight 4, :xt/id #uuid "f662eabf-2f50-4ff2-8448-e4abec7a94ff"})}, :xt/id #uuid "bac33e5a-da23-41ad-9a75-aa50c0e9b35d"}))
-
-
 (defn movement-results->prs
   [movement-results]
   (->> movement-results
-       (map :result/type)
-       (map (fn [mr]
-              (into {} (map (fn [{:result-set/keys [reps weight status]}]
-                              [reps (if (= :pass status)
-                                      weight
-                                      0)]) (:result-set/_parent mr)))))
+       (map (comp :result-set/_parent :result/type))
+       flatten
+       (map (fn [{:result-set/keys [reps weight status]}]
+              (into {} [[reps (if (= :pass status)
+                                weight
+                                0)]])))
        (apply merge-with max)))
 
 
