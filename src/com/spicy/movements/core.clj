@@ -122,7 +122,7 @@
                          0) sets))]
      [:div.border-r-2.border-b-2.border-black.text-md.font-bold
       [:div.flex.h-full.flex-1.sm:flex-row.flex-col
-       [:button.p-2.text-md.grow.bg-darker-brand-teal.sm:border-r-2.border-b-2.border-black.sm:border-b-0
+       [:button.p-2.text-md.grow.bg-brand-teal.sm:border-r-2.border-b-2.border-black.sm:border-b-0
 
         {:hx-get (str "/app/movements/" (:result/movement type) "/results/" (:xt/id result))
          :hx-target (str "#expanded-" (:xt/id result))
@@ -152,7 +152,7 @@
                        [(parse-uuid (:result-id path-params))]))]
     [:<>
      (biff/form {:id        (str "expanded-" (:xt/id result))
-                 :class     (str "col-span-4 grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-darker-brand-teal")
+                 :class     (str "col-span-4 grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-slate-100")
                  :hidden    {:sets (count (-> result :result/type :result-set/_parent))}
                  :hx-put    (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
                  :hx-swap   "outerHTML"
@@ -211,7 +211,7 @@
                        [(parse-uuid (:result-id path-params))]))]
     [:<>
      [:div.col-span-4 {:id    (str "expanded-" (:xt/id result))
-                       :class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-darker-brand-teal"}
+                       :class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full bg-slate-100"}
       [:div.px-2.py-4.border-r-2.border-b-2.border-l-2.border-black.text-center.text-lg.font-bold.whitespace-nowrap "Set #"]
       [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-center.text-lg.font-bold "Reps"]
       [:div.px-2.py-4.border-r-2.border-b-2.border-black.text-center.text-lg.font-bold "Weight"]
@@ -233,18 +233,115 @@
        "Close"]]]))
 
 
+(defn movement-results->prs
+  [movement-results]
+  (->> movement-results
+       (map (comp :result-set/_parent :result/type))
+       flatten
+       (map (fn [{:result-set/keys [reps weight status]}]
+              (into {} [[reps (if (= :pass status)
+                                weight
+                                0)]])))
+       (apply merge-with max)))
+
+
+(defn round
+  "Rounds 'x' to 'places' decimal places"
+  [places, x]
+  (->> x
+       bigdec
+       (#(.setScale % places java.math.RoundingMode/HALF_UP))
+       .doubleValue))
+
+
+(def percentages
+  (partition 4 (map (partial round 2) (range 1.05 0.25 -0.05))))
+
+
+(defn tabs
+  [{:keys [id tabs]}]
+  [:nav.isolate.flex.divide-x.divide-black.shadow.border-black.border-t-2.border-r-2.border-l-2
+   {:aria-label "Tabs"
+    :id         id}
+   (map (fn [{:keys [name options]}]
+          [:a
+           (merge {:class (concat '[group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10]
+                                  (if (:selected options)
+                                    '[text-gray-900]
+                                    '[text-gray-500 hover:text-gray-700]))} options)
+           [:span
+            {:class       (concat '[]
+                                  (if (:selected options)
+                                    '[font-bold]
+                                    '[]))
+             :aria-hidden "true"}
+            name]
+           [:span
+            {:class       (concat '[absolute inset-x-0 bottom-0 "h-[2px]"]
+                                  (if (:selected options)
+                                    '[bg-black]
+                                    '[bg-transparent]))
+             :aria-hidden "true"}]]) tabs)])
+
+
+(defn percentage-ui
+  [n]
+  [:ul.flex.flex-col.justify-center.items-center.gap-2.bg-white.md:p-8.p-5.border-black.border-2
+   {:id "percentages"}
+   (map (fn [ps]
+          [:li.flex.flex-row.justify-between.w-full
+           (map (fn [p]
+                  [:div.flex.flex-col.gap-1.text-center
+                   [:p.m-0.leading-normal.text-lg.md:text-2xl.font-bold
+                    (if n
+                      (int (round 1 (* p n)))
+                      "--")]
+                   [:p.m-0.leading-normal.text-sm.md:text-md.text-gray-500.uppercase (str (int (* 100 p)) "%")]]) ps)])
+        percentages)])
+
+
+(defn tabs-percentage
+  [{:keys [biff/db params session path-params] :as _ctx}]
+  (let [movement-id      (parse-uuid (:id path-params))
+        movement-results (biff/q db '{:find  (pull result [* {:result/type
+                                                              [*
+                                                               {:result-set/_parent [*]}]}])
+                                      :in    [[user movement]]
+                                      :where [[result :result/user user]
+                                              [result :result/type type]
+                                              [result :result/date date]
+                                              [type :result/movement movement]]}
+                                 [(:uid session) movement-id])
+        prs              (movement-results->prs movement-results)
+        current-rep      (parse-int (:id params))
+        reps             [1 2 3 5]]
+    [:<>
+     (tabs {:id   "reps-tab"
+            :tabs   (map (fn [r]
+                           {:name    (str r " Rep")
+                            :options (if (= current-rep r)
+                                       {:selected     true
+                                        :aria-current "page"}
+                                       {:hx-get        (str "/app/movements/" movement-id "/tabs?id=" r "&weight=" (get prs r))
+                                        :hx-select     "#reps-tab"
+                                        :hx-target     "#reps-tab"
+                                        :hx-swap       "outerHTML"
+                                        :hx-select-oob "#percentages"})}) reps)})
+     (percentage-ui (safe-parse-int (:weight params)))]))
+
+
 (defn show
   [{:keys [biff/db path-params session] :as ctx}]
-  (let [movement-id (parse-uuid (:id path-params))
+  (let [movement-id      (parse-uuid (:id path-params))
         m                (xt/entity db movement-id)
-        movement-results (map second (biff/q db '{:find  [date (pull result [* {:result/type
-                                                                                [*
-                                                                                 {:result-set/_parent [*]}]}])]
-                                                  :in    [[user movement]]
-                                                  :where [[result :result/user user]
-                                                          [result :result/type type]
-                                                          [result :result/date date]
-                                                          [type :result/movement movement]]
+        movement-results (map second (biff/q db '{:find     [date (pull result [* {:result/type
+                                                                                   [*
+                                                                                    {:result-set/_parent [*]}]}])]
+                                                  :in       [[user movement]]
+                                                  :where    [[result :result/user user]
+                                                             [result :result/type type]
+                                                             [result :result/date date]
+                                                             [type :result/movement movement]]
                                                   :order-by [[date :desc]]}
                                              [(:uid session) movement-id]))
         workouts         (biff/q db '{:find  (pull w [*])
@@ -255,22 +352,65 @@
                                                        (not [w :workout/user])))
                                               [wm :workout-movement/workout w]
                                               [wm :workout-movement/movement movement]]}
-                                 [movement-id (:uid session)])]
+                                 [movement-id (:uid session)])
+        prs              (movement-results->prs movement-results)]
     (ui/page ctx (ui/panel
                    [:div
-                    [:div.flex.justify-between.items-center.mb-14
+                    [:div.flex.justify-between.items-center.mb-7
                      [:h1.text-3xl.cursor-default.capitalize (:movement/name m)]
-                     [:a.btn.bg-brand-teal {:href (str "/app/movements/" (:xt/id m) "/new")} "Log session"]]
+                     [:a.btn.bg-brand-teal {:href (str "/app/movements/" (:xt/id m) "/new")} "Log Lift"]]
                     (when (empty? movement-results)
                       [:div
                        [:p.text-md "Log a session and it will show up here."]])
                     (when (not-empty movement-results)
-                      [:div {:class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full border-b-4 border-r-4 border-black mb-4  bg-brand-teal"}
-                       [:div.flex.justify-center.items-center.px-2.py-4.border-2.border-black.text-lg.font-bold "Date"]
-                       [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold.whitespace-nowrap "Rep Scheme"]
-                       [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold.whitespace-nowrap "Best Lift"]
-                       [:div.border-r-2.border-b-2.border-t-2.border-black ""]
-                       (map movement-results-ui movement-results)])
+                      [:<>
+                       [:div.mb-7.flex.flex-col.gap-7.md:flex-row.w-full
+                        [:div.flex-1
+                         [:h2.text-lg.leading-7.text-gray-900.sm:truncate.sm:text-lg.sm:tracking-tight.mb-2
+                          "Personal Records"]
+                         [:div.bg-white.md:p-6.p-2.border-black.border-2
+                          [:ul.list-none.flex.md:justify-around.justify-between.align-center
+                           (map (fn [n]
+                                  [:li
+                                   [:div.flex.flex-col.justify-center.items-center.gap-2
+                                    [:p.m-0.text-lg.md:text-2xl.font-bold (or (get prs n) "--")]
+                                    [:p.m-0.text-sm.md:text-md.text-gray-500.uppercase (str n " Rep Max")]]])
+                                [1 2 3 5])]]]
+                        [:div.flex-1
+                         [:h2.text-lg.leading-7.text-gray-900.sm:truncate.sm:text-lg.sm:tracking-tight.mb-2
+                          "Percentages"]
+                         [:div.max-w-lg
+                          (tabs {:id   "reps-tab"
+                                 :tabs [{:name    "1 Rep"
+                                         :options {:selected true
+                                                   :aria-current "page"}}
+                                        {:name          "2 Rep"
+                                         :options       {:hx-get (str "/app/movements/" movement-id "/tabs?id=2" "&weight=" (get prs 2))
+                                                         :hx-select "#reps-tab"
+                                                         :hx-target "#reps-tab"
+                                                         :hx-swap "outerHTML"
+                                                         :hx-select-oob "#percentages"}}
+                                        {:name          "3 Rep"
+                                         :options       {:hx-get (str "/app/movements/" movement-id "/tabs?id=3"  "&weight=" (get prs 3))
+                                                         :hx-select "#reps-tab"
+                                                         :hx-target "#reps-tab"
+                                                         :hx-swap "outerHTML"
+                                                         :hx-select-oob "#percentages"}}
+                                        {:name          "5 Rep"
+                                         :options       {:hx-get (str "/app/movements/" movement-id "/tabs?id=5"  "&weight=" (get prs 5))
+                                                         :hx-select "#reps-tab"
+                                                         :hx-target "#reps-tab"
+                                                         :hx-swap "outerHTML"
+                                                         :hx-select-oob "#percentages"}}]})
+                          (percentage-ui (get prs 1))]]]
+                       [:h2.text-lg.leading-7.text-gray-900.sm:truncate.sm:text-lg.sm:tracking-tight.mb-2
+                        "History"]
+                       [:div {:class "grid grid-cols-[1fr_1fr_1fr_minmax(30px,170px)] w-full border-b-4 border-r-4 border-black mb-4  bg-white"}
+                        [:div.flex.justify-center.items-center.px-2.py-4.border-2.border-black.text-lg.font-bold "Date"]
+                        [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold.whitespace-nowrap "Rep Scheme"]
+                        [:div.flex.justify-center.items-center.px-2.py-4.border-r-2.border-b-2.border-t-2.border-black.text-lg.font-bold.whitespace-nowrap "Best Lift"]
+                        [:div.border-r-2.border-b-2.border-t-2.border-black ""]
+                        (map movement-results-ui movement-results)]])
                     (when (not-empty workouts)
                       [:div
                        [:h2.text-xl.mb-4 "Related workouts"]
@@ -528,6 +668,7 @@
                                        :new new})}]
     ["/constant-reps" {:get constant-reps-form}]
     ["/variable-reps" {:get variable-reps-form}]
+    ["/tabs" {:get tabs-percentage}]
     ["/set" {:post create-session}]
     ["/form" {:get create-log-session-form}]
     ["/new" {:get log-session}]
