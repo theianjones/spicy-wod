@@ -162,10 +162,8 @@
   [scheme]
   (case scheme
     :time        "For Time"
-    :time-with-cap "For Time"
     :rounds-reps "Rounds + Reps"
     :reps        "Total Reps"
-    :pass-fail   "Pass/Fail"
     :load        "Total Load"
     :calories    "Total Cals"
     :meters      "Total Meters"

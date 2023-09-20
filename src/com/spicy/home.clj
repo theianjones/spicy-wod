@@ -1,18 +1,9 @@
 (ns com.spicy.home
   (:require
-    [clj-http.client :as http]
     [com.biffweb :as biff]
     [com.spicy.middleware :as mid]
     [com.spicy.settings :as settings]
-    [com.spicy.ui :as ui]
-    [rum.core :as rum]
-    [xtdb.api :as xt]))
-
-
-(def email-disabled-notice
-  [:.text-sm.mt-3.bg-blue-100.p-2
-   "Until you add API keys for Postmark and reCAPTCHA, we'll print your sign-up "
-   "link to the console. See config.edn."])
+    [com.spicy.ui :as ui]))
 
 
 (defn home-page
@@ -40,8 +31,7 @@
          "Sign up"]]
        [:.mt-2.text-sm "Already have an account? " [:a.text-black.hover:text-brand-pink.font-bold {:href "/signin"} "Sign in"] "."]
        [:.h-3]
-       biff/recaptcha-disclosure
-       email-disabled-notice)]))
+       biff/recaptcha-disclosure)]))
 
 
 (defn link-sent
@@ -117,8 +107,7 @@
              "There was an error.")]])
        [:.mt-2.text-sm "Don't have an account yet? " [:a.text-black.hover:text-brand-pink.font-bold {:href "/"} "Sign up"] "."]
        [:.h-3]
-       biff/recaptcha-disclosure
-       email-disabled-notice)]))
+       biff/recaptcha-disclosure)]))
 
 
 (defn enter-code-page

@@ -3,7 +3,8 @@
     [clojure.string :as string]
     [com.biffweb :as biff]
     [com.spicy.movements.core :refer [sets-n-reps]]
-    [com.spicy.workouts.ui :refer [display-summed-score]]))
+    [com.spicy.workouts.ui :refer [display-summed-score]]
+    [java-time.api :as jt]))
 
 
 (defn normalized-result
@@ -127,7 +128,7 @@
     [:input.w-full.pink-input.teal-focus {:type        "number"
                                           :name        (str "reps-" identifier)
                                           :id          (str "id-" identifier)
-                                          :placeholder "Reps"
+                                          :placeholder (string/capitalize (name (:workout/scheme workout)))
                                           :value       score
                                           :min         0
                                           :required    true}]))
@@ -170,11 +171,10 @@
       [:input.pink-input.teal-focus
        {:type  "date"
         :name  "date"
-        :x-init (when-not (:result/date result)
-                  "$el.valueAsDate = new Date();")
-        :value (when (:result/date result)
+        :value (if (:result/date result)
                  (biff/format-date
-                   (:result/date result) "YYYY-MM-dd"))}]
+                   (:result/date result) "YYYY-MM-dd")
+                 (jt/format "YYYY-MM-dd" (jt/zoned-date-time (jt/zone-id "America/Boise"))))}]
       [:div.flex.gap-2.items-center
        [:div.flex-1.flex.gap-2.items-center
         [:input#rx {:type     "radio"

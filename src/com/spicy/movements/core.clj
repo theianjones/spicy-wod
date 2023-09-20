@@ -54,16 +54,16 @@
                                [:h1.text-5xl.w-fit.self-center.mb-4.md:mb-0 "Movements"]
                                [:a {:class (str "btn bg-brand-teal w-full sm:w-fit self-center")
                                     :href  (str "/app/movements/new")} "Add Movement"]]
-                              [:div.flex.flex-col.sm:flex-row.justify-end.gap-4
-                               [:select.btn.text-base.w-full.md:w-96.h-12.teal-focus.hover:cursor-pointer {:name     "type"
-                                                                                                           :onchange "window.open('?type=' + this.value,'_self')"}
+                              [:div.flex.flex-col.sm:flex-row.justify-end.gap-4.w-full.max-w-3xl
+                               [:select.btn.text-base.w-full.h-12.flex-1.teal-focus.hover:cursor-pointer {:name     "type"
+                                                                                                          :onchange "window.open('?type=' + this.value,'_self')"}
                                 [:option.text-base {:value    :strength
                                                     :selected (or (= (:type params) "strength") (empty? (:type params)))} "Strength"]
                                 [:option.text-base {:value    :gymnastic
                                                     :selected (= (:type params) "gymnastic")} "Gymnastic"]
                                 [:option.text-base {:value    :monostructural
                                                     :selected (= (:type params) "monostructural")} "Cardio"]]
-                               [:input.pink-input.teal-focus.w-full.h-full.md:w-96
+                               [:input.pink-input.teal-focus.w-full.h-full.flex-1
                                 {:name        "search"
                                  :type        "search"
                                  :id          "search"

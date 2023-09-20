@@ -93,11 +93,10 @@
                     [:input.pink-input.teal-focus.mt-4.mx-auto
                      {:type  "date"
                       :name  "date"
-                      :x-init (when-not (:result/date result)
-                                "$el.valueAsDate = new Date();")
-                      :value (when (:result/date result)
+                      :value (if (:result/date result)
                                (biff/format-date
-                                 (:result/date result) "YYYY-MM-dd"))}]
+                                 (:result/date result) "YYYY-MM-dd")
+                               (jt/format  "YYYY-MM-dd" (jt/zoned-date-time (jt/zone-id "America/Boise"))))}]
                     [:textarea#notes
                      {:name        "notes"
                       :placeholder "notes"

@@ -38,8 +38,6 @@
   {:time          ["minutes" "seconds"]
    :rounds-reps   ["rounds" "reps"]
    :reps          ["reps"]
-   :time-with-cap ["reps"]
-   :pass-fail     ["reps"]
    :emom          ["reps"]
    :load          ["reps"]
    :calories      ["reps"]
