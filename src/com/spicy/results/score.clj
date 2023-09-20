@@ -39,11 +39,11 @@
    :rounds-reps   ["rounds" "reps"]
    :reps          ["reps"]
    :emom          ["reps"]
-   :load          ["load"]
-   :calories      ["calories"]
-   :meters        ["meters"]
-   :feet          ["feet"]
-   :points        ["points"]})
+   :load          ["reps"]
+   :calories      ["reps"]
+   :meters        ["reps"]
+   :feet          ["reps"]
+   :points        ["reps"]})
 
 
 (def default-score-params
