@@ -131,10 +131,6 @@
       [:option {:value "" :label "--Select a Workout Scheme--"}]
       [:option {:value "time"
                 :label "time"}]
-      [:option {:value "time-with-cap"
-                :label "time-with-cap"}]
-      [:option {:value "pass-fail"
-                :label "pass-fail"}]
       [:option {:value "rounds-reps"
                 :label "rounds-reps"}]
       [:option {:value "reps"

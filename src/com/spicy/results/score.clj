@@ -38,14 +38,12 @@
   {:time          ["minutes" "seconds"]
    :rounds-reps   ["rounds" "reps"]
    :reps          ["reps"]
-   :time-with-cap ["reps"]
-   :pass-fail     ["reps"]
    :emom          ["reps"]
-   :load          ["reps"]
-   :calories      ["reps"]
-   :meters        ["reps"]
-   :feet          ["reps"]
-   :points        ["reps"]})
+   :load          ["load"]
+   :calories      ["calories"]
+   :meters        ["meters"]
+   :feet          ["feet"]
+   :points        ["points"]})
 
 
 (def default-score-params
