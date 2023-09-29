@@ -67,11 +67,12 @@
     ctx
     [:.relative.h-full.p-4
      [:div {:class "absolute h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
-     [:.p-3.mx-auto.max-w-screen-xl.w-full.flex.flex-col.sm:flex-row.gap-4.sm:justify-between.items-center.flex-wrap.space-y-2.justify-center
+     [:.pt-3.pb-8.mx-auto.max-w-screen-xl.w-full.flex.sm:flex-row.gap-4.justify-between.items-center.flex-wrap.space-y-2.justify-center
       [:a.flex.items-center.gap-2.cursor-pointer
        {:href "/"}
-       [:img {:src "/img/spicywod-logo.png" :width 70 :height 70 :alt "spicy pepper"}]
-       [:div {:class "font-display text-5xl w-[140px]"} "Spicy WOD"]]
+       [:img {:class "hidden sm:block" :src "/img/spicywod-logo.png" :width 70 :height 70 :alt "spicy pepper"}]
+       [:img {:class "block sm:hidden" :src "/img/spicywod-logo.png" :width 50 :height 50 :alt "spicy pepper"}]
+       [:div {:class "font-display text-2xl sm:text-5xl w-[120px]"} "Spicy WOD"]]
       [:nav
        [:div {:class (str "relative text-left block sm:hidden ") :x-data "{ open: false }"}
         [:div
@@ -84,7 +85,7 @@
                        :x-on:click.outside "open = false"}
           [:span.sr-only "Open options"]
           "Menu"]]
-        [:div {:class            (str "absolute -right-16 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ")
+        [:div {:class            (str "absolute right-0 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ")
                :role             "menu"
                :aria-orientation "vertical"
                :aria-labelledby  "menu-button"
