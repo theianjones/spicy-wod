@@ -60,14 +60,13 @@
                  :tabindex "-1"
                  :id       "menu-item-0"}) children]))
 
-
 (defn page
   [{:keys [session reitit.core/match] :as ctx} & body]
   (base
     ctx
-    [:.relative.h-full.p-4
+    [:.relative.h-full.sm:p-4
      [:div {:class "absolute h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
-     [:.pt-3.pb-8.mx-auto.max-w-screen-xl.w-full.flex.sm:flex-row.gap-4.justify-between.items-center.flex-wrap.space-y-2.justify-center
+     [:.pt-3.px-4.pb-8.mx-auto.max-w-screen-xl.w-full.flex.sm:flex-row.gap-4.justify-between.items-center.flex-wrap.space-y-2.justify-center
       [:a.flex.items-center.gap-2.cursor-pointer
        {:href "/"}
        [:img {:class "hidden sm:block" :src "/img/spicywod-logo.png" :width 70 :height 70 :alt "spicy pepper"}]
@@ -136,7 +135,7 @@
   [ctx & body]
   (base
     ctx
-    [:.relative.h-full.px-4.pt-8
+    [:.relative.h-full.sm:px-4.pt-8
      [:div {:class "absolute bg-brand-background h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
      [:.p-3.mx-auto.max-w-screen-xl.w-full.flex.flex-col.sm:flex-row.gap-4.items-center.flex-wrap.space-y-2.justify-center
       [:a.flex.items-center.gap-2.cursor-pointer
@@ -153,7 +152,7 @@
 
 (defn panel
   [& children]
-  [:div {:class (str  "bg-brand-background md:p-12 p-4 border-2 border-black "
+  [:div {:class (str  "bg-brand-background md:p-12 p-4 border-b-2 border-t-2 sm:border-2 border-black "
                       " "
                       "flex flex-col item-center ")}
    children])
