@@ -109,8 +109,7 @@
 
 (def plugin
   {:static {"/about/" about-page}
-   :routes ["/app" {:middleware [mid/wrap-signed-in
-                                 mid/wrap-session-user]}
+   :routes ["/app" {:middleware [mid/wrap-signed-in]}
             ["" {:get app}]
             ["/import" {:get import-page
                         :post process-import}]
