@@ -2,7 +2,6 @@
   (:require
     [clojure.java.io :as io]
     [com.biffweb :as biff :refer [q]]
-    [com.spicy.admin.core :as admin]
     [com.spicy.middleware :as mid]
     [com.spicy.movements.core :as movements]
     [com.spicy.results.core :as results]
@@ -113,7 +112,6 @@
             ["" {:get app}]
             ["/import" {:get import-page
                         :post process-import}]
-            admin/routes
             workouts/routes
             results/routes
             movements/routes]
