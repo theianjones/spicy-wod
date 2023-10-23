@@ -1,7 +1,11 @@
 {:paths ["src" "resources" "target/resources"]
- :deps {com.biffweb/biff {:git/url "https://github.com/jacobobryant/biff", :sha "3ff1256", :tag "v0.7.4"}
-        camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.3"}
-        org.clojure/clojure {:mvn/version "1.11.1"}
-        org.slf4j/slf4j-simple {:mvn/version "2.0.0-alpha5"}
-        clojure.java-time/clojure.java-time {:mvn/version "1.3.0"}
-        djblue/portal {:mvn/version "0.40.0"}}}
+ :deps  {com.biffweb/biff                    {:git/url "https://github.com/jacobobryant/biff", :sha "3ff1256", :tag "v0.7.4"}
+         camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.3"}
+         net.clojars.wkok/openai-clojure     {:mvn/version "0.11.0"}
+         cheshire/cheshire                   {:mvn/version "5.12.0"}
+         metosin/malli                       {:mvn/version "0.13.0"}
+         org.clojure/clojure                 {:mvn/version "1.11.1"}
+         org.clojure/data.csv                {:mvn/version "1.0.1"}
+         org.slf4j/slf4j-simple              {:mvn/version "2.0.0-alpha5"}
+         clojure.java-time/clojure.java-time {:mvn/version "1.3.0"}
+         djblue/portal                       {:mvn/version "0.40.0"}}}

@@ -1,11 +1,14 @@
 (ns com.spicy.app
   (:require
+    [clojure.java.io :as io]
     [com.biffweb :as biff :refer [q]]
     [com.spicy.middleware :as mid]
     [com.spicy.movements.core :as movements]
     [com.spicy.results.core :as results]
     [com.spicy.results.ui :as r]
     [com.spicy.settings :as settings]
+    [com.spicy.sugarwod.core :as sugar.core]
+    [com.spicy.sugarwod.csv :as csv]
     [com.spicy.ui :as ui]
     [com.spicy.workouts.core :as workouts]
     [com.spicy.workouts.ui :as w]))
@@ -80,10 +83,35 @@
      [:a.link {:href "https://biffweb.com"} "Biff"] "."]))
 
 
+(defn import-page
+  [ctx]
+  (ui/page
+    ctx
+    (ui/panel [:h1.text-2xl.font-bold.mb-8
+               "Import your data"]
+              [:h2.text-xl.font-bold.mb-4
+               "SugarWOD"]
+              (biff/form {:method :post :enctype "multipart/form-data"}
+                         [:input {:type :file :name :file :id :file}]
+                         [:button.btn {:type "submit"} "Submit"]))))
+
+
+(defn process-import
+  [{:keys [params session] :as ctx}]
+  (let [user (:uid session)
+        data (csv/parse-sugar-csv (io/reader (-> params :file :tempfile)))
+        tx-data (sugar.core/sugar-movements->tx-data (assoc ctx :user user) data)]
+    (biff/submit-tx ctx tx-data))
+  {:status  303
+   :headers {"location" "/app/import"}})
+
+
 (def plugin
   {:static {"/about/" about-page}
    :routes ["/app" {:middleware [mid/wrap-signed-in]}
             ["" {:get app}]
+            ["/import" {:get import-page
+                        :post process-import}]
             workouts/routes
             results/routes
             movements/routes]

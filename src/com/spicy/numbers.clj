@@ -3,7 +3,9 @@
 
 (defn parse-int
   [s]
-  (Integer/parseInt (re-find #"\A-?\d+" s)))
+  (if (int? s)
+    s
+    (Integer/parseInt (re-find #"\A-?\d+" s))))
 
 
 (defn safe-parse-int
@@ -12,4 +14,3 @@
     (parse-int s)
     (catch Exception e
       (prn "Error while parsing int: " e))))
-
