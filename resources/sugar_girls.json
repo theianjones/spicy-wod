@@ -1,0 +1,392 @@
+[
+  {
+    "type": "benchmarks",
+    "id": "CsUbCjnosY",
+    "attributes": {
+      "name": "Ellen",
+      "description": "3 rounds for time of:\n\n20 burpees\n21 dumbbell snatches\n12 dumbbell thrusters\n\nUse a single dumbbell on the snatches and a pair for the thrusters.\n\n♀ 35-lb. DBs ♂ 50-lb. DBs",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["c94XVoGakB", "vXkMU7wdwO", "e1XFB3PF7Q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "lx8kuxW00m",
+    "attributes": {
+      "name": "Andi",
+      "description": "For time:\n\n100 hang power snatches\n100 push presses\n100 sumo deadlift high pulls\n100 front squats\n\n♀ 45 lb. ♂ 65 lb.",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["umWlFaYtSo", "YAFQbda0hU", "FrQGIrNfi8", "0Iyujj2iY2"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "63syme9xNV",
+    "attributes": {
+      "name": "Grettel",
+      "description": "10 rounds for time of:\n3 clean and jerks\n3 burpees over the bar\n\n♀ 95 lb. ♂ 135 lb.",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["c94XVoGakB", "ggQ8RGQz8X"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "gefsjx8RyB",
+    "attributes": {
+      "name": "Ingrid",
+      "description": "10 rounds for time of:\n3 snatches\n3 burpees over the bar\n\n♀ 95 lb. ♂ 135 lb.",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["c94XVoGakB", "Hcl7kgiTPB"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "xblsnf7IXw",
+    "attributes": {
+      "name": "Barbara Ann",
+      "description": "5 rounds, each for time, of:\n\n20 handstand push-ups\n30 deadlifts (95/135 lb.)\n40 sit-ups\n50 double-unders\n\nRest precisely 3 minutes between rounds.",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["r3CNRMSi8j", "aPz3tX2Uwh", "h9vPo5JYw6", "Y8GAfTQjlS"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "a0iD7DmYXZ",
+    "attributes": {
+      "name": "Lyla",
+      "description": "10-9-8-7-6-5-4-3-2-1 reps for time of:\n\nMuscle-ups\nBodyweight clean and jerks",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["ggQ8RGQz8X", "V8IKIUyIbF"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "BgqIWPWio1",
+    "attributes": {
+      "name": "Lane",
+      "description": "5 rounds for max reps of:\n\n¾ bodyweight hang power snatches\nHandstand push-ups\n\nRest as needed between rounds.",
+      "category": "girls",
+      "score_type": "reps",
+      "movement_ids": ["aPz3tX2Uwh", "YAFQbda0hU"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "qBjn7m7jUL",
+    "attributes": {
+      "name": "Amanda",
+      "description": "9/7/5 reps of:\n• Muscle-Ups\n• Snatch 135/95#",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["Hcl7kgiTPB", "V8IKIUyIbF"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "bD3FkQa6PH",
+    "attributes": {
+      "name": "Nicole",
+      "description": "AMRAP in 20 minutes of:\n• 400m run\n• Pull-ups (max reps)",
+      "category": "girls",
+      "score_type": "reps",
+      "movement_ids": ["yJIlK7TN6q", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "pCQsuzOuFk",
+    "attributes": {
+      "name": "Gwen",
+      "description": "Clean & Jerk 15-12- and 9 reps\n\nTouch and go at floor only. Even a re-grip off the floor is a foul. No dumping. Use same load for each set. Rest as needed between sets.",
+      "category": "girls",
+      "score_type": "load",
+      "movement_ids": ["ggQ8RGQz8X"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "VnFkE3yFF3",
+    "attributes": {
+      "name": "Lynne",
+      "description": "5 rounds for reps of\n• Benchpress bodyweight (max reps)\n• Pull-ups (max reps)",
+      "category": "girls",
+      "score_type": "reps",
+      "movement_ids": ["PWksBIhkdV", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "KmlvSvF6yH",
+    "attributes": {
+      "name": "Kelly",
+      "description": "5 rounds for time of:\n• 400m run\n• 30 Box Jumps 24/20\"\n• 30 Wall Balls",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "Pfe6N82u2K", "EZkHnWi9wf"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "OhvTv9KGVv",
+    "attributes": {
+      "name": "Eva",
+      "description": "5 rounds for time of:\n• 800m run\n• 30 Kettlebell Swing 2 pood\n• 30 pull-ups",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "QCUOoOtogo", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "sHR2SoPr6z",
+    "attributes": {
+      "name": "Annie",
+      "description": "50-40-30-20-10 reps for time of:\n• Double-Unders\n• Sit-ups",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["h9vPo5JYw6", "Y8GAfTQjlS"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "9ypagyQq1E",
+    "attributes": {
+      "name": "Nancy",
+      "description": "5 rounds for time of:\n• 400m run\n• 15 Overhead squat 95/65#",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["XavuhsO1R0", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "GciwR9meKO",
+    "attributes": {
+      "name": "Mary",
+      "description": "AMRAP in 20 minutes of:\n• 5 HSPU\n• 10 Pistol squats\n• 15 Pull-ups",
+      "category": "girls",
+      "score_type": "rounds + reps",
+      "movement_ids": ["aPz3tX2Uwh", "hJS94DdaBx", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "2JIkl16XTE",
+    "attributes": {
+      "name": "Linda",
+      "description": "10-9-8-7-6-5-4-3-2-1 reps for time of:\n• Deadlift 1.5x bodyweight\n• Benchpress 1x bodyweight\n• Clean 3/4x bodyweight",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": [
+        "r3CNRMSi8j",
+        "PWksBIhkdV",
+        "AV3ZJImwt6",
+        "32fORzP45M",
+        "vyy5Tr0N49"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "emUzf1HUcN",
+    "attributes": {
+      "name": "Karen",
+      "description": "For time:\n• 150 Wall Ball shots 20/14#",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["EZkHnWi9wf"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "jUu4W7v48T",
+    "attributes": {
+      "name": "Jackie",
+      "description": "For time:\n• 1000m row\n• 50 Thruster 45/35#\n• 30 Pull-ups",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["iSu93oACwo", "9ikRXPXECL", "e1XFB3PF7Q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Ozb5444uEH",
+    "attributes": {
+      "name": "Isabel",
+      "description": "30 reps for time of:\n• Snatch 135/95#",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["Hcl7kgiTPB"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "nORkCvBOF3",
+    "attributes": {
+      "name": "Helen",
+      "description": "3 rounds for time of:\n• 400m run\n• 21 Kettlebell Swings 1.5/1 pood \n• 12 Pull-ups",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "QCUOoOtogo", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "vDkZTkA1sL",
+    "attributes": {
+      "name": "Grace",
+      "description": "30 reps for time of:\n• Clean & Jerk 135/95#",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["ggQ8RGQz8X"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Wq74Wj6jdR",
+    "attributes": {
+      "name": "Fran",
+      "description": "21-15-9 reps for time of:\n• Thruster 95/65#\n• Pull-ups",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["e1XFB3PF7Q", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "zQViHC8MJj",
+    "attributes": {
+      "name": "Elizabeth",
+      "description": "21-15-9 reps for time of:\n• Clean 135/95#\n• Ring dips",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["AV3ZJImwt6", "VkmcRrRQFN"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "4IB3lkz11c",
+    "attributes": {
+      "name": "Diane",
+      "description": "21-15-9 reps for time of:\n• Deadlift 225/155#  \n• HSPU",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["r3CNRMSi8j", "aPz3tX2Uwh"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Pr8nOwChsB",
+    "attributes": {
+      "name": "Cindy",
+      "description": "AMRAP 20 minutes of:\n• 5 pull-ups\n• 10 push-ups\n• 15 squats",
+      "category": "girls",
+      "score_type": "rounds + reps",
+      "movement_ids": ["iSu93oACwo", "9iu4RgWSgi", "Q45eeXwOvG"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "ECmW2ebUIT",
+    "attributes": {
+      "name": "Chelsea",
+      "description": "Each minute on the minute for 30 minutes:\n• 5 pull-ups\n• 10 push-ups\n• 15 squats",
+      "category": "girls",
+      "score_type": "rounds + reps",
+      "movement_ids": ["iSu93oACwo", "9iu4RgWSgi", "Q45eeXwOvG"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "KyPKohfKJv",
+    "attributes": {
+      "name": "Barbara",
+      "description": "5 rounds for time:\n• 20 pull-up\n• 30 push-ups\n• 40 sit-ups\n• 50 squats\n\nRest 3 minutes between rounds.",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["iSu93oACwo", "9iu4RgWSgi", "Y8GAfTQjlS", "Q45eeXwOvG"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "zLlgfhPd2q",
+    "attributes": {
+      "name": "Angie",
+      "description": "For time:\n• 100 pull-ups\n• 100 push ups\n• 100 sit-ups\n• 100 squats",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["iSu93oACwo", "9iu4RgWSgi", "Y8GAfTQjlS", "Q45eeXwOvG"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "IyEDU91YAa",
+    "attributes": {
+      "name": "Megan",
+      "description": "21-15-9 reps for time of:\n• Burpees\n• KB Swings (53/35)\n• Double-Unders",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["c94XVoGakB", "h9vPo5JYw6", "QCUOoOtogo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "7FG8DR2sgw",
+    "attributes": {
+      "name": "Candy",
+      "description": "5 rounds for time of:\n• 20 pull-ups\n• 40 push-ups\n• 60 squats",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["Q45eeXwOvG", "iSu93oACwo", "9iu4RgWSgi"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "HcBAlkPeIy",
+    "attributes": {
+      "name": "Maggie",
+      "description": "5 rounds for time of:\n• 20 handstand push-ups\n• 40 pull-ups\n• 60 single-leg squats, alternating legs",
+      "category": "girls",
+      "score_type": "time",
+      "movement_ids": ["aPz3tX2Uwh", "hJS94DdaBx", "iSu93oACwo"]
+    },
+    "links": {}
+  }
+]

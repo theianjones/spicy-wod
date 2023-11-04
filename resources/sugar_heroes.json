@@ -1,0 +1,1279 @@
+[
+  {
+    "type": "benchmarks",
+    "id": "9DM7t50Ctc",
+    "attributes": {
+      "name": "MICHAEL",
+      "description": "3 rounds for time of:\n• Run 800 meters\n• 50 Back Extensions\n• 50 Sit-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "Y8GAfTQjlS", "Lw1zCVKxxb"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "JUIQjo5GPz",
+    "attributes": {
+      "name": "RANDY",
+      "description": "For time:\n• Power Snatch, 75 reps, 75/55#",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["xPOJNy56VQ"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "oYvBEQsXM7",
+    "attributes": {
+      "name": "MOORE",
+      "description": "Complete as many rounds as possible in 20 minutes of:\n• 15 ft Rope Climb, 1 ascent\n• Run 400 meters\n• Max rep Handstand push-ups\n\nLog HSPUs completed for each round in your notes.",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["yJIlK7TN6q", "aPz3tX2Uwh", "50I5upgDJb"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "c2ITjm5JLc",
+    "attributes": {
+      "name": "BADGER",
+      "description": "3 rounds for time of:\n• 30 Squat Clean, 95/65 lb.\n• 30 Pull-ups\n• Run 800m",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["vyy5Tr0N49", "AV3ZJImwt6", "iSu93oACwo", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Mn18dg8Ah1",
+    "attributes": {
+      "name": "HORTMAN",
+      "description": "Complete as many rounds as possible in 45 minutes of:\n• Run 800 meters\n• 80 Squats\n• 8 Muscle-ups",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["yJIlK7TN6q", "Q45eeXwOvG", "V8IKIUyIbF"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "wiHaKVSeFr",
+    "attributes": {
+      "name": "HAMILTON",
+      "description": "Three rounds for time of:\n• Row 1000 meters\n• 50 Push-ups\n• Run 1000 meters\n• 50 Pull-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["9ikRXPXECL", "9iu4RgWSgi", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "wFnlofBj1b",
+    "attributes": {
+      "name": "ZEUS",
+      "description": "Three rounds for time of:\n• 30 Wall ball shots, 20 pound ball\n• 75/55 pound Sumo deadlift high-pull, 30 reps\n• 30 Box jump, 20\"\" box\n• 75/55 pound Push press, 30 reps\n• Row 30 calories\n• 30 Push-ups\n• Body weight Back squat, 10 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": [
+        "EZkHnWi9wf",
+        "0Iyujj2iY2",
+        "Pfe6N82u2K",
+        "FrQGIrNfi8",
+        "9ikRXPXECL",
+        "9iu4RgWSgi",
+        "QVZ7nxVjcQ"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "7tegkO1K7z",
+    "attributes": {
+      "name": "DT",
+      "description": "Five rounds of:\n•155/105 pound Deadlift, 12 reps\n•155/105 pound Hang power clean, 9 reps\n•155/105 pound Push jerk, 6 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["r3CNRMSi8j", "AV3ZJImwt6", "UIXa0O9TJ1"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "1kqOHNvGDW",
+    "attributes": {
+      "name": "GRIFF",
+      "description": "For time:\n•Run 800 meters\n•Run 400 meters backwards\n•Run 800 meters\n•Run 400 meters backwards",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "uoxF8dHb1t",
+    "attributes": {
+      "name": "JT",
+      "description": "21-15-9 reps of:\n• Handstand push-ups\n• Ring dips\n• Push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["aPz3tX2Uwh", "VkmcRrRQFN", "9iu4RgWSgi"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "fNhBDqVaNO",
+    "attributes": {
+      "name": "LUMBERJACK 20",
+      "description": "For time: \n•20 Deadlifts 275/185 lbs\n•Run 400m\n•20 KB swings 2pood\n•Run 400m\n•20 Overhead Squats 115/80 lbs\n•Run 400m\n•20 Burpees\n•Run 400m\n•20 Pullups Chest-to-Bar\n•Run 400m\n•20 Box jumps 24/20\"\n•Run 400m\n•20 DB Squat Cleans 45 lbs each\n•Run 400m",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": [
+        "r3CNRMSi8j",
+        "yJIlK7TN6q",
+        "QCUOoOtogo",
+        "XavuhsO1R0",
+        "c94XVoGakB",
+        "iSu93oACwo"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "ndEMVp9y4q",
+    "attributes": {
+      "name": "MURPH",
+      "description": "Partition the pull-ups, push-ups, and squats as needed. Start and finish with a mile run. If you've got a twenty pound vest or body armor, wear it.\n• 1 mile Run\n• 100 Pull-ups\n• 200 Push-ups\n• 300 Squats\n• 1 mile Run",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["Q45eeXwOvG", "9iu4RgWSgi", "iSu93oACwo", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "zesMN60FgU",
+    "attributes": {
+      "name": "THE SEVEN",
+      "description": "Seven rounds of:\n• 7 Handstand push-ups\n• 135/95 pound Thruster, 7 reps\n• 7 Knees to elbows\n• 245/165 pound Deadlift, 7 reps\n• 7 Burpees\n• 7 Kettlebell swings, 2 pood\n• 7 Pull-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": [
+        "aPz3tX2Uwh",
+        "e1XFB3PF7Q",
+        "Pg1LdTYhM3",
+        "r3CNRMSi8j",
+        "c94XVoGakB",
+        "QCUOoOtogo",
+        "iSu93oACwo"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "IrRhHvSnrm",
+    "attributes": {
+      "name": "CAMERON",
+      "description": "For time:\n50 Walking lunge steps\n25 Chest to bar pull-ups\n50 Box jumps, 24 inch box\n25 Triple-unders\n50 Back extensions\n25 Ring dips\n50 Knees to elbows\n25 Wallball \"\"2-fer-1s\"\", 20 pound ball\n50 Sit-ups\n15 foot Rope climb, 5 ascents\n",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": [
+        "T9teYV31Re",
+        "dmbpU1OMjd",
+        "VkmcRrRQFN",
+        "Pg1LdTYhM3",
+        "Lw1zCVKxxb",
+        "Pfe6N82u2K",
+        "KtSUuqmyjG",
+        "1m5Z5wmyA0"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "7e88WChkaY",
+    "attributes": {
+      "name": "SCHMALLS",
+      "description": "Run 800 meters\n\nThen two rounds of:\n• 50 Burpees\n• 40 Pull-ups\n• 30 One-legged squats\n• 20 Kettlebell swings, 1.5 pood\n• 10 Handstand push-ups\n\nThen,\nRun 800 meters",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": [
+        "c94XVoGakB",
+        "iSu93oACwo",
+        "hJS94DdaBx",
+        "QCUOoOtogo",
+        "aPz3tX2Uwh"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Ds5oscXvg8",
+    "attributes": {
+      "name": "J.J.",
+      "description": "For time:\n•185/125 pound Squat clean, 1 rep\n•10 Parallette handstand push-ups\n•185/125 pound Squat clean, 2 reps\n•9 Parallette handstand push-ups\n•185/125 pound Squat clean, 3 reps\n•8 Parallette handstand push-ups\n•185/125 pound Squat clean, 4 reps\n•7 Parallette handstand push-ups\n•185/125 pound Squat clean, 5 reps\n•6 Parallette handstand push-ups\n•185/125 pound Squat clean, 6 reps\n•5 Parallette handstand push-ups\n•185/125 pound Squat clean, 7 reps\n•4 Parallette handstand push-ups\n•185/125 pound Squat clean, 8 reps\n•3 Parallette handstand push-ups\n•185/125 pound Squat clean, 9 reps\n•2 Parallette handstand push-ups\n•185/125 pound Squat clean, 10 reps\n•1 Parallette handstand push-up",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["vyy5Tr0N49", "1jEkdtIlkR"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "O2APb70gmW",
+    "attributes": {
+      "name": "SEAN",
+      "description": "Ten rounds for time of:\n• 11 Chest to bar pull-ups\n• 75/55 pound Front squat, 22 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["1m5Z5wmyA0", "umWlFaYtSo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "op64YwGhuZ",
+    "attributes": {
+      "name": "WILMOT",
+      "description": "Six rounds of:\n• 50 Squats\n• 25 Ring dips",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["Q45eeXwOvG", "VkmcRrRQFN"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "7Sm7YPBb6E",
+    "attributes": {
+      "name": "WAR FRANK",
+      "description": "Three rounds of:\n• 25 Muscle-ups\n• 100 Squats\n• 35 GHD Sit-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["V8IKIUyIbF", "Q45eeXwOvG", "rk5ieibGyP"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "aPqKt9rrJU",
+    "attributes": {
+      "name": "COE",
+      "description": "Ten rounds:\n•95/65 pound Thruster, 10 reps\n•10 Ring push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["U3pYYXE639", "e1XFB3PF7Q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "w3UHXfmhOY",
+    "attributes": {
+      "name": "FORREST",
+      "description": "Three rounds of:\n•20 L-pull-ups\n•30 Toes to bar\n•40 Burpees\n•Run 800 meters",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["c94XVoGakB", "UDNz85iOZH", "yJIlK7TN6q", "Gl19kiplpb"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Fa15n13dbA",
+    "attributes": {
+      "name": "BRADLEY",
+      "description": "10 rounds for time of:\n• Sprint 100 meters\n• 10 Pull-ups\n• Sprint 100 meters\n• 10 Burpees\n• Rest 30 seconds",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "iSu93oACwo", "c94XVoGakB"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "6QM3CkQJtO",
+    "attributes": {
+      "name": "BRADSHAW",
+      "description": "10 rounds for time of:\n• 3 Handstand push-ups\n• 6 Deadlift, 225/155 lb.\n• 12 Pull-ups\n• 24 Double-unders",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["r3CNRMSi8j", "h9vPo5JYw6", "aPz3tX2Uwh", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "K96vAtSpwZ",
+    "attributes": {
+      "name": "DESFORGES",
+      "description": "Five rounds for time of:\n• 12 Deadlifts, 225/155 lb.\n• 20 Pull-ups\n• 12 Clean & Jerk, 135/95 lb.\n• 20 Knees to elbows",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["ggQ8RGQz8X", "AV3ZJImwt6", "r3CNRMSi8j", "Pg1LdTYhM3"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "wC8bfqYFiU",
+    "attributes": {
+      "name": "SEVERIN",
+      "description": "For time: \n•50 Strict Pull-ups\n•100 Push-ups, release hands from floor at the bottom\n•Run 5K\n\nIf you've got a twenty pound vest or body armor, wear it.",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["oE0LH9RK3E", "mfB0LLR98d", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "hFs4iLhurW",
+    "attributes": {
+      "name": "KLEPTO",
+      "description": "Four rounds of: \n•27 Box jumps, 24\" box\n•20 Burpees\n•11 Squat cleans, 145/100 pounds",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["vyy5Tr0N49", "c94XVoGakB", "Pfe6N82u2K"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "dSW6p9jfjb",
+    "attributes": {
+      "name": "NICK",
+      "description": "Twelve rounds of: \n• 45 pound Dumbbell hang squat clean, 10 reps\n• 6 Handstand push-ups on dumbbells",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["Q71z0snUTo", "aPz3tX2Uwh"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "B3X2bb5HbR",
+    "attributes": {
+      "name": "NUTTS",
+      "description": "• 10 Handstand push-ups\n• 250 pound Deadlift, 15 reps\n• 25 Box jumps, 30 inch box\n• 50 Pull-ups\n• 100 Wallball shots, 20 pounds, 10'\n• 200 Double-unders\n• Run 400 meters with a 45lb plate",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": [
+        "aPz3tX2Uwh",
+        "r3CNRMSi8j",
+        "Pfe6N82u2K",
+        "iSu93oACwo",
+        "EZkHnWi9wf",
+        "yJIlK7TN6q",
+        "h9vPo5JYw6"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "U0D18M711v",
+    "attributes": {
+      "name": "JERRY",
+      "description": "•Run 1 mile\n•Row 2K\n•Run 1 mile",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "9ikRXPXECL"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "kGIfcfKvj7",
+    "attributes": {
+      "name": "LEDESMA",
+      "description": "AMRAP in 20 minutes of:\n•5 Parallette handstand push-ups\n•10 Toes through rings\n•20 pound Medicine ball cleans, 15 reps",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["aPz3tX2Uwh", "7aW38BNPcd", "1pGCrqLjG4"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "KNAW25ri3Q",
+    "attributes": {
+      "name": "TOMMY V",
+      "description": "For time:\n• 115/80 pound Thruster, 21 reps\n• 15 ft Rope Climb, 12 ascents\n• 115/80 pound Thruster, 15 reps\n• 15 ft Rope Climb, 9 ascents\n• 115/80 pound Thruster, 9 reps\n• 15 ft Rope Climb, 6 ascents",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["e1XFB3PF7Q", "50I5upgDJb"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "1kBUO0zv7H",
+    "attributes": {
+      "name": "JACK",
+      "description": "AMRAP in 20 minutes of:\n•115/80 pound Push press, 10 reps\n•10 KB Swings, 1.5 pood\n•10 Box jumps, 24 inch box",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["Pfe6N82u2K", "FrQGIrNfi8", "QCUOoOtogo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "S2IO56MFtO",
+    "attributes": {
+      "name": "CARSE",
+      "description": "21-18-15-12-9-6-3 reps of:\n• 95/65 pound Squat clean\n• Double-unders\n• 185/125 pound Deadlift\n• 24/20\" Box jump\n\nBegin each round with a 50 meter Bear crawl",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": [
+        "hVfaFatdaK",
+        "Pfe6N82u2K",
+        "r3CNRMSi8j",
+        "h9vPo5JYw6",
+        "vyy5Tr0N49"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "VVwtynGfKG",
+    "attributes": {
+      "name": "RJ",
+      "description": "Five rounds of:\n• Run 800 meters\n• 15 ft Rope Climb, 5 ascents\n• 50 Push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "50I5upgDJb", "9iu4RgWSgi"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "AzMNpUXx6o",
+    "attributes": {
+      "name": "HOLBROOK",
+      "description": "Ten rounds, each for time:\n• 115/80 pound Thruster, 5 reps\n• 10 Pull-ups\n• 100 meter Sprint\nRest 1 minute",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["iSu93oACwo", "yJIlK7TN6q", "e1XFB3PF7Q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "JydO7wLoow",
+    "attributes": {
+      "name": "ADRIAN",
+      "description": "Seven rounds for time of:\n• 3 Forward rolls\n• 5 Wall climbs\n• 7 Toes to bar\n• 9 Box jumps, 30\" box",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["2HkcBdrVaI", "GUOoTC3pA2", "Gl19kiplpb", "Pfe6N82u2K"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "obBPDpYWhi",
+    "attributes": {
+      "name": "WOOD",
+      "description": "5 Rounds of:\n• Run 400 meters\n• 10 Burpee box jumps, 24\"\" box\n• 95/65 pound Sumo-deadlift high-pull, 10 reps\n• 95/65 pound Thruster, 10 reps\n• Rest 1 minute",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "Znbyw5L9At", "0Iyujj2iY2", "e1XFB3PF7Q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "sGHg5F7Alp",
+    "attributes": {
+      "name": "MORRISON",
+      "description": "50-40-30-20 and 10 rep rounds for time of: \n• Wall ball shots, 20 pound ball\n• Box jump, 24 inch box\n• Kettlebell swings, 1.5 pood",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["EZkHnWi9wf", "QCUOoOtogo", "Pfe6N82u2K"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "zvVxSyHFyO",
+    "attributes": {
+      "name": "RYAN",
+      "description": "Five rounds of:\n•7 Muscle-ups\n•21 Burpees\nEach burpee terminates with a jump one foot above max standing reach.",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["c94XVoGakB", "V8IKIUyIbF"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "1rx9iGXx2J",
+    "attributes": {
+      "name": "BULL",
+      "description": "Two rounds of: \n• 200 Double-unders\n• 135/95 pound Overhead squat, 50 reps\n• 50 Pull-ups\n• Run 1 mile",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["h9vPo5JYw6", "XavuhsO1R0", "iSu93oACwo", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "d5Y2BTGwes",
+    "attributes": {
+      "name": "ARNIE",
+      "description": "With a single 2 pood kettlebell:\n• 21 Turkish get-ups, Right arm\n• 50 Swings\n• 21 Overhead squats, Left arm\n• 50 Swings\n• 21 Overhead squats, Right arm\n• 50 Swings\n• 21 Turkish get-ups, Left arm",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["NgUb0mVUoH", "QCUOoOtogo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "BHDpA7aB5Z",
+    "attributes": {
+      "name": "JASON",
+      "description": "For time: \n•100 Squats\n•5 Muscle-ups\n•75 Squats\n•10 Muscle-ups\n•50 Squats\n•15 Muscle-ups\n•25 Squats\n•20 Muscle-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["Q45eeXwOvG", "V8IKIUyIbF"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "aOKGlOpbhP",
+    "attributes": {
+      "name": "HANSEN",
+      "description": "Five rounds:\n•30 reps, 2 pood Kettlebell swing\n•30 Burpees\n•30 GHD Sit-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["QCUOoOtogo", "c94XVoGakB", "rk5ieibGyP"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "4C8We0M2a1",
+    "attributes": {
+      "name": "HOLLEYMAN",
+      "description": "Thirty rounds of: \n•5 Wall ball shots, 20 pound ball\n•3 Handstand push-ups\n•225/155 pound Power clean, 1 rep",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["EZkHnWi9wf", "32fORzP45M", "aPz3tX2Uwh"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "WZFCXzbxd1",
+    "attributes": {
+      "name": "WHITE",
+      "description": "Five rounds of: \n• 15' Rope climb, 3 ascents\n• 10 Toes to bar\n• 21 Walking lunge steps with 45lb plate held overhead\n• Run 400 meters",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["50I5upgDJb", "Gl19kiplpb", "dmbpU1OMjd", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "vDV0xpPyng",
+    "attributes": {
+      "name": "JAG 28",
+      "description": "For time:\n•Run 800 meters\n•28 Kettlebell swings, 2 pood\n•28 Strict Pull-ups\n•28 Kettlebell clean and jerk, 2 pood each\n•28 Strict Pull-ups\n•Run 800 meters",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "oE0LH9RK3E", "ggQ8RGQz8X"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "e7Vl764TKO",
+    "attributes": {
+      "name": "RALPH",
+      "description": "Four rounds of: \n250 pound Deadlift, 8 reps\n16 Burpees\n15 foot Rope climb, 3 ascents\nRun 600 meters",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["c94XVoGakB", "r3CNRMSi8j", "50I5upgDJb", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "N6xasJW1Uv",
+    "attributes": {
+      "name": "MOON",
+      "description": "Seven rounds for time of:\n• 40 pound dumbbell Hang split snatch, 10 reps Right arm\n• 15 ft Rope Climb, 1 ascent\n• 40 pound dumbbell Hang split snatch, 10 reps Left arm\n• 15 ft Rope Climb, 1 ascent\n\n\nAlternate feet in the split snatch sets.",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["Hcl7kgiTPB", "50I5upgDJb"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "qaqvuf2Dw1",
+    "attributes": {
+      "name": "HAMMER",
+      "description": "Five rounds of: \n•135/95 pound Power clean, 5 reps\n•135/95 pound Front squat, 10 reps\n•135/95 pound Jerk, 5 reps\n•20 Pull-ups\nRest 90 seconds between each round",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["32fORzP45M", "umWlFaYtSo", "UIXa0O9TJ1", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "BIDEZMGXNW",
+    "attributes": {
+      "name": "ERIN",
+      "description": "Five rounds of:\n•40 pound Dumbbells split clean, 15 reps\n•21 Pull-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "iVJwCagDGA",
+    "attributes": {
+      "name": "PAUL",
+      "description": "Five rounds of: \n•50 Double unders\n•35 Knees to elbows\n•185/125 pound Overhead walk, 20 yards",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["h9vPo5JYw6", "Pg1LdTYhM3"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "DcLGtyNnrx",
+    "attributes": {
+      "name": "RAHOI",
+      "description": "AMRAP in 12 minutes:\n•24 inch Box Jump, 12 reps\n•95/65 pound Thruster, 6 reps\n•6 Bar-facing burpees",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["e1XFB3PF7Q", "Pfe6N82u2K", "ztCZl48M2K"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "h8IxL7LwgD",
+    "attributes": {
+      "name": "WESTON",
+      "description": "Five rounds of: \n• Row 1000 meters\n• 200 meter Farmer carry, 45 pound dumbbells\n• 45 pound dumbbell Waiter walk, 50 meters, Right arm\n• 45 pound dumbbell Waiter walk, 50 meters, Left arm",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["9ikRXPXECL", "OTqNkPBjhg", "bnL0lZR9hT"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "6foXix3LQv",
+    "attributes": {
+      "name": "WITTMAN",
+      "description": "Seven rounds of: \n• 1.5 pood Kettlebell swing, 15 reps\n• 95/65 pound Power clean, 15 reps\n• 15 Box jumps, 24\" box",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["QCUOoOtogo", "32fORzP45M", "Pfe6N82u2K"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "8kVI8hkj4J",
+    "attributes": {
+      "name": "GLEN",
+      "description": "For time: \n•135/95 pound Clean and jerk, 30 reps\n•Run 1 mile\n•15 foot Rope climb, 10 ascents\n•Run 1 mile\n•100 Burpees",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "50I5upgDJb", "AV3ZJImwt6", "ggQ8RGQz8X"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "ijUxNot7wb",
+    "attributes": {
+      "name": "JOHNSON",
+      "description": "AMRAP in 20 minutes of:\n•245/165 pound Deadlift, 9 reps\n•8 Muscle-ups\n•155/105 pound Squat clean, 9 reps",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["vyy5Tr0N49", "V8IKIUyIbF", "r3CNRMSi8j"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "w5aXSCIWJ2",
+    "attributes": {
+      "name": "JARED",
+      "description": "Four rounds of: \n•Run 800 meters\n•40 Pull-ups\n•70 Push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "iSu93oACwo", "9iu4RgWSgi"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "HkBmNdKoP5",
+    "attributes": {
+      "name": "BRENTON",
+      "description": "Five rounds for time of: \n• Bear crawl 100 feet \n• Standing broad-jump, 100 feet\n\nDo three Burpees after every five broad-jumps. If you've got a twenty pound vest or body armor, wear it.",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["hVfaFatdaK", "V5Jo3Ik2Jm"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "XSVz3bRPwA",
+    "attributes": {
+      "name": "STEPHEN",
+      "description": "30-25-20-15-10-5 rep rounds of:\n• GHD sit-up\n• Back extension\n• Knees to elbow\n• 95/65 pound Stiff legged deadlift",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["rk5ieibGyP", "Lw1zCVKxxb", "Pg1LdTYhM3", "oX0rshIcNC"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "CGLL6yQLJl",
+    "attributes": {
+      "name": "ZIMMERMAN",
+      "description": "AMRAP in 25 minutes:\n• 11 Chest-to-bar pull-ups\n• 2 Deadlifts, 315/205 pounds\n• 10 Handstand push-ups",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["1m5Z5wmyA0", "r3CNRMSi8j", "aPz3tX2Uwh"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "qazBqSHZ48",
+    "attributes": {
+      "name": "NATE",
+      "description": "As many rounds as possible in 20 minutes:\n•2 Muscle-ups\n•4 Handstand Push-ups\n•8 2-Pood Kettlebell swings",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["QCUOoOtogo", "aPz3tX2Uwh", "V8IKIUyIbF"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "ewScTDaH8s",
+    "attributes": {
+      "name": "MCCLUSKEY",
+      "description": "Three rounds of:\n•9 Muscle-ups\n•15 Burpee pull-ups\n•21 Pull-ups\n•Run 800 meters",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["90ipOnexoL", "V8IKIUyIbF", "iSu93oACwo", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "0QQWBNh7Zh",
+    "attributes": {
+      "name": "PHEEZY",
+      "description": "Three rounds of: \n•165 pound Front squat, 5 reps\n•18 Pull-ups\n•225/155 pound Deadlift, 5 reps\n•18 Toes-to-bar\n•165 pound Push jerk, 5 reps\n•18 Hand-release push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": [
+        "Gl19kiplpb",
+        "UIXa0O9TJ1",
+        "mfB0LLR98d",
+        "umWlFaYtSo",
+        "r3CNRMSi8j",
+        "iSu93oACwo"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Yu7ifbBcWo",
+    "attributes": {
+      "name": "MEADOWS",
+      "description": "For time: \n•20 Muscle-ups\n•25 Lowers from an inverted hang on the rings, slowly, with straight body and arms\n•30 Ring handstand push-ups\n•35 Ring rows\n•40 Ring push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["V8IKIUyIbF", "BgcnQgXWLx", "7D2s52zLPX", "U3pYYXE639"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "O8HzJVg8mG",
+    "attributes": {
+      "name": "SANTIAGO",
+      "description": "Seven rounds of:\n• 35 pound Dumbbell hang squat clean, 18 reps\n• 18 Pull-ups\n• 135/95 pound Power clean, 10 reps\n• 10 Handstand push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["Q71z0snUTo", "iSu93oACwo", "32fORzP45M", "aPz3tX2Uwh"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "rnmFgscO4x",
+    "attributes": {
+      "name": "ABBATE",
+      "description": "For time:\n• Run 1 mile\n• 21 Clean & Jerk 155/105#\n• Run 800m\n• 21 Clean & Jerk 155/105#\n• Run 1 Mile",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "ggQ8RGQz8X", "AV3ZJImwt6", "UIXa0O9TJ1"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "rep43af9zk",
+    "attributes": {
+      "name": "TOM",
+      "description": "Complete as many rounds in 25 minutes of:\n• 7 Muscle-ups\n• 155/105 pound Thruster, 11 reps\n• 14 Toes-to-bar",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["V8IKIUyIbF", "e1XFB3PF7Q", "Gl19kiplpb"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "7zeiOGm7i3",
+    "attributes": {
+      "name": "LOREDO",
+      "description": "Six rounds for time of:\n•24 Squats\n•24 Push-ups\n•24 Walking lunge steps\n•Run 400 meters",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["Q45eeXwOvG", "dmbpU1OMjd", "yJIlK7TN6q", "9iu4RgWSgi"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "kYCcMpEgIo",
+    "attributes": {
+      "name": "TUMILSON",
+      "description": "Eight rounds of: \n• Run 200 meters\n• 11 Dumbbell burpee deadlifts, 60 pound dumbbells",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "xL0MDEtjgm"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "eZGWcNINot",
+    "attributes": {
+      "name": "MCGHEE",
+      "description": "AMRAP in 30 minutes of:\n•275/185 pound Deadlift, 5 reps\n•13 Push-ups\n•9 Box jumps, 24 inch box",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["9iu4RgWSgi", "Pfe6N82u2K", "r3CNRMSi8j"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Q0fLG415NY",
+    "attributes": {
+      "name": "STRANGE",
+      "description": "Eight rounds of: \n• 600 meter Run\n• 1.5 pood Weighted pull-up, 11 reps\n• 11 Walking lunge steps, carrying 1.5 pood kettlebells\n• 1.5 pood Kettlebell thruster, 11 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "S1Xnrr0YGM", "dmbpU1OMjd", "e1XFB3PF7Q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "acz28rz8jK",
+    "attributes": {
+      "name": "WHITTEN",
+      "description": "Five rounds of:\n• 22 Kettlebell swings, 2 pood\n• 22 Box jump, 24 inch box\n• Run 400 meters\n• 22 Burpees\n• 22 Wall ball shots, 20 pound ball",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": [
+        "QCUOoOtogo",
+        "Pfe6N82u2K",
+        "yJIlK7TN6q",
+        "c94XVoGakB",
+        "EZkHnWi9wf"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "EnAUDfs6Mj",
+    "attributes": {
+      "name": "SMALL",
+      "description": "Three rounds of:\n•Row 1000 meters\n•50 Burpees\n•50 Box jumps, 24\"\" box\n•Run 800 meters",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["9ikRXPXECL", "yJIlK7TN6q", "c94XVoGakB", "Pfe6N82u2K"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "hRGKnv6LFD",
+    "attributes": {
+      "name": "RICKY",
+      "description": "AMRAP in 20 minutes: \n•10 Pull-ups\n•75 pound dumbbell Deadlift, 5 reps\n•135/95 pound Push-press, 8 reps",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["iSu93oACwo", "k1Y8nokrha", "FrQGIrNfi8"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "poBcLfReqv",
+    "attributes": {
+      "name": "HELTON",
+      "description": "Three rounds of: \n•Run 800 meters\n•30 reps, 50 pound dumbbell squat cleans\n•30 Burpees",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["3lrYD2Vre6", "c94XVoGakB", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "z5Vbug6HxP",
+    "attributes": {
+      "name": "RANKEL",
+      "description": "AMRAP in 20 minutes of:\n•225/155 pound Deadlift, 6 reps\n•7 Burpee pull-ups\n•10 Kettlebell swings, 2 pood\n•Run 200 meters",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["r3CNRMSi8j", "90ipOnexoL", "QCUOoOtogo", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "ChbBLsWiiC",
+    "attributes": {
+      "name": "ADAMBROWN",
+      "description": "Two rounds for time of:\n• 295 pound Deadlift, 24 reps\n• 24 Box jumps, 24 inch box\n• 24 Wallball shots, 20 pound ball\n• 195 pound Bench press, 24 reps\n• 24 Box jumps, 24 inch box\n• 24 Wallball shots, 20 pound ball\n• 145 pound Clean, 24 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": [
+        "r3CNRMSi8j",
+        "Pfe6N82u2K",
+        "EZkHnWi9wf",
+        "PWksBIhkdV",
+        "AV3ZJImwt6"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "PEky5bDYQJ",
+    "attributes": {
+      "name": "BLAKE",
+      "description": "Four rounds for time of:\n• 100 foot Walking lunge with 45lb plate held overhead\n• 30 Box jump, 24 inch box\n• 20 Wallball shots, 20 pound ball\n• 10 Handstand push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["dmbpU1OMjd", "EZkHnWi9wf", "aPz3tX2Uwh", "Pfe6N82u2K"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "H5NFaXf2Z7",
+    "attributes": {
+      "name": "MANION",
+      "description": "Seven rounds of:\n•Run 400 meters\n•135/95 pound Back squat, 29 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "QVZ7nxVjcQ"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "EAlsrfvhZp",
+    "attributes": {
+      "name": "DANNY",
+      "description": "AMRAP in 20 minutes of:\n• 24\" box jump, 30 reps\n• 115/80 pound push press, 20 reps\n• 30 pull-ups",
+      "category": "heroes",
+      "score_type": "rounds + reps",
+      "movement_ids": ["FrQGIrNfi8", "iSu93oACwo", "Pfe6N82u2K"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Py69dUCZlh",
+    "attributes": {
+      "name": "GATOR",
+      "description": "Eight rounds for time of: \n• 185/125 pound Front squat, 5 reps\n• 26 Ring push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["U3pYYXE639", "umWlFaYtSo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "75K6cXRx2S",
+    "attributes": {
+      "name": "HIDALGO",
+      "description": "•Run 2 miles\nRest 2 minutes\n•135/95 pound Squat clean, 20 reps\n•20 Box jump, 24\"\" box\n•20 Walking lunge steps with 45 lb. plate held overhead\n•20 Box jump, 24\"\" box\n•135/95 pound Squat clean, 20 reps\nRest 2 minutes \n•Run 2 miles\n\nIf you've got a twenty pound vest or body armor, wear it.",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "vyy5Tr0N49", "Pfe6N82u2K", "dmbpU1OMjd"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "rrKFVyYL9X",
+    "attributes": {
+      "name": "SHIP",
+      "description": "9 Rounds For Time\n• 7 Squat Cleans (185/135 lb)\n• 8 Burpee Box Jumps (36/30 in)",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["vyy5Tr0N49", "Znbyw5L9At"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Ro1V7maCh1",
+    "attributes": {
+      "name": "THOMPSON",
+      "description": "10 rounds of: \n• 15 ft Rope Climb, 1 ascent\n• 95/65 pound Back squat, 29 reps\n• 135/95 pound barbells Farmer carry, 10 meters\n\nBegin the rope climbs seated on the floor.",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["50I5upgDJb", "QVZ7nxVjcQ", "c3qHkYuNi7", "bnL0lZR9hT"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "LgSK71qduI",
+    "attributes": {
+      "name": "ROY",
+      "description": "Five rounds for time:\n• 225/155 pound Deadlift, 15 reps\n• 20 Box jumps, 24 inch box\n• 25 Pull-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["r3CNRMSi8j", "Pfe6N82u2K", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "zwEEQydxco",
+    "attributes": {
+      "name": "SANTORA",
+      "description": "Three rounds of: \n•155/105 pound Squat cleans, 1 minute\n•20' Shuttle sprints (20' forward + 20' backwards = 1 rep), 1 minute\n•245/165 pound Deadlifts, 1 minute\n•Burpees, 1 minute\n•155/105 pound Jerks, 1 minute\nRest 1 minute",
+      "category": "heroes",
+      "score_type": "reps",
+      "movement_ids": [
+        "vyy5Tr0N49",
+        "FvelGsOivV",
+        "r3CNRMSi8j",
+        "c94XVoGakB",
+        "UIXa0O9TJ1"
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "58wlzcVCww",
+    "attributes": {
+      "name": "DAE HAN",
+      "description": "Three rounds of: \n•Run 800 meters with a 45 pound barbell\n•15 foot Rope climb, 3 ascents\n•135/95 pound Thruster, 12 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "50I5upgDJb", "e1XFB3PF7Q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "0mWrRTNYlO",
+    "attributes": {
+      "name": "BRIAN",
+      "description": "Three rounds for time of: \n• 15 foot Rope climb, 5 ascents\n• 185/125 pound Back squat, 25 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["50I5upgDJb", "QVZ7nxVjcQ"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "mXPo3NKAiB",
+    "attributes": {
+      "name": "LUCE",
+      "description": "Wearing a 20 pound vest, three rounds of:\n•Run 1K\n•10 Muscle-ups\n•100 Squats",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "V8IKIUyIbF", "Q45eeXwOvG"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "q0v9Rpe9rL",
+    "attributes": {
+      "name": "BULGER",
+      "description": "Ten rounds for time of: \n• Run 150 meters\n• 7 Chest to bar pull-ups\n• 135/95 pound Front squat, 7 reps\n• 7 Handstand push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "aPz3tX2Uwh", "umWlFaYtSo", "1m5Z5wmyA0"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "CUiKExgNB2",
+    "attributes": {
+      "name": "JOSH",
+      "description": "For time:\n•95/65 pound Overhead squat, 21 reps\n•42 Pull-ups\n•95/65 pound Overhead squat, 15 reps\n•30 Pull-ups\n•95/65 pound Overhead squat, 9 reps\n•18 Pull-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["XavuhsO1R0", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "U2Z83UiInX",
+    "attributes": {
+      "name": "GARRETT",
+      "description": "Three rounds of:\n•75 Squats\n•25 Ring handstand push-ups\n•25 L-pull-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["Q45eeXwOvG", "BgcnQgXWLx", "UDNz85iOZH"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "p7331hUDDQ",
+    "attributes": {
+      "name": "DANIEL",
+      "description": "For time: \n•50 Pull-ups\n•400 meter run\n•95/65 pound Thruster, 21 reps\n•800 meter run\n•95/65 pound Thruster, 21 reps\n•400 meter run\n•50 Pull-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["yJIlK7TN6q", "iSu93oACwo", "e1XFB3PF7Q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "EQ1yG8BY37",
+    "attributes": {
+      "name": "CLOVIS",
+      "description": "•Run 10 miles\n•150 Burpee pull-ups\n\nPartition the run and burpee pull-ups as needed.",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["90ipOnexoL", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "qhnfGAkvqW",
+    "attributes": {
+      "name": "TYLER",
+      "description": "Five rounds:\n• 7 Muscle-ups\n• 21 reps 95/65 pound Sumo-deadlift high-pull",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["V8IKIUyIbF", "0Iyujj2iY2"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "oYEtOD6FgR",
+    "attributes": {
+      "name": "WEAVER",
+      "description": "Four rounds of:\n• 10 L-pull-ups\n• 15 Push-ups\n• 15 Chest to bar Pull-ups\n• 15 Push-ups\n• 20 Pull-ups\n• 15 Push-ups",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["UDNz85iOZH", "9iu4RgWSgi", "1m5Z5wmyA0", "iSu93oACwo"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "9eCD8Heq6v",
+    "attributes": {
+      "name": "TULLY",
+      "description": "Four rounds of: \n• Swim 200 meters\n• 40 pound Dumbbell squat cleans, 23 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["2KrQ3LVk5P", "3lrYD2Vre6"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "EJXdZ4S6c4",
+    "attributes": {
+      "name": "JOSHIE",
+      "description": "3 rounds of:\n•40 pound Dumbbell snatch, 21 reps, right arm\n•21 L Pull-ups\n•40 pound Dumbbell snatch, 21 reps, left arm\n•21 L Pull-ups\n\nThe snatches are full squat snatches.",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["GWIu43XYoA", "UDNz85iOZH"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "Hl3mYhCZ6G",
+    "attributes": {
+      "name": "MR. JOSHUA",
+      "description": "Five rounds of:\nRun 400 meters\n30 Glute-ham sit-ups\n250 pound Deadlift, 15 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["r3CNRMSi8j", "rk5ieibGyP", "yJIlK7TN6q"]
+    },
+    "links": {}
+  },
+  {
+    "type": "benchmarks",
+    "id": "24e2tg5yG0",
+    "attributes": {
+      "name": "COLLIN",
+      "description": "Six rounds of:\n•Carry 50 pound sandbag 400 meters\n•115/80 pound Push press, 12 reps\n•12 Box jumps, 24 inch box\n•95/65 pound Sumo deadlift high-pull, 12 reps",
+      "category": "heroes",
+      "score_type": "time",
+      "movement_ids": ["Pfe6N82u2K", "FrQGIrNfi8", "0Iyujj2iY2"]
+    },
+    "links": {}
+  }
+]
