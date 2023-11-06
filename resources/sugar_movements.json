@@ -1,0 +1,4143 @@
+[
+  {
+    "type": "movements",
+    "id": "V8IKIUyIbF",
+    "attributes": {
+      "name": "Muscle-Up",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Kipping Ring Muscle-Up. For our full library of movements go to www.wodstar.com.",
+          "id": "fHrGdxGi_Og",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/fHrGdxGi_Og/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/fHrGdxGi_Og/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/fHrGdxGi_Og/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/fHrGdxGi_Og/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/fHrGdxGi_Og/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Kipping Ring Muscle-Up"
+        },
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Strict Ring Muscle-Up. For our full library of movements go to www.wodstar.com.",
+          "id": "pHOg8-0Ojtw",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/pHOg8-0Ojtw/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/pHOg8-0Ojtw/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/pHOg8-0Ojtw/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/pHOg8-0Ojtw/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/pHOg8-0Ojtw/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Strict Ring Muscle-Up"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Hcl7kgiTPB",
+    "attributes": {
+      "name": "Snatch",
+      "videos": [
+        {
+          "id": "2JiFUn2-dyQ",
+          "title": "How to Do a Squat Snatch by Wodstar",
+          "description": "This video demonstrates how to do a Squat Snatch. For our full library of movements go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/2JiFUn2-dyQ/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/2JiFUn2-dyQ/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/2JiFUn2-dyQ/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/2JiFUn2-dyQ/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/2JiFUn2-dyQ/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        },
+        {
+          "id": "eiLq_1PKyIg",
+          "title": "How to Do a 3 Position Snatch by Wodstar",
+          "description": "Wodstar demonstrates how to do a 3 Position Snatch. For our full library of movements, go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/eiLq_1PKyIg/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/eiLq_1PKyIg/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/eiLq_1PKyIg/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/eiLq_1PKyIg/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/eiLq_1PKyIg/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": false
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "iSu93oACwo",
+    "attributes": {
+      "name": "Pull-up (Kipping)",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Kipping Pull-Up. For our full library of movements go to www.wodstar.com.",
+          "id": "L7eeSsJ8q7I",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/L7eeSsJ8q7I/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/L7eeSsJ8q7I/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/L7eeSsJ8q7I/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/L7eeSsJ8q7I/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/L7eeSsJ8q7I/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do A Kipping Pull-Up by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "9iu4RgWSgi",
+    "attributes": {
+      "name": "Push Up",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Push-Up. For our full library of movements go to www.wodstar.com.",
+          "id": "LV5esAMtgl0",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/LV5esAMtgl0/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/LV5esAMtgl0/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/LV5esAMtgl0/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/LV5esAMtgl0/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/LV5esAMtgl0/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Push Up by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Y8GAfTQjlS",
+    "attributes": {
+      "name": "Sit-up",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Sit Up. For our full library of movements go to www.wodstar.com.",
+          "id": "JZlJNxqSRW0",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/JZlJNxqSRW0/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/JZlJNxqSRW0/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/JZlJNxqSRW0/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/JZlJNxqSRW0/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/JZlJNxqSRW0/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Sit-Up by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Q45eeXwOvG",
+    "attributes": {
+      "name": "Air Squat",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do an Air Squat. For our full library of movements go to www.wodstar.com.",
+          "id": "3gqTBy0KlxM",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/3gqTBy0KlxM/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/3gqTBy0KlxM/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/3gqTBy0KlxM/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/3gqTBy0KlxM/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/3gqTBy0KlxM/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do an Air Squat by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "h9vPo5JYw6",
+    "attributes": {
+      "name": "Jump Rope (Double Unders)",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do a double under.",
+          "id": "pxlbyMJm1hk",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/pxlbyMJm1hk/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/pxlbyMJm1hk/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/pxlbyMJm1hk/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/pxlbyMJm1hk/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/pxlbyMJm1hk/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do Double Unders By Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "r3CNRMSi8j",
+    "attributes": {
+      "name": "Deadlift",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Deadlift. For our full library of movements go to www.wodstar.com.",
+          "id": "tMoVOgyv5qU",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/tMoVOgyv5qU/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/tMoVOgyv5qU/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/tMoVOgyv5qU/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/tMoVOgyv5qU/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/tMoVOgyv5qU/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Deadlift by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "aPz3tX2Uwh",
+    "attributes": {
+      "name": "Handstand Push-Up",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Handstand Push-Up. For our full library of movements go to www.wodstar.com.",
+          "id": "cvYsiwTra1g",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/cvYsiwTra1g/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/cvYsiwTra1g/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/cvYsiwTra1g/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/cvYsiwTra1g/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/cvYsiwTra1g/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How do Do a Handstand Push-Up by Wodstar"
+        },
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do a Handstand Push-Up. For our full library of movements, go to www.wodstar.com.",
+          "id": "APQhH9LwmuU",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/APQhH9LwmuU/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/APQhH9LwmuU/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/APQhH9LwmuU/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/APQhH9LwmuU/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/APQhH9LwmuU/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "Kipping Handstand Push-Up by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "AV3ZJImwt6",
+    "attributes": {
+      "name": "Clean",
+      "videos": [
+        {
+          "id": "yTNZ9PQKWEw",
+          "title": "How to Do a Squat Clean by Wodstar",
+          "description": "This video demonstrates how to do a Squat Clean. For our full library of movements go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/yTNZ9PQKWEw/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/yTNZ9PQKWEw/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/yTNZ9PQKWEw/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/yTNZ9PQKWEw/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/yTNZ9PQKWEw/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "VkmcRrRQFN",
+    "attributes": {
+      "name": "Ring Dip",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do Ring Dips. For our full library of movements go to www.wodstar.com.",
+          "id": "ZBiLetJ1XD4",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/ZBiLetJ1XD4/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/ZBiLetJ1XD4/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/ZBiLetJ1XD4/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/ZBiLetJ1XD4/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/ZBiLetJ1XD4/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do Ring Dips by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "yJIlK7TN6q",
+    "attributes": {
+      "name": "Run",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "QCUOoOtogo",
+    "attributes": {
+      "name": "Kettlebell Swing",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Kettlebell Swing. For our full library of movements go to www.wodstar.com.",
+          "id": "0WtJaq2qwqU",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/0WtJaq2qwqU/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/0WtJaq2qwqU/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/0WtJaq2qwqU/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/0WtJaq2qwqU/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/0WtJaq2qwqU/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Kettlebell Swing By Wodstar"
+        },
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Russian Kettlebell Swing. For our full library of movements go to www.wodstar.com.",
+          "id": "RU88iqRVunk",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/RU88iqRVunk/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/RU88iqRVunk/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/RU88iqRVunk/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/RU88iqRVunk/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/RU88iqRVunk/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to do a Russian Kettlebell Swing by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "e1XFB3PF7Q",
+    "attributes": {
+      "name": "Thruster",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Thruster. For our full library of movements go to www.wodstar.com.",
+          "id": "qHrYG3mOLRk",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/qHrYG3mOLRk/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/qHrYG3mOLRk/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/qHrYG3mOLRk/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/qHrYG3mOLRk/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/qHrYG3mOLRk/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Thruster by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "ggQ8RGQz8X",
+    "attributes": {
+      "name": "Clean & Jerk",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Clean & Jerk. For our full library of movements go to www.wodstar.com.",
+          "id": "oVAJkyyVj3o",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/oVAJkyyVj3o/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/oVAJkyyVj3o/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/oVAJkyyVj3o/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/oVAJkyyVj3o/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/oVAJkyyVj3o/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Clean and Jerk by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "9ikRXPXECL",
+    "attributes": {
+      "name": "Row",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to Row on a Rowing Machine. For our full library of movements, go to www.wodstar.com.",
+          "id": "87vRn9w5NGU",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/87vRn9w5NGU/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/87vRn9w5NGU/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/87vRn9w5NGU/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/87vRn9w5NGU/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/87vRn9w5NGU/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Row on a Rowing Machine by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "EZkHnWi9wf",
+    "attributes": {
+      "name": "Wall Ball Shot",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Wallball Shot. For our full library of movements go to www.wodstar.com.",
+          "id": "9Xwivh-28dc",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/9Xwivh-28dc/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/9Xwivh-28dc/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/9Xwivh-28dc/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/9Xwivh-28dc/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/9Xwivh-28dc/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Wallball Shot by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Pfe6N82u2K",
+    "attributes": {
+      "name": "Box Jump",
+      "videos": [
+        {
+          "id": "1McrNPCcN-o",
+          "title": "How to Do a Box Jump by Wodstar",
+          "description": "Wodstar demonstrates how to do a Box Jump. For our full library of movements, go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/1McrNPCcN-o/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/1McrNPCcN-o/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/1McrNPCcN-o/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/1McrNPCcN-o/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/1McrNPCcN-o/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "PWksBIhkdV",
+    "attributes": {
+      "name": "Bench Press",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do a Bench Press. For our full library of movements, go to www.wodstar.com.",
+          "id": "uqAsj8ozt40",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/uqAsj8ozt40/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/uqAsj8ozt40/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/uqAsj8ozt40/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/uqAsj8ozt40/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/uqAsj8ozt40/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to do a Bench Press by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "hJS94DdaBx",
+    "attributes": {
+      "name": "Pistol Squat",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Pistol Squat. For our full library of movements go to www.wodstar.com.",
+          "id": "jpti0puT4GU",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/jpti0puT4GU/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/jpti0puT4GU/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/jpti0puT4GU/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/jpti0puT4GU/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/jpti0puT4GU/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Pistol Squat by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "XavuhsO1R0",
+    "attributes": {
+      "name": "Overhead Squat",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do an Overhead Squat. For our full library of movements, go to www.wodstar.com.",
+          "id": "L5ik3oTNYn8",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/L5ik3oTNYn8/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/L5ik3oTNYn8/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/L5ik3oTNYn8/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/L5ik3oTNYn8/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/L5ik3oTNYn8/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do an Overhead Squat by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "UIXa0O9TJ1",
+    "attributes": {
+      "name": "Push Jerk",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "In this video, Jon Pera demonstrates how to do the perfect Push Jerk.",
+          "id": "Q8NK4eOe_74",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/Q8NK4eOe_74/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/Q8NK4eOe_74/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/Q8NK4eOe_74/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/Q8NK4eOe_74/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/Q8NK4eOe_74/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to do a Push Jerk by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "FrQGIrNfi8",
+    "attributes": {
+      "name": "Push Press",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Push Press. For our full library of movements go to www.wodstar.com.",
+          "id": "XKeF_XMC9GM",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/XKeF_XMC9GM/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/XKeF_XMC9GM/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/XKeF_XMC9GM/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/XKeF_XMC9GM/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/XKeF_XMC9GM/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Push Press by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "7D2s52zLPX",
+    "attributes": {
+      "name": "Ring Row",
+      "videos": [
+        {
+          "id": "Ua7I2Zxbw4A",
+          "title": "MONKEY METHOD\nAngled Ring Row",
+          "description": "Angled ring row:\n\n1)Full grip on rings\n2)Neutral head \n3)Elbows tight to body\n4)Tight straight body\n throughout \n5)Maintain upright posture\n at the top of the pull\n6)Step back to make easier                                                   www.pwrmnky.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/Ua7I2Zxbw4A/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/Ua7I2Zxbw4A/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/Ua7I2Zxbw4A/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/Ua7I2Zxbw4A/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/Ua7I2Zxbw4A/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "umWlFaYtSo",
+    "attributes": {
+      "name": "Front Squat",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Front Squat. For our full library of movements go to www.wodstar.com.",
+          "id": "8LpRB3YCJv8",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/8LpRB3YCJv8/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/8LpRB3YCJv8/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/8LpRB3YCJv8/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/8LpRB3YCJv8/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/8LpRB3YCJv8/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How do Do a Front Squat by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "QVZ7nxVjcQ",
+    "attributes": {
+      "name": "Back Squat",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Back Squat (High Bar). For our full library of movements go to www.wodstar.com.",
+          "id": "k_HVVrGXBTs",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/k_HVVrGXBTs/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/k_HVVrGXBTs/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/k_HVVrGXBTs/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/k_HVVrGXBTs/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/k_HVVrGXBTs/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Back Squat by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "2HkcBdrVaI",
+    "attributes": {
+      "name": "Forward Roll",
+      "videos": [
+        {
+          "id": "Fg78SAViqvg",
+          "title": "Front Roll (High Rings)",
+          "description": "Front Roll (High Rings)\n\n1) Start and finish in full support\n2) Lean forward through dip to initiate roll\n3) Body in tuck position through roll\n4) Pull and turn over must be in sync\n5) As shoulders rise, lower body directs toward ground\n6) Rings/hands stay close to hips through rolling action\n\nPWRMNKY.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/Fg78SAViqvg/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/Fg78SAViqvg/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/Fg78SAViqvg/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/Fg78SAViqvg/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/Fg78SAViqvg/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "GUOoTC3pA2",
+    "attributes": {
+      "name": "Wall Climbs",
+      "videos": [
+        {
+          "id": "VgB4fwGn7rQ",
+          "title": "MONKEY METHOD\nWall Walks",
+          "description": "Wall Walks :\n\n1)Chest on ground to start \nand finish\n2)Hands/body close to wall \nin handstand\n3)Control action up and down\n                                         www.pwrmnky.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/VgB4fwGn7rQ/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/VgB4fwGn7rQ/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/VgB4fwGn7rQ/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/VgB4fwGn7rQ/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Gl19kiplpb",
+    "attributes": {
+      "name": "Toes-to-Bar",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Kipping Toes To Bar. For our full library of movements go to www.wodstar.com.",
+          "id": "BContPDoOpk",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/BContPDoOpk/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/BContPDoOpk/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/BContPDoOpk/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/BContPDoOpk/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/BContPDoOpk/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do Kipping Toes to Bar by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "NgUb0mVUoH",
+    "attributes": {
+      "name": "Turkish Get Up",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Turkish Get Up. For our full library of movements go to www.wodstar.com.",
+          "id": "x1lSSHmmkMM",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/x1lSSHmmkMM/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/x1lSSHmmkMM/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/x1lSSHmmkMM/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/x1lSSHmmkMM/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/x1lSSHmmkMM/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Turkish Get Up by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "vyy5Tr0N49",
+    "attributes": {
+      "name": "Squat Clean",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Squat Clean. For our full library of movements go to www.wodstar.com.",
+          "id": "yTNZ9PQKWEw",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/yTNZ9PQKWEw/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/yTNZ9PQKWEw/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/yTNZ9PQKWEw/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/yTNZ9PQKWEw/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/yTNZ9PQKWEw/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Squat Clean by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "dmbpU1OMjd",
+    "attributes": {
+      "name": "Walking Lunge",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Lunge. For our full library of movements go to www.wodstar.com.",
+          "id": "GBaWQsV_SHg",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/GBaWQsV_SHg/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/GBaWQsV_SHg/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/GBaWQsV_SHg/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/GBaWQsV_SHg/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/GBaWQsV_SHg/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Lunge by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "c94XVoGakB",
+    "attributes": {
+      "name": "Burpee",
+      "videos": [
+        {
+          "id": "cJzlEvzrqkg",
+          "title": "How to Do a Burpee by Wodstar",
+          "description": "Wodstar demonstrates how to do a Burpee. For our full library of movements, go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/cJzlEvzrqkg/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/cJzlEvzrqkg/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/cJzlEvzrqkg/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/cJzlEvzrqkg/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/cJzlEvzrqkg/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "50I5upgDJb",
+    "attributes": {
+      "name": "Rope Climb",
+      "videos": [
+        {
+          "id": "OZxluv-QWPc",
+          "title": "How to Do a Rope Climb by Wodstar",
+          "description": "This video demonstrates how to do a Rope Climb. For our full library of movements go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/OZxluv-QWPc/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/OZxluv-QWPc/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/OZxluv-QWPc/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/OZxluv-QWPc/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/OZxluv-QWPc/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "hVfaFatdaK",
+    "attributes": {
+      "name": "Bear Crawl",
+      "videos": [
+        {
+          "id": "jTTAu5pDGeQ",
+          "title": "Monkey Method-  Bear Crawl straight arm leg",
+          "description": "www.PWRMNKY.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/jTTAu5pDGeQ/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/jTTAu5pDGeQ/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/jTTAu5pDGeQ/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/jTTAu5pDGeQ/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/jTTAu5pDGeQ/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "V5Jo3Ik2Jm",
+    "attributes": {
+      "name": "Standing Broad Jump",
+      "videos": [
+        {
+          "id": "E93zMVXlNvE",
+          "title": "MONKEY METHOD\nBroad Jumps",
+          "description": "Broad Jumps\n\n1)Full squat to start\n\n2)Explode at 45 degree angle off ground (maximize height and distance)\n\n3)Use arms to facilitate jumping action\n\n4)Control landing position back into squat            www.pwrmnky.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/E93zMVXlNvE/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/E93zMVXlNvE/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/E93zMVXlNvE/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/E93zMVXlNvE/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/E93zMVXlNvE/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "1m5Z5wmyA0",
+    "attributes": {
+      "name": "Chest-to-Bar Pull-up",
+      "videos": [
+        {
+          "id": "BElqRw22vxY",
+          "title": "How to Do a Chest to Bar Pull-Up by Wodstar",
+          "description": "This video demonstrates how to do a Chest to Bar Pull-Up. For our full library of movements go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/BElqRw22vxY/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/BElqRw22vxY/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/BElqRw22vxY/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/BElqRw22vxY/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/BElqRw22vxY/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        },
+        {
+          "id": "jN1vdAiZ0sE",
+          "title": "How to Do a Chest to Bar Butterfly Pull-Up by Wodstar",
+          "description": "This video demonstrates how to do a Chest to Bar Butterfly Pull-Up. For our full library of movements go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/jN1vdAiZ0sE/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/jN1vdAiZ0sE/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/jN1vdAiZ0sE/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/jN1vdAiZ0sE/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/jN1vdAiZ0sE/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "T9teYV31Re",
+    "attributes": {
+      "name": "Triple Unders",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Lw1zCVKxxb",
+    "attributes": {
+      "name": "GHD Back Extension",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do a GHD Back Extension. For our full library of movements, go to www.wodstar.com.",
+          "id": "qbn0FQSHJd8",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/qbn0FQSHJd8/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/qbn0FQSHJd8/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/qbn0FQSHJd8/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/qbn0FQSHJd8/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/qbn0FQSHJd8/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a GHD Back Extension by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Pg1LdTYhM3",
+    "attributes": {
+      "name": "Knees-to-Elbows",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do Knees to Elbow. For our full library of movements go to www.wodstar.com.",
+          "id": "CwX4Dk3h26M",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/CwX4Dk3h26M/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/CwX4Dk3h26M/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/CwX4Dk3h26M/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/CwX4Dk3h26M/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/CwX4Dk3h26M/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do Knees to Elbow by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "U3pYYXE639",
+    "attributes": {
+      "name": "Ring Push-ups",
+      "videos": [
+        {
+          "id": "u8tOhNwiL70",
+          "title": "MONKEY METHOD\nRing Push Ups",
+          "description": "Ring Push Ups:\n\n1)Hollow body position throughout\n2)Rings close to body\n3)External ring rotation when in \nplank                                                          www.pwrmnky.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/u8tOhNwiL70/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/u8tOhNwiL70/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/u8tOhNwiL70/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/u8tOhNwiL70/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/u8tOhNwiL70/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "bnL0lZR9hT",
+    "attributes": {
+      "name": "Farmer Carry",
+      "videos": [
+        {
+          "id": "MH8id-EaoPA",
+          "title": "How to do a Farmer's Carry by Wodstar",
+          "description": "Wodstar demonstrates how to do a farmer's carry for your warm up to your workouts.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/MH8id-EaoPA/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/MH8id-EaoPA/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/MH8id-EaoPA/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/MH8id-EaoPA/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/MH8id-EaoPA/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "UDNz85iOZH",
+    "attributes": {
+      "name": "Pull-up (L-sit)",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do an L Pull-Up. For our full library of movements go to www.wodstar.com.",
+          "id": "KL3gKB1Q5y8",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/KL3gKB1Q5y8/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/KL3gKB1Q5y8/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/KL3gKB1Q5y8/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/KL3gKB1Q5y8/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/KL3gKB1Q5y8/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do an L Pull-Up by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "BgcnQgXWLx",
+    "attributes": {
+      "name": "Handstand Push-Up (Ring)",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do a Ring Handstand Push-Up. For our full library of movements, go to www.wodstar.com.",
+          "id": "yRkxv2fpj8U",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/yRkxv2fpj8U/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/yRkxv2fpj8U/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/yRkxv2fpj8U/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/yRkxv2fpj8U/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/yRkxv2fpj8U/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Ring Handstand Push-Up by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "32fORzP45M",
+    "attributes": {
+      "name": "Power Clean",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Power Clean. For our full library of movements go to www.wodstar.com.",
+          "id": "vy-4yChc7-k",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/vy-4yChc7-k/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/vy-4yChc7-k/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/vy-4yChc7-k/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/vy-4yChc7-k/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/vy-4yChc7-k/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Power Clean by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "1jEkdtIlkR",
+    "attributes": {
+      "name": "Handstand Push-Up (Parallette)",
+      "videos": [
+        {
+          "id": "XwMwhb7pMLE",
+          "title": "Kipping Deficit Handstand Push Up by Wodstar",
+          "description": "Wodstar Demonstrates how to do a kipping deficit handstand pushup",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/XwMwhb7pMLE/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/XwMwhb7pMLE/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/XwMwhb7pMLE/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/XwMwhb7pMLE/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/XwMwhb7pMLE/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "oE0LH9RK3E",
+    "attributes": {
+      "name": "Strict Pull-ups",
+      "videos": [
+        {
+          "id": "gc4wU3U6cp8",
+          "title": "MONKEY METHOD\nSTRICT PULL UPS",
+          "description": "STRICT PULL UPS: \n1)dead hang to start (head neutral, eyes \nforward, elbows locked out, legs and feet \ntogether, no angle at shoulder)\n2)initiate pull from lats\n3)keep body hollow throughout\n pull.\n4)eyes stay fixed on same point on \nhorizon throughout\n5)point A to point B in as much of \na straight line as possible. \n6)pull as high as possible with each rep.  \nNot just to chin over bar.\n7)keep position in place on descent        www.pwrmnky.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/gc4wU3U6cp8/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/gc4wU3U6cp8/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/gc4wU3U6cp8/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/gc4wU3U6cp8/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/gc4wU3U6cp8/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "7aW38BNPcd",
+    "attributes": {
+      "name": "Toes Through Rings",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "1pGCrqLjG4",
+    "attributes": {
+      "name": "Medicine Ball Clean",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Med Ball Clean. For our full library of movements go to www.wodstar.com.",
+          "id": "tDbtKkvogqs",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/tDbtKkvogqs/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/tDbtKkvogqs/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/tDbtKkvogqs/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/tDbtKkvogqs/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/tDbtKkvogqs/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Med Ball Clean by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "ztCZl48M2K",
+    "attributes": {
+      "name": "Burpee (Bar Facing)",
+      "videos": [
+        {
+          "id": "F4Osiwr4g1w",
+          "title": "Bar Facing Burpee by Wodstar",
+          "description": "Wodstar demonstrates how to do a bar facing burpee.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/F4Osiwr4g1w/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/F4Osiwr4g1w/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/F4Osiwr4g1w/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/F4Osiwr4g1w/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/F4Osiwr4g1w/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "mfB0LLR98d",
+    "attributes": {
+      "name": "Hand Release Push-ups",
+      "videos": [
+        {
+          "id": "0BJJZTn25hU",
+          "title": "MONKEY METHOD\nHand Release Push Ups",
+          "description": "Hand Release Push Ups\n\n1)Feet together\n2)Hands shoulder width apart \n(defined as middle finger to outside\n of shoulder)\n3)Hollow body position \n4)Elbows close to body through\n movement\n5)Chest touches ground on each \nrepetition\n6)Elbows fully locked in plank\n                                      www.pwrmnky.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/0BJJZTn25hU/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/0BJJZTn25hU/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/0BJJZTn25hU/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/0BJJZTn25hU/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/0BJJZTn25hU/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "xPOJNy56VQ",
+    "attributes": {
+      "name": "Power Snatch",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Power Snatch. For our full library of movements go to www.wodstar.com.",
+          "id": "zMjYXpn7trA",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/zMjYXpn7trA/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/zMjYXpn7trA/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/zMjYXpn7trA/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/zMjYXpn7trA/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/zMjYXpn7trA/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Power Snatch by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "k1Y8nokrha",
+    "attributes": {
+      "name": "Dumbbell Deadlift",
+      "videos": [
+        {
+          "id": "-QgqZWEHrB4",
+          "title": "Dual Arm Dumbbell Deadlift",
+          "description": "From Wodstar's extensive video and fitness series, Wodstar couples the best fitness programming with the best video movement index on the internet. We provide packaged programs of all varieties for gyms to help them make more money and individual programs for individuals looking to become the best version of themselves. Check out our complete exercise movement index and fitness programming on www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "s": {
+              "url": "https://i.ytimg.com/vi/-QgqZWEHrB4/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "m": {
+              "url": "https://i.ytimg.com/vi/-QgqZWEHrB4/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "l": {
+              "url": "https://i.ytimg.com/vi/-QgqZWEHrB4/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            },
+            "default": {
+              "url": "https://i.ytimg.com/vi/-QgqZWEHrB4/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "width": 1920,
+          "height": 1080,
+          "raw": {
+            "kind": "youtube#video",
+            "etag": "BiVj2tps-u-6gXs3F8wg4Gc-JOk",
+            "id": "-QgqZWEHrB4",
+            "snippet": {
+              "publishedAt": "2019-08-11T19:54:34Z",
+              "channelId": "UC04l_YQ-hYSUfB-juDAYq8Q",
+              "title": "Dual Arm Dumbbell Deadlift",
+              "description": "From Wodstar's extensive video and fitness series, Wodstar couples the best fitness programming with the best video movement index on the internet. We provide packaged programs of all varieties for gyms to help them make more money and individual programs for individuals looking to become the best version of themselves. Check out our complete exercise movement index and fitness programming on www.wodstar.com.",
+              "thumbnails": {
+                "default": {
+                  "url": "https://i.ytimg.com/vi/-QgqZWEHrB4/default.jpg",
+                  "width": 120,
+                  "height": 90
+                },
+                "medium": {
+                  "url": "https://i.ytimg.com/vi/-QgqZWEHrB4/mqdefault.jpg",
+                  "width": 320,
+                  "height": 180
+                },
+                "high": {
+                  "url": "https://i.ytimg.com/vi/-QgqZWEHrB4/hqdefault.jpg",
+                  "width": 480,
+                  "height": 360
+                },
+                "standard": {
+                  "url": "https://i.ytimg.com/vi/-QgqZWEHrB4/sddefault.jpg",
+                  "width": 640,
+                  "height": 480
+                },
+                "maxres": {
+                  "url": "https://i.ytimg.com/vi/-QgqZWEHrB4/maxresdefault.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              },
+              "channelTitle": "Wodstar",
+              "tags": [
+                "Crossfit",
+                "Movements;",
+                "Olympic",
+                "Lifts;",
+                "Exercise",
+                "Dumbell Exercise",
+                "Dumbbell Deadlift",
+                "Hamstring Exercise",
+                "General Weightlifting"
+              ],
+              "categoryId": "17",
+              "liveBroadcastContent": "none",
+              "localized": {
+                "title": "Dual Arm Dumbbell Deadlift",
+                "description": "From Wodstar's extensive video and fitness series, Wodstar couples the best fitness programming with the best video movement index on the internet. We provide packaged programs of all varieties for gyms to help them make more money and individual programs for individuals looking to become the best version of themselves. Check out our complete exercise movement index and fitness programming on www.wodstar.com."
+              },
+              "defaultAudioLanguage": "en"
+            },
+            "player": {
+              "embedHtml": "<iframe width=\"1920\" height=\"1080\" src=\"https://www.youtube.com/embed/-QgqZWEHrB4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+              "embedHeight": "1080",
+              "embedWidth": "1920"
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Q71z0snUTo",
+    "attributes": {
+      "name": "Dumbbell Hang Squat Clean",
+      "videos": [
+        {
+          "id": "ISY1KdH0sQo",
+          "title": "Single Arm Dumbbell Hang Squat Clean",
+          "description": "From Wodstar's extensive video and fitness series, Wodstar couples the best fitness programming with the best video movement index on the internet. We provide packaged programs of all varieties for gyms to help them make more money and individual programs for individuals looking to become the best version of themselves. Check out our complete exercise movement index and fitness programming on www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "s": {
+              "url": "https://i.ytimg.com/vi/ISY1KdH0sQo/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "m": {
+              "url": "https://i.ytimg.com/vi/ISY1KdH0sQo/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "l": {
+              "url": "https://i.ytimg.com/vi/ISY1KdH0sQo/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            },
+            "default": {
+              "url": "https://i.ytimg.com/vi/ISY1KdH0sQo/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "width": 1920,
+          "height": 1080,
+          "raw": {
+            "kind": "youtube#video",
+            "etag": "_ELHuLiKNrKr8W8QpV4ebaJDXJY",
+            "id": "ISY1KdH0sQo",
+            "snippet": {
+              "publishedAt": "2019-08-11T20:01:18Z",
+              "channelId": "UC04l_YQ-hYSUfB-juDAYq8Q",
+              "title": "Single Arm Dumbbell Hang Squat Clean",
+              "description": "From Wodstar's extensive video and fitness series, Wodstar couples the best fitness programming with the best video movement index on the internet. We provide packaged programs of all varieties for gyms to help them make more money and individual programs for individuals looking to become the best version of themselves. Check out our complete exercise movement index and fitness programming on www.wodstar.com.",
+              "thumbnails": {
+                "default": {
+                  "url": "https://i.ytimg.com/vi/ISY1KdH0sQo/default.jpg",
+                  "width": 120,
+                  "height": 90
+                },
+                "medium": {
+                  "url": "https://i.ytimg.com/vi/ISY1KdH0sQo/mqdefault.jpg",
+                  "width": 320,
+                  "height": 180
+                },
+                "high": {
+                  "url": "https://i.ytimg.com/vi/ISY1KdH0sQo/hqdefault.jpg",
+                  "width": 480,
+                  "height": 360
+                },
+                "standard": {
+                  "url": "https://i.ytimg.com/vi/ISY1KdH0sQo/sddefault.jpg",
+                  "width": 640,
+                  "height": 480
+                },
+                "maxres": {
+                  "url": "https://i.ytimg.com/vi/ISY1KdH0sQo/maxresdefault.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              },
+              "channelTitle": "Wodstar",
+              "tags": [
+                "Crossfit",
+                "Movements;",
+                "Olympic",
+                "Lifts;",
+                "Exercise",
+                "Olympic Lift",
+                "Shoulder Exercise",
+                "Dumbbell Exercise"
+              ],
+              "categoryId": "17",
+              "liveBroadcastContent": "none",
+              "localized": {
+                "title": "Single Arm Dumbbell Hang Squat Clean",
+                "description": "From Wodstar's extensive video and fitness series, Wodstar couples the best fitness programming with the best video movement index on the internet. We provide packaged programs of all varieties for gyms to help them make more money and individual programs for individuals looking to become the best version of themselves. Check out our complete exercise movement index and fitness programming on www.wodstar.com."
+              },
+              "defaultAudioLanguage": "en"
+            },
+            "player": {
+              "embedHtml": "<iframe width=\"1920\" height=\"1080\" src=\"https://www.youtube.com/embed/ISY1KdH0sQo\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+              "embedHeight": "1080",
+              "embedWidth": "1920"
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "FvelGsOivV",
+    "attributes": {
+      "name": "Shuttle Sprint",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Znbyw5L9At",
+    "attributes": {
+      "name": "Burpee Box Jump",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "rk5ieibGyP",
+    "attributes": {
+      "name": "GHD Sit-up",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do a GHD Sit-Up.",
+          "id": "Lipm4hpfYso",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/Lipm4hpfYso/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/Lipm4hpfYso/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/Lipm4hpfYso/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/Lipm4hpfYso/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/Lipm4hpfYso/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to do a GHD Sit-Up by Wodstar"
+        },
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do a GHD Sit-Up to Parallel. For our full library of movements, go to www.wodstar.com.",
+          "id": "9iZQEZSFvNU",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/9iZQEZSFvNU/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/9iZQEZSFvNU/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/9iZQEZSFvNU/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/9iZQEZSFvNU/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/9iZQEZSFvNU/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a GHD Sit-Up to Parallel by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "oX0rshIcNC",
+    "attributes": {
+      "name": "Stiff Legged Deadlift",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "S1Xnrr0YGM",
+    "attributes": {
+      "name": "Pull-up (Weighted)",
+      "videos": [
+        {
+          "id": "pPzW1KE2ye4",
+          "title": "How To Do a Weighted Pull Up",
+          "description": "From Wodstar's extensive video and fitness series, Wodstar couples the best fitness programming with the best video movement index on the internet. We provide packaged programs of all varieties for gyms to help them make more money and individual programs for individuals looking to become the best version of themselves. Check out our complete exercise movement index and fitness programming on www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "s": {
+              "url": "https://i.ytimg.com/vi/pPzW1KE2ye4/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "m": {
+              "url": "https://i.ytimg.com/vi/pPzW1KE2ye4/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "l": {
+              "url": "https://i.ytimg.com/vi/pPzW1KE2ye4/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            },
+            "default": {
+              "url": "https://i.ytimg.com/vi/pPzW1KE2ye4/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "width": 1920,
+          "height": 1080,
+          "raw": {
+            "kind": "youtube#video",
+            "etag": "tM0y2kVCxUnmjaXRjjUwGWCXNZ4",
+            "id": "pPzW1KE2ye4",
+            "snippet": {
+              "publishedAt": "2019-12-02T07:00:05Z",
+              "channelId": "UC04l_YQ-hYSUfB-juDAYq8Q",
+              "title": "How To Do a Weighted Pull Up",
+              "description": "From Wodstar's extensive video and fitness series, Wodstar couples the best fitness programming with the best video movement index on the internet. We provide packaged programs of all varieties for gyms to help them make more money and individual programs for individuals looking to become the best version of themselves. Check out our complete exercise movement index and fitness programming on www.wodstar.com.",
+              "thumbnails": {
+                "default": {
+                  "url": "https://i.ytimg.com/vi/pPzW1KE2ye4/default.jpg",
+                  "width": 120,
+                  "height": 90
+                },
+                "medium": {
+                  "url": "https://i.ytimg.com/vi/pPzW1KE2ye4/mqdefault.jpg",
+                  "width": 320,
+                  "height": 180
+                },
+                "high": {
+                  "url": "https://i.ytimg.com/vi/pPzW1KE2ye4/hqdefault.jpg",
+                  "width": 480,
+                  "height": 360
+                },
+                "standard": {
+                  "url": "https://i.ytimg.com/vi/pPzW1KE2ye4/sddefault.jpg",
+                  "width": 640,
+                  "height": 480
+                },
+                "maxres": {
+                  "url": "https://i.ytimg.com/vi/pPzW1KE2ye4/maxresdefault.jpg",
+                  "width": 1280,
+                  "height": 720
+                }
+              },
+              "channelTitle": "Wodstar",
+              "tags": [
+                "Crossfit",
+                "Movements;",
+                "Olympic",
+                "Lifts;",
+                "Exercise",
+                "Back",
+                "Dumbbells",
+                "Pull Up Bar",
+                "Strength"
+              ],
+              "categoryId": "17",
+              "liveBroadcastContent": "none",
+              "localized": {
+                "title": "How To Do a Weighted Pull Up",
+                "description": "From Wodstar's extensive video and fitness series, Wodstar couples the best fitness programming with the best video movement index on the internet. We provide packaged programs of all varieties for gyms to help them make more money and individual programs for individuals looking to become the best version of themselves. Check out our complete exercise movement index and fitness programming on www.wodstar.com."
+              },
+              "defaultAudioLanguage": "en"
+            },
+            "player": {
+              "embedHtml": "<iframe width=\"1920\" height=\"1080\" src=\"https://www.youtube.com/embed/pPzW1KE2ye4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+              "embedHeight": "1080",
+              "embedWidth": "1920"
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "c3qHkYuNi7",
+    "attributes": {
+      "name": "Barbell Farmer Carry",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "i4LHh82X5R",
+    "attributes": {
+      "name": "Atlas Stone",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "2KrQ3LVk5P",
+    "attributes": {
+      "name": "Swim",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "3lrYD2Vre6",
+    "attributes": {
+      "name": "Dumbbell Squat Clean",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do a Dumbbell Squat Clean. For our full library of movements, go to www.wodstar.com.",
+          "id": "JwaGTOxUSeg",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/JwaGTOxUSeg/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/JwaGTOxUSeg/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/JwaGTOxUSeg/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/JwaGTOxUSeg/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/JwaGTOxUSeg/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Dumbbell Squat Clean by Wodstar"
+        },
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do a Dumbbell Hang Clean. For our full library of movements, go to www.wodstar.com.",
+          "id": "hFXPxXkYr_o",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/hFXPxXkYr_o/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/hFXPxXkYr_o/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/hFXPxXkYr_o/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/hFXPxXkYr_o/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/hFXPxXkYr_o/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Dumbbell Hang Clean by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "xL0MDEtjgm",
+    "attributes": {
+      "name": "Dumbbell Burpee Deadlift",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "0Iyujj2iY2",
+    "attributes": {
+      "name": "Sumo Deadlift High Pull",
+      "videos": [
+        {
+          "id": "7nt5dOoBSog",
+          "title": "How to Do a Sumo Deadlift High Pull by Wodstar",
+          "description": "This video demonstrates how to do a Sumo Deadlift High Pull. For our full movement library go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/7nt5dOoBSog/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/7nt5dOoBSog/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/7nt5dOoBSog/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/7nt5dOoBSog/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/7nt5dOoBSog/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "OTqNkPBjhg",
+    "attributes": {
+      "name": "Dumbbell Waiter Walk",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "R2ZwSKoO2g",
+    "attributes": {
+      "name": "Pull-up (Jumping)",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Jumping Pull-Up. For our full library of movements go to www.wodstar.com.",
+          "id": "9K4h8gJ1z8M",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/9K4h8gJ1z8M/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/9K4h8gJ1z8M/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/9K4h8gJ1z8M/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/9K4h8gJ1z8M/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/9K4h8gJ1z8M/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Jumping Pull-Up by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "5d8CGlTP9W",
+    "attributes": {
+      "name": "Flip the Pig",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Tl5PAvJcKs",
+    "attributes": {
+      "name": "Drag the Iditarod",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "xX8NvgdNrM",
+    "attributes": {
+      "name": "Log Carry",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Cki3yLrBKO",
+    "attributes": {
+      "name": "Rope Climb (Legless)",
+      "videos": [
+        {
+          "id": "AfUnGi7D3qo",
+          "title": "MONKEY METHOD-LEGLESS ROPE CLIMB",
+          "description": "www.pwrmnky.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/AfUnGi7D3qo/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/AfUnGi7D3qo/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/AfUnGi7D3qo/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/AfUnGi7D3qo/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/AfUnGi7D3qo/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "ArV3peiugF",
+    "attributes": {
+      "name": "Wall Burpee",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "r5pboqWEba",
+    "attributes": {
+      "name": "Handstand Walk",
+      "videos": [
+        {
+          "id": "LcD6a47JvYM",
+          "title": "How to Do a Handstand Walk by Wodstar",
+          "description": "Wodstar demonstrates how to do a Handstand Walk. For our full library of movements, go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/LcD6a47JvYM/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/LcD6a47JvYM/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/LcD6a47JvYM/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/LcD6a47JvYM/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/LcD6a47JvYM/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "tAMCURBoUb",
+    "attributes": {
+      "name": "Deficit Handstand Push-up",
+      "videos": [
+        {
+          "id": "CIvf6R6FYME",
+          "title": "HSPU (Deficit back to wall)",
+          "description": "HSPU (Deficit back to wall)\n\n1)Elbows in close to body\n2)Tight body. Squeeze butt\n3)Tripod position in headstand \n(equal weight on hands and \nhead)\n4)Crown of head on ground\n (NOT forehead) \n5)Use a height that allows for full control\n\nPWRMNKY.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/CIvf6R6FYME/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/CIvf6R6FYME/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/CIvf6R6FYME/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/CIvf6R6FYME/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/CIvf6R6FYME/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "KtSUuqmyjG",
+    "attributes": {
+      "name": "Wall Ball 2-fer-1",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "90ipOnexoL",
+    "attributes": {
+      "name": "Burpee Pull-up",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "U8BH8cQWw0",
+    "attributes": {
+      "name": "Dumbbell Thruster",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "tweYc4S9x1",
+    "attributes": {
+      "name": "Dumbbell Overhead Walking Lunge",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "vpJqkEzaNO",
+    "attributes": {
+      "name": "Squat Snatch",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Squat Snatch. For our full library of movements go to www.wodstar.com.",
+          "id": "2JiFUn2-dyQ",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/2JiFUn2-dyQ/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/2JiFUn2-dyQ/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/2JiFUn2-dyQ/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/2JiFUn2-dyQ/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/2JiFUn2-dyQ/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Squat Snatch by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "LkhfefQlCT",
+    "attributes": {
+      "name": "Box Squat",
+      "videos": [
+        {
+          "id": "fJMF_y-nI9s",
+          "title": "The Box Squat",
+          "description": "",
+          "channelTitle": "Patrick Barber",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/fJMF_y-nI9s/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/fJMF_y-nI9s/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/fJMF_y-nI9s/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/fJMF_y-nI9s/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/fJMF_y-nI9s/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "O8xUgMBLOp",
+    "attributes": {
+      "name": "Shoulder Press (Strict)",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Press (or Strict Press). For our full library of movements go to www.wodstar.com.",
+          "id": "J9nSWwSXUbU",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/J9nSWwSXUbU/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/J9nSWwSXUbU/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/J9nSWwSXUbU/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/J9nSWwSXUbU/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/J9nSWwSXUbU/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Strict Press by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "3P3ydRmt3z",
+    "attributes": {
+      "name": "Hang Power Clean",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Hang Power Clean. For our full library of movements go to www.wodstar.com.",
+          "id": "GvfFf4xDNqM",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/GvfFf4xDNqM/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/GvfFf4xDNqM/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/GvfFf4xDNqM/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/GvfFf4xDNqM/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/GvfFf4xDNqM/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Hang Power Clean by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "YAFQbda0hU",
+    "attributes": {
+      "name": "Hang Power Snatch",
+      "videos": [
+        {
+          "id": "TP0fh70I0Jo",
+          "title": "How to do a Hang Power Snatch by Wodstar",
+          "description": "This video demonstrates how to do a Hang Power Snatch. For our full movement library go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/TP0fh70I0Jo/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/TP0fh70I0Jo/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/TP0fh70I0Jo/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/TP0fh70I0Jo/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/TP0fh70I0Jo/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "M6DEogofj7",
+    "attributes": {
+      "name": "Hang Squat Clean",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Hang Squat Clean. For our full library of movements go to www.wodstar.com.",
+          "id": "YZUdVyVV3uI",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/YZUdVyVV3uI/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/YZUdVyVV3uI/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/YZUdVyVV3uI/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/YZUdVyVV3uI/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/YZUdVyVV3uI/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Hang Squat Clean by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "eDvAvXzhxJ",
+    "attributes": {
+      "name": "Hang Squat Snatch",
+      "videos": [
+        {
+          "id": "HtaGMwHaO1o",
+          "title": "How to do a Hang Squat Snatch by Wodstar",
+          "description": "This video demonstrates how to do a Hang Squat Snatch. For our full movement library go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/HtaGMwHaO1o/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/HtaGMwHaO1o/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/HtaGMwHaO1o/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/HtaGMwHaO1o/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/HtaGMwHaO1o/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "dupvA5i5XK",
+    "attributes": {
+      "name": "Muscle Snatch",
+      "videos": [
+        {
+          "id": "Mm4IErskJvY",
+          "title": "Muscle Snatch Above Knee",
+          "description": "Muscle Snatch Above Knee\n\n1. Shins vertical, good morning position\n\n2. Rigid Back\n\n3. Eyes forward, chin neutral\n\n4. Weight midfoot\n\n5. Smooth extension through the hips\n\n6. Vertical Pull to extension\n\nPWRMNKY.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/Mm4IErskJvY/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/Mm4IErskJvY/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/Mm4IErskJvY/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/Mm4IErskJvY/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/Mm4IErskJvY/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "XfyiG8kSVm",
+    "attributes": {
+      "name": "Overhead Lunge",
+      "videos": [
+        {
+          "id": "q6uT4qlEAoo",
+          "title": "Overhead Walking Barbell Lunge by Wodstar",
+          "description": "Wodstar demonstrates how to do an overhead walking barbell lunge.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/q6uT4qlEAoo/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/q6uT4qlEAoo/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/q6uT4qlEAoo/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/q6uT4qlEAoo/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/q6uT4qlEAoo/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "bTLqHtKzNS",
+    "attributes": {
+      "name": "Seated Press",
+      "videos": [
+        {
+          "id": "ssvOnt6Cqf0",
+          "title": "Overhead DB Press (Seated Tempo)",
+          "description": "Overhead DB Press (Seated Tempo)\n\n1. Elbows in \n2. Maintain even tempo from top to bottom while lowering\n3. Establish lockout at the top of the rep with ears next to arms\n\nPWRMNKY.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/ssvOnt6Cqf0/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/ssvOnt6Cqf0/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/ssvOnt6Cqf0/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/ssvOnt6Cqf0/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/ssvOnt6Cqf0/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "xNWOvMIzPY",
+    "attributes": {
+      "name": "Split Jerk",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Split Jerk. For our full library of movements go to www.wodstar.com.",
+          "id": "xYBq_WmS79E",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/xYBq_WmS79E/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/xYBq_WmS79E/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/xYBq_WmS79E/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/xYBq_WmS79E/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/xYBq_WmS79E/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Split Jerk by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "yqnBR2JhmL",
+    "attributes": {
+      "name": "Snatch Pull",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do Snatch Pulls. For our full library of movements, go to www.wodstar.com.",
+          "id": "gRdvSmVHGWU",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/gRdvSmVHGWU/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/gRdvSmVHGWU/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/gRdvSmVHGWU/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/gRdvSmVHGWU/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/gRdvSmVHGWU/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do Snatch Pulls by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "o72lRIHW0b",
+    "attributes": {
+      "name": "Snatch Balance",
+      "videos": [
+        {
+          "id": "qekukBOidsA",
+          "title": "Snatch Balance",
+          "description": "Snatch Balance\n\n1. Controlled dip & drive\n\n2. Fully Extended Lockout\n\n3. Eyes and chin forward & neutral\n\n4. Weight constant in midfoot\n\n5. Full ROM w/ slight pause in bottom\n\nPWRMNKY.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/qekukBOidsA/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/qekukBOidsA/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/qekukBOidsA/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/qekukBOidsA/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/qekukBOidsA/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "k6qV2U3ffc",
+    "attributes": {
+      "name": "Ski Erg",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "DUDez0b2y1",
+    "attributes": {
+      "name": "Bar Muscle-Up",
+      "videos": [
+        {
+          "id": "BOi9-f4DhjQ",
+          "title": "Bar Muscle Up",
+          "description": "Team Power Monkey Captain Dave Durante demonstrates a Bar Muscle Up.  For More Videos, Information, and Equipment\nGo to:\nwww.powermonkeyfitness.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/BOi9-f4DhjQ/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/BOi9-f4DhjQ/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/BOi9-f4DhjQ/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/BOi9-f4DhjQ/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/BOi9-f4DhjQ/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "wtGIcPY6Aw",
+    "attributes": {
+      "name": "Broad Jumps",
+      "videos": [
+        {
+          "id": "E93zMVXlNvE",
+          "title": "MONKEY METHOD\nBroad Jumps",
+          "description": "Broad Jumps\n\n1)Full squat to start\n\n2)Explode at 45 degree angle off ground (maximize height and distance)\n\n3)Use arms to facilitate jumping action\n\n4)Control landing position back into squat            www.pwrmnky.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/E93zMVXlNvE/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/E93zMVXlNvE/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/E93zMVXlNvE/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/E93zMVXlNvE/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/E93zMVXlNvE/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "nQkFIHoc4z",
+    "attributes": {
+      "name": "L-Sit",
+      "videos": [
+        {
+          "channelTitle": "Wodstar",
+          "description": "Wodstar demonstrates how to do an L-Sit on Parallettes. For our full library of movements, go to www.wodstar.com.",
+          "id": "63IZyYnDalY",
+          "isFeatured": true,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/63IZyYnDalY/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/63IZyYnDalY/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/63IZyYnDalY/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/63IZyYnDalY/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/63IZyYnDalY/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do an L-Sit with Parallelettes by Wodstar"
+        },
+        {
+          "channelTitle": "Wodstar",
+          "description": "This video demonstrates how to do a Ring L-Sit. For our full library of movements go to www.wodstar.com.",
+          "id": "G_mJSO-oouI",
+          "isFeatured": false,
+          "thumbnails": {
+            "default": {
+              "height": 90,
+              "url": "https://i.ytimg.com/vi/G_mJSO-oouI/default.jpg",
+              "width": 120
+            },
+            "high": {
+              "height": 360,
+              "url": "https://i.ytimg.com/vi/G_mJSO-oouI/hqdefault.jpg",
+              "width": 480
+            },
+            "maxres": {
+              "height": 720,
+              "url": "https://i.ytimg.com/vi/G_mJSO-oouI/maxresdefault.jpg",
+              "width": 1280
+            },
+            "medium": {
+              "height": 180,
+              "url": "https://i.ytimg.com/vi/G_mJSO-oouI/mqdefault.jpg",
+              "width": 320
+            },
+            "standard": {
+              "height": 480,
+              "url": "https://i.ytimg.com/vi/G_mJSO-oouI/sddefault.jpg",
+              "width": 640
+            }
+          },
+          "title": "How to Do a Ring L-Sit by Wodstar"
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "Rs3Nf6s1qq",
+    "attributes": {
+      "name": "Sotts Press",
+      "videos": [
+        {
+          "id": "cgtkHlQJlFE",
+          "title": "How to Do a Sots Press by Wodstar",
+          "description": "Wodstar demonstrates how to do a Sots Press. For our full library of movements, go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/cgtkHlQJlFE/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/cgtkHlQJlFE/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/cgtkHlQJlFE/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/cgtkHlQJlFE/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/cgtkHlQJlFE/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        },
+        {
+          "id": "IEt_8r7yS-s",
+          "title": "Snatch Sotts Press",
+          "description": "Snatch Sotts Press\n\n1. Full Bottom w/ upright torso\n\n2. Feet shoulder width\n\n3. Weight constant in midfoot\n\n4. Externally rotate shoulders & press\n\n5. Fully extended lockout \n\n6. Eyes & Chin forward and neutral\n\nPWRMNKY.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/IEt_8r7yS-s/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/IEt_8r7yS-s/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/IEt_8r7yS-s/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/IEt_8r7yS-s/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/IEt_8r7yS-s/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": false
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "lce0SIJOG9",
+    "attributes": {
+      "name": "Sled Drag",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "bxoFHTtvld",
+    "attributes": {
+      "name": "Sled Push",
+      "videos": []
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "k7wui7m8TE",
+    "attributes": {
+      "name": "Dumbbell Hang Clean",
+      "videos": [
+        {
+          "id": "hFXPxXkYr_o",
+          "title": "How to Do a Dumbbell Hang Clean by Wodstar",
+          "description": "Wodstar demonstrates how to do a Dumbbell Hang Clean. For our full library of movements, go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/hFXPxXkYr_o/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/hFXPxXkYr_o/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/hFXPxXkYr_o/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/hFXPxXkYr_o/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/hFXPxXkYr_o/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        }
+      ]
+    },
+    "links": {}
+  },
+  {
+    "type": "movements",
+    "id": "opdD1eV3Bm",
+    "attributes": {
+      "name": "Snatch Grip Deadlift",
+      "videos": [
+        {
+          "id": "NMDPXmGJI88",
+          "title": "How to Do a Snatch Grip Deadlift by Wodstar",
+          "description": "Wodstar demonstrates how to do a Snatch Grip Deadlift. For our full library of movements, go to www.wodstar.com.",
+          "channelTitle": "Wodstar",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/NMDPXmGJI88/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/NMDPXmGJI88/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/NMDPXmGJI88/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/NMDPXmGJI88/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/NMDPXmGJI88/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": true
+        },
+        {
+          "id": "WSKjgN_Q79E",
+          "title": "Snatch Grip Dead Lift",
+          "description": "Snatch Grip Dead Lift\n\n1. Initiate movement with leg drive until the barbell reaches the transition or knees\n\n2. Extend hips full to finish the DL\n\n3. Barbell should be in constant contact with the body\n\n4. Retrace the bar path when lowering\n\nPWRMNKY.com",
+          "channelTitle": "PowerMonkeyFitness",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/WSKjgN_Q79E/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/WSKjgN_Q79E/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/WSKjgN_Q79E/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            },
+            "standard": {
+              "url": "https://i.ytimg.com/vi/WSKjgN_Q79E/sddefault.jpg",
+              "width": 640,
+              "height": 480
+            },
+            "maxres": {
+              "url": "https://i.ytimg.com/vi/WSKjgN_Q79E/maxresdefault.jpg",
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "isFeatured": false
+        }
+      ]
+    },
+    "links": {}
+  }
+]
