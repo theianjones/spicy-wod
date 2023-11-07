@@ -124,6 +124,7 @@
          :placeholder "Reps"
          :value       reps
          :min         0
+         :max         9999
          :required    true}]])
     [:input.w-full.pink-input.teal-focus {:type        "number"
                                           :name        (str "reps-" identifier)

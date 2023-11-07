@@ -1,17 +1,22 @@
 (ns com.spicy.workouts.ui
   (:require
-    [com.biffweb :as biff :refer [q]]
+    [com.biffweb :as biff]
+    [com.spicy.results.score :refer [REPS_MULTIPLIER]]
     [com.spicy.time :as t]
     [com.spicy.ui :as ui]))
 
 
 (defn ->rounds-reps
-  [reps-per-round reps]
-  (if (> 0 reps)
-    "0+0"
-    (str (quot reps reps-per-round)
-         "+"
-         (rem reps reps-per-round))))
+  [reps-per-round score]
+  (if (int? score)
+    (if (> 0 score)
+      "0+0"
+      (str (quot score reps-per-round)
+           "+"
+           (rem score reps-per-round)))
+    (let [rounds (.intValue score)
+          reps (.intValue (* REPS_MULTIPLIER (- (bigdec score) rounds)))]
+      (str rounds "+" reps))))
 
 
 (comment
@@ -37,7 +42,7 @@
 
 
 (defn display-summed-score
-  [{:keys [workout sets] :as a}]
+  [{:keys [workout sets] :as _a}]
   (when (and (not-empty workout)
              (not-empty sets))
     (display-score (merge {:workout workout} {:result-set (merge-set-score-with sets +)}))))
@@ -124,9 +129,6 @@
      [:select.pink-input.teal-focus#scheme
       {:name      "scheme"
        :required  true
-       :hx-get    "/app/workouts/new/scheme-inputs"
-       :hx-target "#scheme-inputs"
-       :hx-swap   "outerHTML"
        :value     (when (not (nil? workout)) (name (:workout/scheme workout)))}
       [:option {:value "" :label "--Select a Workout Scheme--"}]
       [:option {:value "time"
@@ -147,13 +149,6 @@
                 :label "feet"}]
       [:option {:value "points"
                 :label "points"}]]]
-    (if (= :rounds-reps (:workout/scheme workout))
-      [:div#scheme-inputs
-       [:div.flex.flex-col.w-full
-        [:label {:for :reps-per-round} "Reps per round"]
-        [:input.w-full.pink-input.p-2.teal-focus#reps-per-round
-         {:placeholder "Reps per round" :name "reps-per-round" :required true}]]]
-      [:div.hidden#scheme-inputs])
     [:div.flex.gap-3.items-center
      [:label "Score rounds separately?"]
      [:input#score-separately

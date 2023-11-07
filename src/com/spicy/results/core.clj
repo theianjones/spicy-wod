@@ -41,8 +41,7 @@
                       conj
                       (->scores
                         (merge params
-                               {:reps-per-round  (:workout/reps-per-round workout)
-                                :scheme          (:workout/scheme workout)
+                               {:scheme          (:workout/scheme workout)
                                 :rounds-to-score (:workout/rounds-to-score workout)})))]
     (biff/submit-tx ctx
                     (concat
@@ -239,8 +238,7 @@
   [{:keys [biff/db session params] :as ctx}]
   (let [workout-id                       (parse-uuid (:workout params))
         {:workout/keys
-         [reps-per-round
-          scheme
+         [scheme
           rounds-to-score] :as _workout} (xt/entity db workout-id)
         result-tx                        [{:db/op          :create
                                            :db/doc-type    :wod-result
@@ -258,8 +256,7 @@
                                            conj
                                            (->scores
                                              (merge params
-                                                    {:reps-per-round  reps-per-round
-                                                     :scheme          scheme
+                                                    {:scheme          scheme
                                                      :rounds-to-score rounds-to-score})))]
 
     (biff/submit-tx ctx (concat result-tx wod-sets-tx)))

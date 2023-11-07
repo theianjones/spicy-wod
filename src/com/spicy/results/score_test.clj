@@ -21,7 +21,6 @@
 
 (def params-with-rounds-reps
   {:rounds-to-score 3
-   :reps-per-round  100
    :date            "2023-07-14"
    :notes-1         "fell off my pace"
    :scale           "rx"
@@ -58,31 +57,30 @@
 
 (deftest ->scores
   (testing "takes params with reps and outputs formated score"
-    (is (= [{:reps "116" :index 0 :notes ""}
-            {:reps "102" :index 1 :notes "fell off my pace"}
-            {:reps "96" :index 2 :notes "couldnt think anymore"}]
+    (is (= [{:reps "116" :index 0 :notes "" :id nil}
+            {:reps "102" :index 1 :notes "fell off my pace" :id nil}
+            {:reps "96" :index 2 :notes "couldnt think anymore" :id nil}]
            (sut/->scores params-with-reps))))
   (testing "defaults rounds to score to 1"
-    (is (= [{:reps "116" :index 0 :notes ""}]
+    (is (= [{:reps "116" :index 0 :notes "" :id nil}]
            (sut/->scores (dissoc params-with-reps :rounds-to-score)))))
   (testing "takes params with rounds and reps"
-    (is (= [{:rounds "3" :index 0 :reps "116" :notes "" :reps-per-round 100}
+    (is (= [{:rounds "3" :index 0 :reps "116" :notes "" :id nil}
             {:rounds         "2"
              :index          1
              :reps           "102"
              :notes          "fell off my pace"
-             :reps-per-round 100}
+             :id nil}
             {:rounds         "1"
              :index          2
              :reps           "96"
-             :notes          "couldnt think anymore"
-             :reps-per-round 100}]
+             :notes          "couldnt think anymore" :id nil}]
            (sut/->scores params-with-rounds-reps))))
   (testing "takes params with minutes seconds"
-    (is (= [{:minutes "16" :index 0 :seconds "33" :notes ""}
-            {:minutes "102" :index 1 :seconds "2" :notes "fell off my pace"}
+    (is (= [{:minutes "16" :index 0 :seconds "33" :notes "" :id nil}
+            {:minutes "102" :index 1 :seconds "2" :notes "fell off my pace" :id nil}
             {:minutes "96"
              :index   2
              :seconds "1"
-             :notes   "couldnt think anymore"}]
+             :notes   "couldnt think anymore" :id nil}]
            (sut/->scores params-with-minutes-seconds)))))

@@ -38,7 +38,7 @@
 (def WodSet
   [:map
    [:xt/id :wod-set/id]
-   [:result-set/score :int]
+   [:result-set/score float?]
    [:result-set/number :int]
    [:result-set/parent :wod-result/id]])
 
@@ -99,6 +99,7 @@
              [:workout/reps-per-round {:optional true} :int]
              [:workout/rounds-to-score {:optional true} :int]
              [:workout/user {:optional true} :user/id]
+             [:workout/sugar-id {:optional true} :string]
              [:workout/tiebreak-scheme {:optional true} [:enum :time :reps]]
              [:workout/secondary-scheme {:optional true} (into [] (filter #(not (= :time-with-cap %)) workout-types))]]
    :strength-set/id :uuid
