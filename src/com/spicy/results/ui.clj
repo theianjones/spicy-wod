@@ -59,12 +59,14 @@
              notes])]]
         (when (not-empty notes)
           children)]]
-      [:div.flex.gap-3.flex-col
+      [:div.flex.gap-3.flex-col#result-ui
        [:.flex.justify-between.flex-wrap.gap-2
         [:div.text-2xl.font-bold.self-center score
-         [:span.pl-2.font-normal (name scale)]]
-        [:div.self-center (biff/format-date
-                            (:result/date result) "EEE, YYYY-MM-dd")]]
+         [:span.grow.pl-2.font-normal (name scale)]]
+        [:div.flex.gap-2
+         [:div.self-center (biff/format-date
+                             (:result/date result) "EEE, YYYY-MM-dd")]
+         children]]
        (when notes [:div notes])])))
 
 
