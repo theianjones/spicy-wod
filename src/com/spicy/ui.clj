@@ -60,6 +60,7 @@
                  :tabindex "-1"
                  :id       "menu-item-0"}) children]))
 
+
 (defn page
   [{:keys [session reitit.core/match] :as ctx} & body]
   (base
@@ -185,7 +186,7 @@
     :title (str "View " name)
     :aria-label (str "View " name)}
    [:div.flex.items-center.justify-between.pb-2.sm:pb-4.w-full
-    [:h2.text-3xl.cursor-default name]
+    [:h2.text-3xl.cursor-default.capitalize name]
     [:div.block.sm:hidden
      (when (some? children)
        children)]
