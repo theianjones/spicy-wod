@@ -19,9 +19,6 @@
    "time" :time})
 
 
-(first girls)
-
-
 ;; => {:type "benchmarks",
 ;;     :id "CsUbCjnosY",
 ;;     :attributes
@@ -32,9 +29,6 @@
 ;;      :score_type "time",
 ;;      :movement_ids ["c94XVoGakB" "vXkMU7wdwO" "e1XFB3PF7Q"]},
 ;;     :links {}}
-
-(first (filter #(= "rounds + reps" (get-in % [:attributes :score_type])) heroes))
-
 
 ;; => {:type "benchmarks",
 ;;     :id "oYvBEQsXM7",
@@ -86,15 +80,9 @@
   {:workout/name [:attributes :name string/lower-case]
    :workout/sugar-id [:id]
    :workout/scheme [:attributes :score_type (fn [type] (get sg->sp type))]
-   :workout/description [:attributes :description]
-   :workout/reps-per-round (fn [{:keys [attributes] :as _sugar-wod}]
-                             (when (contains? #{"Mary" "Chelsea" "Cindy"} (:name attributes))
-                               (->reps-in-round (:description attributes))))})
+   :workout/description [:attributes :description]})
 
 
 (defn ->spicy
   [sugar-wod]
   (t/transformer sgw->spw sugar-wod))
-
-
-(into #{} (map (comp :score_type :attributes) girls))

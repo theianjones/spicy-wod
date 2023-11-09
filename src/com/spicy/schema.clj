@@ -38,7 +38,7 @@
 (def WodSet
   [:map
    [:xt/id :wod-set/id]
-   [:result-set/score float?]
+   [:result-set/score [:or float? :int]]
    [:result-set/number :int]
    [:result-set/parent :wod-result/id]])
 
