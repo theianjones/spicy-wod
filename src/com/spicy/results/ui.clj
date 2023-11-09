@@ -45,26 +45,27 @@
 
 (defn inline-result
   [result & children]
-  (let [{:keys [score date description notes] :as normalized} (t/normalized-result result)]
-    [:div.flex.flex-col.max-w-sm.sm:max-w-xl.mx-auto#result-ui
-     [:.flex.flex-row.items-baseline.justify-between.mb-3
-      [:div.text-2xl.font-bold score]
-      [:p.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.mb-0 date]]
-     [:.flex.justify-between
-      [:div.flex.flex-col.gap-2
-       [:div.flex.justify-between
-        [:p.hidden.sm:block.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.italic description]
-        [:div.ml-1.flex.flex-col.self-center.sm:hidden
-         children
-         (when (some? notes)
-           [:span
-            notes])]]]
-      [:div.flex.gap-4.h-fit.self-center.flex-col.justify-between
-       [:div.hidden.sm:flex.sm:flex-col.ml-1.self-center.text-right
-        children
-        (when (some? notes)
-          [:span
-           notes])]]]]))
+  (let [{:keys [score date notes scale] :as _normalized} (t/normalized-result result)]
+    (if (not-empty notes)
+      [:div.flex.flex-col.max-w-sm.sm:max-w-xl.mx-auto#result-ui
+       [:.flex.flex-row.items-baseline.justify-between.mb-3
+        [:div.text-2xl.font-bold score]
+        [:p.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.mb-0 date]]
+       [:.flex.justify-between
+        [:div.flex.flex-col.gap-2
+         [:div.flex.justify-between
+          (when (not-empty notes)
+            [:span
+             notes])]]
+        (when (not-empty notes)
+          children)]]
+      [:div.flex.gap-3.flex-col
+       [:.flex.justify-between.flex-wrap.gap-2
+        [:div.text-2xl.font-bold.self-center score
+         [:span.pl-2.font-normal (name scale)]]
+        [:div.self-center (biff/format-date
+                            (:result/date result) "EEE, YYYY-MM-dd")]]
+       (when notes [:div notes])])))
 
 
 (defn inline-result-ui

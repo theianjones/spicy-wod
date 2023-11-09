@@ -46,6 +46,7 @@
         movement    (-> result :result/type :result/movement)
         sets        (-> result :result/type :result-set/_parent)
         notes       (-> result :result/type :result/notes)
+        scale       (-> result :result/type :result/scale)
         description (if (seq workout)
                       (-> workout :workout/description)
                       (str (sets-n-reps sets)))
@@ -73,4 +74,5 @@
      :description description
      :notes       notes
      :score       score
+     :scale       scale
      :date        (biff/format-date (:result/date result) "YYYY-MM-dd")}))

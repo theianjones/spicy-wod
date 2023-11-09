@@ -15,15 +15,16 @@
                                      [result :result/type wod]
                                      [wod :result/workout workout-id]]}
                         [user workout])]
-    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] border-2 border-black p-8 m-4 bg-white ")}
+    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] border-2 border-black m-4 py-8 bg-white ")}
      [:div {:class "absolute h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
-     [:h2.text-3xl "Log Book"]
+     [:h2.text-3xl.px-8 "Log Book"]
      (if (zero? (count results))
        [:p {:class (str " w-fit m-auto ")} "Log a workout to see your history!"]
-       [:ul.list-none.list-inside.gap-3.pl-0.ml-0
+       [:ul.flex.flex-col.list-none.list-inside.gap-2.pl-0.ml-0
         (map (fn [result]
-               [:li
-                (r/inline-result-ui result)]) results)])]))
+               [:li.even:bg-gray-50.odd:bg-white.py-2
+                [:div.px-8
+                 (r/inline-result-ui result)]]) results)])]))
 
 
 (defn workout-logbook-ui
