@@ -159,8 +159,7 @@
   (biff/submit-tx (get-context)
                   [{:xt/id cindy
                     :db/doc-type :workout
-                    :db/op :update
-                    :workout/reps-per-round 30}])
+                    :db/op :update}])
 
 
   (let [{:keys [biff/db]} (get-context)]

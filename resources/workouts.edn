@@ -39,7 +39,6 @@
   :workout/created-at     :db/now
   :workout/description    "As many rounds as possible in 20 minutes: 5 pull-ups 10 push-ups 15 squats"
   :workout/scheme         :rounds-reps
-  :workout/reps-per-round 30
   :db/doc-type            :workout}
  {:xt/id               :db.id/diane
   :workout/name        "Diane"
@@ -94,7 +93,6 @@
   :workout/created-at     :db/now
   :workout/description    "As many rounds as possible in 20 minutes: 5 handstand push-ups 10 one-legged squats 15 pull-ups"
   :workout/scheme         :rounds-reps
-  :workout/reps-per-round 30
   :db/doc-type            :workout}
  {:xt/id               :db.id/nancy
   :workout/name        "Nancy"

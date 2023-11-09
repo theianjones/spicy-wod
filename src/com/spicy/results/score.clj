@@ -16,10 +16,12 @@
   (or (n/safe-parse-int reps) 0))
 
 
+(def ^:const REPS_MULTIPLIER 10000)
+
+
 (defn rounds-reps->score
-  [{:keys [rounds reps-per-round] :as params}]
-  (+ (reps->score params)
-     (* reps-per-round (n/parse-int rounds))))
+  [{:keys [rounds] :as params}]
+  (+ (/ (float (reps->score params)) REPS_MULTIPLIER) (n/parse-int rounds)))
 
 
 (defn params->score
@@ -27,6 +29,7 @@
   (cond
     (or (some? minutes) (some? seconds)) (time->score params)
     (and (some? rounds) (some? reps)) (rounds-reps->score params)
+    (some? rounds) (n/parse-int rounds)
     (some? reps) (n/parse-int reps)
     :else nil))
 
@@ -63,16 +66,13 @@
 
 
 (defn ->scores
-  [{:keys [rounds-to-score reps-per-round scheme]
+  [{:keys [rounds-to-score]
     :as params}]
   (->> (range 0 (or rounds-to-score 1))
        (mapcat #(->score (assoc params :n %)))
        (group-by :index)
        vals
-       (map #(apply merge %))
-       (mapv #(if (= scheme :rounds-reps)
-                (assoc % :reps-per-round reps-per-round)
-                %))))
+       (map #(apply merge %))))
 
 
 (defn scores->tx
@@ -95,12 +95,14 @@
   ;; => 45
   (params->score {:minutes "3" :seconds "45"})
   ;; => 225
-  (params->score {:rounds "20" :rounds-multiplier 30})
-  ;; => nil
+  (params->score {:rounds "20"})
+  ;; => 20
 
-  (params->score {:rounds "20" :reps "5" :rounds-multiplier 30})
-  ;; => 605
+  (params->score {:rounds "20" :reps "5"})
+  ;; => 20.005
+
   (params->score {:reps "42"})
+  ;; => 42
 
   (def p
     {:date    "2023-07-14",
@@ -124,7 +126,6 @@
 
   (def p-2
     {:rounds-to-score 3
-     :reps-per-round 100
      :date            "2023-07-14",
      :notes-1         "fell off my pace",
      :scale           "rx",
@@ -178,9 +179,4 @@
      "idW9AN+yI4rPRh40QkJ+Mz0duX5CxJforNpmO/UzS7khGITLpRVx0/ePsk7PD5bUM46u2V5NwQnyYjWO",
      :notes-0         ""})
 
-  (->scores p-3)
-  ;; => ({:minutes "16", :index "0", :seconds "33", :notes ""}
-  ;;     {:minutes "102", :index "1", :seconds "2", :notes "fell off my pace"}
-  ;;     {:minutes "96", :index "2", :seconds "1", :notes "couldnt think anymore"})
-  ;;
-  (transduce (scores->tx {:op :create :parent :db.id/wod-result}) conj (->scores x)))
+  (->scores p-3))
