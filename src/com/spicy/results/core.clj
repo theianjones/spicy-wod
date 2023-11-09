@@ -74,7 +74,7 @@
 
 
 (defn edit
-  [{:keys [biff/db session path-params] :as ctx}]
+  [{:keys [biff/db session path-params] :as _ctx}]
   (let [{:result/keys [type] :as result}
         (first (biff/q db '{:find  (pull result [*
                                                  {:result/type [*
