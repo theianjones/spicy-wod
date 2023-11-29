@@ -1,5 +1,4 @@
-# Biff example project
-
+# spicy-wod
 ## Install Clojure
 
 [Instructions here](https://clojure.org/guides/install_clojure#_mac_os_instructions).
