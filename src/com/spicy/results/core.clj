@@ -135,11 +135,10 @@
 (defn index
   [{:keys [biff/db session] :as ctx}]
   (let [date-and-results (biff/q db '{:find     [date (pull result
-                                                            [*
-                                                             {:result/type [*
-                                                                            {:result/workout [*]}
-                                                                            {:result/movement [*]}
-                                                                            {:result-set/_parent [*]}]}])]
+                                                            [* {:result/type [*
+                                                                              {:result/workout [*]}
+                                                                              {:result/movement [*]}
+                                                                              {:result-set/_parent [*]}]}])]
                                       :in       [[user]]
                                       :where    [[result :result/user user]
                                                  [result :result/date date]]
@@ -269,7 +268,7 @@
                                                      :rounds-to-score rounds-to-score})))]
 
     (biff/submit-tx ctx (concat result-tx wod-sets-tx)))
-  (let [{:xt/keys [id] :as w} (xt/entity db (parse-uuid (:workout params)))]
+  (let [{:xt/keys [id] :as _w} (xt/entity db (parse-uuid (:workout params)))]
     {:status  303
      :headers {"location" (str "/app/workouts/" id)}}))
 
