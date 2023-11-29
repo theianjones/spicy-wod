@@ -3,6 +3,7 @@
     [cheshire.core :as json]
     [clojure.java.io :as io]
     [clojure.string :as string]
+    [com.biffweb :as biff]
     [com.spicy.numbers :as n]
     [com.spicy.sugarwod.transform :as t]))
 
@@ -86,3 +87,19 @@
 (defn ->spicy
   [sugar-wod]
   (t/transformer sgw->spw sugar-wod))
+
+
+(defn add-tx-data
+  [spicy-wod]
+  (assoc spicy-wod
+         :workout/created-at :db/now
+         :db/doc-type :workout))
+
+
+(comment
+  (require '[com.spicy.repl :refer [get-context]])
+  (def workouts (concat girls heroes))
+  (def spicy-ws (mapv (comp add-tx-data ->spicy) workouts))
+  
+  (let [ctx (get-context)]
+    (biff/submit-tx ctx spicy-ws)))

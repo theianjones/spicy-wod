@@ -31,16 +31,17 @@
    "Push Press"             "push press"
    "Sotts Press"            "sotts press"
    "Clean & Jerk"           "clean and jerk"
-   "Power Clean"            "power clean" 
+   "Power Clean"            "power clean"
    "Power Clean & Jerk"     "power clean and jerk"
    "Clean"                  "clean"
    "Muscle Clean"           "muscle clean"
    "Hang Clean"             "hang clean"
-   "Hang Power Clean"       "hang power clean" "Clean Pull"             "clean pull"
+   "Hang Power Clean"       "hang power clean"
+   "Clean Pull"             "clean pull"
    "Hang Squat Clean"       "hang squat clean"
    "Squat Clean"            "squat clean"
    "Squat Clean Thruster"   "squat clean thruster (cluster)"
-   "Thruster"               "thruster" 
+   "Thruster"               "thruster"
    "Snatch"                 "snatch"
    "Hang Power Snatch"      "hang power snatch"
    "Snatch Grip Push Press" "snatch grip push press"
@@ -59,8 +60,7 @@
    "Overhead Squat"         "overhead squat"
    "Box Squat"              "box squat"
    "Front Squat"            "front squat"
-   "Front Pause Squat"      "front pause squat"
-   })
+   "Front Pause Squat"      "front pause squat"})
 
 
 (defn sugar-lift->xt-id

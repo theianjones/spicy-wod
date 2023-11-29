@@ -2,45 +2,8 @@
   (:require
     [clojure.string :as string]
     [com.biffweb :as biff]
-    [com.spicy.movements.core :refer [sets-n-reps]]
-    [com.spicy.workouts.ui :refer [display-summed-score]]
+    [com.spicy.results.transform :as t]
     [java-time.api :as jt]))
-
-
-(defn normalized-result
-  [result]
-  (let [workout     (-> result :result/type :result/workout)
-        movement    (-> result :result/type :result/movement)
-        sets        (-> result :result/type :result-set/_parent)
-        notes       (-> result :result/type :result/notes)
-        description (if (seq workout)
-                      (-> workout :workout/description)
-                      (str (sets-n-reps sets)))
-        score       (if (seq workout)
-                      (display-summed-score {:workout workout
-                                             :sets    sets})
-                      (let [best-set (first
-                                       (sort-by :result-set/weight >
-                                                (filter
-                                                  #(= :pass (:result-set/status %)) sets)))]
-                        (str (:result-set/reps best-set) "x" (:result-set/weight best-set))))
-        name        (or (some-> movement
-                                :movement/name
-                                string/capitalize
-                                (str " (" (sets-n-reps sets) ")"))
-                        (:workout/name workout))
-        href        (if (:workout/name workout)
-                      (str "/app/workouts/" (:xt/id workout))
-                      (str "/app/movements/" (:xt/id movement)))]
-    {:workout     workout
-     :movement    movement
-     :sets        sets
-     :href        href
-     :name        name
-     :description description
-     :notes       notes
-     :score       score
-     :date        (biff/format-date (:result/date result) "YYYY-MM-dd")}))
 
 
 (defn card
@@ -73,11 +36,47 @@
 
 (defn result-ui
   [result]
-  (card (normalized-result result)
+  (card (t/normalized-result result)
         [:button {:hx-get    (str "/app/results/" (:xt/id result) "/edit")
                   :hx-target "closest #result-ui"
                   :hx-swap   "outerHTML"
                   :class     (str "self-end btn-no-shadow bg-white text-sm px-4 py-2 font-normal ")} "edit"]))
+
+
+(defn inline-result
+  [result & children]
+  (let [{:keys [score date notes scale] :as _normalized} (t/normalized-result result)]
+    (if (not-empty notes)
+      [:div.flex.flex-col.max-w-sm.sm:max-w-xl.mx-auto#result-ui
+       [:.flex.flex-row.items-baseline.justify-between.mb-3
+        [:div.text-2xl.font-bold score]
+        [:p.whitespace-pre-wrap.sm:text-left.max-w-xs.text-gray-700.mb-0 date]]
+       [:.flex.justify-between
+        [:div.flex.flex-col.gap-2
+         [:div.flex.justify-between
+          (when (not-empty notes)
+            [:span
+             notes])]]
+        (when (not-empty notes)
+          children)]]
+      [:div.flex.gap-3.flex-col#result-ui
+       [:.flex.justify-between.flex-wrap.gap-2
+        [:div.text-2xl.font-bold.self-center score
+         [:span.grow.pl-2.font-normal (name scale)]]
+        [:div.flex.gap-2
+         [:div.self-center (biff/format-date
+                             (:result/date result) "EEE, YYYY-MM-dd")]
+         children]]
+       (when notes [:div notes])])))
+
+
+(defn inline-result-ui
+  [result]
+  (inline-result result
+                 [:button {:hx-get    (str "/app/results/" (:xt/id result) "/edit")
+                           :hx-target "closest #result-ui"
+                           :hx-swap   "outerHTML"
+                           :class     (str "self-end btn-no-shadow bg-white text-sm px-4 py-2 font-normal ")} "edit"]))
 
 
 (defn scheme-forms
@@ -148,7 +147,7 @@
       (if (= 1 rounds-to-score)
         [:div
          (scheme-forms (assoc {}
-                              :score (display-summed-score {:workout w :sets (-> workout-result :result-set/_parent)})
+                              :score (t/display-summed-score {:workout w :sets (-> workout-result :result-set/_parent)})
                               :workout w))
          [:input {:type "hidden"
                   :name "id-0"
@@ -159,7 +158,7 @@
                  [:p.m-0.w-2 (str (inc i) ".")]
                  (scheme-forms (assoc {}
                                       :workout w
-                                      :score (display-summed-score
+                                      :score (t/display-summed-score
                                                {:workout workout
                                                 :sets (filter (complement nil?) [(nth (-> workout-result :result-set/_parent) i)])})
                                       :identifier i))

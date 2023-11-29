@@ -5,6 +5,7 @@
     [com.spicy.middleware :as mid]
     [com.spicy.movements.core :as movements]
     [com.spicy.results.core :as results]
+    [com.spicy.results.transform :as t]
     [com.spicy.results.ui :as r]
     [com.spicy.settings :as settings]
     [com.spicy.sugarwod.core :as sugar.core]
@@ -52,11 +53,11 @@
                      [:p "Log a WOD result to see it show up here!"]
                      [:a.btn {:href "/app/workouts"} "View Workouts"]]
                     [:div (map (fn [result]
-                                 (let [{:keys [workout name date] :as normalized} (r/normalized-result result)]
+                                 (let [{:keys [workout name date] :as normalized} (t/normalized-result result)]
                                    [:div.mb-2
                                     [:a.text-lg.font-sans {:href (str "/app/workouts/" (:xt/id workout))} [:h3.font-sans name]]
                                     [:div
-                                     [:span.font-bold (w/display-summed-score normalized)]
+                                     [:span.font-bold (t/display-summed-score normalized)]
                                      [:span.text-gray-700.ml-2 date]]])) wod-results)])]
                  [:div.p-4.border-2.border-black.bg-white
                   [:h2.text-2xl.font-bold "Latest Lifts"]
@@ -66,7 +67,7 @@
                      [:a.btn {:href "/app/movements"} "View Movements"]]
 
                     [:div (map (fn [result]
-                                 (let [{:keys [movement name date sets] :as normalized} (r/normalized-result result)]
+                                 (let [{:keys [movement name date sets] :as _normalized} (t/normalized-result result)]
                                    [:div.mb-2
                                     [:a.text-lg.font-sans {:href (str "/app/movements/" (:xt/id movement))} [:h3.font-sans.capitalize name]]
                                     [:div

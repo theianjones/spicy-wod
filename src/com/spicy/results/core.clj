@@ -6,15 +6,22 @@
     [com.spicy.middleware :as mid]
     [com.spicy.movements.ui :refer [strength-set-inputs]]
     [com.spicy.results.score :refer [scores->tx ->scores]]
-    [com.spicy.results.ui :refer [result-ui result-form normalized-result]]
+    [com.spicy.results.transform :as t]
+    [com.spicy.results.ui :refer [result-ui result-form inline-result-ui]]
     [com.spicy.route-helpers :refer [wildcard-override]]
     [com.spicy.ui :as ui]
     [java-time.api :as jt]
     [xtdb.api :as xt]))
 
 
+(defn workouts-referer?
+  [{:keys [headers] :as _ctx}]
+  (let [referer (get headers "referer")]
+    (re-matches #".*/workouts/.*" referer)))
+
+
 (defn show
-  [{:keys [biff/db session path-params]}]
+  [{:keys [biff/db session path-params] :as ctx}]
   (let [result (first (biff/q db '{:find (pull result [* {:result/type [*
                                                                         {:result/workout [*]}
                                                                         {:result/movement [*]}
@@ -23,7 +30,9 @@
                                    :where [[result :xt/id result-id]
                                            [result :result/user user]]}
                               [(parse-uuid (:id path-params)) (:uid session)]))]
-    (result-ui result)))
+    (if (workouts-referer? ctx)
+      (inline-result-ui result)
+      (result-ui result))))
 
 
 (defn update-handler
@@ -80,7 +89,7 @@
         workout?    (seq (:result/workout type))
         movement?   (seq (:result/movement type))]
     [:div#edit-result
-     [:h2.text-2xl.font-bold (:name (normalized-result result))]
+     [:h2.text-2xl.font-bold (:name (t/normalized-result result))]
      (when movement?
        (biff/form  {:hidden    {:sets      (count (-> result :result/type :result-set/_parent))
                                 :strength-result-id   (:xt/id type)
@@ -126,11 +135,10 @@
 (defn index
   [{:keys [biff/db session] :as ctx}]
   (let [date-and-results (biff/q db '{:find     [date (pull result
-                                                            [*
-                                                             {:result/type [*
-                                                                            {:result/workout [*]}
-                                                                            {:result/movement [*]}
-                                                                            {:result-set/_parent [*]}]}])]
+                                                            [* {:result/type [*
+                                                                              {:result/workout [*]}
+                                                                              {:result/movement [*]}
+                                                                              {:result-set/_parent [*]}]}])]
                                       :in       [[user]]
                                       :where    [[result :result/user user]
                                                  [result :result/date date]]
@@ -260,7 +268,7 @@
                                                      :rounds-to-score rounds-to-score})))]
 
     (biff/submit-tx ctx (concat result-tx wod-sets-tx)))
-  (let [{:xt/keys [id] :as w} (xt/entity db (parse-uuid (:workout params)))]
+  (let [{:xt/keys [id] :as _w} (xt/entity db (parse-uuid (:workout params)))]
     {:status  303
      :headers {"location" (str "/app/workouts/" id)}}))
 

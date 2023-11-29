@@ -1,51 +1,8 @@
 (ns com.spicy.workouts.ui
   (:require
     [com.biffweb :as biff]
-    [com.spicy.results.score :refer [REPS_MULTIPLIER]]
-    [com.spicy.time :as t]
+    [com.spicy.results.ui :as r]
     [com.spicy.ui :as ui]))
-
-
-(defn ->rounds-reps
-  [reps-per-round score]
-  (if (int? score)
-    (if (> 0 score)
-      "0+0"
-      (str (quot score reps-per-round)
-           "+"
-           (rem score reps-per-round)))
-    (let [rounds (.intValue score)
-          reps (.intValue (* REPS_MULTIPLIER (- (bigdec score) rounds)))]
-      (str rounds "+" reps))))
-
-
-(comment
-  (->rounds-reps 30 60)
-  (->rounds-reps 30 61)
-  (->rounds-reps 30 300)
-  (->rounds-reps 30 301)
-  (->rounds-reps 30 329)
-  (->rounds-reps 30 330))
-
-
-(defn display-score
-  [{:keys [result-set workout]}]
-  (case (:workout/scheme workout)
-    :rounds-reps (->rounds-reps (:workout/reps-per-round workout) (:result-set/score result-set))
-    :time (t/->time (:result-set/score result-set))
-    (:result-set/score result-set)))
-
-
-(defn merge-set-score-with
-  [sets f]
-  (apply (partial merge-with f) (map #(select-keys % [:result-set/score]) sets)))
-
-
-(defn display-summed-score
-  [{:keys [workout sets] :as _a}]
-  (when (and (not-empty workout)
-             (not-empty sets))
-    (display-score (merge {:workout workout} {:result-set (merge-set-score-with sets +)}))))
 
 
 (defn workout-results
@@ -58,23 +15,16 @@
                                      [result :result/type wod]
                                      [wod :result/workout workout-id]]}
                         [user workout])]
-    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] border-2 border-black p-8 m-4 bg-white ")}
+    [:div {:class (str "flex flex-col relative h-full md:min-h-[60vh] border-2 border-black m-4 py-8 bg-white ")}
      [:div {:class "absolute h-full -z-10 overflow-visible inset-0 bg-[url(/img/grid.svg)] bg-center "}]
-     [:h2.text-3xl "Log Book"]
+     [:h2.text-3xl.px-8 "Log Book"]
      (if (zero? (count results))
        [:p {:class (str " w-fit m-auto ")} "Log a workout to see your history!"]
-       [:ul.list-none.list-inside.gap-3.pl-0.ml-0
-        (map (fn [{{:result/keys [scale notes workout]
-                    sets         :result-set/_parent} :result/type
-                   :result/keys               [date]}]
-               [:li {:class (str "w-1/2")}
-                [:div.flex.gap-3.flex-col
-                 [:.flex.justify-between.flex-wrap.gap-2
-                  [:div.text-2xl.font-bold.self-center (display-summed-score {:workout workout :sets sets})
-                   [:span.pl-2.font-normal (name scale)]]
-                  [:div.self-center (biff/format-date
-                                      date "EEE, YYYY-MM-dd")]]
-                 (when notes [:div notes])]]) results)])]))
+       [:ul.flex.flex-col.list-none.list-inside.gap-2.pl-0.ml-0
+        (map (fn [result]
+               [:li.even:bg-gray-50.odd:bg-white.py-2
+                [:div.px-8
+                 (r/inline-result-ui result)]]) results)])]))
 
 
 (defn workout-logbook-ui

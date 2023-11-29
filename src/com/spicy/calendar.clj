@@ -2,7 +2,7 @@
   (:require
     [clojure.string :as string]
     [com.biffweb :as biff]
-    [com.spicy.results.ui :as r]
+    [com.spicy.results.transform :as t]
     [java-time.api :as jt]))
 
 
@@ -114,7 +114,7 @@
         (map (comp (fn [{:keys [name href]}]
                      [:li
                       [:a.group.flex {:href href}
-                       [:p.flex-auto.truncate.font-medium.font-semibold.text-gray-900.group-hover:text-brand-teal name]]]) r/normalized-result) results)])]))
+                       [:p.flex-auto.truncate.font-medium.font-semibold.text-gray-900.group-hover:text-brand-teal name]]]) t/normalized-result) results)])]))
 
 
 (defn mobile-day
@@ -201,7 +201,7 @@
                       [:div.flex-auto
                        [:p.font-semibold.text-gray-900 name]]
                       [:a.ml-6.flex-none.self-center.bg-white.px-3.py-2.font-semibold.text-gray-900.ring-1.ring-inset.ring-black.hover:ring-gray-400 {:href href} "View"
-                       [:span.sr-only (str ", " name)]]]) r/normalized-result) results)]]
+                       [:span.sr-only (str ", " name)]]]) t/normalized-result) results)]]
       [:div.px-4.py-10.sm:px-6.lg:hidden
        {:id "mobile-day-view"}
        [:h2.mb-4 (jt/format "EEE, MMMM dd" date)]
