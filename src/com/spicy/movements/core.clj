@@ -122,17 +122,13 @@
                          0) sets))]
      [:div.border-r-2.border-b-2.border-black.text-md.font-bold
       [:div.flex.h-full.flex-1.sm:flex-row.flex-col
-       [:button.p-2.text-md.grow.bg-brand-teal.sm:border-r-2.border-b-2.border-black.sm:border-b-0
+       [:button.p-2.text-md.font-normal.grow.bg-slate-100.sm:border-r-2.border-b-2.border-black.sm:border-b-0
 
         {:hx-get (str "/app/movements/" (:result/movement type) "/results/" (:xt/id result))
          :hx-target (str "#expanded-" (:xt/id result))
          :hx-swap "outerHTML"}
-        "View"]
-       [:button.p-2.text-md.grow.bg-brand-blue
-        {:hx-get (str "/app/movements/" (:result/movement type) "/results/" (:xt/id result) "/edit")
-         :hx-target (str "#expanded-" (:xt/id result))
-         :hx-swap "outerHTML"}
-        "Edit"]]]
+        "Expand"]
+       ]]
      [:div.col-span-4.hidden {:id (str "expanded-" (:xt/id result))}]]))
 
 
@@ -190,14 +186,18 @@
                      (sort-by :result-set/number (-> result :result/type :result-set/_parent)))
                 [:div.px-2.py-6.border-r-2.border-b-2.border-l-2.border-black ""]
                 [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
-                [:button.p-2.text-md.grow.bg-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
-                 {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
-                  :hx-target (str "#expanded-" (:xt/id result))
-                  :hx-swap   "outerHTML"}
-                 "Close"]
-                [:button.p-2.text-md.grow.bg-brand-blue.border-b-2.border-black.font-bold
-                 {:type :submit}
-                 "Save"])]))
+                [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
+                [:div.flex.flex-row.sm:border-r-2.border-black
+                 [:button.p-2.text-md.grow.bg-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
+                  {:type :submit}
+                  "Save"]
+                 [:button.p-2.text-md.grow.bg-slate-100.sm:border-r-2.border-b-2.border-black.font-bold
+                  {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
+                   :hx-target (str "#expanded-" (:xt/id result))
+                   :hx-swap   "outerHTML"}
+                  "Close"]
+                 ]
+                )]))
 
 
 (defn expanded-result
@@ -226,11 +226,19 @@
       [:div.px-2.py-6.border-r-2.border-b-2.border-l-2.border-black ""]
       [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
       [:div.px-2.py-6.border-r-2.border-b-2.border-black ""]
-      [:button.p-2.text-md.grow.bg-brand-teal.sm:border-r-2.border-b-2.border-black.font-bold
-       {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
-        :hx-target (str "#expanded-" (:xt/id result))
-        :hx-swap   "outerHTML"}
-       "Close"]]]))
+      [:div.flex.flex-row.sm:border-r-2.border-black
+       [:button.p-2.text-md.font-bold.grow.bg-slate-100.sm:border-r-2.border-b-2.border-black.w-full
+        {:hx-get (str "/app/movements/" (-> :result/movement type) "/results/" (:xt/id result) "/edit")
+         :hx-target (str "#expanded-" (:xt/id result))
+         :hx-swap "outerHTML"}
+        "Edit"]
+       [:button.p-2.text-md.font-bold.grow.bg-slate-100.sm:border-r-2.border-b-2.border-black.w-full
+        {:hx-delete (str "/app/movements/" (-> result :result/type :result/movement) "/results/" (:xt/id result))
+         :hx-target (str "#expanded-" (:xt/id result))
+         :hx-swap   "outerHTML"}
+        "Close"]
+       ]
+      ]]))
 
 
 (defn movement-results->prs
